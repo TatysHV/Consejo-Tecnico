@@ -1,2 +1,0 @@
-Cambios importantes de URL para que funcione en el servidor
---- Cambio en show_docs.js
