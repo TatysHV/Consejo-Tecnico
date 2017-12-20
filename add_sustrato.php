@@ -168,7 +168,7 @@
                       <center><p style="font-size: 1.5em; color: grey;">Editar Carpeta</p>
                       <ul class="op">
                         <li><a onclick="showEditFolder()">Cambiar nombre de carpeta</a></li>
-                        <li><a>Eliminar carpeta y contenido</a></li>
+                        <li><a onclick="delete_folder()">Eliminar carpeta y contenido</a></li>
                       </ul>
                       <button onclick="hideOptions()">Cancelar</button>
                       </center>
@@ -179,16 +179,16 @@
                         <p style="font-size: 1.5em; color: grey;">Editar Archivo</p>
                         <ul class="op">
                           <li><a onclick="showEditFile()">Sustituir archivo</a></li>
-                          <li><a>Eliminar archivo</a></li>
+                          <li><a onclick="delete_file()">Eliminar archivo</a></li>
                         </ul>
                         <button onclick="hideOptions()">Cancelar</button>
                       </center>
                     </div>
 
-                    <div >
+                    <div>
 
-                    <div class="editnota">
-                      <center>Estás editando el nombre de la carpeta</center>
+                    <div id ="notaEditFolder" class="notaEdit" style="display:none">
+                      <center><span style="color: blue">Acción:</span> Estás editando el nombre de la carpeta.</center>
                     </div>
 
                     <div id="edit_fold" style="display:none">
@@ -206,6 +206,12 @@
                     </div>
 
                   </div>
+
+                  <div>
+
+                    <div id ="notaEditFile" class="notaEdit" style="display:none">
+                      <center><span style="color: blue">Acción:</span> Estás reemplazando el archivo por uno nuevo.</center>
+                    </div>
 
                     <div id="edit_file" class="archivo" style="display:none">
                       <img src="imagenes/files.png" style="width:60px; height: auto; float: left; margin-left: 5%; margin-top: 10px;"/>
@@ -230,6 +236,7 @@
                     </div>
 
                   </div>
+
                   </div>
                 </div>
 

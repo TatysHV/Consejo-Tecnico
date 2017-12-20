@@ -101,6 +101,8 @@ function show_tree(){
 function showAddSub(){
   document.getElementById("add_subcarp").style.display="block";
   hideAddFil();
+  hideOptions();
+  hideEditAll();
 }
 
 function hideAddSub(){
@@ -110,7 +112,8 @@ function hideAddSub(){
 function showAddFil(){
   document.getElementById("add_archivo").style.display="block";
   hideAddSub();
-
+  hideOptions();
+  hideEditAll();
 }
 
 function hideAddFil(){
@@ -139,12 +142,16 @@ function editFolder(){
   document.getElementById("efolder").style.display="block";
   document.getElementById("efile").style.display="none";
   hideEditAll();
+  hideAddSub();
+  hideAddFil()
 }
 
 function editFile(){
   document.getElementById("efile").style.display="block";
   document.getElementById("efolder").style.display="none";
   hideEditAll();
+  hideAddSub();
+  hideAddFil()
 }
 
 function hideOptions(){
@@ -155,24 +162,34 @@ function hideOptions(){
 function showEditFolder(){
   document.getElementById("edit_fold").style.display="block";
   document.getElementById("edit_file").style.display="none";
+  document.getElementById("notaEditFolder").style.display="block";
   hideOptions();
+  hideAddSub();
+  hideAddFil()
 }
 
 function showEditFile(){
   document.getElementById("edit_fold").style.display="none";
   document.getElementById("edit_file").style.display="block";
+  document.getElementById("notaEditFile").style.display="block";
   hideOptions();
+  hideAddSub();
+  hideAddFil()
 }
 
 function hideEditFold(){
   document.getElementById("edit_fold").style.display="none";
+  document.getElementById("notaEditFolder").style.display="none";
 }
 
 function hideEditFile(){
   document.getElementById("edit_file").style.display="none";
+  document.getElementById("notaEditFile").style.display="none";
 }
 
 function hideEditAll(){
   document.getElementById("edit_fold").style.display="none";
   document.getElementById("edit_file").style.display="none";
+  document.getElementById("notaEditFile").style.display="none";
+  document.getElementById("notaEditFolder").style.display="none";
 }

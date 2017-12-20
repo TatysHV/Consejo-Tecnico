@@ -91,3 +91,31 @@ function selec_padre(){
       }
     });
 }
+
+function update_file(){
+  eleccion=confirm("¿Estás seguro de que quieres reemplazar el archivo?");
+  if(eleccion){
+    alert("Archivo reemplazado");
+  }
+}
+
+function update_folder(){
+  eleccion=confirm("¿Estás seguro de que quieres cambiar el nombre de la carpeta?");
+  if(eleccion){
+    alert("Nombre de carpeta modificado");
+  }
+}
+
+function delete_folder(){
+  eleccion=confirm("Al borrar esta carpeta también se eliminará su contenido.\n¿Seguro de que quieres continuar?");
+  if(eleccion){
+    alert("Carpeta y contenido eliminados");
+  }
+}
+
+function delete_file(){
+  eleccion=confirm("¿Estás seguro de que quieres eliminar el archivo?");
+  if(eleccion){
+    alert("Archivo eliminado");
+  }
+}
