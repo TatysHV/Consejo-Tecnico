@@ -185,6 +185,12 @@
                       </center>
                     </div>
 
+                    <div >
+
+                    <div class="editnota">
+                      <center>Estás editando el nombre de la carpeta</center>
+                    </div>
+
                     <div id="edit_fold" style="display:none">
                       <img src="imagenes/folderBig.png"/ style="width: 60px; height: auto; float: left; margin-left:5%;"></center>
                       <p style="float: right; color: red; cursor: pointer;" onclick="hideEditFold()">[ x ]</p>
@@ -198,6 +204,8 @@
                         </tr>
                       </table>
                     </div>
+
+                  </div>
 
                     <div id="edit_file" class="archivo" style="display:none">
                       <img src="imagenes/files.png" style="width:60px; height: auto; float: left; margin-left: 5%; margin-top: 10px;"/>
