@@ -37,15 +37,18 @@
 
 /*TODOS LOS PUNTOS DE LA ORDEN DEL DÍA, AL MOMENTO DE SER CREADOS, DEBEN TENER UNA CARPETA POR DEFAULT (CERO)
 PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN ESE Punto
---->Carpeta 0
---->Archivo 1
---->Archivo 2
---->Carpeta 1
------->Archivo 3
------->Carpeta 2
---------->Archivo n
 */
-      $ejec2 = mysqli_query($con, "INSERT INTO carpetas (id_carpeta, nombre, tipo, id_carpeta_padre) values ('','default', '0', 0)");
-      //La id_carpeta se genera sola en la base de datos ya que es autoincrementable.
+
+      //------------Crear carpeta raiz por defecto del punto nuevo creado (sustrato)
+      $ejec2 = mysqli_query($con, "INSERT INTO carpeta_raiz(descripcion) values ('')");
+
+      //-----------------Obtener ID de la última carpeta raiz creada--------------------
+      $result3 = mysqli_query($con, "SELECT MAX(id_raiz) AS id FROM carpeta_raiz") or die ('<b>Error al obtener id_sustrato</b>' . mysql_error());
+      if ($row = mysqli_fetch_array($result3)) {
+         $id_craiz = trim($row[0]);
+      }
+
+      //------------Registrar en tabla relacion carpeta-sustrato
+      $ejec3 = mysqli_query($con, "INSERT INTO carpeta_sustrato (id_sustrato, id_carpeta) values ('$id_punto', '$id_craiz')");
 
 ?>
