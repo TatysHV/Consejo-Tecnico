@@ -51,6 +51,23 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
     $idpadre = $_POST['idPadre'];
 
     $query= mysqli_query($con, "INSERT INTO carpeta_hija (nombre, tipo, id_carpeta_padre) values ('$nombre', '1', $idpadre)");
+
+    /*UNA VEZ QUE SE REGISTRA UNA CARPETA HIJA, SE DEBE HACER LA REALACION PARA SABER DENTRO
+    DE QUÉ CARPETA RAIX ESTÁ CONTENIDA, Esta relación necesita la última id de carpeta hija creada y carpeta raiz*/
+
+    //----Obtiene la ID de la última carpeta raiz creada
+    $queryRaiz= mysqli_query($con, "SELECT MAX(id_raiz) AS id FROM carpeta_raiz") or die ('<b>Error al obtener id_sustrato</b>' . mysql_error());
+    if ($row = mysqli_fetch_array($queryRaiz)) {
+       $id_craiz = trim($row[0]);
+    }
+
+    //------Obtiene la ID de la última carpeta hija creada
+    $queryHija= mysqli_query($con, "SELECT MAX(id_carpeta) AS id FROM carpeta_hija") or die ('<b>Error al obtener id_sustrato</b>' . mysql_error());
+    if ($row = mysqli_fetch_array($queryHija)) {
+       $id_chija = trim($row[0]);
+    }
+
+    $Rel = mysqli_query($con, "INSERT INTO cpadre_chijos (id_padre, id_hijo) values ('$id_craiz', '$id_chija')");
   }
 //***********************FUNCION SUBIR ARCHIVOS*********************************//
 
