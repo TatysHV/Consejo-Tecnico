@@ -19,7 +19,7 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
           idPadre();
           break;
       case 1: //crear carpetas
-          addFolder();
+          addFolder(1);
           break;
       case 2: //subir archivos
           addFile();
@@ -43,14 +43,23 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
   }
 //*****************************FUNCION CREAR CARPETAS***************************//
 
-  function addFolder(){
+  function addFolder($tipo){
     include "conexion.php";
     //tabla: carpeta_hija
     //Nombre, Tipo=1(estamos creando una carpeta visible), idPadre(siempre lo obtenemos gracias al codigo de arriba)
-    $nombre = $_POST['nomCarpeta'];
-    $idpadre = $_POST['idPadre'];
+    //Usa una sentencia u otra dependiendo de si se trata de una carpeta normal o una creada por default.
+    $nombre;
+    $idpadre;
 
-    $query= mysqli_query($con, "INSERT INTO carpeta_hija (nombre, tipo, id_carpeta_padre) values ('$nombre', '1', $idpadre)");
+    if($tipo == 0){
+      $nombre = 'default';
+      $query= mysqli_query($con, "INSERT INTO carpeta_hija (nombre, tipo, id_carpeta_padre) values ('$nombre', '0', 0)"); //idpadre = 0
+    }
+    else{
+      $nombre = $_POST['nomCarpeta'];
+      $idpadre = $_POST['idPadre'];
+      $query= mysqli_query($con, "INSERT INTO carpeta_hija (nombre, tipo, id_carpeta_padre) values ('$nombre', '1', $idpadre)");
+    }
 
     /*UNA VEZ QUE SE REGISTRA UNA CARPETA HIJA, SE DEBE HACER LA REALACION PARA SABER DENTRO
     DE QUÉ CARPETA RAIX ESTÁ CONTENIDA, Esta relación necesita la última id de carpeta hija creada y carpeta raiz*/
@@ -78,23 +87,32 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
 
     //-------Obtener ID del último punto agregado--------
     $id_punto;
-    $result1 = mysqli_query($con, "SELECT MAX(id_sustrato) AS id FROM sustrato") or die ('<b>Error al obtener id_punto</b>' . mysql_error());
+    /*$result1 = mysqli_query($con, "SELECT MAX(id_sustrato) AS id FROM sustrato") or die ('<b>Error al obtener id_punto</b>' . mysql_error());
 
     if ($row = mysqli_fetch_array($result1)) {
         $id_punto = trim($row[0]);
-    }
-    /*
-
-   //-----------Obtener la ID de la última carpeta creada (carpeta contenedora)------------
-   $result3 = mysqli_query($con, "SELECT MAX(id_carpeta) AS id FROM carpetas") or die ('<b>Error al obtener id_carpeta</b>');
-   if ($row = mysqli_fetch_array($result3)) {
-       $id_carpeta = trim($row[0]);
-   }*/
+    }*/
 
     //Recibir la ID de la carpeta contenedora donde se van a agregar los archivos
     $id_carpeta = $_POST['carpeta']; //Carpeta seleccionada
-    echo $id_carpeta;
 
+
+    //----Identificar si el archivo será agregado a la raíz o no.
+    //En caso de ser agregado en la raiz, se deben crear carpetas contenedoras del tipo 0, no visibles.
+
+    if($id_carpeta == 0){
+  echo $id_carpeta;
+          addFolder(0);
+
+          //---Al crear una nueva carpeta hija, por default, es necesario obtener su id para registrarla en el campo de la tabla archivo
+          $q = mysqli_query($con, "SELECT MAX(id_carpeta) AS id FROM carpeta_hija") or die ('<b>Error al obtener id_carpeta_hija</b>' . mysql_error());
+
+          if ($row = mysqli_fetch_array($q)) {
+              $id_carpeta= trim($row[0]);
+          }
+
+    }
+    else{echo 'No entra if';}
 
     //----------Subir cada uno de los archivos a la carpeta del servidor
     foreach ($_FILES['file_archivo']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
@@ -121,6 +139,9 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
         }else{echo "Error, no se han subido los archivos";}
       }
     }
+    //Termina de s
+
+
 }
 
 
