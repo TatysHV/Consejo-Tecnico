@@ -39,9 +39,9 @@ function registrar_archivo(){
       success: function(data){
         //alert(data);
         //Añadir de nuevo el formulario, para borrar los valores anteriores.
-        document.getElementById("add_archivo").innerHTML = '<form method="post" id="frm_addfile" enctype="multipart/form-data"><table id="tarchivos" width="90%;"><tr><td><b>Elegir Archivos: </b></td><td><input type="file" class="file" id="file_archivo" name="file_archivo[]" multiple="true"></td><td><input type="button" class="btn btn-info" value="Subir" onclick="registrar_archivo()"/></td></tr></table></form>';
-        document.getElementById("menu_files").innerHTML += data; //mostrar los archivos añadidos.
-        $("#menu_files").fadeIn(3000); //mostrar algo en 3segundos.
+        //document.getElementById("add_archivo").innerHTML = '<form method="post" id="frm_addfile" enctype="multipart/form-data"><table id="tarchivos" width="90%;"><tr><td><b>Elegir Archivos: </b></td><td><input type="file" class="file" id="file_archivo" name="file_archivo[]" multiple="true"></td><td><input type="button" class="btn btn-info" value="Subir" onclick="registrar_archivo()"/></td></tr></table></form>';
+        //document.getElementById("menu_files").innerHTML += data; //mostrar los archivos añadidos.
+        //$("#menu_files").fadeIn(3000); //mostrar algo en 3segundos.
         showFilesViewer();
       }
     });
