@@ -464,11 +464,7 @@ table#OrdenDia td, table#OrdenDia tr{padding:5px;}
 	min-height: 422px;
 }
 
-#listaContenido{
-	overflow:hidden;
-	list-style:none;
-}
-#listaContenido li div{
+#listaContenido div{
 	width: 100%;
 	padding: 5px;
 	padding-left: 10px;
@@ -479,7 +475,14 @@ table#OrdenDia td, table#OrdenDia tr{padding:5px;}
 	cursor: default;
 }
 
-#listaContenido li div:hover{ background: #E5E5E5;}
+#listaContenido div img{
+	display:inline-block;
+	margin-top: -5px;
+	width: 20px;
+	height: auto;
+}
+
+#listaContenido div:hover{ background: #E5E5E5;}
 
 #listaContenido .edit {
 	color: #747474;

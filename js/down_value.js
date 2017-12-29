@@ -37,13 +37,17 @@ function registrar_archivo(){
       contentType: false,
       processData: false,
       success: function(data){
-        alert(data);
+        //alert(data);
         //Añadir de nuevo el formulario, para borrar los valores anteriores.
         document.getElementById("add_archivo").innerHTML = '<form method="post" id="frm_addfile" enctype="multipart/form-data"><table id="tarchivos" width="90%;"><tr><td><b>Elegir Archivos: </b></td><td><input type="file" class="file" id="file_archivo" name="file_archivo[]" multiple="true"></td><td><input type="button" class="btn btn-info" value="Subir" onclick="registrar_archivo()"/></td></tr></table></form>';
         document.getElementById("menu_files").innerHTML += data; //mostrar los archivos añadidos.
         $("#menu_files").fadeIn(3000); //mostrar algo en 3segundos.
+        showFilesViewer();
       }
     });
+
+  //showAddFil();
+
 }
 
 function registrar_subcarp(){
@@ -60,17 +64,19 @@ function registrar_subcarp(){
      data: {"nomCarpeta":nombre_carpeta, "funcion": func, "idPadre":idPadre},
      type: "post",
       success: function(data){
-        alert(data);
-
-
+        //alert(data);
+        showFilesViewer();
       }
     });
+
+    //showAddSub();
 
 }
 
 function selec_carp(id_carpeta){
   //Esta función recibe el id de carpeta que se ha seleccionado
   document.getElementById("carp_selec").value = id_carpeta;
+  showFilesViewer();
 }
 
 function selec_padre(){
@@ -86,10 +92,11 @@ function selec_padre(){
      type: "post",
       success: function(data){
           document.getElementById("carp_selec").value = data;
-        // document.getElementById("addp-btn").style.display = "block";
+          showFilesViewer();
 
       }
     });
+
 }
 
 function update_file(){

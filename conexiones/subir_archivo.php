@@ -87,21 +87,15 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
 
     //-------Obtener ID del último punto agregado--------
     $id_punto;
-    /*$result1 = mysqli_query($con, "SELECT MAX(id_sustrato) AS id FROM sustrato") or die ('<b>Error al obtener id_punto</b>' . mysql_error());
-
-    if ($row = mysqli_fetch_array($result1)) {
-        $id_punto = trim($row[0]);
-    }*/
 
     //Recibir la ID de la carpeta contenedora donde se van a agregar los archivos
     $id_carpeta = $_POST['carpeta']; //Carpeta seleccionada
-
 
     //----Identificar si el archivo será agregado a la raíz o no.
     //En caso de ser agregado en la raiz, se deben crear carpetas contenedoras del tipo 0, no visibles.
 
     if($id_carpeta == 0){
-  echo $id_carpeta;
+      echo $id_carpeta;
           addFolder(0);
 
           //---Al crear una nueva carpeta hija, por default, es necesario obtener su id para registrarla en el campo de la tabla archivo
@@ -111,12 +105,13 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
               $id_carpeta= trim($row[0]);
           }
 
-    }
-    else{echo 'No entra if';}
+    }else{echo 'No entra if';}
+
 
     //----------Subir cada uno de los archivos a la carpeta del servidor
     foreach ($_FILES['file_archivo']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
       //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
       //----------- Subir la info de cada archivo a la base de datos------------
       $nombre = basename($_FILES['file_archivo']['name'][$i]);
 
@@ -126,16 +121,7 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
 
       if (strlen($_FILES['file_archivo']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
         if (move_uploaded_file($_FILES['file_archivo']['tmp_name'][$i], $target_path.$name)) {
-          //echo '<div class="file_success"><img style="display: inline-block" src="imagenes/success.png"> '.$name.' subido </div>';
-/*
-          //--------Obtener id del último archivo añadido------------
-          $result2 = mysqli_query($con, "SELECT MAX(id) AS id FROM archivo") or die ('<b>Error al obtener id_archivo</b>');
-          if ($row = mysqli_fetch_array($result2)) {
-              $id_archivo = trim($row[0]);
-          }
-          //-----Registrar ids para crear la relación Punto-Archivo----
-          $ejec = mysqli_query($con, "INSERT INTO archivo_sustrato (id_sustrato, id_archivo) values ('$id_punto', '$id_archivo')") or die ('<b>Error al registrar relación</b>');
-*/
+
         }else{echo "Error, no se han subido los archivos";}
       }
     }

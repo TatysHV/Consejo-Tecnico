@@ -193,3 +193,17 @@ function hideEditAll(){
   document.getElementById("notaEditFile").style.display="none";
   document.getElementById("notaEditFolder").style.display="none";
 }
+
+
+function showFilesViewer(){
+var carpeta = $("#carp_selec").val();
+
+  $.ajax({
+      url: "/consejo_tecnico/fragmentos/FilesViewer.php",
+      data: {"carpeta": carpeta},
+      type: "post",
+      success: function(data){
+        $('#listaContenido').html(data);
+      }
+    });
+  }

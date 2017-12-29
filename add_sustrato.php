@@ -23,7 +23,7 @@
 		<!--<script src="js/jquery-3.1.1.js"></script>-->
 		<script src="js/show_docs.js"></script>
 		<script src="js/down_value.js"></script>
-
+    <script> window.onload = showFilesViewer; </script>
 		<link type="text/css" rel="stylesheet" href="style.css"/>
 		<link rel="icon" type="image/png" href="">
 	</head>
@@ -40,9 +40,7 @@
 					</div>
 					<div id="navbar">
 						<ul id="nav">
-							<li><a href="portal.html
-
-							">INICIO</a></li>
+							<li><a href="portal.html">INICIO</a></li>
 							<li><a href="actas.php">ACTAS</a></li>
 							<li class="active"><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
@@ -94,7 +92,7 @@
                   <div id="punto-tree">
                       <div class="col-xs-6"><h4>1. Lista de Asistencia</h4></div>
                       <div class="col-xs-6">
-                        <input type="button" style="height:34px; width:auto; margin-top:2px; float:right;" class="btn btn-success" value="FINALIZAR" onclick="">
+                        <input type="button" style="height:34px; width:auto; margin-top:2px; float:right;" class="btn btn-success" value="FINALIZAR" onclick="showFilesViewer()">
                       </div>
                   </div>
 
@@ -106,13 +104,9 @@
                     </div>
 
                     <div id="carpetas-tree">
-                      <ul id="listaContenido">
-                        <li><div id="carpeta25" onclick="selec_carp(6)"><i class="fa fa-folder" aria-hidden="true" id=""></i> Carpeta 1 <a onclick="editFolder()"><i class="fa fa-pencil edit" aria-hidden="true"></i></a></div></li>
-                        <li><div id="carpeta26" onclick="selec_carp(7)"><i class="fa fa-folder" aria-hidden="true" id=""></i> Carpeta 2 <a onclick="editFolder()"><i class="fa fa-pencil edit" aria-hidden="true"></i></a></div></li>
-                        <li><div id="carpeta27"onclick="selec_carp(8)"><i class="fa fa-folder" aria-hidden="true" id=""></i> Carpeta 3 <a onclick="editFolder()"><i class="fa fa-pencil edit" aria-hidden="true"></i></a></div></li>
-                        <li><div id="file12" onclick=""><i class="fa fa-file-o" aria-hidden="true" id=""></i> Archivo 1 <a onclick="editFile()"><i class="fa fa-pencil edit" aria-hidden="true" ></i></a></div></li>
-                        <li><div id="file13" onclick=""><i class="fa fa-file-o" aria-hidden="true" id=""></i> Archivo 2 <a onclick="editFile()"><i class="fa fa-pencil edit" aria-hidden="true" ></i></a></div></li>
-                      </ul>
+                      <div id="listaContenido">
+                        
+                      </div>
                     </div>
                     <div class="op-add">
                       <div class="left" onclick="showAddSub()"><center><b>(+) Carpeta</b></center></div>
