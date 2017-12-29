@@ -29,7 +29,7 @@ $result = mysqli_query($conexion, $queryFolder) or die('<b>No se encontraron coi
 
 while ($line = mysqli_fetch_array($result)) {
 
-  echo '<div id="carpeta'.$line["id_carpeta"].'" onclick="selec_carp('.$line["id_carpeta"].')"><img src="imagenes/flaticons/folder.png"> '.$line["nombre"].' <a onclick="editFolder()"><i class="fa fa-pencil edit" aria-hidden="true"></i></a></div>';
+  echo '<div id="wrap"> <div id="carpeta" onclick="selec_carp('.$line["id_carpeta"].')"><img src="imagenes/flaticons/folder.png"> '.$line["nombre"].' </div> <div class="edit" onclick="editFolder()"><i class="fa fa-pencil" aria-hidden="true"></i></div></div>';
 
 }
 
@@ -47,7 +47,7 @@ else{
 
     while ($line = mysqli_fetch_array($result2)) {
 
-      echo '<div id="archivo'.$line["id"].'" onclick=""><img src="imagenes/flaticons/file.png"> '.$line["nombre"].' <a onclick="editFile()"><i class="fa fa-pencil edit" aria-hidden="true"></i></a></div>';
+      echo '<div id="wrap"> <div id="archivo" onclick=""><img src="imagenes/flaticons/file.png"> '.$line["nombre"].' </div> <div class="edit" onclick="editFile()"><i class="fa fa-pencil" aria-hidden="true"></i></div></div>';
 
     }
 

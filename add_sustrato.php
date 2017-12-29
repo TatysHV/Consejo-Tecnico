@@ -99,13 +99,13 @@
                   <div id="smenu">
                     <div class="op-tree">
                       <div class="row">
-                        <div class="col-xs-6"><a onclick="selec_padre()"> Atrás </a></div><div class="col-xs-6"><input type="button"  id="carp_selec" value="0"></div>
+                        <div class="col-xs-6"><a style="cursor: pointer" onclick="selec_padre()"><img src="imagenes/flaticons/left-arrow(1).png"> Atrás </a></div><div class="col-xs-6"><input type="button"  id="carp_selec" value="0"></div>
                       </div>
                     </div>
 
                     <div id="carpetas-tree">
                       <div id="listaContenido">
-                        
+
                       </div>
                     </div>
                     <div class="op-add">
