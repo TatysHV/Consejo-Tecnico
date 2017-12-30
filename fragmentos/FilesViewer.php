@@ -29,7 +29,7 @@ $result = mysqli_query($conexion, $queryFolder) or die('<b>No se encontraron coi
 
 while ($line = mysqli_fetch_array($result)) {
 
-  echo '<div id="wrap"> <div id="carpeta" onclick="selec_carp('.$line["id_carpeta"].')"><img src="imagenes/flaticons/folder.png"> '.$line["nombre"].' </div> <div class="edit" onclick="editFolder()"><i class="fa fa-pencil" aria-hidden="true"></i></div></div>';
+  echo '<div id="wrap"> <div id="carpeta" onclick="selec_carp('.$line["id_carpeta"].')"><img src="imagenes/flaticons/folder.png"> '.$line["nombre"].' </div> <div class="edit" onclick="optionsEditFolder('.$line["id_carpeta"].')"><i class="fa fa-pencil" aria-hidden="true"></i></div></div>';
 
 }
 
@@ -47,21 +47,8 @@ else{
 
     while ($line = mysqli_fetch_array($result2)) {
 
-      echo '<div id="wrap"> <div id="archivo" onclick=""><img src="imagenes/flaticons/file.png"> '.$line["nombre"].' </div> <div class="edit" onclick="editFile()"><i class="fa fa-pencil" aria-hidden="true"></i></div></div>';
+      echo '<div id="wrap"> <div id="archivo" onclick=""><img src="imagenes/flaticons/file.png"> '.$line["nombre"].'</div> <div class="edit" onclick="optionsEditFile('.$line["id"].')"><i class="fa fa-pencil" aria-hidden="true"></i></div></div>';
 
     }
-
-
-
-
-
-/*
-<li><div id="carpeta26" onclick="selec_carp(7)"><i class="fa fa-folder" aria-hidden="true" id=""></i> Carpeta 2 <a onclick="editFolder()"><i class="fa fa-pencil edit" aria-hidden="true"></i></a></div></li>
-<li><div id="carpeta27"onclick="selec_carp(8)"><i class="fa fa-folder" aria-hidden="true" id=""></i> Carpeta 3 <a onclick="editFolder()"><i class="fa fa-pencil edit" aria-hidden="true"></i></a></div></li>
-<li><div id="file12" onclick=""><i class="fa fa-file-o" aria-hidden="true" id=""></i> Archivo 1 <a onclick="editFile()"><i class="fa fa-pencil edit" aria-hidden="true" ></i></a></div></li>
-<li><div id="file13" onclick=""><i class="fa fa-file-o" aria-hidden="true" id=""></i> Archivo 2 <a onclick="editFile()"><i class="fa fa-pencil edit" aria-hidden="true" ></i></a></div></li>
-
-
-<i class="fa fa-folder" aria-hidden="true">*/
 
  ?>

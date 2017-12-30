@@ -24,6 +24,15 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
       case 2: //subir archivos
           addFile();
           break;
+      case 3: //Editar carpeta
+          updateFolder();
+          break;
+      case 4: //Editar archivo
+          break;
+      case 5: //Eliminar carpeta
+          break;
+      case 6: //Eliminar archivo
+          break;
   }
 
 //************************** FUNCION IDPADRE ***********************************//
@@ -125,8 +134,16 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
         }else{echo "Error, no se han subido los archivos";}
       }
     }
-    //Termina de s
+}
 
+function updateFolder(){
+  //No obtienen la carpeta desde el auxiliar, sino lo reciben directamente al darle clic al botón de editar.
+  include "conexion.php";
+
+  $nombre = $_POST["nombre"];
+  $id_folder = $_POST["carpeta"];
+
+  $query = mysqli_query($con, "UPDATE carpeta_hija SET nombre='$nombre' WHERE id_carpeta= '$id_folder' ");
 
 }
 

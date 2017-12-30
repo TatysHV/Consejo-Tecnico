@@ -99,7 +99,10 @@
                   <div id="smenu">
                     <div class="op-tree">
                       <div class="row">
-                        <div class="col-xs-6"><a style="cursor: pointer" onclick="selec_padre()"><img src="imagenes/flaticons/left-arrow(1).png"> Atrás </a></div><div class="col-xs-6"><input type="button"  id="carp_selec" value="0"></div>
+                        <div class="col-xs-6"><a style="cursor: pointer" onclick="selec_padre()"><img src="imagenes/flaticons/left-arrow(1).png"> Atrás </a></div>
+                        <div class="col-xs-6">
+                          <input type="button"  id="carp_selec" value="0">
+                        </div>
                       </div>
                     </div>
 
@@ -158,50 +161,13 @@
                     </div>
 
           <!-----------------INTERFACEZ DE EDICION DE CONTENIDO DE ORDEN DIA --------------- -->
-                    <div class="aeditar" id="efolder">
-                      <center><p style="font-size: 1.5em; color: grey;">Editar Carpeta</p>
-                      <ul class="op">
-                        <li><a onclick="showEditFolder()">Cambiar nombre de carpeta</a></li>
-                        <li><a onclick="delete_folder()">Eliminar carpeta y contenido</a></li>
-                      </ul>
-                      <button onclick="hideOptions()">Cancelar</button>
-                      </center>
-                    </div>
+                    <div class="aeditar" id="efolder"></div>
 
-                    <div class="aeditar" id="efile">
-                      <center>
-                        <p style="font-size: 1.5em; color: grey;">Editar Archivo</p>
-                        <ul class="op">
-                          <li><a onclick="showEditFile()">Sustituir archivo</a></li>
-                          <li><a onclick="delete_file()">Eliminar archivo</a></li>
-                        </ul>
-                        <button onclick="hideOptions()">Cancelar</button>
-                      </center>
-                    </div>
+                    <div class="aeditar" id="efile"></div>
 
-                    <div>
+                    <div id="update_folder"></div>
 
-                    <div id ="notaEditFolder" class="notaEdit" style="display:none">
-                      <center><span style="color: blue">Acción:</span> Estás editando el nombre de la carpeta.</center>
-                    </div>
-
-                    <div id="edit_fold" style="display:none">
-                      <img src="imagenes/folderBig.png"/ style="width: 60px; height: auto; float: left; margin-left:5%;"></center>
-                      <p style="float: right; color: red; cursor: pointer;" onclick="hideEditFold()">[ x ]</p>
-                      <table id="tcarpeta">
-                        <tr>
-                          <th>Cambiar nombre de carpeta</th>
-                        </tr>
-                        <tr>
-                          <td style="min-width: 400px"><input type="text" class="fsesion" style="width:350px" placeholder="Nombre de la carpeta" id="nombre_subcarp" name="nombre_subcarp"/></td>
-                          <th><center><input type="button" class="btn btn-info" value="Aceptar" onclick="update_folder()"/></center></th>
-                        </tr>
-                      </table>
-                    </div>
-
-                  </div>
-
-                  <div>
+                  <div id="update_file">
 
                     <div id ="notaEditFile" class="notaEdit" style="display:none">
                       <center><span style="color: blue">Acción:</span> Estás reemplazando el archivo por uno nuevo.</center>

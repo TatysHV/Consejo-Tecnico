@@ -77,6 +77,8 @@ function selec_carp(id_carpeta){
   //Esta función recibe el id de carpeta que se ha seleccionado
   document.getElementById("carp_selec").value = id_carpeta;
   showFilesViewer();
+  hideEditAll();
+  hideOptions();
 }
 
 function selec_padre(){
@@ -86,30 +88,66 @@ function selec_padre(){
   var func = 0;
   var carpeta = $("#carp_selec").val();
 
-  $.ajax({
-     url: "../consejo_tecnico/conexiones/subir_archivo.php",
-     data: {"funcion":func, "carpeta":carpeta},
-     type: "post",
-      success: function(data){
-          document.getElementById("carp_selec").value = data;
-          showFilesViewer();
+  if(carpeta>0){ //Evita retroceder cuando no hay carpeta padre
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/subir_archivo.php",
+       data: {"funcion":func, "carpeta":carpeta},
+       type: "post",
+        success: function(data){
+            document.getElementById("carp_selec").value = data;
+            showFilesViewer();
+            hideEditAll();
+            hideOptions();
+        }
+      });
+  }
 
-      }
-    });
 
 }
 
 function update_file(){
   eleccion=confirm("¿Estás seguro de que quieres reemplazar el archivo?");
+
+  $.ajax({
+     url: "../consejo_tecnico/conexiones/subir_archivo.php",
+     data: {"funcion":func, "carpeta":carpeta, "nombre":nombre},
+     type: "post",
+      success: function(data){
+          document.getElementById("carp_selec").value = data;
+          showFilesViewer();
+          hideEditAll();
+          hideOptions();
+      }
+    });
+
+
   if(eleccion){
     alert("Archivo reemplazado");
   }
 }
 
-function update_folder(){
+function update_folder(carpeta){
   eleccion=confirm("¿Estás seguro de que quieres cambiar el nombre de la carpeta?");
-  if(eleccion){
-    alert("Nombre de carpeta modificado");
+
+  var nombre = $("#newfolder").val();
+  var func = 3; //Para editar carpeta
+  var carpeta = carpeta;
+
+  if(eleccion){ //Si acepta modificar el nombre
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/subir_archivo.php",
+       data: {"funcion":func, "carpeta":carpeta, "nombre":nombre },
+       type: "post",
+        success: function(data){
+            //alert("Nombre de carpeta modificado");
+            showFilesViewer();
+            hideEditAll();
+            hideOptions();
+        },
+        failure: function(){
+          alert("No se ha podido modificar el nombre");
+        }
+      });
   }
 }
 

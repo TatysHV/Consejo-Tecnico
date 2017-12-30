@@ -138,17 +138,48 @@ function showFoldersnFiles(){
     });
 }
 
-function editFolder(){
+function optionsEditFolder(id_carpeta){
+  //Muestra el menu de opciones de edicion de una carpeta y le agrega la id carpeta correspondiente a la funcion.
+
+  var id_carpeta = id_carpeta;
+
   document.getElementById("efolder").style.display="block";
   document.getElementById("efile").style.display="none";
+
+  var html = '<center><p style="font-size: 1.5em; color: grey;">Editar Carpeta</p>'+
+              '<ul class="op">'+
+              '<li><a onclick="showEditFolder('+id_carpeta+')">Cambiar nombre de carpeta</a></li>'+
+              '<li><a onclick="delete_folder('+id_carpeta+')">Eliminar carpeta y contenido</a></li>'+
+              '</ul>'+
+              '<button onclick="hideOptions()">Cancelar</button>'+
+              '</center>';
+
+  document.getElementById("efolder").innerHTML = html;
+
   hideEditAll();
   hideAddSub();
   hideAddFil()
 }
 
-function editFile(){
+function optionsEditFile(id_archivo){
+  var id_archivo = id_archivo;
+
+  /*Muestra el menú de opciones de edición de un archivo y agrega la id correspondiente a la funcion*/
+
   document.getElementById("efile").style.display="block";
   document.getElementById("efolder").style.display="none";
+
+  var html =   '<center>'+
+               '<p style="font-size: 1.5em; color: grey;">Editar Archivo</p>'+
+               '<ul class="op">'+
+                  '<li><a onclick="showEditFile('+id_archivo+')">Sustituir archivo</a></li>'+
+                  '<li><a onclick="delete_file('+id_archivo+')">Eliminar archivo</a></li>'+
+                '</ul>'+
+                '<button onclick="hideOptions()">Cancelar</button>'+
+              '</center>';
+
+  document.getElementById("efile").innerHTML = html;
+
   hideEditAll();
   hideAddSub();
   hideAddFil()
@@ -159,19 +190,69 @@ function hideOptions(){
   document.getElementById("efile").style.display="none";
 }
 
-function showEditFolder(){
-  document.getElementById("edit_fold").style.display="block";
+function showEditFolder(id_folder){
+
+  //document.getElementById("edit_fold").style.display="block";
   document.getElementById("edit_file").style.display="none";
-  document.getElementById("notaEditFolder").style.display="block";
+//  document.getElementById("notaEditFolder").style.display="block";
+
+  var html = '<div id ="notaEditFolder" class="notaEdit" style="">'+
+              '<center><span style="color: blue">Acción:</span> Estás editando el nombre de la carpeta.</center>'+
+              '</div>'+
+              '<div id="edit_fold" style="">'+
+                '<img src="imagenes/folderBig.png"/ style="width: 60px; height: auto; float: left; margin-left:5%;"></center>'+
+                '<p style="float: right; color: red; cursor: pointer;" onclick="hideEditFold()">[ x ]</p>'+
+                '<table id="tcarpeta">'+
+                  '<tr>'+
+                    '<th>Cambiar nombre de carpeta</th>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td style="min-width: 400px"><input type="text" class="fsesion" style="width:350px" placeholder="Nombre de la carpeta" id="newfolder" name="neewcarp"/></td>'+
+                    '<th><center><input type="button" class="btn btn-info" value="Aceptar" onclick="update_folder('+id_folder+')"/></center></th>'+
+                  '</tr>'+
+                '</table>'+
+              '</div>';
+
+  document.getElementById("update_folder").innerHTML = html;
+
   hideOptions();
   hideAddSub();
   hideAddFil()
 }
 
-function showEditFile(){
+function showEditFile(id_file){
   document.getElementById("edit_fold").style.display="none";
   document.getElementById("edit_file").style.display="block";
   document.getElementById("notaEditFile").style.display="block";
+
+  var html =  '<div id ="notaEditFile" class="notaEdit" style="display:none">'+
+              '<center><span style="color: blue">Acción:</span> Estás reemplazando el archivo por uno nuevo.</center>'+
+            '</div>'+
+
+            '<div id="edit_file" class="archivo" style="display:none">'+
+              '<img src="imagenes/files.png" style="width:60px; height: auto; float: left; margin-left: 5%; margin-top: 10px;"/>'+
+
+              '<form method="post" id="frm_addfile" enctype="multipart/form-data">'+
+                '<p style="float: right; color: red; cursor: pointer;" onclick="hideEditFile()">[ x ]</p>'+
+                '<!--input discreto que contiene el tipo de función que ejecutará en subir_sustrato.php-->'+
+                '<input type="text" name="funcion" value="" style="display:none">'+
+                '<!--input discreto que contiene el tipo de función que ejecutará en subir_sustrato.php-->'+
+                '<table id="tarchivos" width="85%;">'+
+                '<tr>'+
+                  '<th>Sustituir archivo</th>'+
+                  '<th></th>'+
+                '</tr>'+
+                '<tr>'+
+                  '<td><input type="file" class="file" id="file_archivo" name="file_archivo[]" multiple="true" style="width: 350px;"></td>'+
+                  '<td><input type="button" class="btn btn-info" value="Aceptar" onclick="update_file('+id_file+')"/></td>'+
+
+                '</tr>'+
+                '</table>'+
+              '</form>'+
+            '</div>';
+
+  document.getElementById("update_file").innerHTML = html;
+
   hideOptions();
   hideAddSub();
   hideAddFil()
