@@ -193,7 +193,8 @@ function hideOptions(){
 function showEditFolder(id_folder){
 
   //document.getElementById("edit_fold").style.display="block";
-  document.getElementById("edit_file").style.display="none";
+  hideOptions();
+  document.getElementById("update_folder").style.display="block";
 //  document.getElementById("notaEditFolder").style.display="block";
 
   var html = '<div id ="notaEditFolder" class="notaEdit" style="">'+
@@ -221,18 +222,17 @@ function showEditFolder(id_folder){
 }
 
 function showEditFile(id_file){
-  document.getElementById("edit_fold").style.display="none";
-  document.getElementById("edit_file").style.display="block";
-  document.getElementById("notaEditFile").style.display="block";
+  hideOptions();
+  document.getElementById("update_file").style.display="block";
 
-  var html =  '<div id ="notaEditFile" class="notaEdit" style="display:none">'+
+  var html =  '<div id ="notaEditFile" class="notaEdit" style="">'+
               '<center><span style="color: blue">Acción:</span> Estás reemplazando el archivo por uno nuevo.</center>'+
             '</div>'+
 
-            '<div id="edit_file" class="archivo" style="display:none">'+
+            '<div id="edit_file" class="archivo" style="display:block;">'+
               '<img src="imagenes/files.png" style="width:60px; height: auto; float: left; margin-left: 5%; margin-top: 10px;"/>'+
 
-              '<form method="post" id="frm_addfile" enctype="multipart/form-data">'+
+              '<form method="post" id="frm_newfile" enctype="multipart/form-data">'+
                 '<p style="float: right; color: red; cursor: pointer;" onclick="hideEditFile()">[ x ]</p>'+
                 '<!--input discreto que contiene el tipo de función que ejecutará en subir_sustrato.php-->'+
                 '<input type="text" name="funcion" value="" style="display:none">'+
@@ -243,7 +243,7 @@ function showEditFile(id_file){
                   '<th></th>'+
                 '</tr>'+
                 '<tr>'+
-                  '<td><input type="file" class="file" id="file_archivo" name="file_archivo[]" multiple="true" style="width: 350px;"></td>'+
+                  '<td><input type="file" class="file" id="newfile" name="file_archivo[]" multiple="true" style="width: 350px;"></td>'+
                   '<td><input type="button" class="btn btn-info" value="Aceptar" onclick="update_file('+id_file+')"/></td>'+
 
                 '</tr>'+
@@ -269,10 +269,12 @@ function hideEditFile(){
 }
 
 function hideEditAll(){
-  document.getElementById("edit_fold").style.display="none";
+  /*document.getElementById("edit_fold").style.display="none";
   document.getElementById("edit_file").style.display="none";
   document.getElementById("notaEditFile").style.display="none";
-  document.getElementById("notaEditFolder").style.display="none";
+  document.getElementById("notaEditFolder").style.display="none";*/
+  document.getElementById("update_file").style.display="none";
+  document.getElementById("update_folder").style.display="none";
 }
 
 

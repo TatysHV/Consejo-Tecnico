@@ -38,11 +38,8 @@ function registrar_archivo(){
       processData: false,
       success: function(data){
         //alert(data);
-        //Añadir de nuevo el formulario, para borrar los valores anteriores.
-        //document.getElementById("add_archivo").innerHTML = '<form method="post" id="frm_addfile" enctype="multipart/form-data"><table id="tarchivos" width="90%;"><tr><td><b>Elegir Archivos: </b></td><td><input type="file" class="file" id="file_archivo" name="file_archivo[]" multiple="true"></td><td><input type="button" class="btn btn-info" value="Subir" onclick="registrar_archivo()"/></td></tr></table></form>';
-        //document.getElementById("menu_files").innerHTML += data; //mostrar los archivos añadidos.
-        //$("#menu_files").fadeIn(3000); //mostrar algo en 3segundos.
         showFilesViewer();
+        hideAddFil();
       }
     });
 
@@ -66,6 +63,7 @@ function registrar_subcarp(){
       success: function(data){
         //alert(data);
         showFilesViewer();
+        hideAddSub();
       }
     });
 
@@ -105,21 +103,29 @@ function selec_padre(){
 
 }
 
-function update_file(){
+function update_file(id_file){
   eleccion=confirm("¿Estás seguro de que quieres reemplazar el archivo?");
 
+  var formData = new FormData(document.getElementById("frm_newfile"));
+  var func = 4;
+  var id_file = id_file;
+
+  formData.append('file', id_file);
+  formData.append('funcion', func);
+
   $.ajax({
-     url: "../consejo_tecnico/conexiones/subir_archivo.php",
-     data: {"funcion":func, "carpeta":carpeta, "nombre":nombre},
-     type: "post",
+      url: "../consejo_tecnico/conexiones/subir_archivo.php",
+      data: formData,
+      type: "post",
+      contentType: false,
+      processData: false,
       success: function(data){
-          document.getElementById("carp_selec").value = data;
-          showFilesViewer();
-          hideEditAll();
-          hideOptions();
+        alert(data);
+        showFilesViewer();
+        hideEditAll();
+        hideOptions();
       }
     });
-
 
   if(eleccion){
     alert("Archivo reemplazado");

@@ -167,35 +167,7 @@
 
                     <div id="update_folder"></div>
 
-                  <div id="update_file">
-
-                    <div id ="notaEditFile" class="notaEdit" style="display:none">
-                      <center><span style="color: blue">Acción:</span> Estás reemplazando el archivo por uno nuevo.</center>
-                    </div>
-
-                    <div id="edit_file" class="archivo" style="display:none">
-                      <img src="imagenes/files.png" style="width:60px; height: auto; float: left; margin-left: 5%; margin-top: 10px;"/>
-
-                      <form method="post" id="frm_addfile" enctype="multipart/form-data">
-                        <p style="float: right; color: red; cursor: pointer;" onclick="hideEditFile()">[ x ]</p>
-                        <!--input discreto que contiene el tipo de función que ejecutará en subir_sustrato.php-->
-                        <input type="text" name="funcion" value="2" style="display:none">
-                        <!--input discreto que contiene el tipo de función que ejecutará en subir_sustrato.php-->
-                        <table id="tarchivos" width="85%;">
-                        <tr>
-                          <th>Sustituir archivo</th>
-                          <th></th>
-                        </tr>
-                        <tr>
-                          <td><input type="file" class="file" id="file_archivo" name="file_archivo[]" multiple="true" style="width: 350px;"></td>
-                          <td><input type="button" class="btn btn-info" value="Aceptar" onclick="update_file()"/></td>
-
-                        </tr>
-                        </table>
-                      </form>
-                    </div>
-
-                  </div>
+                    <div id="update_file"></div>
 
                   </div>
                 </div>

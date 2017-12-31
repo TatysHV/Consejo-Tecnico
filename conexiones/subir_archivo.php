@@ -28,6 +28,7 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
           updateFolder();
           break;
       case 4: //Editar archivo
+          updateFile();
           break;
       case 5: //Eliminar carpeta
           break;
@@ -144,6 +145,45 @@ function updateFolder(){
   $id_folder = $_POST["carpeta"];
 
   $query = mysqli_query($con, "UPDATE carpeta_hija SET nombre='$nombre' WHERE id_carpeta= '$id_folder' ");
+
+}
+
+function updateFile(){
+  //Obtiene el id del archivo a modificar mediante AJAX.
+  include "conexion.php";
+
+  $id_file = $_POST["file"];
+
+  //Eliminar el archivo del servidor para después subir uno nuevo.
+
+  $select = mysqli_query($con,"SELECT nombre FROM archivo WHERE id=$id_file ");
+
+  if ($row = mysqli_fetch_array($select)) {
+      $ToDelete= trim($row[0]);
+      unlink("uploads/".$ToDelete);
+  }
+  //Sube al servidor el archivo nuevo y actualiza el nombre y url del archivo anterior por el nuevo.
+  $target_path = "../conexiones/uploads/";
+
+  foreach ($_FILES['file_archivo']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+    //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+    //----------- Subir la info de cada archivo a la base de datos------------
+    $nombre = basename($_FILES['file_archivo']['name'][$i]);
+
+    $url=basename($_FILES['file_archivo']['name'][$i]);
+
+    $query = mysqli_query($con, "UPDATE archivo SET nombre='$nombre', url='$nombre' WHERE id= '$id_file' ");
+
+    if (strlen($_FILES['file_archivo']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+      if (move_uploaded_file($_FILES['file_archivo']['tmp_name'][$i], $target_path.$name)) {
+
+      }else{echo "Error, no se han subido los archivos";}
+    }
+  }
+
+
+
 
 }
 
