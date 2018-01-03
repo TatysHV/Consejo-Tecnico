@@ -20,19 +20,18 @@ function desplegar_docs(ID){
   }
 }
 
-var numero_punto = 1; //Este punto tendrá que ser corregido después
+//var numero_punto = $("#indice_puntos").val(); //Este punto tendrá que ser corregido después
 
 function add_punto(){
+
+  var numero_punto = $("#indice_puntos").val();
+
   document.getElementById("add_punto").style.display = "block";
-  document.getElementById("add_subcarp").style.display = "none";
-  document.getElementById("add_archivo").style.display = "none";
-  document.getElementById("addp-btn").style.display = "block";
+  //document.getElementById("addp-btn").style.display = "block";
 
 
-
-  numero_punto++;
-
-  var punto = '<table id="tcarpeta">'+
+  var punto = '<img src="imagenes/checklist.png" style="max-width: 60px; height: auto; margin-left: 2%; float: left;"/>'+
+  '<table id="tcarpeta">'+
     '<tr>'+
     '<th><center>Punto</center></th>'+
       '<th>Título</th>'+
@@ -40,10 +39,10 @@ function add_punto(){
       '<th></th>'+
     '</tr>'+
     '<tr>'+
-      '<td><center>'+numero_punto+'.</center></td>'+
+      '<td><b><center>'+numero_punto+'.</b></center></td>'+
       '<td style="min-width: 300px"><input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="nombre_punto" name="nombre_punto"/></td>'+
       '<td><center><b>Archivo Protegido: </b><input type="checkbox" class="fseseion" id="proteger" name="proteger"/></center></td>'+
-      '<th><center><input type="button" class="btn btn-info" value="Subir" onclick="registrar_punto()"/></center></th>'+
+      '<th><center><input type="button" class="btn btn-success" value="Crear" onclick="registrar_punto()"/></center></th>'+
     '</tr>'+
   '</table>';
 
@@ -58,11 +57,11 @@ function add_punto(){
   '</form>';
 
   document.getElementById("add_punto").innerHTML = punto;
-  document.getElementById("add_archivo").innerHTML = archivos;
-  document.getElementById("menu_files").innerHTML = "";
-  document.getElementById("control_puntos").innerHTML = '<input type="button" id="indice_puntos" name="indice_puntos" value="'+numero_punto+'"/>';
+  //document.getElementById("add_archivo").innerHTML = archivos;
+  //document.getElementById("menu_files").innerHTML = "";
+  //document.getElementById("control_puntos").innerHTML = '<input type="button" id="indice_puntos" name="indice_puntos" value="'+numero_punto+'"/>';
 
-  document.getElementById("add_punto").style.background="white";
+  document.getElementById("add_punto").style.background="#F7F7F7";
 
 }
 
@@ -107,6 +106,7 @@ function showAddSub(){
 
 function hideAddSub(){
   document.getElementById("add_subcarp").style.display="none";
+  document.getElementById("nombre_subcarp").value="";
 }
 
 function showAddFil(){
@@ -118,6 +118,7 @@ function showAddFil(){
 
 function hideAddFil(){
   document.getElementById("add_archivo").style.display="none";
+  $('#file_archivo').replaceWith( $('#file_archivo').clone() );
 }
 
 

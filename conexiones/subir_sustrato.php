@@ -10,7 +10,7 @@
     $query = mysqli_query($con, "INSERT INTO sustrato (numero, nombre, bloqueo) /*sube uno de los puntos de la orden del día*/
                             values ('$numero', '$nombre', '$proteger')");
 
-      if(!$query){
+    if(!$query){
         echo "Ocurrió un error" . $query;
       }
       else{

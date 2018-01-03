@@ -70,7 +70,9 @@
             </tr>
             <tr>
               <td><center><b>1.</b></center></td>
-              <td style="min-width: 300px"><input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="nombre_punto" name="nombre_punto"/></td>
+              <td style="min-width: 300px">
+                <input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="nombre_punto" name="nombre_punto"/>
+              </td>
               <td><center><b>Archivo Protegido: </b><input type="checkbox" class="fseseion" id="proteger" name="proteger"/></center></td>
               <th><center><input type="button" class="btn btn-success" value="Crear" onclick="registrar_punto()"/></center></th>
             </tr>
@@ -83,16 +85,23 @@
           <hr style="height: 1px; width: 100%; background-color: #F0F0F0;"/>
         </div>
 
+        <!--<div style="width:80%; margin:auto; margin-top: 20px; display:none;" id="addp-btn"><input type="button" class="btn btn-info" onclick="add_punto()" value="+ Añadir Nuevo Punto"/></div> -->
+
+
 				<div class="bloque_desplegable1">
+
 					<div class ="titular1"><center>Añadir Sustrato de la orden del día</center></div></br>
 
 							<div id="add_sustrato">
-
+                <div id="control_puntos">
+                  Punto: <input type="button" id="indice_puntos" name="indice_puntos" value="1" onclick=""/>
+                </div>
+                <br>
                 <div id="panel-sustrato">
                   <div id="punto-tree">
-                      <div class="col-xs-6"><h4>1. Lista de Asistencia</h4></div>
+                      <div class="col-xs-6"><h4><div id="nPunto" style="display:inline-block">1</div>. <div id="nombrePunto" style="display:inline-block">Lista de Asistencia</div></h4></div>
                       <div class="col-xs-6">
-                        <input type="button" style="height:34px; width:auto; margin-top:2px; float:right;" class="btn btn-success" value="FINALIZAR" onclick="showFilesViewer()">
+                        <input type="button" style="height:34px; width:auto; margin-top:2px; float:right;" class="btn btn-success" value="(+) Nuevo punto" onclick="add_punto()">
                       </div>
                   </div>
 
@@ -118,7 +127,7 @@
                   </div>
 
                   <div id="pnl-main">
-                  <div id="navtree"><a href="">Lista de asistencia</a> <b> / </b> <a href="">subcarpeta1</a></div>
+                  <div id="navtree"><a href="">Nombre del punto</a> <b> / </b> <a href="">Subcarpeta</a></div>
 
                   <div id="panel">
 
@@ -173,16 +182,12 @@
                 </div>
 
 								<div id="menu_files"></div>
-
-            	<!--<div style="width:80%; margin:auto; margin-top: 20px; display:none;" id="addp-btn"><input type="button" class="btn btn-info" onclick="add_punto()" value="+ Añadir Nuevo Punto"/></div> -->
-          		<div id="control_puntos">
-            		<input type="button" id="indice_puntos" name="indice_puntos" value="1" onclick="show_tree()"/>
-          		</div>
-          		<br><br>
 					</div>
         </div>
 
-			</div>
+			  </div>
+
+        <br><br>
 			<div id="pie">
 				<div class="contenido2">
 					<div class="col-xs-5" id="f1">

@@ -5,6 +5,8 @@ function registrar_punto(){
   var nombre_punto = $("#nombre_punto").val();
   var proteger = document.getElementById("proteger").checked;
 
+  var nuevo_numero = parseInt(numero_punto) + 1;
+
   if(proteger == true){ proteger=1} else{proteger=0};
 
   $.ajax({
@@ -15,8 +17,12 @@ function registrar_punto(){
          document.getElementById("add_punto").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Punto <span style="color: #0B3B0B"><b>'+nombre_punto+'</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar Sustrato" onclick="show_addsubc()">';
          document.getElementById("add_punto").style.background ="#BCF5A9";
          document.getElementById("add_punto").style.heigth = "110px;"
-         document.getElementById("subtitulo1").style.display = 'none';
-        // document.getElementById("addp-btn").style.display = "block";
+         //document.getElementById("subtitulo1").style.display = 'none';
+
+         document.getElementById("indice_puntos").value = nuevo_numero;
+         document.getElementById("nPunto").innerHTML = numero_punto;
+         alert("numero: "+nuevo_numero);
+         document.getElementById("nombrePunto").innerHTML = nombre_punto;        // document.getElementById("addp-btn").style.display = "block";
 
       }
     });
@@ -64,6 +70,7 @@ function registrar_subcarp(){
         //alert(data);
         showFilesViewer();
         hideAddSub();
+        document.getElementById("nombre_subcarp").value="";
       }
     });
 
@@ -157,16 +164,53 @@ function update_folder(carpeta){
   }
 }
 
-function delete_folder(){
-  eleccion=confirm("Al borrar esta carpeta también se eliminará su contenido.\n¿Seguro de que quieres continuar?");
-  if(eleccion){
-    alert("Carpeta y contenido eliminados");
+function delete_folder(id_folder){
+  eleccion = confirm("Al borrar esta carpeta también se eliminará su contenido.\n¿Seguro de que quieres continuar?");
+
+  var func = 5;
+
+  if(eleccion){ //Si acepta modificar el nombre
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/subir_archivo.php",
+       data: {"funcion":func, "carpeta":id_folder },
+       type: "post",
+        success: function(data){
+            //alert("Nombre de carpeta modificado");
+            alert("Carpeta y contenido eliminados "+data);
+            showFilesViewer();
+            hideEditAll();
+            hideOptions();
+        },
+        failure: function(){
+          alert("No se ha podido eliminar la carpeta");
+        }
+      });
   }
 }
 
-function delete_file(){
+function delete_file(id_file){
   eleccion=confirm("¿Estás seguro de que quieres eliminar el archivo?");
+
+  var func = 6;
+  var file = id_file;
+
   if(eleccion){
-    alert("Archivo eliminado");
+
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/subir_archivo.php",
+       data: {"funcion":func, "file":file },
+       type: "post",
+        success: function(data){
+            //alert("Nombre de carpeta modificado");
+            alert("Archivo eliminado"+ data);
+            showFilesViewer();
+            hideEditAll();
+            hideOptions();
+        },
+        failure: function(){
+          alert("No se ha podido eliminar la carpeta");
+        }
+      });
+
   }
 }

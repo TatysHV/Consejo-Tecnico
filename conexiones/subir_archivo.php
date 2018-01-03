@@ -31,12 +31,14 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
           updateFile();
           break;
       case 5: //Eliminar carpeta
+          deleteFolder();
           break;
       case 6: //Eliminar archivo
+          deleteFile();
           break;
   }
 
-//************************** FUNCION IDPADRE ***********************************//
+//************************** OBTENER ID PADRE DE CARPETA HIJA ***********************************//
 
   function idPadre(){
     include "conexion.php";
@@ -88,6 +90,7 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
 
     $Rel = mysqli_query($con, "INSERT INTO cpadre_chijos (id_padre, id_hijo) values ('$id_craiz', '$id_chija')");
   }
+
 //***********************FUNCION SUBIR ARCHIVOS*********************************//
 
   function addFile(){
@@ -137,6 +140,8 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
     }
 }
 
+/********************** MODIFICAR CONTENIDO ***********************/
+
 function updateFolder(){
   //No obtienen la carpeta desde el auxiliar, sino lo reciben directamente al darle clic al botón de editar.
   include "conexion.php";
@@ -181,12 +186,37 @@ function updateFile(){
       }else{echo "Error, no se han subido los archivos";}
     }
   }
+}
 
+/****************** ELIMINAR CONTENIDO *******************************/
 
+function deleteFolder(){
+  //No obtienen la carpeta desde el auxiliar, sino lo reciben directamente al darle clic al botón de editar.
+  include "conexion.php";
 
+  $id_folder = $_POST["carpeta"];
+  echo"hola que hace";
+
+  $query = mysqli_query($con, "DELETE FROM carpeta_hija WHERE id_carpeta='$id_folder' ");
 
 }
 
+function deleteFile(){
+  include "conexion.php";
+
+  $id_file = $_POST["file"];
+
+  $select = mysqli_query($con,"SELECT nombre FROM archivo WHERE id= '$id_file' ");
+
+  if ($row = mysqli_fetch_array($select)) { //Eliminar el archivo virtual
+      $ToDelete= trim($row[0]);
+      unlink("uploads/".$ToDelete);
+  }
+
+  $query = mysqli_query($con, "DELETE FROM archivo WHERE id= '$id_file' ");
+  //Eliminarlo de la base de datos
+  echo"entra al php";
+  }
 
 
 ?>
