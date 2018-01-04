@@ -281,13 +281,53 @@ function hideEditAll(){
 
 function showFilesViewer(){
 var carpeta = $("#carp_selec").val();
+var puntoActual = ($('#indice_puntos').val())-1;
 
+alert("Punto a mostrar:"+puntoActual);
+
+if(puntoActual > 0){
   $.ajax({
       url: "/consejo_tecnico/fragmentos/FilesViewer.php",
-      data: {"carpeta": carpeta},
+      data: {"carpeta": carpeta, "num_punto":puntoActual},
       type: "post",
       success: function(data){
         $('#listaContenido').html(data);
       }
     });
+ }
+}
+
+  function beforePoint(){
+    var carpeta = $("#carp_selec").val();
+    var puntoActual = ($("#indice_puntos").val())-2;
+
+    alert("Punto a mostrar:"+puntoActual);
+
+    if(puntoActual > 0){
+      $.ajax({
+          url: "/consejo_tecnico/fragmentos/FilesViewer.php",
+          data: {"carpeta": carpeta, "num_punto":puntoActual},
+          type: "post",
+          success: function(data){
+            $('#listaContenido').html(data);
+          }
+        });
+     }
+  }
+  function nextPoint(){
+    var carpeta = $("#carp_selec").val();
+    var puntoActual = $("#indice_puntos").val();
+
+    alert("Punto a mostrar:"+puntoActual);
+
+    if(puntoActual > 0){
+      $.ajax({
+          url: "/consejo_tecnico/fragmentos/FilesViewer.php",
+          data: {"carpeta": carpeta, "num_punto":puntoActual},
+          type: "post",
+          success: function(data){
+            $('#listaContenido').html(data);
+          }
+        });
+     }
   }

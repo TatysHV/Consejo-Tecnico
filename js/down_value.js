@@ -24,8 +24,10 @@ function registrar_punto(){
          alert("numero: "+nuevo_numero);
          document.getElementById("nombrePunto").innerHTML = nombre_punto;        // document.getElementById("addp-btn").style.display = "block";
 
+         showFilesViewer();
       }
     });
+
 }
 
 function registrar_archivo(){
@@ -34,7 +36,10 @@ function registrar_archivo(){
   var carpeta = $("#carp_selec").val();
   var func = 'addFiles';
 
+ var puntoActual = ($('#indice_puntos').val())-1;
+ alert("punto actual: "+puntoActual);
   formData.append('carpeta', carpeta);
+  formData.append('num_punto',puntoActual);
 
   $.ajax({
       url: "../consejo_tecnico/conexiones/subir_archivo.php",

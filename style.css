@@ -374,16 +374,29 @@ table#OrdenDia td, table#OrdenDia tr{padding:5px;}
 	border-bottom: 1px solid #959595;
 }
 
-
 #punto-tree{
-  padding:3px;
-	padding-left: 10px;
+
   width:100%;
   color:white;
   height: 45px;
   background-color:#1f1f8d;
   margin:auto;
 }
+
+#punto-tree #anterior, #punto-tree #siguiente{ 	cursor:pointer; display:inline-block; width:15px; padding-left: 10px; padding-right: 25px;}
+#punto-tree #anterior img, #punto-tree #siguiente img{
+	width: 16px;
+	height: auto;
+	display:inline-block;
+	text-align: center;
+}
+
+#punto-tree #nPunto, #punto-tree #nombrePunto{
+	font-size: 14pt;
+	padding-top: 5px;
+}
+
+
 
 #carpetas-tree{
 	float: left;

@@ -99,8 +99,18 @@
                 <br>
                 <div id="panel-sustrato">
                   <div id="punto-tree">
-                      <div class="col-xs-6"><h4><div id="nPunto" style="display:inline-block">1</div>. <div id="nombrePunto" style="display:inline-block">Lista de Asistencia</div></h4></div>
-                      <div class="col-xs-6">
+                      <div class="col-xs-5">
+
+                        <div id="anterior" onclick="beforePoint()">
+                          <img src="imagenes/flaticons/toLeft.png"/>
+                        </div>
+                        <div id="nPunto" style="display:inline-block">1</div>. <div id="nombrePunto" style="display:inline-block">Lista de Asistencia</div>
+                        <div id="siguiente" onclick="nextPoint()">
+                          <img src="imagenes/flaticons/toRight.png"/>
+                        </div>
+
+                      </div>
+                      <div class="col-xs-7">
                         <input type="button" style="height:34px; width:auto; margin-top:2px; float:right;" class="btn btn-success" value="(+) Nuevo punto" onclick="add_punto()">
                       </div>
                   </div>
