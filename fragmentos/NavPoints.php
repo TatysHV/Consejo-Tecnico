@@ -1,6 +1,5 @@
 <?php
-//Archivo dedicado a arrojar informacion referente a los puntos de la orden del día
-
+//Su función es únicamente retornar el nombre del punto x, necesario en el visor de archivos.
 
 include "../conexiones/conexion.php";
 session_start();
@@ -13,21 +12,23 @@ if (!mysqli_select_db($conexion, $db))
   exit;
 }
 
-$funcion = $_POST['func'];
+$nPunto= $_POST["num_punto"];
+$id_orden;
+$nombre;
 
-switch($funcion){
-  case 1:
-  break;
-  case 2:
-  break;
-  case 3:
-  break;
-  case 4:
-  break;
+//Obtener la ID de última orden del día registrada.
+$orden = mysqli_query($conexion, "SELECT MAX(id) AS id_orden FROM orden_dia") or die ('<b>Error al obtener la id de la sesion</b>' . mysql_error());
+
+if ($row = mysqli_fetch_array($orden)) {
+    $id_orden= trim($row[0]);
 }
 
-function blabla(){
-
+/************RECIBIENDO EL NUMERO EXACTO DEL PUNTO A CONSULTAR************/
+$queryO = mysqli_query($conexion, "SELECT distinct s.id_sustrato, s.nombre FROM orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden and ot.id_sustrato = s.id_sustrato WHERE s.numero = $nPunto and o.id = $id_orden");
+if($row= mysqli_fetch_array($queryO)){
+    $nombre= $row["nombre"];
 }
+
+echo ''.$nombre;
 
 ?>

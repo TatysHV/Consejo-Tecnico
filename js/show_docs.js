@@ -1,3 +1,4 @@
+
 function desplegar_docs(ID){
   var id = ID;
 
@@ -24,7 +25,7 @@ function desplegar_docs(ID){
 
 function add_punto(){
 
-  var numero_punto = $("#indice_puntos").val();
+  var nuevo_punto = parseInt( $("#indice_puntos").val() )+1;
 
   document.getElementById("add_punto").style.display = "block";
   //document.getElementById("addp-btn").style.display = "block";
@@ -39,7 +40,7 @@ function add_punto(){
       '<th></th>'+
     '</tr>'+
     '<tr>'+
-      '<td><b><center>'+numero_punto+'.</b></center></td>'+
+      '<td><b><center>'+nuevo_punto+'.</b></center></td>'+
       '<td style="min-width: 300px"><input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="nombre_punto" name="nombre_punto"/></td>'+
       '<td><center><b>Archivo Protegido: </b><input type="checkbox" class="fseseion" id="proteger" name="proteger"/></center></td>'+
       '<th><center><input type="button" class="btn btn-success" value="Crear" onclick="registrar_punto()"/></center></th>'+
@@ -281,9 +282,8 @@ function hideEditAll(){
 
 function showFilesViewer(){
 var carpeta = $("#carp_selec").val();
-var puntoActual = ($('#indice_puntos').val())-1;
-
-alert("Punto a mostrar:"+puntoActual);
+var puntoActual = $('#index_punto').val();
+//alert("Punto a mostrar:"+puntoActual);
 
 if(puntoActual > 0){
   $.ajax({
@@ -299,9 +299,9 @@ if(puntoActual > 0){
 
   function beforePoint(){
     var carpeta = $("#carp_selec").val();
-    var puntoActual = ($("#indice_puntos").val())-2;
+    var puntoActual = parseInt( $("#index_punto").val() )-1;
 
-    alert("Punto a mostrar:"+puntoActual);
+    //alert("Punto a mostrar:"+puntoActual);
 
     if(puntoActual > 0){
       $.ajax({
@@ -310,23 +310,44 @@ if(puntoActual > 0){
           type: "post",
           success: function(data){
             $('#listaContenido').html(data);
+            document.getElementById("index_punto").value = puntoActual;
+            document.getElementById("nPunto").innerHTML = puntoActual;
+            retornaNombre(puntoActual);
           }
         });
      }
   }
+
+  function retornaNombre(punto){
+
+    $.ajax({
+        url: "/consejo_tecnico/fragmentos/NavPoints.php",
+        data: {"num_punto":punto},
+        type: "post",
+        success: function(data){
+          $('#nombrePunto').html(data);
+        }
+      });
+
+  }
+
   function nextPoint(){
     var carpeta = $("#carp_selec").val();
-    var puntoActual = $("#indice_puntos").val();
+    var puntoActual = parseInt( $("#index_punto").val() )+1;
+    var puntosTotales = $("#indice_puntos");
 
-    alert("Punto a mostrar:"+puntoActual);
+    //alert("Punto a mostrar: "+puntoActual);
 
-    if(puntoActual > 0){
+    if(puntoActual <= puntosTotales){
       $.ajax({
           url: "/consejo_tecnico/fragmentos/FilesViewer.php",
           data: {"carpeta": carpeta, "num_punto":puntoActual},
           type: "post",
           success: function(data){
             $('#listaContenido').html(data);
+            document.getElementById("index_punto").value = puntoActual;
+            document.getElementById("nPunto").innerHTML = puntoActual;
+            retornaNombre(puntoActual);
           }
         });
      }

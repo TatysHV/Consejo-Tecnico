@@ -56,6 +56,8 @@
         <div style="margin: auto; margin-top: 80px; width: 80%; margin-bottom: 50px;">
           <center><h2>Registro de contenido de la orden del día</h2></center>
         </div>
+        ID Orden dia: <input type="button" id="index_orden" value="64"/>
+        <br>
 
 
         <div id="add_punto" style="width: 80%;">
@@ -94,7 +96,8 @@
 
 							<div id="add_sustrato">
                 <div id="control_puntos">
-                  Punto: <input type="button" id="indice_puntos" name="indice_puntos" value="1" onclick=""/>
+                  Cont. Puntos: <input type="button" id="indice_puntos" name="indice_puntos" value="0"/><br>
+                  Punto visible: <input type="button" id="index_punto" value="0" onclick=""/>
                 </div>
                 <br>
                 <div id="panel-sustrato">

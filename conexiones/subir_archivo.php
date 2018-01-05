@@ -62,6 +62,12 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
     //Usa una sentencia u otra dependiendo de si se trata de una carpeta normal o una creada por default.
     $nombre;
     $idpadre;
+    $id_craiz; $id_chija;
+
+    $id_punto;
+    $nPunto = $_POST["punto"];
+    $id_orden = $_POST["orden_dia"];
+
 
     if($tipo == 0){
       $nombre = 'default';
@@ -74,10 +80,18 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
     }
 
     /*UNA VEZ QUE SE REGISTRA UNA CARPETA HIJA, SE DEBE HACER LA REALACION PARA SABER DENTRO
-    DE QUÉ CARPETA RAIX ESTÁ CONTENIDA, Esta relación necesita la última id de carpeta hija creada y carpeta raiz*/
+    DE QUÉ CARPETA RAIZ ESTÁ CONTENIDA, Esta relación necesita id de carpeta hija creada y carpeta raiz
+    Es necesario obtener el id de la CARPETA RAIZ que le pertenece al punto x cuyo número sea n.
+    perteneciente a la última orden del día creada.*/
 
-    //----Obtiene la ID de la última carpeta raiz creada
-    $queryRaiz= mysqli_query($con, "SELECT MAX(id_raiz) AS id FROM carpeta_raiz") or die ('<b>Error al obtener id_sustrato</b>' . mysql_error());
+    //Obtenemos la id del punto en base a la orden del día que pertenece y al número de punto que corresponde
+    $queryO = mysqli_query($con, "SELECT distinct s.id_sustrato, s.nombre FROM orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden and ot.id_sustrato = s.id_sustrato WHERE s.numero = '$nPunto' and o.id = '$id_orden' ");
+    if($row= mysqli_fetch_array($queryO)){
+        $id_punto= $row["id_sustrato"];
+    }
+
+    //----Obtiene la ID de la carpeta raiz del punto obtenido.
+    $queryRaiz= mysqli_query($con, "SELECT distinct cr.id_raiz FROM sustrato as s inner join carpeta_sustrato as cs inner join carpeta_raiz as cr on s.id_sustrato = cs.id_sustrato and cs.id_carpeta = cr.id_raiz WHERE s.id_sustrato = '$id_punto' ") or die ('<b>Error al obtener id_sustrato</b>' . mysql_error());
     if ($row = mysqli_fetch_array($queryRaiz)) {
        $id_craiz = trim($row[0]);
     }
@@ -88,6 +102,8 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
        $id_chija = trim($row[0]);
     }
 
+    //-----Crea la relación que permite indicar a qué lugar pertenece cada carpeta creada.
+
     $Rel = mysqli_query($con, "INSERT INTO cpadre_chijos (id_padre, id_hijo) values ('$id_craiz', '$id_chija')");
   }
 
@@ -96,10 +112,18 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
   function addFile(){
     include "conexion.php";
 
+    $nPunto = $_POST["punto"];
+    $id_orden = $_POST["orden_dia"];
+
     $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
 
-    //-------Obtener ID del último punto agregado--------
+    //-------Obtener ID del punto al que se le agregarán dichos archivos
+
     $id_punto;
+    $queryO = mysqli_query($con, "SELECT distinct s.id_sustrato, s.nombre FROM orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden and ot.id_sustrato = s.id_sustrato WHERE s.numero = '$nPunto' and o.id = '$id_orden' ");
+    if($row= mysqli_fetch_array($queryO)){
+        $id_punto= $row["id_sustrato"];
+    }
 
     //Recibir la ID de la carpeta contenedora donde se van a agregar los archivos
     $id_carpeta = $_POST['carpeta']; //Carpeta seleccionada

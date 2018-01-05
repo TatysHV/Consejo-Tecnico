@@ -1,17 +1,17 @@
 
 function registrar_punto(){
 
-  var numero_punto = $("#indice_puntos").val();
+  var numero_punto = $("#indice_puntos").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
   var nombre_punto = $("#nombre_punto").val();
   var proteger = document.getElementById("proteger").checked;
 
-  var nuevo_numero = parseInt(numero_punto) + 1;
+  var nuevo_numero = parseInt(numero_punto) + 1; //Aumenta el contador en 1
 
   if(proteger == true){ proteger=1} else{proteger=0};
 
   $.ajax({
      url: "../consejo_tecnico/conexiones/subir_sustrato.php",
-     data: {"nombre":nombre_punto, "numero":numero_punto, "proteger":proteger},
+     data: {"nombre":nombre_punto, "numero":nuevo_numero, "proteger":proteger},
      type: "post",
       success: function(data){
          document.getElementById("add_punto").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Punto <span style="color: #0B3B0B"><b>'+nombre_punto+'</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar Sustrato" onclick="show_addsubc()">';
@@ -20,9 +20,10 @@ function registrar_punto(){
          //document.getElementById("subtitulo1").style.display = 'none';
 
          document.getElementById("indice_puntos").value = nuevo_numero;
-         document.getElementById("nPunto").innerHTML = numero_punto;
-         alert("numero: "+nuevo_numero);
+         document.getElementById("nPunto").innerHTML = nuevo_numero;
+         //alert("numero: "+nuevo_numero);
          document.getElementById("nombrePunto").innerHTML = nombre_punto;        // document.getElementById("addp-btn").style.display = "block";
+         document.getElementById("index_punto").value = nuevo_numero;
 
          showFilesViewer();
       }
@@ -35,11 +36,14 @@ function registrar_archivo(){
   var formData = new FormData(document.getElementById("frm_addfile"));
   var carpeta = $("#carp_selec").val();
   var func = 'addFiles';
+  var orden_dia = $("#index_orden").val();
+  var num_punto = $("#index_punto").val();
 
- var puntoActual = ($('#indice_puntos').val())-1;
- alert("punto actual: "+puntoActual);
+  //alert("punto actual: "+num_punto);
+
   formData.append('carpeta', carpeta);
-  formData.append('num_punto',puntoActual);
+  formData.append('punto', num_punto);
+  formData.append('orden_dia', orden_dia);
 
   $.ajax({
       url: "../consejo_tecnico/conexiones/subir_archivo.php",
@@ -61,21 +65,24 @@ function registrar_archivo(){
 function registrar_subcarp(){
 
   var nombre_carpeta = $("#nombre_subcarp").val();
-  alert(nombre_carpeta);
+  //alert(nombre_carpeta);
   var func = 1;
   var idPadre = $("#carp_selec").val();
+  var orden_dia = $("#index_orden").val();
+  var num_punto = $("#index_punto").val();
 
   //Envío del tipo de funcion directamente mediante esta variable.
 
   $.ajax({
      url: "../consejo_tecnico/conexiones/subir_archivo.php",
-     data: {"nomCarpeta":nombre_carpeta, "funcion": func, "idPadre":idPadre},
+     data: {"nomCarpeta":nombre_carpeta, "funcion": func, "idPadre":idPadre,"punto":num_punto, "orden_dia": orden_dia },
      type: "post",
       success: function(data){
         //alert(data);
         showFilesViewer();
         hideAddSub();
         document.getElementById("nombre_subcarp").value="";
+        alert(data);
       }
     });
 
