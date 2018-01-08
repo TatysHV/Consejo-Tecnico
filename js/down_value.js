@@ -14,7 +14,7 @@ function registrar_punto(){
      data: {"nombre":nombre_punto, "numero":nuevo_numero, "proteger":proteger},
      type: "post",
       success: function(data){
-         document.getElementById("add_punto").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Punto <span style="color: #0B3B0B"><b>'+nombre_punto+'</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar Sustrato" onclick="show_addsubc()">';
+         document.getElementById("add_punto").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Punto <span style="color: #0B3B0B"><b>'+nombre_punto+'</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar Sustrato" onclick="show_addCont()">';
          document.getElementById("add_punto").style.background ="#BCF5A9";
          document.getElementById("add_punto").style.heigth = "110px;"
          //document.getElementById("subtitulo1").style.display = 'none';

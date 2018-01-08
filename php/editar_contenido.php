@@ -18,13 +18,13 @@
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="expires" content="0">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
-		<link type="text/css" rel="stylesheet" href="Bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.css">
+		<link type="text/css" rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css"/>
 		<!--<script src="js/jquery-3.1.1.js"></script>-->
-		<script src="js/show_docs.js"></script>
-		<script src="js/down_value.js"></script>
+		<script src="../js/show_docs.js"></script>
+		<script src="../js/down_value.js"></script>
     <script> window.onload = showFilesViewer; </script>
-		<link type="text/css" rel="stylesheet" href="style.css"/>
+		<link type="text/css" rel="stylesheet" href="../style.css"/>
 		<link rel="icon" type="image/png" href="">
 	</head>
 	<body>
@@ -53,18 +53,15 @@
 
 			<div id="principal"></br></br>
 
-        <div id="tituloZ" style="margin: auto; margin-top: 50px; width: 80%; margin-bottom: 5px;">
-          <center><h2 style="color:#4f4f4f">Registro de contenido de la orden del día</h2></center>
+        <div style="margin: auto; margin-top: 80px; width: 80%; margin-bottom: 50px;">
+          <center><h2>Registro de contenido de la orden del día</h2></center>
         </div>
-          <div id="id_ordenDia" style="display:none">ID Orden dia: <input type="button" id="index_orden" value="64"/></div>
+        ID Orden dia: <input type="button" id="index_orden" value="64"/>
+        <br>
 
-        <div class="notas" id="notaAddPunto" style="color:#616161">
-          <hr style="height: 1px; width: 100%; background-color: #F0F0F0;"/>
-          <p><span>Nota: </span>Permite el registro de un solo punto a la vez, de la orden del día de la sesión del consejo técnico previamente registrada.</p>
-          <hr style="height: 1px; width: 100%; background-color: #F0F0F0;"/>
-        </div>
 
         <div id="add_punto" style="width: 80%;">
+
           <img src="imagenes/checklist.png" style="max-width: 60px; height: auto; margin-left: 2%; float: left;"/>
           <table id="tcarpeta">
             <tr>
@@ -84,11 +81,16 @@
           </table>
         </div>
 
+        <div class="notas">
+          <hr style="height: 1px; width: 100%; background-color: #F0F0F0;"/>
+          <p><span>Nota: </span>Permite el registro de un solo punto a la vez, de la orden del día de la sesión del consejo técnico previamente registrada.</p>
+          <hr style="height: 1px; width: 100%; background-color: #F0F0F0;"/>
+        </div>
 
         <!--<div style="width:80%; margin:auto; margin-top: 20px; display:none;" id="addp-btn"><input type="button" class="btn btn-info" onclick="add_punto()" value="+ Añadir Nuevo Punto"/></div> -->
 
 
-				<div class="bloque_desplegable1" id="visor_contenido" style="display:none">
+				<div class="bloque_desplegable1">
 
 					<div class ="titular1"><center>Añadir Sustrato de la orden del día</center></div></br>
 

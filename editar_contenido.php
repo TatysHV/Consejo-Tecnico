@@ -53,44 +53,12 @@
 
 			<div id="principal"></br></br>
 
-        <div id="tituloZ" style="margin: auto; margin-top: 50px; width: 80%; margin-bottom: 5px;">
-          <center><h2 style="color:#4f4f4f">Registro de contenido de la orden del día</h2></center>
-        </div>
-          <div id="id_ordenDia" style="display:none">ID Orden dia: <input type="button" id="index_orden" value="64"/></div>
+      ID Orden dia: <input type="button" id="index_orden" value="64"/>
+        <br>
 
-        <div class="notas" id="notaAddPunto" style="color:#616161">
-          <hr style="height: 1px; width: 100%; background-color: #F0F0F0;"/>
-          <p><span>Nota: </span>Permite el registro de un solo punto a la vez, de la orden del día de la sesión del consejo técnico previamente registrada.</p>
-          <hr style="height: 1px; width: 100%; background-color: #F0F0F0;"/>
-        </div>
+        <div class="bloque_desplegable1">
 
-        <div id="add_punto" style="width: 80%;">
-          <img src="imagenes/checklist.png" style="max-width: 60px; height: auto; margin-left: 2%; float: left;"/>
-          <table id="tcarpeta">
-            <tr>
-              <th><center>Punto</center></th>
-              <th>Título</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <td><center><b>1.</b></center></td>
-              <td style="min-width: 300px">
-                <input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="nombre_punto" name="nombre_punto"/>
-              </td>
-              <td><center><b>Archivo Protegido: </b><input type="checkbox" class="fseseion" id="proteger" name="proteger"/></center></td>
-              <th><center><input type="button" class="btn btn-success" value="Crear" onclick="registrar_punto()"/></center></th>
-            </tr>
-          </table>
-        </div>
-
-
-        <!--<div style="width:80%; margin:auto; margin-top: 20px; display:none;" id="addp-btn"><input type="button" class="btn btn-info" onclick="add_punto()" value="+ Añadir Nuevo Punto"/></div> -->
-
-
-				<div class="bloque_desplegable1" id="visor_contenido" style="display:none">
-
-					<div class ="titular1"><center>Añadir Sustrato de la orden del día</center></div></br>
+					<div class ="titular1"><center>Edición de contenido de la orden del día</center></div></br>
 
 							<div id="add_sustrato">
                 <div id="control_puntos">

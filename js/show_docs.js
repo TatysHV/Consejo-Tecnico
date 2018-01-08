@@ -58,11 +58,9 @@ function add_punto(){
   '</form>';
 
   document.getElementById("add_punto").innerHTML = punto;
-  //document.getElementById("add_archivo").innerHTML = archivos;
-  //document.getElementById("menu_files").innerHTML = "";
-  //document.getElementById("control_puntos").innerHTML = '<input type="button" id="indice_puntos" name="indice_puntos" value="'+numero_punto+'"/>';
-
   document.getElementById("add_punto").style.background="#F7F7F7";
+
+  show_addPunto();
 
 }
 
@@ -81,6 +79,20 @@ function showforyear(){
           $('#empty').html(data);
 			}
     });
+}
+
+function show_addCont(){
+  document.getElementById("visor_contenido").style.display = "block";
+  document.getElementById("notaAddPunto").style.display = "none";
+  document.getElementById("add_punto").style.display = "none";
+  document.getElementById("tituloZ").style.display = "none";
+}
+
+function show_addPunto(){
+  document.getElementById("visor_contenido").style.display = "none";
+  document.getElementById("notaAddPunto").style.display = "block";
+  document.getElementById("add_punto").style.display = "block";
+  document.getElementById("tituloZ").style.display = "block";
 }
 
 
@@ -333,21 +345,20 @@ if(puntoActual > 0){
 
   function nextPoint(){
     var carpeta = $("#carp_selec").val();
-    var puntoActual = parseInt( $("#index_punto").val() )+1;
-    var puntosTotales = $("#indice_puntos");
+    var puntoActual = parseInt($("#index_punto").val());
+    var nextpoint = puntoActual + 1;
+    var puntosTotales = parseInt($("#indice_puntos").val());
 
-    //alert("Punto a mostrar: "+puntoActual);
-
-    if(puntoActual <= puntosTotales){
+    if(puntoActual < puntosTotales){
       $.ajax({
           url: "/consejo_tecnico/fragmentos/FilesViewer.php",
-          data: {"carpeta": carpeta, "num_punto":puntoActual},
+          data: {"carpeta": carpeta, "num_punto":nextpoint},
           type: "post",
           success: function(data){
             $('#listaContenido').html(data);
-            document.getElementById("index_punto").value = puntoActual;
-            document.getElementById("nPunto").innerHTML = puntoActual;
-            retornaNombre(puntoActual);
+            document.getElementById("index_punto").value =nextpoint;
+            document.getElementById("nPunto").innerHTML = nextpoint;
+            retornaNombre(nextpoint);
           }
         });
      }
