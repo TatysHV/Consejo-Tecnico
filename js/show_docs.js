@@ -1,13 +1,14 @@
 
-function desplegar_docs(ID){
+function desplegar_docs(ID,padre){
   var id = ID;
+  var padre=padre;
 
-  var vista = document.getElementById("vista"+id).value;
+  var vista = document.getElementById("vista"+id).value;  
 
   if(vista == "0"){
     $.ajax({
         url: "/consejo_tecnico/fragmentos/archivoSustrato.php",
-        data: {"id":id},
+        data: {"id":id, "padre":padre},
         type: "post",
         success: function(data){
             document.getElementById("puntos"+id).innerHTML = data;
@@ -16,8 +17,31 @@ function desplegar_docs(ID){
         }
       });
   } else{
-    document.getElementById("vista"+id).value = 0;
-    document.getElementById("puntos"+id).style.display = "none";
+    /*document.getElementById("vista"+id).value = 0;*/
+    /*document.getElementById("puntos"+id).style.display = "none";*/
+  }
+}
+
+function desplegar_sub(ID,padre){
+  var id = ID;
+  var padre=padre;
+
+  var vista = document.getElementById("vista"+padre).value;  
+
+  if(vista == "0"){
+    $.ajax({
+        url: "/consejo_tecnico/fragmentos/archivoSustrato.php",
+        data: {"id":id, "padre":padre},
+        type: "post",
+        success: function(data){
+            document.getElementById("puntos"+padre).innerHTML = data;
+            document.getElementById("puntos"+padre).style.display = "block";
+            document.getElementById("vista"+padre).value = 1;
+        }
+      });
+  } else{
+    /*document.getElementById("vista"+padre).value = 0;*/
+    /*document.getElementById("puntos"+id).style.display = "none";*/
   }
 }
 

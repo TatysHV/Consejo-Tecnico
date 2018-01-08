@@ -108,16 +108,15 @@ session_start(); ?>
 
 									';
 									while ($sus = mysqli_fetch_array($resultado)){
-										echo '<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].')">
-											<span class="icon-folder"></span><b>'.$sus["numero"].'.</b>  '.$sus["nombre"].'
-											<div id="puntos'.$sus["id_sustrato"].'" style="width: 85%; margin:auto;"></div>
-											<input type="hidden" value="0" id="vista'.$sus["id_sustrato"].'"/>
-										</div>';
-									}
-									echo '
-
-
-								</div>
+							$padre = 0;
+							/*<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].')">*/
+						  echo '<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].','.$padre.')">
+									<span class="icon-folder"></span><b>'.$sus["numero"].'.</b>  '.$sus["nombre"].'
+									<div id="puntos'.$sus["id_sustrato"].'" style="width: 85%; margin:auto;"></div>
+									<input type="hidden" value="0" id="vista'.$sus["id_sustrato"].'"/>
+							   	</div>';
+							}
+						echo '
 							</div>
 						</div>
 					</div>
