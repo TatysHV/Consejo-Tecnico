@@ -42,8 +42,12 @@
    		}
    	}
 
-/*	echo '<a href="../sesiones.php">Volver Atrás</a>';*/
-  header('Location: /2016/consejo_tecnico/add_sustrato.php');
+    $result1 = mysqli_query($con, "SELECT MAX(id) AS id FROM orden_dia") or die ('<b>Error al obtener id_ordendia</b>' . mysql_error());
+    if ($row = mysqli_fetch_array($result1)) {
+         $id_ordendia = trim($row[0]);
+        }
 
+/*	echo '<a href="../sesiones.php">Volver Atrás</a>';*/
+  header("Location: /2016/consejo_tecnico/add_sustrato.php?orden=$id_ordendia");
 
  ?>

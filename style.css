@@ -512,7 +512,7 @@ table#OrdenDia td, table#OrdenDia tr{padding:5px;}
 
 #listaContenido #wrap:hover{ background: #E5E5E5;}
 
-#listaContenido .edit {
+#listaContenido .edit{
 	display:inline-block;
 	width:10%;
 	padding-left: 15px;
@@ -521,6 +521,13 @@ table#OrdenDia td, table#OrdenDia tr{padding:5px;}
 	cursor: pointer;
 	color:#3068a6;
 }
+ #punto .edit{
+	display:inline-block;
+	width: 50px;
+ 	padding-left: 15px;
+ 	float: right;
+ 	cursor: pointer;
+ }
 
 .aeditar{
 	margin: auto;

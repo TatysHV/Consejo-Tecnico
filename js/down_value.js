@@ -226,3 +226,26 @@ function delete_file(id_file){
 
   }
 }
+
+function updateContenido(num_punto){
+
+  var id_orden = parseInt($("#id_ordenDia").val());
+
+
+  eleccion=confirm("id_orden: "+id_orden+" num_punto: "+num_punto);
+
+  /*if(eleccion){$.ajax({
+      url: "../consejo_tecnico/editar_contenido.php",
+      data: {"orden":id_orden, "punto":num_punto},
+      type: "post",
+      success: function(data){
+        document.location.href="http://localhost/consejo_tecnico/editar_contenido.php";
+        alert("id_orden: "+id_orden+" num_punto: "+num_punto);
+      }
+    });
+  }*/
+
+  //document.getElementById("index_orden").value = id_orden;
+  //document.getElementById("index_punto").value = num_punto;
+
+}

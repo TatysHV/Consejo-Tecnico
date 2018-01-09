@@ -8,9 +8,13 @@
 	{
 		echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
 	}
+
+   $id_orden = $_GET['orden'];
+   $num_punto = $_GET['punto'];
+   echo 'orden: '.$id_orden.'';
+
 ?>
 
-<!Doctype html>
 <html lang="es">
 	<head>
 		<title>Consejo Técnico</title>
@@ -53,7 +57,11 @@
 
 			<div id="principal"></br></br>
 
-      ID Orden dia: <input type="button" id="index_orden" value="64"/>
+        <?php
+
+
+
+      echo 'ID Orden dia: <input type="button" id="index_orden" value="'.$id_orden.'"/>
         <br>
 
         <div class="bloque_desplegable1">
@@ -63,8 +71,9 @@
 							<div id="add_sustrato">
                 <div id="control_puntos">
                   Cont. Puntos: <input type="button" id="indice_puntos" name="indice_puntos" value="0"/><br>
-                  Punto visible: <input type="button" id="index_punto" value="0" onclick=""/>
-                </div>
+                  Punto visible: <input type="button" id="index_punto" value="'.$num_punto.'" onclick=""/>
+                </div>';
+                ?>
                 <br>
                 <div id="panel-sustrato">
                   <div id="punto-tree">

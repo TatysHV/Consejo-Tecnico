@@ -11,8 +11,10 @@ session_start(); ?>
 		<script src="js/jquery-3.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/show_docs.js"></script>
+		<script src="js/down_value.js"></script>
 		<link type="text/css" rel="stylesheet" href="style.css"/>
 		<link type="text/css" rel="stylesheet" href="fonts.css"/>
+		  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
 		<link href='https://fonts.googleapis.com/css?family=Cinzel:400,700|Open+Sans:400,700' rel='stylesheet' type='text/css'/>
 		<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,500,700' rel='stylesheet' type='text/css'/>
 
@@ -92,6 +94,7 @@ session_start(); ?>
 
 					echo '
 					<div class="bloque_sesion" style="padding: 15px;">
+						ID Orden día: <input type="button" id="id_ordenDia" value=" '.$line["id"].'"/>
 						<div id="pdf">
 							<embed src="conexiones/uploads/'.$line["direccion"].'" width="100%" height="1100"></embed>
 						</div>
@@ -110,11 +113,12 @@ session_start(); ?>
 									while ($sus = mysqli_fetch_array($resultado)){
 							$padre = 0;
 							/*<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].')">*/
-						  echo '<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].','.$padre.')">
+						  echo '<div id="wrap"> <div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].','.$padre.')">
 									<span class="icon-folder"></span><b>'.$sus["numero"].'.</b>  '.$sus["nombre"].'
+<div class="edit" ><a href="editar_contenido.php?orden='.$line["id"].'&punto='.$sus["numero"].'"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
 									<div id="puntos'.$sus["id_sustrato"].'" style="width: 85%; margin:auto;"></div>
 									<input type="hidden" value="0" id="vista'.$sus["id_sustrato"].'"/>
-							   	</div>';
+							   	</div></div>';
 							}
 						echo '
 							</div>

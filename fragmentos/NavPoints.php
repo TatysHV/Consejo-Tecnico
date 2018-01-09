@@ -12,16 +12,16 @@ if (!mysqli_select_db($conexion, $db))
   exit;
 }
 
-$nPunto= $_POST["num_punto"];
-$id_orden;
+$nPunto = $_POST["num_punto"];
+$id_orden = $_POST["orden"];
 $nombre;
 
-//Obtener la ID de última orden del día registrada.
+/*Obtener la ID de última orden del día registrada.
 $orden = mysqli_query($conexion, "SELECT MAX(id) AS id_orden FROM orden_dia") or die ('<b>Error al obtener la id de la sesion</b>' . mysql_error());
 
 if ($row = mysqli_fetch_array($orden)) {
     $id_orden= trim($row[0]);
-}
+}*/
 
 /************RECIBIENDO EL NUMERO EXACTO DEL PUNTO A CONSULTAR************/
 $queryO = mysqli_query($conexion, "SELECT distinct s.id_sustrato, s.nombre FROM orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden and ot.id_sustrato = s.id_sustrato WHERE s.numero = $nPunto and o.id = $id_orden");

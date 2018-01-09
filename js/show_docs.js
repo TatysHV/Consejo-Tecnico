@@ -3,7 +3,7 @@ function desplegar_docs(ID,padre){
   var id = ID;
   var padre=padre;
 
-  var vista = document.getElementById("vista"+id).value;  
+  var vista = document.getElementById("vista"+id).value;
 
   if(vista == "0"){
     $.ajax({
@@ -26,7 +26,7 @@ function desplegar_sub(ID,padre){
   var id = ID;
   var padre=padre;
 
-  var vista = document.getElementById("vista"+padre).value;  
+  var vista = document.getElementById("vista"+padre).value;
 
   if(vista == "0"){
     $.ajax({
@@ -316,74 +316,78 @@ function hideEditAll(){
 }
 
 
-function showFilesViewer(){
+function showFilesViewer(flag){
 var carpeta = $("#carp_selec").val();
 var puntoActual = $('#index_punto').val();
+var id_orden = $("#index_orden").val();
 //alert("Punto a mostrar:"+puntoActual);
 
 if(puntoActual > 0){
   $.ajax({
       url: "/consejo_tecnico/fragmentos/FilesViewer.php",
-      data: {"carpeta": carpeta, "num_punto":puntoActual},
+      data: {"carpeta": carpeta, "num_punto":puntoActual, "orden":id_orden},
       type: "post",
       success: function(data){
         $('#listaContenido').html(data);
+        retornaNombre(puntoActual);
       }
     });
  }
 }
 
-  function beforePoint(){
-    var carpeta = $("#carp_selec").val();
-    var puntoActual = parseInt( $("#index_punto").val() )-1;
+function beforePoint(){
+  var carpeta = $("#carp_selec").val();
+  var puntoActual = parseInt( $("#index_punto").val() )-1;
 
-    //alert("Punto a mostrar:"+puntoActual);
+  //alert("Punto a mostrar:"+puntoActual);
 
-    if(puntoActual > 0){
-      $.ajax({
-          url: "/consejo_tecnico/fragmentos/FilesViewer.php",
-          data: {"carpeta": carpeta, "num_punto":puntoActual},
-          type: "post",
-          success: function(data){
-            $('#listaContenido').html(data);
-            document.getElementById("index_punto").value = puntoActual;
-            document.getElementById("nPunto").innerHTML = puntoActual;
-            retornaNombre(puntoActual);
-          }
-        });
-     }
-  }
-
-  function retornaNombre(punto){
-
+  if(puntoActual > 0){
     $.ajax({
-        url: "/consejo_tecnico/fragmentos/NavPoints.php",
-        data: {"num_punto":punto},
+        url: "/consejo_tecnico/fragmentos/FilesViewer.php",
+        data: {"carpeta": carpeta, "num_punto":puntoActual},
         type: "post",
         success: function(data){
-          $('#nombrePunto').html(data);
+          $('#listaContenido').html(data);
+          document.getElementById("index_punto").value = puntoActual;
+          document.getElementById("nPunto").innerHTML = puntoActual;
+          retornaNombre(puntoActual);
         }
       });
+   }
+}
 
-  }
+function retornaNombre(punto){
 
-  function nextPoint(){
-    var carpeta = $("#carp_selec").val();
-    var puntoActual = parseInt($("#index_punto").val());
-    var nextpoint = puntoActual + 1;
-    var puntosTotales = parseInt($("#indice_puntos").val());
+var id_orden = $("#index_orden").val();
 
-    if(puntoActual < puntosTotales){
-      $.ajax({
-          url: "/consejo_tecnico/fragmentos/FilesViewer.php",
-          data: {"carpeta": carpeta, "num_punto":nextpoint},
-          type: "post",
-          success: function(data){
-            $('#listaContenido').html(data);
-            document.getElementById("index_punto").value =nextpoint;
-            document.getElementById("nPunto").innerHTML = nextpoint;
-            retornaNombre(nextpoint);
-          }
-        });
-     }
-  }
+  $.ajax({
+      url: "/consejo_tecnico/fragmentos/NavPoints.php",
+      data: {"num_punto":punto, "orden":id_orden},
+      type: "post",
+      success: function(data){
+        $('#nombrePunto').html(data);
+      }
+    });
+
+}
+
+function nextPoint(){
+  var carpeta = $("#carp_selec").val();
+  var puntoActual = parseInt($("#index_punto").val());
+  var nextpoint = puntoActual + 1;
+  var puntosTotales = parseInt($("#indice_puntos").val());
+
+  if(puntoActual < puntosTotales){
+    $.ajax({
+        url: "/consejo_tecnico/fragmentos/FilesViewer.php",
+        data: {"carpeta": carpeta, "num_punto":nextpoint},
+        type: "post",
+        success: function(data){
+          $('#listaContenido').html(data);
+          document.getElementById("index_punto").value =nextpoint;
+          document.getElementById("nPunto").innerHTML = nextpoint;
+          retornaNombre(nextpoint);
+        }
+      });
+   }
+}

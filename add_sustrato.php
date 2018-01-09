@@ -8,6 +8,9 @@
 	{
 		echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
 	}
+
+  $id_orden = $_GET["orden"];
+
 ?>
 
 <!Doctype html>
@@ -56,7 +59,7 @@
         <div id="tituloZ" style="margin: auto; margin-top: 50px; width: 80%; margin-bottom: 5px;">
           <center><h2 style="color:#4f4f4f">Registro de contenido de la orden del día</h2></center>
         </div>
-          <div id="id_ordenDia" style="display:none">ID Orden dia: <input type="button" id="index_orden" value="64"/></div>
+          <div id="id_ordenDia" style="display:block">ID Orden dia: <input type="button" id="index_orden" value="<?php echo $id_orden ?>"/></div>
 
         <div class="notas" id="notaAddPunto" style="color:#616161">
           <hr style="height: 1px; width: 100%; background-color: #F0F0F0;"/>
