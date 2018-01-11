@@ -11,7 +11,7 @@
       addFinalPunto();
     break;
     case 2: //Agregar un punto intermedio
-      addInterPunto();
+      addPunto();
     break;
     case 3: //Modificar un punto
       editPunto();
@@ -62,7 +62,7 @@
           echo "Actualización de puntos totales realizado correctamente";
         }
 
-/*TODOS LOS PUNTOS DE LA ORDEN DEL DÍA, AL MOMENTO DE SER CREADOS, DEBEN TENER UNA CARPETA POR DEFAULT (CERO)
+      /*TODOS LOS PUNTOS DE LA ORDEN DEL DÍA, AL MOMENTO DE SER CREADOS, DEBEN TENER UNA CARPETA POR DEFAULT (CERO)
 PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN ESE Punto
 */
 
@@ -80,8 +80,9 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
 
   }
 
-  function addInterPunto(){
+  function addPunto(){
     include "conexion.php";
+
     /*SE ESTARÁ AGREGANDO UN NUEVO PUNTO EN EL LUGAR DE OTRO YA EXISTENTE. POR LO TANTO
     EL PUNTO VIEJO DEBERÁ AUMENTAR EN 1 PARA QUEDAR EN SEGUIDA DEL NUEVO PUNTO QUE SE DESEA AGREGAR
     ES DECIR QUE EMPUJARÁ TODOS LOS DEMÁS PUNTOS, (se logrará sumando en 1 a todos los puntos subsiguientes)*/
@@ -111,6 +112,46 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
 
     if(!$query){ echo "Ocurrió un error" . $query; }
     else{ echo "EL REGISTRO DEL PUNTO ".$nombre." SE REALIZÓ DE MANERA EXITOSA"; }
+
+    //--------Definición de variables globales-------------------
+    $id_punto;
+    $id_carpeta;
+
+    //--------Obtener ID del punto (sustrato)---------------------
+    $result2 = mysqli_query($con, "SELECT MAX(id_sustrato) AS id FROM sustrato") or die ('<b>Error al obtener id_sustrato</b>' . mysql_error());
+    if ($row = mysqli_fetch_array($result2)) {
+         $id_punto = trim($row[0]);
+        }
+    //---------Registrar en tabla relacion ordendia-punto---------
+    $ejec = mysqli_query($con, "INSERT INTO orden_tiene (id_orden, id_sustrato) values ('$id_orden', '$id_punto')") or die ('<b>Error al generar relación Ordendia-Sustrato</b>' . mysql_error());
+
+    //*********ACTUALIZAR CANTIDAD DE PUNTOS TOTALES DE LA ORDEN DEL DÍA********
+    $cant_puntos = $cant_puntos + 1;
+    //------------Modificar en la orden del día----------------------------------------
+    $updateOrden = mysqli_query($con, "UPDATE orden_dia SET cant_puntos = '$cant_puntos' WHERE id = '$id_orden'");
+
+      if(!$updateOrden){
+        echo "Ocurrió un error al actualizar la cantidad de puntos totales" . $query;
+      }
+      else{
+        echo "Actualización de puntos totales realizado correctamente";
+      }
+
+    /*TODOS LOS PUNTOS DE LA ORDEN DEL DÍA, AL MOMENTO DE SER CREADOS, DEBEN TENER UNA CARPETA POR DEFAULT (CERO)
+    PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN ESE Punto
+    */
+
+    //------------Crear carpeta raiz por defecto del punto nuevo creado (sustrato)
+    $ejec2 = mysqli_query($con, "INSERT INTO carpeta_raiz(descripcion) values ('')");
+
+    //-----------------Obtener ID de la última carpeta raiz creada--------------------
+    $result3 = mysqli_query($con, "SELECT MAX(id_raiz) AS id FROM carpeta_raiz") or die ('<b>Error al obtener id_sustrato</b>' . mysql_error());
+    if ($row = mysqli_fetch_array($result3)) {
+       $id_craiz = trim($row[0]);
+    }
+
+    //------------Registrar en tabla relacion carpeta-sustrato
+    $ejec3 = mysqli_query($con, "INSERT INTO carpeta_sustrato (id_sustrato, id_carpeta) values ('$id_punto', '$id_craiz')");
 
   }
 
