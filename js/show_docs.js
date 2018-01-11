@@ -338,13 +338,14 @@ if(puntoActual > 0){
 function beforePoint(){
   var carpeta = $("#carp_selec").val();
   var puntoActual = parseInt( $("#index_punto").val() )-1;
+  var id_orden = $("#index_orden").val();
 
   //alert("Punto a mostrar:"+puntoActual);
 
   if(puntoActual > 0){
     $.ajax({
         url: "/consejo_tecnico/fragmentos/FilesViewer.php",
-        data: {"carpeta": carpeta, "num_punto":puntoActual},
+        data: {"carpeta": carpeta, "num_punto":puntoActual,"orden":id_orden},
         type: "post",
         success: function(data){
           $('#listaContenido').html(data);
@@ -376,11 +377,12 @@ function nextPoint(){
   var puntoActual = parseInt($("#index_punto").val());
   var nextpoint = puntoActual + 1;
   var puntosTotales = parseInt($("#indice_puntos").val());
+  var id_orden = $("#index_orden").val();
 
   if(puntoActual < puntosTotales){
     $.ajax({
         url: "/consejo_tecnico/fragmentos/FilesViewer.php",
-        data: {"carpeta": carpeta, "num_punto":nextpoint},
+        data: {"carpeta": carpeta, "num_punto":nextpoint,"orden":id_orden},
         type: "post",
         success: function(data){
           $('#listaContenido').html(data);

@@ -36,6 +36,9 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
       case 6: //Eliminar archivo
           deleteFile();
           break;
+      case 7: //Modificar datos de punto
+          updatePunto();
+          break;
   }
 
 //************************** OBTENER ID PADRE DE CARPETA HIJA ***********************************//
@@ -240,7 +243,21 @@ function deleteFile(){
   $query = mysqli_query($con, "DELETE FROM archivo WHERE id= '$id_file' ");
   //Eliminarlo de la base de datos
   echo"entra al php";
-  }
+}
+
+function updatePunto(){
+    include "conexion.php";
+    $id_punto = $_POST["punto"];
+
+    $nombrePunto = $_POST["nombre"];
+    $numeroPunto = $_POST["numero"];
+
+    $query = mysqli_query($con, "UPDATE sustrato SET numero='$numero', nombre='$nombre' WHERE id_sustrato= '$id_punto' ");
+
+    if($query){echo 'Se modificó el punto de manera correcta';}
+    else{echo 'Error al modificar punto';}
+
+}
 
 
 ?>

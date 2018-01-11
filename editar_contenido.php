@@ -55,18 +55,58 @@
 					</div>
 			</div>
 
-			<div id="principal"></br></br>
+			<div id="principal">
+        <br><br><br><br>
+
+        <div class ="titular1"><center>Modificar punto de la orden del día</center></div></br>
+        <div id="edit_punto" style="width: 80%;">
+          <img src="imagenes/checklist.png" style="max-width: 60px; height: auto; margin-left: 2%; float: left;"/>
+          <table id="tcarpeta">
+            <tr>
+              <th><center>Punto</center></th>
+              <th>Nuevo nombre del punto</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td><center><input type="number" id="newNumPoint" value="<?php echo $num_punto ?>" style="width:50px; text-align:center"></center></td>
+              <td style="min-width: 300px">
+                <input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="newNamePoint" name="nombre_punto"/>
+              </td>
+              <td><center><b>Archivo Protegido: </b><input type="checkbox" class="fseseion" id="newProteger" name="proteger"/></center></td>
+              <th><center><input type="button" class="btn btn-warning" value="Modificar" onclick="editar_punto()"/></center></th>
+            </tr>
+          </table>
+        </div>
+
+        <div class ="titular1"><center>Agregar nuevo punto a la orden del día</center></div></br>
+        <div id="add_punto" style="width: 80%;">
+          <img src="imagenes/checklist.png" style="max-width: 60px; height: auto; margin-left: 2%; float: left;"/>
+          <table id="tcarpeta">
+            <tr>
+              <th><center>Punto</center></th>
+              <th>Nombre del punto</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td><center><b>1</b></center></td>
+              <td style="min-width: 300px">
+                <input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="nombre_punto" name="nombre_punto"/>
+              </td>
+              <td><center><b>Archivo Protegido: </b><input type="checkbox" class="fseseion" id="proteger" name="proteger"/></center></td>
+              <th><center><input type="button" class="btn btn-success" value="Crear" onclick="registrar_punto()"/></center></th>
+            </tr>
+          </table>
+        </div>
 
         <?php
-
-
-
-      echo 'ID Orden dia: <input type="button" id="index_orden" value="'.$id_orden.'"/>
+        echo 'ID Orden dia: <input type="button" id="index_orden" value="'.$id_orden.'"/>
         <br>
 
         <div class="bloque_desplegable1">
 
-					<div class ="titular1"><center>Edición de contenido de la orden del día</center></div></br>
+					<div class ="titular1"><center>Modificar contenido del punto</center></div></br>
 
 							<div id="add_sustrato">
                 <div id="control_puntos">

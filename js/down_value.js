@@ -14,7 +14,7 @@ function registrar_punto(){
      data: {"nombre":nombre_punto, "numero":nuevo_numero, "proteger":proteger},
      type: "post",
       success: function(data){
-         document.getElementById("add_punto").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Punto <span style="color: #0B3B0B"><b>'+nombre_punto+'</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar Sustrato" onclick="show_addCont()">';
+         document.getElementById("add_punto").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Punto <span style="color: #0B3B0B"><b>'+nombre_punto+'</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar contenido" onclick="show_addCont()">';
          document.getElementById("add_punto").style.background ="#BCF5A9";
          document.getElementById("add_punto").style.heigth = "110px;"
          //document.getElementById("subtitulo1").style.display = 'none';
@@ -26,6 +26,25 @@ function registrar_punto(){
          document.getElementById("index_punto").value = nuevo_numero;
 
          showFilesViewer();
+      }
+    });
+
+}
+
+function editar_punto(){
+  var numero_actual $("#index_punto").val();
+  var nuevo_numero = $("#newNumPoint").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
+  var nombre_punto = $("#newNamePoint").val();
+  var proteger = document.getElementById("newProteger").checked;
+
+  var caso = 3; //Numero de caso 3 que es para editar punto.
+
+  $.ajax({
+     url: "../consejo_tecnico/conexiones/subir_sustrato.php",
+     data: {"nombre":nombre_punto, "numero":nuevo_numero, "proteger":proteger, "numPunto": numero_actual, "caso": caso},
+     type: "post",
+      success: function(data){
+
       }
     });
 
@@ -82,7 +101,6 @@ function registrar_subcarp(){
         showFilesViewer();
         hideAddSub();
         document.getElementById("nombre_subcarp").value="";
-        alert(data);
       }
     });
 

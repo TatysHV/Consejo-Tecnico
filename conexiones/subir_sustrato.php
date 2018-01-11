@@ -3,10 +3,28 @@
 
   /*Registro únicamente de un nuevo punto a la orden del día*/
 
-    $nombre = $_POST['nombre'];
-    $proteger = $_POST['proteger'];
-    $numero = $_POST['numero'];
+  $nombre = $_POST['nombre'];
+  $proteger = $_POST['proteger'];
+  $numero = $_POST['numero'];
 
+  $caso = $_POST['case'];
+
+  switch ($caso){
+    case 1: //Agregar el punto al final
+      addFinalPunto();
+    break;
+    case 2: //Agregar un punto intermedio
+      addInterPunto();
+    break;
+    case 3: //Modificar un punto
+      editPunto();
+    break;
+    case 4: //Eliminar un punto
+    break;
+
+  }
+
+  function addFinalPunto(){
     $query = mysqli_query($con, "INSERT INTO sustrato (numero, nombre, bloqueo) /*sube uno de los puntos de la orden del día*/
                             values ('$numero', '$nombre', '$proteger')");
 
@@ -16,6 +34,7 @@
       else{
         echo "EL REGISTRO DEL PUNTO ".$nombre." SE REALIZÓ DE MANERA EXITOSA";
       }
+
 
       //--------Definición de variables globales-------------------
       $id_ordendia;
@@ -34,6 +53,15 @@
       //---------Registrar en tabla relacion ordendia-punto---------
       $ejec = mysqli_query($con, "INSERT INTO orden_tiene (id_orden, id_sustrato) values ('$id_ordendia', '$id_punto')") or die ('<b>Error al generar relación Ordendia-Sustrato</b>' . mysql_error());
 
+      //Actualizamos la cantidad de puntos totales que contiene la orden del día.
+      $updateOrden = mysqli_query($con, "UPDATE orden_dia SET cant_puntos = '$numero' WHERE id = '$id_ordendia'");
+
+        if(!$updateOrden){
+          echo "Ocurrió un error al actualizar la cantidad de puntos totales" . $query;
+        }
+        else{
+          echo "Actualización de puntos totales realizado correctamente";
+        }
 
 /*TODOS LOS PUNTOS DE LA ORDEN DEL DÍA, AL MOMENTO DE SER CREADOS, DEBEN TENER UNA CARPETA POR DEFAULT (CERO)
 PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN ESE Punto
@@ -50,5 +78,8 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
 
       //------------Registrar en tabla relacion carpeta-sustrato
       $ejec3 = mysqli_query($con, "INSERT INTO carpeta_sustrato (id_sustrato, id_carpeta) values ('$id_punto', '$id_craiz')");
+
+  }
+
 
 ?>

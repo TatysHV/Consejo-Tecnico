@@ -250,6 +250,7 @@ img {display: block; margin: 0 auto;}
 	font-size: 2em;
 	padding: 3px;
 	font-family: "Helvetica";
+	color:#4f4f4f;
 }
 
 .bloque_year{
@@ -330,7 +331,7 @@ table#add_sustrato th{ padding: 3px; color: white; background-color: #337AB7; fo
 
 
 table#OrdenDia td, table#OrdenDia tr{padding:5px;}
-#add_punto, #add_subcarp, #edit_fold, #edit_file{padding: 20px; width:95%; min-height: 120px; background-color: #F7F7F7; margin: auto; margin-top: 20px; box-shadow: 0px 1px 2px rgba(0,0,0,0.3)}
+#add_punto, #add_subcarp, #edit_fold, #edit_file {padding: 20px; width:95%; min-height: 120px; background-color: #F7F7F7; margin: auto; margin-top: 20px; box-shadow: 0px 1px 2px rgba(0,0,0,0.3)}
 
 #add_punto{margin-bottom: 200px;}
 
@@ -538,6 +539,19 @@ table#OrdenDia td, table#OrdenDia tr{padding:5px;}
 	width: 40%;
 	display: none;
 	cursor: default;
+}
+
+#edit_punto{
+	padding: 20px;
+	width:95%;
+	min-height: 120px;
+	margin:auto;
+  margin-top: 20px;
+	border-radius: 3px;
+	border: 5px solid #d7d7d7;
+	width: 100%;
+	cursor: default;
+	color:#4f4f4f;
 }
 
 .notaEdit{
