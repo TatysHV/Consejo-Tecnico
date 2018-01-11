@@ -64,7 +64,7 @@ function add_punto(){
       '<th></th>'+
     '</tr>'+
     '<tr>'+
-      '<td><b><center>'+nuevo_punto+'.</b></center></td>'+
+      '<td><input type="number" id="numPoint" value="'+nuevo_punto+'" style="width:50px; text-align:center"/></td>'+
       '<td style="min-width: 300px"><input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="nombre_punto" name="nombre_punto"/></td>'+
       '<td><center><b>Archivo Protegido: </b><input type="checkbox" class="fseseion" id="proteger" name="proteger"/></center></td>'+
       '<th><center><input type="button" class="btn btn-success" value="Crear" onclick="registrar_punto()"/></center></th>'+

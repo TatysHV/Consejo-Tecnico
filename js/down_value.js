@@ -1,18 +1,20 @@
 
 function registrar_punto(){
 
-  var numero_punto = $("#indice_puntos").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
+  var numero_punto = $("#numPoint").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
   var nombre_punto = $("#nombre_punto").val();
   var id_orden = $("#index_orden").val();
   var proteger = document.getElementById("proteger").checked;
 
-  var nuevo_numero = parseInt(numero_punto) + 1; //Aumenta el contador en 1
+  var cant_puntos = parseInt($("#indice_puntos").val());
+
+  //var nuevo_numero = parseInt(numero_punto) + 1; //Aumenta el contador en 1
 
   if(proteger == true){ proteger=1} else{proteger=0};
 
   $.ajax({
      url: "../consejo_tecnico/conexiones/subir_sustrato.php",
-     data: {"nombre":nombre_punto, "numero":nuevo_numero, "proteger":proteger, "case":2, "orden":id_orden},
+     data: {"nombre":nombre_punto, "numero":numero_punto, "proteger":proteger, "case":2, "orden":id_orden},
      type: "post",
       success: function(data){
         alert(data);
@@ -21,11 +23,11 @@ function registrar_punto(){
          document.getElementById("add_punto").style.heigth = "110px;"
          //document.getElementById("subtitulo1").style.display = 'none';
 
-         document.getElementById("indice_puntos").value = nuevo_numero;
-         document.getElementById("nPunto").innerHTML = nuevo_numero;
+         document.getElementById("indice_puntos").value = cant_puntos+1;
+         document.getElementById("nPunto").innerHTML = numero_punto;
          //alert("numero: "+nuevo_numero);
          document.getElementById("nombrePunto").innerHTML = nombre_punto;        // document.getElementById("addp-btn").style.display = "block";
-         document.getElementById("index_punto").value = nuevo_numero;
+         document.getElementById("index_punto").value = numero_punto;
 
          showFilesViewer();
       }
