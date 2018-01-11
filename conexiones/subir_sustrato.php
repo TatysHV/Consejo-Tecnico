@@ -4,7 +4,7 @@
   /*Registro únicamente de un nuevo punto a la orden del día*/
 
 
-  $caso = $_POST['case'];
+  $caso = $_POST['caso'];
 
   switch ($caso){
     case 1: //Agregar el punto al final
@@ -113,6 +113,26 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
     else{ echo "EL REGISTRO DEL PUNTO ".$nombre." SE REALIZÓ DE MANERA EXITOSA"; }
 
   }
+
+  function editPunto(){
+        include "conexion.php";
+
+    $numPunto = $_POST["numPunto"];
+
+    $nombre = $_POST['nombre'];
+    $proteger = $_POST['proteger'];
+    $numero = $_POST['numero'];
+
+    $eject4=mysqli_query($con, "UPDATE sustrato SET numero='$numero', nombre='$nombre', bloqueo='$proteger' WHERE id_sustrato= '$numPunto'");
+    
+    if(!$eject4){
+          echo "Ocurrió un error al modificar el punto" . $eject4;
+        }
+        else{
+          echo "Actualización del punto realizada correctamente";
+        }
+  }
+
 
 
 ?>

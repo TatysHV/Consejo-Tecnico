@@ -33,8 +33,8 @@ function registrar_punto(){
 
 }
 
-function editar_punto(){
-  var numero_actual = $("#index_punto").val();
+function editar_punto(id_punto){
+  var numero_actual = id_punto;
 
   var nuevo_numero = $("#newNumPoint").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
   var nombre_punto = $("#newNamePoint").val();
@@ -47,6 +47,7 @@ function editar_punto(){
      data: {"nombre":nombre_punto, "numero":nuevo_numero, "proteger":proteger, "numPunto": numero_actual, "caso": caso},
      type: "post",
       success: function(data){
+        alert("Punto "+numero_actual+" modificado correctamente");
 
       }
     });

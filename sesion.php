@@ -115,7 +115,7 @@ session_start(); ?>
 							/*<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].')">*/
 						  echo '<div id="wrap"> <div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].','.$padre.')">
 									<span class="icon-folder"></span><b>'.$sus["numero"].'.</b>  '.$sus["nombre"].'
-<div class="edit" ><a href="editar_contenido.php?orden='.$line["id"].'&punto='.$sus["numero"].'"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
+<div class="edit" ><a href="editar_contenido.php?orden='.$line["id"].'&punto='.$sus["numero"].'&idpunto='.$sus["id_sustrato"].'"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
 									<div id="puntos'.$sus["id_sustrato"].'" style="width: 85%; margin:auto;"></div>
 									<input type="hidden" value="0" id="vista'.$sus["id_sustrato"].'"/>
 							   	</div></div>';

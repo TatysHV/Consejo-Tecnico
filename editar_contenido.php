@@ -11,6 +11,7 @@
 
    $id_orden = $_GET['orden'];
    $num_punto = $_GET['punto'];
+   $id_punto = $_GET['idpunto'];
    echo 'orden: '.$id_orden.'';
 
    $orden = mysqli_query($con, "SELECT cant_puntos FROM orden_dia WHERE id='$id_orden'");
@@ -78,7 +79,7 @@
                 <input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="newNamePoint" name="nombre_punto"/>
               </td>
               <td><center><b>Archivo Protegido: </b><input type="checkbox" class="fseseion" id="newProteger" name="proteger"/></center></td>
-              <th><center><input type="button" class="btn btn-warning" value="Modificar" onclick="editar_punto()"/></center></th>
+              <th><center><input type="button" class="btn btn-warning" value="Modificar" onclick="editar_punto(<?php echo $id_punto ?>)"/></center></th>
             </tr>
           </table>
         </div>
