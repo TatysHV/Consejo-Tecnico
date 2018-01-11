@@ -3,9 +3,6 @@
 
   /*Registro únicamente de un nuevo punto a la orden del día*/
 
-  $nombre = $_POST['nombre'];
-  $proteger = $_POST['proteger'];
-  $numero = $_POST['numero'];
 
   $caso = $_POST['case'];
 
@@ -25,6 +22,8 @@
   }
 
   function addFinalPunto(){
+    include "conexion.php";
+
     $query = mysqli_query($con, "INSERT INTO sustrato (numero, nombre, bloqueo) /*sube uno de los puntos de la orden del día*/
                             values ('$numero', '$nombre', '$proteger')");
 
@@ -78,6 +77,40 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
 
       //------------Registrar en tabla relacion carpeta-sustrato
       $ejec3 = mysqli_query($con, "INSERT INTO carpeta_sustrato (id_sustrato, id_carpeta) values ('$id_punto', '$id_craiz')");
+
+  }
+
+  function addInterPunto(){
+    include "conexion.php";
+    /*SE ESTARÁ AGREGANDO UN NUEVO PUNTO EN EL LUGAR DE OTRO YA EXISTENTE. POR LO TANTO
+    EL PUNTO VIEJO DEBERÁ AUMENTAR EN 1 PARA QUEDAR EN SEGUIDA DEL NUEVO PUNTO QUE SE DESEA AGREGAR
+    ES DECIR QUE EMPUJARÁ TODOS LOS DEMÁS PUNTOS, (se logrará sumando en 1 a todos los puntos subsiguientes)*/
+
+    $id_orden = $_POST["orden"];
+
+    $nombre = $_POST['nombre'];
+    $proteger = $_POST['proteger'];
+    $numero = $_POST['numero'];
+
+    /******Obtener cantidad de puntos totales, para saber si se agrega al final o en medio*****/
+    $orden = mysqli_query($con, "SELECT cant_puntos FROM orden_dia WHERE id='$id_orden'");
+      if ($row = mysqli_fetch_array($orden)) {
+          $cant_puntos= trim($row[0]);
+      }
+
+    if($cant_puntos < $numero ){ //Significa que es un punto intermedio
+      //Aumentar en 1 todos los números de punto siguientes al número de punto que se desea agregar
+      //Ejemplo: 1234, agregar punto 2. Mover(+1): 1(345). Agregar: 1(2)345
+
+      $aumentar = mysqli_query($con, "UPDATE orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden
+      and ot.id_sustrato = s.id_sustrato set s.numero=s.numero+1 where o.id = '$id_orden' and s.numero > '$numero'");
+    }
+
+    /*******Sube el nuevo punto con el número directamente asignado por el usuario******/
+    $query = mysqli_query($con, "INSERT INTO sustrato (numero, nombre, bloqueo) values ('$numero', '$nombre', '$proteger')");
+
+    if(!$query){ echo "Ocurrió un error" . $query; }
+    else{ echo "EL REGISTRO DEL PUNTO ".$nombre." SE REALIZÓ DE MANERA EXITOSA"; }
 
   }
 

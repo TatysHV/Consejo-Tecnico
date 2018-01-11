@@ -13,6 +13,10 @@
    $num_punto = $_GET['punto'];
    echo 'orden: '.$id_orden.'';
 
+   $orden = mysqli_query($con, "SELECT cant_puntos FROM orden_dia WHERE id='$id_orden'");
+     if ($row = mysqli_fetch_array($orden)) {
+         $cant_puntos= trim($row[0]);
+     }
 ?>
 
 <html lang="es">
@@ -90,7 +94,7 @@
               <th></th>
             </tr>
             <tr>
-              <td><center><b>1</b></center></td>
+              <td><center><input type="number" id="numPoint" value="<?php echo $cant_puntos+1 ?>" style="width:50px; text-align:center"/></center></td>
               <td style="min-width: 300px">
                 <input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="nombre_punto" name="nombre_punto"/>
               </td>
@@ -110,7 +114,7 @@
 
 							<div id="add_sustrato">
                 <div id="control_puntos">
-                  Cont. Puntos: <input type="button" id="indice_puntos" name="indice_puntos" value="0"/><br>
+                  Cont. Puntos: <input type="button" id="indice_puntos" name="indice_puntos" value="'.$cant_puntos.'"/><br>
                   Punto visible: <input type="button" id="index_punto" value="'.$num_punto.'" onclick=""/>
                 </div>';
                 ?>

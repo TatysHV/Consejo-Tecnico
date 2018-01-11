@@ -3,6 +3,7 @@ function registrar_punto(){
 
   var numero_punto = $("#indice_puntos").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
   var nombre_punto = $("#nombre_punto").val();
+  var id_orden = $("#index_orden").val();
   var proteger = document.getElementById("proteger").checked;
 
   var nuevo_numero = parseInt(numero_punto) + 1; //Aumenta el contador en 1
@@ -11,9 +12,10 @@ function registrar_punto(){
 
   $.ajax({
      url: "../consejo_tecnico/conexiones/subir_sustrato.php",
-     data: {"nombre":nombre_punto, "numero":nuevo_numero, "proteger":proteger},
+     data: {"nombre":nombre_punto, "numero":nuevo_numero, "proteger":proteger, "case":2, "orden":id_orden},
      type: "post",
       success: function(data){
+        alert(data);
          document.getElementById("add_punto").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Punto <span style="color: #0B3B0B"><b>'+nombre_punto+'</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar contenido" onclick="show_addCont()">';
          document.getElementById("add_punto").style.background ="#BCF5A9";
          document.getElementById("add_punto").style.heigth = "110px;"
@@ -32,7 +34,8 @@ function registrar_punto(){
 }
 
 function editar_punto(){
-  var numero_actual $("#index_punto").val();
+  var numero_actual = $("#index_punto").val();
+
   var nuevo_numero = $("#newNumPoint").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
   var nombre_punto = $("#newNamePoint").val();
   var proteger = document.getElementById("newProteger").checked;
