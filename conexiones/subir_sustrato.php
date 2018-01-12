@@ -99,12 +99,12 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
           $cant_puntos= trim($row[0]);
       }
 
-    if($cant_puntos < $numero ){ //Significa que es un punto intermedio
+    if($numero < $cant_puntos){ //Significa que es un punto intermedio
       //Aumentar en 1 todos los números de punto siguientes al número de punto que se desea agregar
       //Ejemplo: 1234, agregar punto 2. Mover(+1): 1(345). Agregar: 1(2)345
 
       $aumentar = mysqli_query($con, "UPDATE orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden
-      and ot.id_sustrato = s.id_sustrato set s.numero=s.numero+1 where o.id = '$id_orden' and s.numero > '$numero'");
+      and ot.id_sustrato = s.id_sustrato set s.numero=s.numero+1 where o.id = '$id_orden' and s.numero >= '$numero'");
     }
 
     /*******Sube el nuevo punto con el número directamente asignado por el usuario******/
@@ -156,16 +156,33 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
   }
 
   function editPunto(){
-        include "conexion.php";
 
-    $numPunto = $_POST["numPunto"];
+    include "conexion.php";
+
+    $id_orden = $_POST["orden"];
+    $id_punto = $_POST["idPunto"];
 
     $nombre = $_POST['nombre'];
     $proteger = $_POST['proteger'];
-    $numero = $_POST['numero'];
+    $numeroAnterior = $_POST['numeroAnterior'];
+    $numeroNuevo = $_POST['numeroNuevo'];
 
-    $eject4=mysqli_query($con, "UPDATE sustrato SET numero='$numero', nombre='$nombre', bloqueo='$proteger' WHERE id_sustrato= '$numPunto'");
-    
+    /******Obtener cantidad de puntos totales, para saber si se agrega al final o en medio*****/
+    $orden = mysqli_query($con, "SELECT cant_puntos FROM orden_dia WHERE id='$id_orden'");
+      if ($row = mysqli_fetch_array($orden)) {
+          $cant_puntos= trim($row[0]);
+      }
+
+    if($numeroNuevo < $cant_puntos){ //Significa que es un punto intermedio
+      //Aumentar en 1 todos los números de punto siguientes al número de punto que se desea agregar
+      //Ejemplo: 1234, agregar punto 2. Mover(+1): 1(345). Agregar: 1(2)345
+
+      $aumentar = mysqli_query($con, "UPDATE orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden
+      and ot.id_sustrato = s.id_sustrato set s.numero=s.numero+1 where o.id = '$id_orden' and s.numero >= '$numeroNuevo' and s.numero < '$numeroAnterior'");
+    }
+
+    $eject4=mysqli_query($con, "UPDATE sustrato SET numero='$numeroNuevo', nombre='$nombre', bloqueo='$proteger' WHERE id_sustrato = '$id_punto'");
+
     if(!$eject4){
           echo "Ocurrió un error al modificar el punto" . $eject4;
         }

@@ -73,7 +73,7 @@ session_start(); ?>
   					}
 
 					$sql= "SELECT s.nombre, s.id_sustrato, s.numero FROM orden_dia as o inner join orden_tiene as t inner join sustrato as s
-					on o.id = t.id_orden and t.id_sustrato = s.id_sustrato where t.id_orden='$ID'";
+					on o.id = t.id_orden and t.id_sustrato = s.id_sustrato where t.id_orden='$ID' ORDER BY s.numero ASC";
 					$resultado = mysqli_query($conexion, $sql) or die('<b>No se encontraron coincidencias</b>' . mysqli_error());
 
 					$query= 'SELECT * FROM orden_dia WHERE id = '.$ID.'';
@@ -89,7 +89,7 @@ session_start(); ?>
 
 						if($_SESSION['tipo'] == '0'){
 							echo '<a style="float:right; margin-right: 20px; margin-top: -40px;" class="btn btn-warning" href="editsesion.php?sesion='.$ID.'">Editar Orden Día<a/>
-								<a style="float:right; margin-right: 20px;" class="btn btn-danger" href="addpunto.php?sesion='.$ID.'">Eliminar Sustrato</a><br><br><br>';
+								<a style="float:right; margin-right: 20px;" class="btn btn-danger" href="addpunto.php?sesion='.$ID.'">Eliminar Orden del día</a><br><br><br>';
 						}
 
 					echo '

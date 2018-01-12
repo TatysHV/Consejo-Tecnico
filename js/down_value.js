@@ -14,7 +14,7 @@ function registrar_punto(){
 
   $.ajax({
      url: "../consejo_tecnico/conexiones/subir_sustrato.php",
-     data: {"nombre":nombre_punto, "numero":numero_punto, "proteger":proteger, "case":2, "orden":id_orden},
+     data: {"nombre":nombre_punto, "numero":numero_punto, "proteger":proteger, "caso":2, "orden":id_orden},
      type: "post",
       success: function(data){
         alert(data);
@@ -36,9 +36,11 @@ function registrar_punto(){
 }
 
 function editar_punto(id_punto){
-  var numero_actual = id_punto;
 
-  var nuevo_numero = $("#newNumPoint").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
+  var numero_actual = $("#index_punto").val();
+  var id_orden = $("#index_orden").val();
+
+  var numero_nuevo = $("#newNumPoint").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
   var nombre_punto = $("#newNamePoint").val();
   var proteger = document.getElementById("newProteger").checked;
 
@@ -46,10 +48,10 @@ function editar_punto(id_punto){
 
   $.ajax({
      url: "../consejo_tecnico/conexiones/subir_sustrato.php",
-     data: {"nombre":nombre_punto, "numero":nuevo_numero, "proteger":proteger, "numPunto": numero_actual, "caso": caso},
+     data: {"nombre":nombre_punto, "numeroNuevo":numero_nuevo,"numeroAnterior":numero_actual, "proteger":proteger, "idPunto": id_punto,"orden":id_orden, "caso": caso},
      type: "post",
       success: function(data){
-        alert("Punto "+numero_actual+" modificado correctamente");
+        alert("Punto modificado correctamente");
 
       }
     });
