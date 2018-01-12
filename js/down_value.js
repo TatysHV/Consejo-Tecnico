@@ -202,18 +202,22 @@ function update_folder(carpeta){
   }
 }
 
-function delete_punto(id_punto){
+function delete_punto(id_punto,num,ID){
   var id_punto = id_punto;
-  var caso = 4;
+  var num=num;
+  var id=ID;
+  var func = 8;
   eleccion = confirm("¿Seguro que quiere eliminar el Punto "+id_punto+"?");
   if(eleccion){
     $.ajax({
        url: "../consejo_tecnico/conexiones/subir_archivo.php",
-       data: {"id_punto":id_punto,"caso":caso},
+       data: {"id_punto":id_punto,"funcion":func,"numero":num,"id_orden":id},
        type: "post",
         success: function(data){
             //alert("Nombre de carpeta modificado");
             alert(data);
+            window.location.assign("../consejo_tecnico/sesion.php?sesion="+id);
+
         },
         failure: function(){
           alert("No se ha podido eliminar el punto");

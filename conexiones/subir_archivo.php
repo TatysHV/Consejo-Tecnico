@@ -264,21 +264,28 @@ function updatePunto(){
     else{echo 'Error al modificar punto';}
 
 }
-
-
 function deletePunto(){
       include "conexion.php";
 
       $idpunto=$_POST['id_punto'];
-
+      $numPunto=$_POST['numero'];
+      $id_orden=$_POST['id_orden'];
       $eject5=mysqli_query($con, "DELETE FROM sustrato WHERE id_sustrato='$idpunto'");
-    
-    if(!$eject5){
-          echo "Ocurrió un error al eliminar el punto" . $eject5;
+      
+      $eject7=mysqli_query($con,"UPDATE orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden and ot.id_sustrato = s.id_sustrato SET s.numero=s.numero+1 WHERE o.id = '$id_orden' and s.numero > '$numPunto'");
+      if(!$eject7){
+          echo "No se actualizaron los numeros";
         }
         else{
-          echo "Eliminación del punto realizada correctamente";
+            if(!$eject5){
+              echo "Ocurrió un error al eliminar el punto" . $eject5;
+            }
+            else{
+              echo "Eliminación del punto realizada correctamente";
+            }
         }
+
+    
 
   }
 
