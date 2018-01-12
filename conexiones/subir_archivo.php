@@ -39,6 +39,12 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
       case 7: //Modificar datos de punto
           updatePunto();
           break;
+      case 8:
+          deletePunto();
+          break;
+      case 9:
+          delete_orden_dia();
+          break;
   }
 
 //************************** OBTENER ID PADRE DE CARPETA HIJA ***********************************//
@@ -258,6 +264,40 @@ function updatePunto(){
     else{echo 'Error al modificar punto';}
 
 }
+
+
+function deletePunto(){
+      include "conexion.php";
+
+      $idpunto=$_POST['id_punto'];
+
+      $eject5=mysqli_query($con, "DELETE FROM sustrato WHERE id_sustrato='$idpunto'");
+    
+    if(!$eject5){
+          echo "Ocurrió un error al eliminar el punto" . $eject5;
+        }
+        else{
+          echo "Eliminación del punto realizada correctamente";
+        }
+
+  }
+
+function delete_orden_dia(){
+      include "conexion.php";
+
+      $idorden=$_POST['id_orden'];
+
+      $eject6=mysqli_query($con, "DELETE FROM orden_dia WHERE id='$idorden'");
+    
+    if(!$eject6){
+          echo "Ocurrió un error al eliminar la orden del día" . $eject6;
+        }
+        else{
+          echo "Eliminación de la orden del día realizada correctamente";
+        }
+
+  }
+
 
 
 ?>

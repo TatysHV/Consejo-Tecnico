@@ -202,6 +202,28 @@ function update_folder(carpeta){
   }
 }
 
+function delete_punto(id_punto){
+  var id_punto = id_punto;
+  var caso = 4;
+  eleccion = confirm("¿Seguro que quiere eliminar el Punto "+id_punto+"?");
+  if(eleccion){
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/subir_archivo.php",
+       data: {"id_punto":id_punto,"caso":caso},
+       type: "post",
+        success: function(data){
+            //alert("Nombre de carpeta modificado");
+            alert(data);
+        },
+        failure: function(){
+          alert("No se ha podido eliminar el punto");
+        }
+      });
+
+  }
+}
+
+
 function delete_folder(id_folder){
   eleccion = confirm("Al borrar esta carpeta también se eliminará su contenido.\n¿Seguro de que quieres continuar?");
 
@@ -274,4 +296,27 @@ function updateContenido(num_punto){
   //document.getElementById("index_orden").value = id_orden;
   //document.getElementById("index_punto").value = num_punto;
 
+}
+
+
+function delete_orden_dia(ID){
+  var id=ID;
+  var func = 9;
+  eleccion = confirm("¿Seguro que quiere eliminar la Orden del día "+ID+"?");
+  if(eleccion){
+    $.ajax({
+       url: "/consejo_tecnico/conexiones/subir_archivo.php",
+       data: {"id_orden":id,"funcion":func},
+       type: "post",
+        success: function(data){
+            //alert("Nombre de carpeta modificado");
+            alert(data);
+            window.location.assign("../consejo_tecnico/sesiones.php");
+        },
+        failure: function(){
+          alert("No se ha podido eliminar el punto");
+        }
+      });
+
+  }
 }
