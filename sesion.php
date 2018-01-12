@@ -89,7 +89,7 @@ session_start(); ?>
 
 						if($_SESSION['tipo'] == '0'){
 							echo '<a style="float:right; margin-right: 20px; margin-top: -40px;" class="btn btn-warning" href="editsesion.php?sesion='.$ID.'">Editar Orden Día<a/>
-								<a style="float:right; margin-right: 20px;" class="btn btn-danger" href="addpunto.php?sesion='.$ID.'">Eliminar Orden del día</a><br><br><br>';
+								<a style="float:right; margin-right: 20px;" class="btn btn-danger" onclick="delete_orden_dia('.$ID.')">Eliminar Sustrato</a><br><br><br>';
 						}
 
 					echo '
@@ -115,6 +115,7 @@ session_start(); ?>
 							/*<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].')">*/
 						  echo '<div id="wrap"> <div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].','.$padre.')">
 									<span class="icon-folder"></span><b>'.$sus["numero"].'.</b>  '.$sus["nombre"].'
+<div class="edit" onclick="delete_punto('.$sus["id_sustrato"].','.$sus['numero'].','.$ID.')">  <i class="fa fa-window-close" aria-hidden="true"></i></a></div>																											
 <div class="edit" ><a href="editar_contenido.php?orden='.$line["id"].'&punto='.$sus["numero"].'&idpunto='.$sus["id_sustrato"].'"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
 									<div id="puntos'.$sus["id_sustrato"].'" style="width: 85%; margin:auto;"></div>
 									<input type="hidden" value="0" id="vista'.$sus["id_sustrato"].'"/>

@@ -39,6 +39,12 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
       case 7: //Modificar datos de punto
           updatePunto();
           break;
+      case 8:
+          deletePunto();
+          break;
+      case 9:
+          delete_orden_dia();
+          break;
   }
 
 //************************** OBTENER ID PADRE DE CARPETA HIJA ***********************************//
@@ -258,6 +264,47 @@ function updatePunto(){
     else{echo 'Error al modificar punto';}
 
 }
+function deletePunto(){
+      include "conexion.php";
+
+      $idpunto=$_POST['id_punto'];
+      $numPunto=$_POST['numero'];
+      $id_orden=$_POST['id_orden'];
+      $eject5=mysqli_query($con, "DELETE FROM sustrato WHERE id_sustrato='$idpunto'");
+      
+      $eject7=mysqli_query($con,"UPDATE orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden and ot.id_sustrato = s.id_sustrato SET s.numero=s.numero+1 WHERE o.id = '$id_orden' and s.numero > '$numPunto'");
+      if(!$eject7){
+          echo "No se actualizaron los numeros";
+        }
+        else{
+            if(!$eject5){
+              echo "Ocurrió un error al eliminar el punto" . $eject5;
+            }
+            else{
+              echo "Eliminación del punto realizada correctamente";
+            }
+        }
+
+    
+
+  }
+
+function delete_orden_dia(){
+      include "conexion.php";
+
+      $idorden=$_POST['id_orden'];
+
+      $eject6=mysqli_query($con, "DELETE FROM orden_dia WHERE id='$idorden'");
+    
+    if(!$eject6){
+          echo "Ocurrió un error al eliminar la orden del día" . $eject6;
+        }
+        else{
+          echo "Eliminación de la orden del día realizada correctamente";
+        }
+
+  }
+
 
 
 ?>
