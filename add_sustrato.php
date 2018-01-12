@@ -89,7 +89,7 @@
                 <input type="text" class="fsesion" style="width: 100%;" placeholder="Nombre del punto" id="nombre_punto" name="nombre_punto"/>
               </td>
               <td><center><b>Archivo Protegido: </b><input type="checkbox" class="fseseion" id="proteger" name="proteger"/></center></td>
-              <th><center><input type="button" class="btn btn-success" value="Crear" onclick="registrar_punto()"/></center></th>
+              <th><center><input type="button" id="btnAddPunto" class="btn btn-success" value="Crear" onclick="registrar_punto()"/></center></th>
             </tr>
           </table>
         </div>

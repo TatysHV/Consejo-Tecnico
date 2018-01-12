@@ -84,8 +84,8 @@
           </table>
         </div>
 
-        <div class ="titular1"><center>Agregar nuevo punto a la orden del día</center></div></br>
-        <div id="add_punto" style="width: 80%;">
+        <!--<div class ="titular1" style="display:none"><center>Agregar nuevo punto a la orden del día</center></div></br>-->
+        <div id="add_punto" style="width: 80%; display:none">
           <img src="imagenes/checklist.png" style="max-width: 60px; height: auto; margin-left: 2%; float: left;"/>
           <table id="tcarpeta">
             <tr>

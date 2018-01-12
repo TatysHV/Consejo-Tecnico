@@ -1,6 +1,8 @@
 
 function registrar_punto(){
 
+  //document.getElementById("btnAddPunto").disabled = true;
+
   var numero_punto = $("#numPoint").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
   var nombre_punto = $("#nombre_punto").val();
   var id_orden = $("#index_orden").val();
@@ -28,6 +30,7 @@ function registrar_punto(){
          //alert("numero: "+nuevo_numero);
          document.getElementById("nombrePunto").innerHTML = nombre_punto;        // document.getElementById("addp-btn").style.display = "block";
          document.getElementById("index_punto").value = numero_punto;
+         document.getElementById("btnAddPunto").disabled = false;
 
          showFilesViewer();
       }
