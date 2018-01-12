@@ -127,7 +127,7 @@
                         <div id="anterior" onclick="beforePoint()">
                           <img src="imagenes/flaticons/toLeft.png"/>
                         </div>
-                        <div id="nPunto" style="display:inline-block">1</div>. <div id="nombrePunto" style="display:inline-block">Lista de Asistencia</div>
+                        <div id="nPunto" style="display:inline-block"><?php echo $num_punto ?></div>. <div id="nombrePunto" style="display:inline-block">Lista de Asistencia</div>
                         <div id="siguiente" onclick="nextPoint()">
                           <img src="imagenes/flaticons/toRight.png"/>
                         </div>

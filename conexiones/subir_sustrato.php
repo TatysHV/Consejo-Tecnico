@@ -130,12 +130,12 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
     //------------Modificar en la orden del día----------------------------------------
     $updateOrden = mysqli_query($con, "UPDATE orden_dia SET cant_puntos = '$cant_puntos' WHERE id = '$id_orden'");
 
-      if(!$updateOrden){
+    /*  if(!$updateOrden){
         echo "Ocurrió un error al actualizar la cantidad de puntos totales" . $query;
       }
       else{
         echo "Actualización de puntos totales realizado correctamente";
-      }
+      }*/
 
     /*TODOS LOS PUNTOS DE LA ORDEN DEL DÍA, AL MOMENTO DE SER CREADOS, DEBEN TENER UNA CARPETA POR DEFAULT (CERO)
     PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN ESE Punto
@@ -183,12 +183,13 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
 
     $eject4=mysqli_query($con, "UPDATE sustrato SET numero='$numeroNuevo', nombre='$nombre', bloqueo='$proteger' WHERE id_sustrato = '$id_punto'");
 
-    if(!$eject4){
+    /*if(!$eject4){
           echo "Ocurrió un error al modificar el punto" . $eject4;
         }
         else{
           echo "Actualización del punto realizada correctamente";
         }
+        */
   }
 
 

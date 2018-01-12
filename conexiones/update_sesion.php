@@ -17,7 +17,7 @@ $query = mysqli_query($con, "UPDATE orden_dia SET nombre_sesion = '$nombre', tip
   }
   else{
     echo "ORDEN DEL DÍA MODIFICADA <br><br>";
-    echo "NUEVOS DATOS: <br>"."<b>Nombre:</b> ".$nombre."<br><b>Fecha: </b>".$fecha."<br><b>Tipo:</b> ".$tipo."<br><b>Direccion:</b> ".$fichero."<br>";
+    echo "NUEVOS DATOS: <br>"."<b>Nombre:</b> ".$nombre."<br><b>Fecha: </b>".$fecha."<br><b>Tipo:</b> ".$tipo."<br><b>Direccion:</b> ".$fichero."<br><br> <a href="../consejo_tecnico/index.php"> Volver al sitio</a>";
   }
 
   /*+++++++++++++++++++++++++++++++++++++++

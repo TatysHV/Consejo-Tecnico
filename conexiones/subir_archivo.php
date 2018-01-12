@@ -251,7 +251,7 @@ function deleteFile(){
   echo"entra al php";
 }
 
-function updatePunto(){
+/*function updatePunto(){
     include "conexion.php";
     $id_punto = $_POST["punto"];
 
@@ -263,7 +263,7 @@ function updatePunto(){
     if($query){echo 'Se modificó el punto de manera correcta';}
     else{echo 'Error al modificar punto';}
 
-}
+}*/
 function deletePunto(){
       include "conexion.php";
 
@@ -271,8 +271,8 @@ function deletePunto(){
       $numPunto=$_POST['numero'];
       $id_orden=$_POST['id_orden'];
       $eject5=mysqli_query($con, "DELETE FROM sustrato WHERE id_sustrato='$idpunto'");
-      
-      $eject7=mysqli_query($con,"UPDATE orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden and ot.id_sustrato = s.id_sustrato SET s.numero=s.numero+1 WHERE o.id = '$id_orden' and s.numero > '$numPunto'");
+
+      $eject7=mysqli_query($con,"UPDATE orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden and ot.id_sustrato = s.id_sustrato SET s.numero=s.numero-1 WHERE o.id = '$id_orden' and s.numero > '$numPunto'");
       if(!$eject7){
           echo "No se actualizaron los numeros";
         }
@@ -285,7 +285,7 @@ function deletePunto(){
             }
         }
 
-    
+
 
   }
 
@@ -295,7 +295,7 @@ function delete_orden_dia(){
       $idorden=$_POST['id_orden'];
 
       $eject6=mysqli_query($con, "DELETE FROM orden_dia WHERE id='$idorden'");
-    
+
     if(!$eject6){
           echo "Ocurrió un error al eliminar la orden del día" . $eject6;
         }
