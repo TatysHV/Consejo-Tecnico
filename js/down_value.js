@@ -20,13 +20,15 @@ function registrar_punto(){
      type: "post",
       success: function(data){
         alert("Punto registrado correctamente");
+         document.getElementById("indice_puntos").value = cant_puntos+1;
+         document.getElementById("nPunto").innerHTML = numero_punto;
+
          document.getElementById("add_punto").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Punto <span style="color: #0B3B0B"><b>'+nombre_punto+'</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar contenido" onclick="show_addCont()">';
          document.getElementById("add_punto").style.background ="#BCF5A9";
          document.getElementById("add_punto").style.heigth = "110px;"
          //document.getElementById("subtitulo1").style.display = 'none';
 
-         document.getElementById("indice_puntos").value = cant_puntos+1;
-         document.getElementById("nPunto").innerHTML = numero_punto;
+         
          //alert("numero: "+nuevo_numero);
          document.getElementById("nombrePunto").innerHTML = nombre_punto;        // document.getElementById("addp-btn").style.display = "block";
          document.getElementById("index_punto").value = numero_punto;
