@@ -110,6 +110,7 @@ function show_addCont(){
   document.getElementById("notaAddPunto").style.display = "none";
   document.getElementById("add_punto").style.display = "none";
   document.getElementById("tituloZ").style.display = "none";
+  showFilesViewer();
 }
 
 function show_addPunto(){
