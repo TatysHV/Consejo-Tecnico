@@ -16,15 +16,15 @@ $query = mysqli_query($con, "UPDATE orden_dia SET nombre_sesion = '$nombre', tip
     echo "Ocurrió un error" . $query;
   }
   else{
-    echo "ORDEN DEL DÍA MODIFICADA <br><br>";
-    echo "NUEVOS DATOS: <br>"."<b>Nombre:</b> ".$nombre."<br><b>Fecha: </b>".$fecha."<br><b>Tipo:</b> ".$tipo."<br><b>Direccion:</b> ".$fichero."<br><br> <a href="../consejo_tecnico/index.php"> Volver al sitio</a>";
+    //  echo "ORDEN DEL DÍA MODIFICADA <br><br>";
+    //  echo 'NUEVOS DATOS: <br>'.'<b>Nombre:</b> '.$nombre."<br><b>Fecha: </b>".$fecha."<br><b>Tipo:</b> ".$tipo."<br><b>Direccion:</b> ".$fichero."<br><br> <a href="../consejo_tecnico/index.php"> Volver al sitio</a>";
   }
 
   /*+++++++++++++++++++++++++++++++++++++++
     SUBIR EL ARCHIVO A LA CARPETA/SERVIDOR
     +++++++++++++++++++++++++++++++++++++++*/
 
-    $target_path = "../conexiones/uploads/ordendia/";
+    $target_path = "../conexiones/uploads/";
     /*$target_path = "../archivos/ordendia"; // carpeta donde se guardarán los archivo*/
 
     foreach ($_FILES['archivos']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
@@ -33,7 +33,7 @@ $query = mysqli_query($con, "UPDATE orden_dia SET nombre_sesion = '$nombre', tip
    			if (move_uploaded_file($_FILES['archivos']['tmp_name'][$i], $target_path.$name)) {
           //Copia el archivo a la dirección específica de la concatenación: ../archivos/ordendia/nombre.
           echo "El archivo <b>". basename($_FILES['archivos']['name'][$i])." </b>ha sido subido.</br>";
-          echo '<script> window.location="/consejo_tecnico/sesiones.php"</script>';
+          echo '<script> window.location="2016/consejo_tecnico/sesiones.php"</script>';
         }
    		}
    	}

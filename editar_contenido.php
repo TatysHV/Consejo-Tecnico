@@ -122,7 +122,7 @@
                 <br>
                 <div id="panel-sustrato">
                   <div id="punto-tree">
-                      <div class="col-xs-5">
+                      <div class="col-xs-7">
 
                         <div id="anterior" onclick="beforePoint()">
                           <img src="imagenes/flaticons/toLeft.png"/>
@@ -133,7 +133,7 @@
                         </div>
 
                       </div>
-                      <div class="col-xs-7">
+                      <div class="col-xs-5">
                         <input type="button" style="height:34px; width:auto; margin-top:2px; float:right;" class="btn btn-success" value="(+) Nuevo punto" onclick="add_punto()">
                       </div>
                   </div>

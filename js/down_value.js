@@ -28,11 +28,12 @@ function registrar_punto(){
          document.getElementById("add_punto").style.heigth = "110px;"
          //document.getElementById("subtitulo1").style.display = 'none';
 
-         
+
          //alert("numero: "+nuevo_numero);
          document.getElementById("nombrePunto").innerHTML = nombre_punto;        // document.getElementById("addp-btn").style.display = "block";
          document.getElementById("index_punto").value = numero_punto;
-         document.getElementById("btnAddPunto").disabled = false;
+         document.getElementById("carp_selec").value = 0;
+        // document.getElementById("btnAddPunto").disabled = false;
 
          showFilesViewer();
       }
@@ -58,6 +59,7 @@ function editar_punto(id_punto){
      type: "post",
       success: function(data){
         alert("Punto modificado correctamente");
+        window.location.assign("../consejo_tecnico/sesiones.php");
       }
     });
 

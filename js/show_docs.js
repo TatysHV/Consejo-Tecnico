@@ -337,7 +337,7 @@ if(puntoActual > 0){
 }
 
 function beforePoint(){
-  var carpeta = $("#carp_selec").val();
+  document.getElementById("carp_selec").value = 0;
   var puntoActual = parseInt( $("#index_punto").val() )-1;
   var id_orden = $("#index_orden").val();
 
@@ -374,7 +374,7 @@ var id_orden = $("#index_orden").val();
 }
 
 function nextPoint(){
-  var carpeta = $("#carp_selec").val();
+  document.getElementById("carp_selec").value = 0;
   var puntoActual = parseInt($("#index_punto").val());
   var nextpoint = puntoActual + 1;
   var puntosTotales = parseInt($("#indice_puntos").val());

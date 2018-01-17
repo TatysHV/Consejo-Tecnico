@@ -110,7 +110,7 @@
                 <br>
                 <div id="panel-sustrato">
                   <div id="punto-tree">
-                      <div class="col-xs-5">
+                      <div class="col-xs-7">
 
                         <div id="anterior" onclick="beforePoint()">
                           <img src="imagenes/flaticons/toLeft.png"/>
@@ -121,7 +121,7 @@
                         </div>
 
                       </div>
-                      <div class="col-xs-7">
+                      <div class="col-xs-5">
                         <input type="button" style="height:34px; width:auto; margin-top:2px; float:right;" class="btn btn-success" value="(+) Nuevo punto" onclick="add_punto()">
                       </div>
                   </div>
@@ -171,7 +171,7 @@
                     <div id="add_archivo" class="archivo" style="display:none;">
                       <img src="imagenes/files.png" style="width:60px; height: auto; float: left; margin-left: 5%; margin-top: 10px;"/>
 
-                      <form method="post" id="frm_addfile" enctype="multipart/form-data">
+                      <form method="post" id="frm_addfile" enctype="multipart/form-data" >
                         <p style="float: right; color: red; cursor: pointer;" onclick="hideAddFil()">[ x ]</p>
                         <!--input discreto que contiene el tipo de función que ejecutará en subir_sustrato.php-->
                         <input type="text" name="funcion" value="2" style="display:none">

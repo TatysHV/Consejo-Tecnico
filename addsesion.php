@@ -14,7 +14,7 @@
 <html lang="es">
 	<head>
 		<title>Consejo Técnico</title>
-		<meta charset="utf-8"/>
+	   <meta charset="utf-8"/>
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="expires" content="0">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">

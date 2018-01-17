@@ -284,8 +284,15 @@ function deletePunto(){
               echo "Eliminación del punto realizada correctamente";
             }
         }
-
-
+          //-------Actualizar cantidad de puntos de la orden del día-------
+          $orden = mysqli_query($con, "SELECT cant_puntos FROM orden_dia WHERE id='$id_orden'");
+            if ($row = mysqli_fetch_array($orden)) {
+                $cant_puntos= trim($row[0]);
+            }
+          //*********ACTUALIZAR CANTIDAD DE PUNTOS TOTALES DE LA ORDEN DEL DÍA********
+          $cant_puntos = $cant_puntos - 1;
+          //------------Modificar en la orden del día----------------------------------------
+          $updateOrden = mysqli_query($con, "UPDATE orden_dia SET cant_puntos = '$cant_puntos' WHERE id = '$id_orden'");
 
   }
 
