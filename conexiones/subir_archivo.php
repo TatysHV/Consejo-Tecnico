@@ -291,6 +291,7 @@ function deletePunto(){
 
 function delete_orden_dia(){
       include "conexion.php";
+      echo 'entra a eliminar orden del dia';
 
       $idorden=$_POST['id_orden'];
 

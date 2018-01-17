@@ -1,16 +1,16 @@
 <?php
-  
-  include "../conexiones/conexion.php";
+
+include "../conexiones/conexion.php";
 session_start();
 
 @$conexion = mysqli_connect($server, $username, $password)or die("Error en el servidor:". mysqli_connect_error());
 
 if (!mysqli_select_db($conexion, $db))
-  { 
-    echo "<h2>Error al seleccionar la base de datos!!!"; 
+  {
+    echo "<h2>Error al seleccionar la base de datos!!!";
     header("Location: sesiones.php");
-    exit; 
-  }        
+    exit;
+  }
 
 
   $year = $_POST['year'];

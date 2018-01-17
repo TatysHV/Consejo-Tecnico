@@ -16,9 +16,9 @@
     include "conexion.php";
 
     $query = mysqli_query($con, "INSERT INTO orden_dia (nombre_sesion, tipo, fecha_sesion,
-      numero_sesion, direccion) values ('$nombre', '$tipo', '$fecha', '$numero', '$fichero')")or die("Error al subir" .mysql_error());
+      numero_sesion, direccion, cant_puntos) values ('$nombre', '$tipo', '$fecha', '$numero', '$fichero',0)")or die("Error al subir" .mysql_error());
 
-	//      if(!$query){
+	//    if(!$query){
         //echo "Ocurrió un error" . $query;
       //}
       //else{

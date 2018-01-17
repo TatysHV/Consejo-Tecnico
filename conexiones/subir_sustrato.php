@@ -168,7 +168,7 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
     $numeroNuevo = $_POST['numeroNuevo'];
 
     /******Obtener cantidad de puntos totales, para saber si se agrega al final o en medio*****/
-    $orden = mysqli_query($con, "SELECT cant_puntos FROM orden_dia WHERE id='$id_orden'");
+    $orden = mysqli_query($con, "SELECT cant_puntos FROM orden_dia WHERE id='$id_orden'")or die("Error al subir" .mysql_error());
       if ($row = mysqli_fetch_array($orden)) {
           $cant_puntos= trim($row[0]);
       }
@@ -178,10 +178,10 @@ PARA QUE SE PUEDEN COMENZAR A AGREGAR LAS CARPETAS Y/O ARCHIVOS DIRECTAMENTE EN 
       //Ejemplo: 1234, agregar punto 2. Mover(+1): 1(345). Agregar: 1(2)345
 
       $aumentar = mysqli_query($con, "UPDATE orden_dia as o inner join orden_tiene as ot inner join sustrato as s on o.id = ot.id_orden
-      and ot.id_sustrato = s.id_sustrato set s.numero=s.numero+1 where o.id = '$id_orden' and s.numero >= '$numeroNuevo' and s.numero < '$numeroAnterior'");
+      and ot.id_sustrato = s.id_sustrato set s.numero=s.numero+1 where o.id = '$id_orden' and s.numero >= '$numeroNuevo' and s.numero < '$numeroAnterior'")or die("Error al subir" .mysqli_error());
     }
 
-    $eject4=mysqli_query($con, "UPDATE sustrato SET numero='$numeroNuevo', nombre='$nombre', bloqueo='$proteger' WHERE id_sustrato = '$id_punto'");
+    $eject4=mysqli_query($con, "UPDATE sustrato SET numero='$numeroNuevo', nombre='$nombre', bloqueo='$proteger' WHERE id_sustrato = '$id_punto'")or die("Error al subir" .mysqli_error());
 
     /*if(!$eject4){
           echo "Ocurrió un error al modificar el punto" . $eject4;

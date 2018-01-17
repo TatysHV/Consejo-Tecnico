@@ -46,6 +46,7 @@ function editar_punto(id_punto){
   var numero_nuevo = $("#newNumPoint").val(); //Contador de puntos, comienza de 0, cuando se registra se va incrementando
   var nombre_punto = $("#newNamePoint").val();
   var proteger = document.getElementById("newProteger").checked;
+  if(proteger == true){ proteger=1} else{proteger=0};
 
   var caso = 3; //Numero de caso 3 que es para editar punto.
 
@@ -55,7 +56,6 @@ function editar_punto(id_punto){
      type: "post",
       success: function(data){
         alert("Punto modificado correctamente");
-
       }
     });
 
@@ -312,7 +312,7 @@ function delete_orden_dia(ID){
   eleccion = confirm("¿Seguro que quiere eliminar la Orden del día "+ID+"?");
   if(eleccion){
     $.ajax({
-       url: "/consejo_tecnico/conexiones/subir_archivo.php",
+       url: "../consejo_tecnico/conexiones/subir_archivo.php",
        data: {"id_orden":id,"funcion":func},
        type: "post",
         success: function(data){
