@@ -28,9 +28,12 @@ $sql= "SELECT distinct cha.id_carpeta, cha.nombre FROM sustrato as s inner join 
             <input type="hidden" value="0" id="vista'.$line["id_carpeta"].'"/>
 */
       echo '
-              <div id="carp_punto" onclick="desplegar_sub('.$id.','.$line["id_carpeta"].')">
-              <span class="docs"><span class="icon-folder"></span>'.$line["nombre"].'</span>
-              <div id="puntos'.$line["id_carpeta"].'" style="width: 85%; margin:auto;"></div>
+             <div id="carp_punto" onclick="desplegar_sub('.$id.','.$line["id_carpeta"].','.$padre.')">
+                  <span class="docs">
+                    <span class="icon-folder"></span>'.$line["nombre"].'</span>
+              </div>
+                  <div id="puntos'.$line["id_carpeta"].'" style="width: 85%; margin:auto;">
+                  </div>
               <input type="hidden" value="0" id="vista'.$line["id_carpeta"].'"/>
             ';
   }

@@ -17,8 +17,8 @@ function desplegar_docs(ID,padre){
         }
       });
   } else{
-    /*document.getElementById("vista"+id).value = 0;*/
-    /*document.getElementById("puntos"+id).style.display = "none";*/
+    document.getElementById("vista"+id).value = 0;
+    document.getElementById("puntos"+id).style.display = "none";
   }
 }
 
@@ -40,8 +40,8 @@ function desplegar_sub(ID,padre){
         }
       });
   } else{
-    /*document.getElementById("vista"+padre).value = 0;*/
-    /*document.getElementById("puntos"+id).style.display = "none";*/
+    document.getElementById("vista"+padre).value = 0;
+    document.getElementById("puntos"+padre).style.display = "none";
   }
 }
 
