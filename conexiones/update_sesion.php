@@ -34,7 +34,7 @@ $query = mysqli_query($con, "UPDATE orden_dia SET nombre_sesion = '$nombre', tip
           //Copia el archivo a la dirección específica de la concatenación: ../archivos/ordendia/nombre.
           echo "El archivo <b>". basename($_FILES['archivos']['name'][$i])." </b>ha sido subido.</br>";
           echo '<script> window.location="2016/consejo_tecnico/sesiones.php"</script>';
-        }
+          header('Location: http://132.247.186.25/2016/consejo_tecnico/sesiones.php');
    		}
    	}
 

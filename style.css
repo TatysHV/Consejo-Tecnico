@@ -634,6 +634,7 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 .bloque_sesion{
 	padding: 0%;
 	width: 100%;
+	height: auto;
 	min-height: 800px;
 	position: relative;
 }
@@ -664,10 +665,12 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 }
 
 .menu-sustrato{
+	overflow: scroll;
 	margin: 15px;
 	padding: 0;
 	position: absolute;
 	width: 400px;
+	min-height: 1200px;
 	top: 0px;
 	right: 0px;
 	-webkit-box-shadow: -4px 2px 5px 0px rgba(0,0,0,0.6);
@@ -677,10 +680,12 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 }
 
 #bt-deslizante{
+	position: absolute;
 	width: 5%;
 	margin: 0px;
 	padding-top: 380px;
 	padding-left: 5px;
+	margin-bottom:0;
 	float:left;
 	color: white;
 	height: 1200px;
@@ -695,7 +700,8 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 #sustrato{
 	width: 95%;
 	margin:0px;
-	height: 1200px;
+	height: auto;
+	min-height: 1200px;
 	background-color: #0B0B61;
 	padding: 0px;
 	top: 0px;
