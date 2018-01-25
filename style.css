@@ -737,10 +737,22 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 	font-size: 1.1em;
 	cursor:  pointer;
 }
-#punto span {
+#carp_punto{ 
+	height: auto;
+	color: white;
+	padding-left: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	width: 100%;
+	min-height: 5px;
+	font-size: 1.1em;
+	cursor:  pointer;
+
+	}
+#punto span, #carp_punto span{
 	margin-right: 10px;
 }
-#punto:hover{
+#punto:hover, #carp_punto:hover{
 	background-color: #282892;
 }
 .docs{

@@ -113,13 +113,28 @@ session_start(); ?>
 									while ($sus = mysqli_fetch_array($resultado)){
 							$padre = 0;
 							/*<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].')">*/
-						  echo '<div id="wrap"> <div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].','.$padre.')">
-									<span class="icon-folder"></span><b>'.$sus["numero"].'.</b>  '.$sus["nombre"].'
-<div class="edit" onclick="delete_punto('.$sus["id_sustrato"].','.$sus['numero'].','.$ID.')">  <i class="fa fa-window-close" aria-hidden="true"></i></a></div>
-<div class="edit" ><a href="editar_contenido.php?orden='.$line["id"].'&punto='.$sus["numero"].'&idpunto='.$sus["id_sustrato"].'"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
-									<div id="puntos'.$sus["id_sustrato"].'" style="width: 85%; margin:auto;"></div>
+						   echo '<div id="wrap"> 
+						  			<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].','.$padre.')">
+										<span class="icon-folder"></span>
+										<b>'.$sus["numero"].'.</b>  '.$sus["nombre"];
+									if($_SESSION['tipo'] == '0'){
+										echo '
+										<div class="edit" onclick="delete_punto('.$sus["id_sustrato"].','.$sus['numero'].','.$ID.')">  	
+											<i class="fa fa-window-close" aria-hidden="true"></i>
+										</div>
+										<div class="edit" >
+											<a href="editar_contenido.php?orden='.$line["id"].'&punto='.$sus["numero"].'&idpunto='.$sus["id_sustrato"].'">
+												<i class="fa fa-pencil" aria-hidden="true"></i>
+											</a>
+										</div>
+									';
+								}
+								echo'	</div>
+									<div id="puntos'.$sus["id_sustrato"].'" style="width: 85%; margin:auto;">
+									</div>
 									<input type="hidden" value="0" id="vista'.$sus["id_sustrato"].'"/>
-							   	</div></div>';
+							   		
+							   	</div>';
 							}
 						echo '
 							</div>
