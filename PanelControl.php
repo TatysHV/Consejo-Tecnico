@@ -51,39 +51,83 @@
 					</div>
 			</div>
 
-			<div id="principal"></br></br>
-				<div class="bloque_desplegable">
-					<div class ="titular"><center>SUBIR ORDEN DEL DÍA</center></div></br>
+			<div id="principal" style="padding-top: 60px; "></br></br>
+        <div class="bloque-blank">
+          <legend>Gestión de Calendario</legend>
+          <ul>
+            <li><a href="">Cambiar archivo de calendario</a></li>
+          </ul>
+        </div>
 
-          <form enctype="multipart/form-data" action="conexiones/upload_files.php" method="POST" class="forma">
+        <div class="bloque-blank">
+          <legend>Gestión de usuarios</legend>
+          <ul>
+            <li><a href="">Consultar usuarios registrados</a></li>
+            <li><a href="">Registrar nuevo usuario</a></li>
+          </ul>
+        </div>
+
+        <div class="bloque-blank">
+          <legend>Tabla de usuarios registrados</legend>
+          <table border=1 color=grey id="Users" style="width: 800px;">
+            <tr>
+              <th>Nombre de usuario</th>
+              <th>Contraseña</th>
+              <th>Permisos</th>
+              <th>Descripción</th>
+              <th>Acción</th>
+            </tr>
+            <tr>
+              <td><center>Consejero03</center></td>
+              <td><center>CTN32Rt</center></td>
+              <td><center>Limitados</center></td>
+              <td><center>Consejera Laura</center></td>
+              <td><center><a href="">Editar</a></center></td>
+            </tr>
+            <tr>
+              <td><center>Consejero03</center></td>
+              <td><center>CTN32Rt</center></td>
+              <td><center>Limitados</center></td>
+              <td><center>Consejera Laura</center></td>
+              <td><center><a href="">Editar</a></center></td>
+            </tr>
+          </table>
+        </div>
+
+				<div class="bloque_desplegable">
+					<div class ="titular"><center>REGISTRAR NUEVO USUARIO</center></div></br>
+
+          <form enctype="multipart/form-data" action="conexiones/new_user.php" method="POST" class="forma">
             <div class="auxiliar">
 
-            <legend>Subir Orden del día</legend>
+            <center><!--<legend>Datos del usuario</legend>-->
+              <br><br>
 
-            <table id="OrdenDia">
+            <table id="newUser" style="width: 400px;">
               <tr>
-                <td><label class="Lform">Nombre de sesión: </label></th>
-                <td colspan="3"><input type="text" class="fsesion" style="width:100%;" name="nombre"></td>
+                <td colspan="2"><label class="Lform">Nombre: </label></td>
+                <td colspan="2"><input type="text" class="fsesion" style="width:100%;" name="nombre" placeholder="Nombre de usuario"></td>
               </tr>
               <tr>
-                <td><label>Tipo de sesión: </label></th>
-                <td><select class="menu" style="width: 100%; margin-bottom:5px;" name="tipo">
-                    <option value="Ordinaria">Sesión Ordinaria</option>
-                    <option value="Extraordinaria">Sesión Extraordinaria</option>
-                  </select></td>
-                <td><label class="Lform">Fecha de sesión: </label></th>
-                <td><input type="date" class="fsesion" placeholder="AAAA/MM/DD"style="width:100%" name="fecha"></td>
+                <td colspan="2"><label>Contraseña: </label></td>
+                <td colspan="2"><input type="text" class="fsesion" style="width:100%;" name="password" placeholder="Asignar contraseña"></td>
               </tr>
               <tr>
-                <td collspan="1"><label class="Lform">Número de sesión: </label></th>
-                <td collspan="1"><input type="number" class="fsesion" min="01" max="30" style="width:100%" name="numero"></td>
-                <td><label class="Lform">Subir Orden del Día:</label></th>
-                <td><input name="archivos[]" type="file" multiple="true" class="file"/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" /> </td>
+                <td colspan="2"><label>Descripción: </label></td>
+                <td colspan="2"><input type="text" class="fsesion" style="width:100%;" name="descripcion" placeholder="Nota o recordatorio"></td>
+              </tr>
+              <tr>
+                <td colspan="2"><label>Permisos: </label></td>
+                <td colspan="2"><select>
+                                <option value="0">Todos</option>
+                                <option value="1">Limitados</option>
+                                </select>
+                </td>
               </tr>
             </table>
             </br></br>
-            <center><input class="btn btn-info" type="submit" value="Registrar Orden del Día"></center>
-
+            <center><input class="btn btn-info" type="submit" value="Registrar"></center>
+          </center>
             </div>
             </form>
 							</br></br>
@@ -126,36 +170,11 @@
 							<div class="col-xs-6">
 								<img src="imagenes/flaticons/youtube.png"/>
 							</div>
-
 					</div>
 					<div id="derechos">
-						<center><p>H. Consejo Técnico ENES Morelia</p><a href="fragmentos/PanelControl.php">Ir al Panel de Control</a></center>
+						<center><p>H. Consejo Técnico ENES Morelia</p></center>
 					</div>
 				</div>
 			</div>
-			</div>
-		</div>
 	</body>
-
-	<SCRIPT type="text/javascript">
-
-	$(document).ready(function(){
-
-
-	$("#continuar").on("click",function(){
-		var nPuntos = $('#puntos').val();
-
-			 $.ajax({
-						url: "php/tabla_sustrato.php",
-						data: {"cantidad": nPuntos},
-						type: "post",
-						success: function(data){
-							$('#tabla_sus').html(data);
-						}
-				});
-	});
-});
-
-
-	</SCRIPT>
 </html>

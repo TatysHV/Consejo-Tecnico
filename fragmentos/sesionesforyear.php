@@ -25,7 +25,9 @@ if (!mysqli_select_db($conexion, $db))
               <th><center>Número </br>de sesión</center></th>
               <th>Tipo de sesión</th>
               <th><center>Fecha </br>(AA/MM/DD)</center></th>
-              <th>Acci&oacute;n</th>
+              <th>Acción</th>
+              <th></th>
+              <th></th>
             </tr>';
 
   while ($line = mysqli_fetch_array($result)) {
@@ -37,6 +39,8 @@ if (!mysqli_select_db($conexion, $db))
               <td>'.$line["tipo"].'</td>
               <td> <center>'.$line["fecha_sesion"].'</center></td>
               <td> <a href="sesion.php?sesion='.$line["id"].'">Mostrar</a></td>
+              <td> <a href="href="editsesion.php?sesion='.$line["id"].'"">Modificar</a></td>
+              <td> <a onclick="delete_orden_dia('.$line["id"].')">Eliminar</a></td>
 
             <tr>
             ';

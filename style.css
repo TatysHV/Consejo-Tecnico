@@ -737,7 +737,7 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 	font-size: 1.1em;
 	cursor:  pointer;
 }
-#carp_punto{ 
+#carp_punto{
 	height: auto;
 	color: white;
 	padding-left: 2px;
@@ -766,6 +766,27 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 	height: 30px;
 	border-radius: 2px;
 }
+
+/**********************PANEL DE CONTROL***************************/
+
+.bloque-blank{
+	width:80%;
+	margin:auto;
+}
+
+.bloque-blank ul{ margin-left: 15px;}
+
+table #Users{
+	width: 600px;
+	height: 200px;
+
+}
+
+table #Users td, th{
+	padding:10px;
+text-align: center;
+}
+/*****************************************************************
 
 
 

@@ -92,11 +92,9 @@
 
 					</div>
 					<div id="derechos">
-						<center><p>H. Consejo Técnico ENES Morelia</p></center>
+						<center><p>H. Consejo Técnico ENES Morelia</p> <a href="PanelControl.php">Ir al Panel de Control</a></center>
 					</div>
 				</div>
 			</div>
-			</div>
-		</div>
 	</body>
 </html>
