@@ -15,7 +15,8 @@ if (!mysqli_select_db($conexion, $db))
 
   $year = $_POST['year'];
 
-  $sql= "SELECT * FROM orden_dia WHERE year(fecha_sesion) = '$year' ORDER BY numero_sesion";
+  //$sql= "SELECT * FROM orden_dia WHERE year(fecha_sesion) = '$year' ORDER BY numero_sesion"; Muestra ordenados por numero de sesion
+  $sql= "SELECT * FROM orden_dia WHERE year(fecha_sesion) = '$year' ORDER BY fecha_sesion ASC"; // Muestra ordenados por fecha de sesion
 
   $result = mysqli_query($conexion, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($conexion));
 
