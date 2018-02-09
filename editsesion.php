@@ -1,21 +1,13 @@
-<!--
-----------------------------------------------
------- COMPROBACIÓN DE INICIO DE SESIÓN ------
-----------------------------------------------
 
 <?php
-/*
-	session_start();
-	error_reporting(0);
-
-	if($_SESSION["compra"]==true){
-		echo '<script>alert("Tu compra ha sido realizada \nTOTAL PAGADO: '.$_SESSION["pagado"].'");</script>';
-		$_SESSION["compra"]=false;
-	}
-	*/
+    session_start();
+    include "conexiones/conexion.php";
+    if(!isset($_SESSION['usuario'])){
+        echo '<script> window.location="/consejo_tecnico/index.php"</script>';
+    }
 ?>
 
--->
+
 
 <!Doctype html>
 <html lang="es">
@@ -61,39 +53,58 @@
 				<div class="bloque_desplegable">
 					<div class ="titular"><center>MODIFICAR ORDEN DEL DÍA</center></div></br>
 
-						<form enctype="multipart/form-data" action="conexiones/update_sesion.php" method="POST" class="forma">
-							<div class="auxiliar">
-								<?php
-									$ID = $_GET["sesion"];
-									echo '<input type="hidden" value="'.$ID.'" name="id_sesion">';
-								?>
+          <?php
+            $ID = $_GET["sesion"];
+            echo '<input type="hidden" value="'.$ID.'" name="id_sesion">';
 
-							<table id="OrdenDia">
-								<tr>
-									<td><label class="Lform">Nombre de sesión: </label></th>
-									<td colspan="3"><input type="text" class="fsesion" style="width:100%;" name="nombre"></td>
-								</tr>
-								<tr>
-									<td><label>Tipo de sesión: </label></th>
-									<td><select class="menu" style="width: 100%; margin-bottom:5px;" name="tipo">
-											<option value="Ordinaria">Sesión Ordinaria</option>
-											<option value="Extraordinaria">Sesión Extraordinaria</option>
-										</select></td>
-									<td><label class="Lform">Fecha de sesión: </label></th>
-									<td><input type="date" class="fsesion" style="width:100%" name="fecha"></td>
-								</tr>
-								<tr>
-									<td collspan="1"><label class="Lform">Número de sesión: </label></th>
-									<td collspan="1"><input type="number" class="fsesion" min="01" max="30" style="width:100%" name="numero"></td>
-									<td><label class="Lform">Subir Orden del Día:</label></th>
-									<td><input name="archivos[]" type="file" multiple="true" class="file"/></td>
-								</tr>
-							</table>
-							</div>
-							<br><br>
-							<center><input class="btn btn-success" type="submit" value="Registrar Cambios"></center>
-							</form>
-							<br><br>
+            $query = 'SELECT * FROM orden_dia WHERE id ='.$ID.'';
+            $result = mysqli_query($con, $query) or die();
+
+            if($line = mysqli_fetch_array($result)){
+
+            echo '
+            <form enctype="multipart/form-data" action="conexiones/update_sesion.php" method="POST" class="forma">
+              <div class="auxiliar">
+
+              <table id="OrdenDia">
+              <!--  <tr>
+                  <td><label class="Lform">Nombre de sesión: </label></th>
+                  <td colspan="3"><input type="text" class="fsesion" style="width:100%;" name="nombre"></td>
+                </tr>-->
+                <tr>
+                  <td><label>Tipo de sesión: </label></th>
+                  <td><select class="menu" style="width: 100%; margin-bottom:5px;" name="tipo">
+                      ';
+
+                      if($line["tipo"] == "Ordinaria"){
+                        echo'<option value="Ordinaria">Ordinaria</option>
+                        <option value="Extraordinaria">Extraordinaria</option>';
+                      }
+                      else{
+                        echo'<option value="Extraordinaria">Extraordinaria</option>
+                        <option value="Ordinaria">Ordinaria</option>
+                        ';
+                      }
+                      echo '
+                    </select></td>
+                  <td><label class="Lform">Fecha de sesión: </label></th>
+                  <td><input type="date" class="fsesion" style="width:100%" name="fecha" value="'.$line["fecha_sesion"].'"></td>
+                </tr>
+                <tr>
+                  <td collspan="1"><label class="Lform">Número de sesión: </label></th>
+                  <td collspan="1"><input type="number" class="fsesion" min="01" max="30" style="width:100%" name="numero" value="'.$line["numero_sesion"].'"></td>
+                  <td><label class="Lform">Subir Orden del Día:</label></th>
+                  <td><input name="archivos[]" type="file" multiple="true" class="file"/></td>
+                </tr>
+              </table>
+              </div>
+              <br><br>
+              <center><input class="btn btn-success" type="submit" value="Registrar Cambios"><input class="btn btn-danger" type="button" value="Cancelar" style="margin-left: 20px" onclick="irPortal()"></center>
+              </form>
+              <br><br>
+            ';
+          }
+          ?>
 
 					</div>
 			</div>

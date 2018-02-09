@@ -41,18 +41,18 @@
 </head>
 
 <body>
-    
+
     <div id="contenedor">
 
         <div id="cabecera">
             <div id="nombre">
-                <img src="imagenes/logo-shct.png" style="display: inline-block;">           
+                <img src="imagenes/logo-shct.png" style="display: inline-block;">
             </div>
         </div>
-        
-        
+
+
         <div id="principal">
-      
+
             <!-- Main Content -->
             <div class="contenedor">
                 <div class="row">
@@ -79,8 +79,8 @@
                 <div class="contenedor">
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                            <p class="copyright text-muted">Copyright &copy; Israel Calderon 2016</p>
-                            <p class="copyright text-muted">H. Consejo Técnico ENES Morelia</p>
+                            <p class="copyright text-muted">Copyright &copy; H. Consejo Técnico ENES Morelia</p>
+                          <!--  <p class="copyright text-muted">H. Consejo Técnico ENES Morelia</p>-->
                         </div>
                     </div>
                 </div>

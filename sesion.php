@@ -87,10 +87,10 @@ session_start(); ?>
 						<h3>Orden del día de la sesión <span style="text-transform:lowercase; color: #0080FF;">'.$line["tipo"].'</span> número <span style="text-transform:lowercase; color: #0080FF;">'.$line["numero_sesion"].'</span></h3>
 					</center>';
 
-						if($_SESSION['tipo'] == '0'){
+						/*if($_SESSION['tipo'] == '0'){
 							echo '<a style="float:right; margin-right: 20px; margin-top: -40px;" class="btn btn-warning" href="editsesion.php?sesion='.$ID.'">Editar Orden Día<a/>
 								<a style="float:right; margin-right: 20px;" class="btn btn-danger" onclick="delete_orden_dia('.$ID.')">Eliminar Orden del Día</a><br><br><br>';
-						}
+						}*/
 
 					echo '
 					<div class="bloque_sesion" style="padding: 15px;">

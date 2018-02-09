@@ -69,7 +69,7 @@
 							<br><br>
 							<div class="input-group">
 								<span class="input-group-addon" id="sizing-addon2">Correo electrónico:</span>
-		  						<input type="email" placeholder="BillarCarambola@email.com" class="form-control" aria-describedby="sizing-addon2" id="correo"  data-container="body" required>
+		  						<input type="email" placeholder="unamMorelia@email.com" class="form-control" aria-describedby="sizing-addon2" id="correo"  data-container="body" required>
 							</div>
 							<br>
 

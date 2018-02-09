@@ -16,6 +16,7 @@
 		<link type="text/css" rel="stylesheet" href="Bootstrap/css/bootstrap.min.css"/>
 		<script src="js/jquery-3.1.1.js"></script>
 		<script src="js/show_docs.js"></script>
+    <script src="js/down_value.js"></script>
 
 		<link type="text/css" rel="stylesheet" href="style.css"/>
 		<link rel="icon" type="image/png" href="">

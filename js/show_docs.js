@@ -1,3 +1,6 @@
+function irPortal(){
+    window.location.assign("../consejo_tecnico/portal.php");
+}
 
 function desplegar_docs(ID,padre){
   var id = ID;

@@ -26,25 +26,31 @@ if (!mysqli_select_db($conexion, $db))
               <th><center>Número </br>de sesión</center></th>
               <th>Tipo de sesión</th>
               <th><center>Fecha </br>(AA/MM/DD)</center></th>
-              <th>Acción</th>
-              <th></th>
-              <th></th>
-            </tr>';
+              <th>Acción</th> ';
+              if($_SESSION["tipo"] == "0"){
+                echo '
+                <th colspan="2">Administrar</th>
+                ';
+              }
+  echo'</tr>';
 
   while ($line = mysqli_fetch_array($result)) {
 
       echo '
             <tr>
-
               <td> <center>'.$line["numero_sesion"].'<input type="hidden" name="id_sesion" value="'.$line["id"].'"/></center></td>
               <td>'.$line["tipo"].'</td>
               <td> <center>'.$line["fecha_sesion"].'</center></td>
-              <td> <a href="sesion.php?sesion='.$line["id"].'">Mostrar</a></td>
-              <td> <a href="href="editsesion.php?sesion='.$line["id"].'"">Modificar</a></td>
-              <td> <a onclick="delete_orden_dia('.$line["id"].')">Eliminar</a></td>
+              <td> <a href="sesion.php?sesion='.$line["id"].'">Mostrar</a></td>';
 
-            <tr>
-            ';
+              if($_SESSION["tipo"] == "0"){
+                echo '<td> <a href="editsesion.php?sesion='.$line["id"].'" style="color: orange">Modificar</a></td>
+                <td> <a onclick="delete_orden_dia('.$line["id"].')" style="color:red">Eliminar</a></td>
+                ';
+              }
+
+      echo '<tr>';
+
   }
   echo '</table><br>';
 mysqli_close($conexion);
