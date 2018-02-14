@@ -321,7 +321,7 @@ function delete_orden_dia(ID){
        type: "post",
         success: function(data){
             //alert("Nombre de carpeta modificado");
-            alert(data);
+            //alert(data);
             window.location.assign("../consejo_tecnico/sesiones.php");
         },
         failure: function(){

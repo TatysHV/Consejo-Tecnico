@@ -41,7 +41,7 @@
 						<ul id="nav">
 							<li><a href="portal.php">INICIO</a></li>
 							<li><a href="actas.php">ACTAS</a></li>
-							<li class="active"><a href="sesiones.php">SESIONES</a></li>
+							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
 							<li><a href="acuerdos.php">ACUERDOS</a></li>
@@ -56,6 +56,16 @@
           <legend>Gestión de Calendario</legend>
           <ul>
             <li><a href="">Cambiar archivo de calendario</a></li>
+          </ul>
+          <format>
+            <input type="file" class="file" id="calendarioSesiones" style="width: 400px">
+          </format>
+        </div>
+        <div class="bloque-blank">
+          <legend>Gestión de normatividad</legend>
+          <ul>
+            <li><a href="">Cambiar reglamento general</a></li>
+            <li><a href="">Cambiar reglamento del Consejo Técnico</a></li>
           </ul>
         </div>
 

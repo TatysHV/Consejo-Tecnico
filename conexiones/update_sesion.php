@@ -9,7 +9,7 @@ $id_ordendia = $_POST['id_sesion'];
 
 include "conexion.php";
 
-$query = mysqli_query($con, "UPDATE orden_dia SET nombre_sesion = '$nombre', tipo = '$tipo', fecha_sesion = '$fecha',
+$query = mysqli_query($con, "UPDATE orden_dia SET tipo = '$tipo', fecha_sesion = '$fecha',
   numero_sesion ='$numero', direccion = '$fichero' WHERE id = '$id_ordendia'");
 
   if(!$query){

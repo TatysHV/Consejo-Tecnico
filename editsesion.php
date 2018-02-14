@@ -55,7 +55,7 @@
 
           <?php
             $ID = $_GET["sesion"];
-            echo '<input type="hidden" value="'.$ID.'" name="id_sesion">';
+
 
             $query = 'SELECT * FROM orden_dia WHERE id ='.$ID.'';
             $result = mysqli_query($con, $query) or die();
@@ -65,12 +65,13 @@
             echo '
             <form enctype="multipart/form-data" action="conexiones/update_sesion.php" method="POST" class="forma">
               <div class="auxiliar">
+                <input type="hidden" value="'.$ID.'" name="id_sesion">
 
-              <table id="OrdenDia">
-              <!--  <tr>
+            <table id="OrdenDia">
+              <tr>
                   <td><label class="Lform">Nombre de sesión: </label></th>
                   <td colspan="3"><input type="text" class="fsesion" style="width:100%;" name="nombre"></td>
-                </tr>-->
+                </tr>
                 <tr>
                   <td><label>Tipo de sesión: </label></th>
                   <td><select class="menu" style="width: 100%; margin-bottom:5px;" name="tipo">
