@@ -95,25 +95,26 @@ session_start(); ?>
 					echo '
 					<div class="bloque_sesion" style="padding: 15px;">
 						ID Orden día: <input type="button" id="id_ordenDia" value=" '.$line["id"].'"/>
-						<div id="pdf">
-							<embed src="conexiones/uploads/'.$line["direccion"].'" width="100%" height="1100"></embed>
-						</div>
-						<div id="menu" onclick="show_menu()">
-							<center><span class="icon-menu" style="font-size: 30px;"></span></center>
-						</div>
-						<div class="menu-sustrato" id="menu-sustrato">
-							<div id="bt-deslizante" onclick="hide_menu()">
-								<img src="imagenes/flaticons/flechita.png" style="opacity: 0.9; width: 15px; height: auto;">
+						<div id="wrap-sesion">
+							<div id="pdf">
+								<embed src="conexiones/uploads/'.$line["direccion"].'" width="100%" height="900px"></embed>
 							</div>
-							<div id="sustrato">
-								<div class="titulo_sustrato"><center><br>CONTENIDO</center></div>
+							<div id="menu" onclick="show_menu()" title="Mostrar Menú">
+								<center><img src="imagenes/flaticons/menu.png" style="width: 30px; height:auto;"></center>
+							</div>
+							<div class="menu-sustrato" id="menu-sustrato">
+								<div id="bt-deslizante" onclick="hide_menu()" title="Ocultar Menú">
+									<img src="imagenes/flaticons/arrow.png" style="width: 15px; height: auto; margin-top:15px;">
+								</div>
+								<div id="sustrato" style="overflow: scroll; height:900px;">
+									<div class="titulo_sustrato"><center><br>CONTENIDO</center></div>
 
 
 									';
 									while ($sus = mysqli_fetch_array($resultado)){
 							$padre = 0;
 							/*<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].')">*/
-						   echo '<div id="wrap">
+						   echo '<div id="wrap" >
 						  			<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].','.$padre.')">
 										<span class="icon-folder"></span>
 										<b>'.$sus["numero"].'.</b>  '.$sus["nombre"];
@@ -137,6 +138,7 @@ session_start(); ?>
 							   	</div>';
 							}
 						echo '
+						</div>
 							</div>
 						</div>
 					</div>

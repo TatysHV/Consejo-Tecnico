@@ -632,9 +632,6 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 -------------------- SESION ---------------------------------*/
 
 
-
-
-
 .bloque_sesion{
 	padding: 0%;
 	width: 100%;
@@ -643,15 +640,23 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 	position: relative;
 }
 
+#wrap-sesion{
+	position: relative;
+	height: auto;
+}
+
 #pdf{
+	position: relative;
 	width: 97%;
 	margin: 0;
 	padding:0;
-	height: 1200px;
+	height: 900px;
 	display: inline-block;
+	z-index: 0;
 }
 
 #menu{
+	position: absolute;
 	width: 3%;
 	margin: 0;
 	padding-top: 10px;
@@ -659,55 +664,53 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 	right: 0px;
 	top: 0px;
 	float: right;
-	height: 1200px;
-	background-color: #151515;
-	display: inline-block;
+	height: 900px;
+	background-color:  #2E64FE;
 	cursor:  pointer;
+	z-index: 0;
+	display:inline-block;
 }
 #menu:hover{
-	background-color: #252525;
+	background-color:#9BDBFB;
 }
 
 .menu-sustrato{
-	overflow: scroll;
-	margin: 15px;
-	padding: 0;
 	position: absolute;
-	width: 400px;
-	min-height: 1200px;
-	top: 0px;
-	right: 0px;
-	-webkit-box-shadow: -4px 2px 5px 0px rgba(0,0,0,0.6);
-	-moz-box-shadow: -4px 2px 5px 0px rgba(0,0,0,0.6);
-	box-shadow: -4px 2px 5px 0px rgba(0,0,0,0.6);
-	display: none;
+	top: 0;
+	right:0;
+	width: 35%;
+	min-height: 900px;
+	-webkit-box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.4);
+	-moz-box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.4);
+	box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.4);
+	z-index:0;
+	/*display: none;*/
 }
 
 #bt-deslizante{
-	position: absolute;
+	position: relative;
 	width: 5%;
-	margin: 0px;
-	padding-top: 380px;
-	padding-left: 5px;
-	margin-bottom:0;
+	height: 100%;
+	top:0;
+	bottom:0;
 	float:left;
 	color: white;
-	height: 1200px;
-	background-color: #151515;
+	min-height: 900px;
+	background-color: #2E64FE;
 	cursor:  pointer;
-	display: inline-block;
+	z-index: 1;
 }
 #bt-deslizante:hover{
-	background-color: #252525;
+	background-color:#9BDBFB;
 }
 
 #sustrato{
+	position: absolute;
 	width: 95%;
 	margin:0px;
 	height: auto;
-	min-height: 1200px;
+	min-height: 900px;
 	background-color: #0B0B61;
-	padding: 0px;
 	top: 0px;
 	float: right;
 	display: inline-block;
@@ -730,13 +733,13 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 
 #punto{ /*C/U de los puntos de sustrato de una orden del día*/
 	min-height: 200px;
-	height: auto;
 	color: white;
 	padding-left: 15px;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	width: 100%;
 	min-height: 30px;
+	height: auto;
 	border-bottom: 1px solid #282892;
 	font-size: 1.1em;
 	cursor:  pointer;
