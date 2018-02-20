@@ -805,6 +805,7 @@ text-align: center;
 #pie{
 	margin-top: 0%;
 	width: 100%;
+	min-height: 300px;
 	height: auto;
 	margin: auto;
 	padding: 10px;
@@ -818,6 +819,15 @@ text-align: center;
 	min-height: 600px;
 	margin: auto;
 	padding: 2%;
+}
+
+.contenido2{
+	width: 80%;
+	height: auto;
+	margin: auto;
+	padding: 10px;
+	padding-top: 30px;
+	color: #9f9f9f;
 }
 
 #f1{

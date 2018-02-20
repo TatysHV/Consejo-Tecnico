@@ -17,6 +17,7 @@
 		<link href='https://fonts.googleapis.com/css?family=Cinzel:400,700|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,500,700' rel='stylesheet' type='text/css'>
 		<link rel="icon" type="image/png" href="">
+    <script src="js/jquery-3.1.1.js"></script>
 	</head>
 	<body>
 		<div id="contenedor">
@@ -54,47 +55,12 @@
 			</div>
 
 			<div id="pie">
-				<div class="contenido2">
-					<div class="col-xs-5" id="f1">
-						<div class="row">
-							<div class="col-xs-2" id="flat">
-								<img src="imagenes/flaticons/location.png"/>
-							</div>
-							<div class="col-xs-10">
-								<p class="ftitulo">Dirección:</p>
-								<p class="info">Morelia, Mich.</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-2" id="flat">
-								<img  src="imagenes/flaticons/app.png"/>
-							</div>
-							<div class="col-xs-10">
-								<p class="ftitulo">Teléfono:</p>
-								<p class="info">(452) 44-33-22-11-00</p>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-xs-2">
-					</div>
-					<div class="col-xs-5" id="f2">
-							<center>
-							<p class="ftitulo">Encuentranos también en:</p>
-							</center>
-
-							<div class="col-xs-6">
-								<img src="imagenes/flaticons/social.png"/>
-							</div>
-							<div class="col-xs-6">
-								<img src="imagenes/flaticons/youtube.png"/>
-							</div>
-
-					</div>
-					<div id="derechos">
-						<center><p>H. Consejo Técnico ENES Morelia</p> <a href="PanelControl.php">Ir al Panel de Control</a></center>
-					</div>
-				</div>
 			</div>
 	</body>
+  <script>
+    window.onload = cargarFooter();
+    function cargarFooter(){
+      $("#pie").load("../consejo_tecnico/fragmentos/footer.html");
+    }
+  </script>
 </html>
