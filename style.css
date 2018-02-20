@@ -793,9 +793,17 @@ table #Users td, th{
 	padding:10px;
 text-align: center;
 }
-/*****************************************************************
 
 
+/**************************CALENDARIO****************************/
+#calendarios {
+		margin-top: 30px;
+}
+
+#calendarios img{
+	width: 100%;
+	height: auto;
+}
 
 
 /*--------------------------Pie de página----------------------*/

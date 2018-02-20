@@ -36,12 +36,12 @@
 							<li class="active"><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
 							<?php
-                                                                if($_SESSION['tipo'] == '0')
-                                                                {
-                                                                        echo '<li><a href="acuerdos.php">ACUERDOS</a></li>
-                                                                        <li><a href="oficios.php">OFICIOS</a></li>';
-                                                                }
-                                                        ?>
+              if($_SESSION['tipo'] == '0')
+              {
+                      echo '<li><a href="acuerdos.php">ACUERDOS</a></li>
+                      <li><a href="oficios.php">OFICIOS</a></li>';
+              }
+              ?>
 							<li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>
             </ul>
 					</div>
@@ -51,9 +51,25 @@
 			<div id="principal">
 			</br></br>
 
-			<center>
-				<img src="imagenes/calendariosemestral20171.png">
-			</center>
+      <div id="calendarios">
+        <div class="col-xs-6">
+          <center>
+            <legend>Calendario General</legend>
+    				<img src="imagenes/calendariosemestral20171.png">
+            </br>
+            <input type="button" value="Descargar">
+    			</center>
+        </div>
+        <div class="col-xs-6">
+          <center>
+            <legend>Calendario de Sesiones</legend>
+            <img src="imagenes/calendario.png">
+            </br>
+            <input type="button" value="Descargar">
+          </center>
+        </div>
+      </div>
+
 
 
 			</div>
