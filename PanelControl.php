@@ -92,18 +92,31 @@
               <th>Descripción</th>
               <th>Acción</th>
             </tr>
-            <tr>
-              <td><center>Consejero03</center></td>
-              <td><center>Limitados</center></td>
-              <td><center>Consejera Laura</center></td>
-              <td><center><a href="">Editar</a></center></td>
-            </tr>
-            <tr>
-              <td><center>Consejero03</center></td>
-              <td><center>Limitados</center></td>
-              <td><center>Consejera Laura</center></td>
-              <td><center><a href="">Editar</a></center></td>
-            </tr>
+            <?php
+              include "conexiones/conexion.php";
+
+              $query= 'SELECT * FROM users WHERE 1';
+    					$result = mysqli_query($con, $query) or die();
+
+              while ($usuario = mysqli_fetch_array($result)){
+
+                if($usuario['tipo'] == 0){
+                  $permisos = "Todos";
+                }
+                elseif($usuario['tipo']== 1){
+                  $permisos = "Limitados";
+                }
+
+              echo '
+              <tr>
+                <td><center>'.$usuario['usuario'].'</center></td>
+                <td><center>'.$permisos.'</center></td>
+                <td><center>'.$usuario['nota'].'</center></td>
+                <td><center><a href="">Editar</a></center></td>
+              </tr>
+              ';
+              }
+              ?>
           </table>
         </div>
 
