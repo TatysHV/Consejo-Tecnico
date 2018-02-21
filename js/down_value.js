@@ -331,3 +331,39 @@ function delete_orden_dia(ID){
 
   }
 }
+/************************CONTROLES DE ADMINISTRACIÓN***************************/
+
+function addUser(){
+  var nombreUsuario = $("#userName").val();
+  var passUsuario = $("#userPass").val();
+  var notaUsuario = $("#userDesc").val();
+
+  var lista = document.getElementById("userType");
+  var indice = lista.selectedIndex;
+  var opcion = lista.options[indice];
+  var tipoUsuario = opcion.value;
+
+  alert("Datos obtenidos correctamente "+nombreUsuario+" "+passUsuario+" "+tipoUsuario);
+
+  if(tipoUsuario == "Todos"){
+    tipoUsuario = parseInt(0);
+    alert("tipo usuario pasre: "+tipoUsuario);}
+  elseif(tipoUsuario == "Limitados"){
+    tipoUsuario = parseInt(1);
+  }
+
+  $.ajax({
+     url: "../consejo_tecnico/conexiones/administracion.php",
+     data: {"username":nombreUsuario,"password":passUsuario,"type":tipoUsuario,"nota": notaUsuario, "funcion":0},
+     type: "post",
+      success: function(data){
+          alert("Registro de usuario exitoso "+data);
+
+      },
+      failure: function(){
+        alert("No se pudo registrar el nuevo usuario");
+      }
+    });
+
+
+}

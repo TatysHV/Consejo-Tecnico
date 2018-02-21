@@ -21,6 +21,7 @@
 		<link type="text/css" rel="stylesheet" href="Bootstrap/css/bootstrap.min.css"/>
 		<script src="js/jquery-3.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+    <script src="js/down_value.js"></script>
 
 		<link type="text/css" rel="stylesheet" href="style.css"/>
 		<link rel="icon" type="image/png" href="">
@@ -87,21 +88,18 @@
           <table border=1 color=grey id="Users" style="width: 800px;">
             <tr>
               <th>Nombre de usuario</th>
-              <th>Contraseña</th>
               <th>Permisos</th>
               <th>Descripción</th>
               <th>Acción</th>
             </tr>
             <tr>
               <td><center>Consejero03</center></td>
-              <td><center>CTN32Rt</center></td>
               <td><center>Limitados</center></td>
               <td><center>Consejera Laura</center></td>
               <td><center><a href="">Editar</a></center></td>
             </tr>
             <tr>
               <td><center>Consejero03</center></td>
-              <td><center>CTN32Rt</center></td>
               <td><center>Limitados</center></td>
               <td><center>Consejera Laura</center></td>
               <td><center><a href="">Editar</a></center></td>
@@ -112,7 +110,7 @@
 				<div class="bloque_desplegable">
 					<div class ="titular"><center>REGISTRAR NUEVO USUARIO</center></div></br>
 
-          <form enctype="multipart/form-data" action="conexiones/new_user.php" method="POST" class="forma">
+          <form enctype="multipart/form-data" action="" method="POST" class="forma">
             <div class="auxiliar">
 
             <center><!--<legend>Datos del usuario</legend>-->
@@ -121,19 +119,19 @@
             <table id="newUser" style="width: 400px;">
               <tr>
                 <td colspan="2"><label class="Lform">Nombre: </label></td>
-                <td colspan="2"><input type="text" class="fsesion" style="width:100%;" name="nombre" placeholder="Nombre de usuario"></td>
+                <td colspan="2"><input type="text" class="fsesion" style="width:100%;" id="userName" name="nombre" placeholder="Nombre de usuario"></td>
               </tr>
               <tr>
                 <td colspan="2"><label>Contraseña: </label></td>
-                <td colspan="2"><input type="text" class="fsesion" style="width:100%;" name="password" placeholder="Asignar contraseña"></td>
+                <td colspan="2"><input type="text" class="fsesion" style="width:100%;" id="userPass" name="password" placeholder="Asignar contraseña"></td>
               </tr>
               <tr>
                 <td colspan="2"><label>Descripción: </label></td>
-                <td colspan="2"><input type="text" class="fsesion" style="width:100%;" name="descripcion" placeholder="Nota o recordatorio"></td>
+                <td colspan="2"><input type="text" class="fsesion" style="width:100%;" id="userDesc" name="descripcion" placeholder="Nota o recordatorio"></td>
               </tr>
               <tr>
                 <td colspan="2"><label>Permisos: </label></td>
-                <td colspan="2"><select>
+                <td colspan="2"><select id="userType" >
                                 <option value="0">Todos</option>
                                 <option value="1">Limitados</option>
                                 </select>
@@ -141,7 +139,7 @@
               </tr>
             </table>
             </br></br>
-            <center><input class="btn btn-info" type="submit" value="Registrar"></center>
+            <center><input class="btn btn-info" onclick="addUser()" value="Registrar"></center>
           </center>
             </div>
             </form>
