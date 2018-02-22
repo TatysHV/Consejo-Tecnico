@@ -79,7 +79,7 @@
   <script>
     window.onload = cargarFooter();
     function cargarFooter(){
-      $("#pie").load("../consejo_tecnico/fragmentos/footer.html");
+      $("#pie").load("../consejo_tecnico/fragmentos/footer.php");
     }
   </script>
 </html>
