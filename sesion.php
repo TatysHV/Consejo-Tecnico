@@ -95,18 +95,29 @@ session_start(); ?>
 					echo '
 					<div class="bloque_sesion" style="padding: 15px;">
 						ID Orden día: <input type="button" id="id_ordenDia" value=" '.$line["id"].'"/>
-						<div id="wrap-sesion">
-							<div id="pdf">
-								<embed src="conexiones/uploads/'.$line["direccion"].'" width="100%" height="900px"></embed>
-							</div>
-							<div id="menu" onclick="show_menu()" title="Mostrar Menú">
-								<center><img src="imagenes/flaticons/menu.png" style="width: 30px; height:auto;"></center>
-							</div>
-							<div class="menu-sustrato" id="menu-sustrato">
+						<div id="wrap-sesion">';
+							
+						if ($line["direccion"]){/*En esta parte revisamos que exista un documento referente a la orden del día*/
+							echo '<div id="pdf"> 
+									<embed src="conexiones/uploads/'.$line["direccion"].'" width="100%" height="900px"></embed>
+								  </div>';
+						}else{
+							echo '<div id="pdf">
+									<embed src="conexiones/uploads/No_hay.pdf" width="100%" height="900px"></embed>
+								  </div>';
+						}
+
+						echo	'<div id="menu" onclick="show_menu()" title="Mostrar Menú">
+									<center><img src="imagenes/flaticons/menu.png" style="width: 30px; height:auto;"></center>
+								</div>
+								<div class="menu-sustrato" id="menu-sustrato">
 								<div id="bt-deslizante" onclick="hide_menu()" title="Ocultar Menú">
 									<img src="imagenes/flaticons/arrow.png" style="width: 15px; height: auto; margin-top:15px;">
 								</div>
 								<div id="sustrato" style="overflow: scroll; height:900px;">
+									<div id="Boton_Agregar">
+										<a href="add_sustrato.php?orden='.$line["id"].'">Agregar Punto</a>
+									</div>
 									<div class="titulo_sustrato"><center><br>CONTENIDO</center></div>
 
 
