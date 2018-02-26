@@ -744,6 +744,23 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 	font-size: 1.1em;
 	cursor:  pointer;
 }
+
+#Boton_Agregar a{
+	margin-top:5px;
+	color: white;
+	padding-left: 15px;
+	padding-top: 5px;
+	padding-bottom: 15px;
+	width: 100%;
+	min-height: 30px;
+	border-bottom: 1px solid #282892;
+	font-size: 1.1em;
+	float: right;
+	cursor:  pointer;	
+}
+
+
+
 #carp_punto{
 	height: auto;
 	color: white;
