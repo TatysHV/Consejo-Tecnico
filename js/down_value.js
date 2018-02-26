@@ -347,10 +347,10 @@ function addUser(){
 
   if(tipoUsuario == "Todos"){
     tipoUsuario = parseInt(0);
-    alert("tipo usuario pasre: "+tipoUsuario);}
-  elseif(tipoUsuario == "Limitados"){
-    tipoUsuario = parseInt(1);
+    alert("tipo usuario pasre: "+tipoUsuario);
   }
+
+  else if(tipoUsuario == "Limitados"){tipoUsuario = parseInt(1);}
 
   $.ajax({
      url: "../consejo_tecnico/conexiones/administracion.php",

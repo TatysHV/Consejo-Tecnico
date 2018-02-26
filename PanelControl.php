@@ -2,11 +2,11 @@
   session_start();
   include "conexiones/conexion.php";
   if(!isset($_SESSION['usuario'])){
-      echo '<script> window.location="2016/consejo_tecnico/index.php"</script>';
+      echo '<script> window.location="../../index.php"</script>';
   }
 	if($_SESSION['tipo'] == '1')
 	{
-		echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
+		echo '<script> window.location="../../portal.php"</script>';
 	}
 ?>
 
@@ -121,6 +121,7 @@
         </div>
 
 				<div class="bloque_desplegable">
+
 					<div class ="titular"><center>REGISTRAR NUEVO USUARIO</center></div></br>
 
           <form enctype="multipart/form-data" action="" method="POST" class="forma">

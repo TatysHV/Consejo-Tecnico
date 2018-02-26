@@ -9,10 +9,10 @@ $conexion = mysqli_connect($server, $username, $password)or die("Error en el ser
 if(trim($_POST['user']) != "" && trim($_POST['pwd']) != ""){
 
   if (!mysqli_select_db($conexion, $db))
-  { 
-    echo "<h2>Error al seleccionar la base de datos!!!"; 
+  {
+    echo "<h2>Error al seleccionar la base de datos!!!";
     	echo '<script> window.location="http://localhost/SHCT/index.php"</script>';
-	exit; 
+	exit;
   }
 
      // Puedes utilizar la funcion para eliminar algun caracter en especifico
@@ -34,28 +34,27 @@ if(trim($_POST['user']) != "" && trim($_POST['pwd']) != ""){
         $_SESSION['usuario'] = $row['usuario'];
         $_SESSION['password'] = $row['password'];
         $_SESSION['tipo'] = $row['tipo'];
-	mysqli_close($conexion);
+	      mysqli_close($conexion);
 
-        header("Location: /2016/consejo_tecnico/portal.php");
-       echo $correo;
+        header("Location:../../consejo_tecnico/portal.php");
        //Elimina el siguiente comentario si quieres que re-dirigir automáticamente a index.php
        /*Ingreso exitoso, ahora sera dirigido a la pagina principal.
        <SCRIPT LANGUAGE="javascript">
        location.href = "index.php";
        </SCRIPT>*/
-      
+
      }else{
 	mysqli_close($conexion);
       echo '<script> alert("Usuario o contraseña incorrectos");</script>';
-      echo '<script> window.location="/2016/consejo_tecnico/index.php"</script>';
+      echo '<script> window.location="../../consejo_tecnico/index.php"</script>';
       /*header("Location: /servidor/index.html");*/
      }
      mysqli_free_result($result);
-    }else{
+    /*}else{
 	mysqli_close($conexion);
       echo '<script> alert("Debe especificar un usuario y password");</script>';
-      echo '<script> window.location="/2016/consejo_tecnico/index.php"</script>';
-     /*header("Location: /servidor/index.html");*/
-    }
-
+      echo '<script> window.location="../2016/consejo_tecnico/index.php"</script>';
+     header("Location: /servidor/index.html");
+   }*/
+}
 ?>

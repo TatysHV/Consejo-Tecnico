@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include "conexiones/conexion.php";
+  include "../conexiones/conexion.php";
   if(!isset($_SESSION['usuario'])){
       echo '<script> window.location="2016/consejo_tecnico/index.php"</script>';
   }

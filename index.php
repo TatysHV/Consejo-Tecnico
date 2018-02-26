@@ -2,7 +2,8 @@
     session_start();
     include "conexiones/conexion.php";
     if(isset($_SESSION['usuario'])){
-        echo '<script> window.location="/2016/consejo_tecnico/portal.php"</script>';
+        //echo '<script> window.location="../../consejo_tecnico/portal.php"</script>';
+         header("Location: portal.php");
     }
 ?>
 <!DOCTYPE html>
@@ -102,7 +103,7 @@
 
     <!-- Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
-    
+
 
 </body>
 

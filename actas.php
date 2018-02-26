@@ -2,7 +2,7 @@
     session_start();
     include "conexiones/conexion.php";
     if(!isset($_SESSION['usuario'])){
-        echo '<script> window.location="/2016/consejo_tecnico/index.php"</script>';
+        header("Location: index.php");
     }
     /* Puede editar eascenciont */
 ?>
@@ -38,12 +38,12 @@
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
 							<?php
-                                                                if($_SESSION['tipo'] == '0')
-                                                                {
-                                                                        echo '<li><a href="acuerdos.php">ACUERDOS</a></li>
-                                                                        <li><a href="oficios.php">OFICIOS</a></li>';
-                                                                }
-                                                        ?>
+                      if($_SESSION['tipo'] == '0')
+                      {
+                              echo '<li><a href="acuerdos.php">ACUERDOS</a></li>
+                              <li><a href="oficios.php">OFICIOS</a></li>';
+                      }
+              ?>
 							<li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>
             					</ul>
 					</div>
