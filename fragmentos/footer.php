@@ -1,13 +1,6 @@
 <?php
   session_start();
   include "../conexiones/conexion.php";
-  if(!isset($_SESSION['usuario'])){
-      echo '<script> window.location="2016/consejo_tecnico/index.php"</script>';
-  }
-	if($_SESSION['tipo'] == '1')
-	{
-		echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
-	}
 ?>
 <div class="contenido2">
   <div class="row">

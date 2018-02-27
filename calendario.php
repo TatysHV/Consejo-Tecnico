@@ -55,17 +55,18 @@
         <div class="col-xs-6">
           <center>
             <legend>Calendario General</legend>
-    				<img src="imagenes/calendariosemestral20171.png">
-            </br>
-            <input type="button" value="Descargar">
+              <a href="conexiones/uploads/calendario_semestral2018.jpg" download="Calendario Semestral.png">Descargar</a>
+              </br>
+    				<img src="conexiones/uploads/calendario_semestral2018.jpg">
     			</center>
         </div>
         <div class="col-xs-6">
           <center>
             <legend>Calendario de Sesiones</legend>
-            <img src="imagenes/calendario.png">
+            <a href="conexiones/uploads/calendario_sesiones2018.png" download="Calendario de Sesiones.png">Descargar</a>
             </br>
-            <input type="button" value="Descargar">
+            <img src="conexiones/uploads/calendario_sesiones2018.png">
+
           </center>
         </div>
       </div>
