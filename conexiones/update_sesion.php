@@ -38,5 +38,5 @@ $query = mysqli_query($con, "UPDATE orden_dia SET tipo = '$tipo', fecha_sesion =
    		}
    	}
 
-
+}
 ?>
