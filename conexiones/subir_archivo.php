@@ -1,4 +1,6 @@
 <?php
+// Motrar todos los errores de PHP
+error_reporting(E_ALL);
 
 /*NOTA: Primer archivo php donde busco implementar el uso de diferentes funciones en un sólo php para evitar generar
 tantos documentos php como todos los que hay en el proyecto. "simulacion de funciones"

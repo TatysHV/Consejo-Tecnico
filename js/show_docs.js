@@ -397,3 +397,28 @@ function nextPoint(){
       });
    }
 }
+
+/*******************************************************************************/
+/************************ PANEL DE CONTROL *************************************/
+/*******************************************************************************/
+
+function show_edit_user(id_user){
+  /*Función que coloca en la div #bloque_edicion_usuario de PanelControl el fragmento
+  de código html (php en realidad) para visualizar el editor de los datos de un usuario
+  a partir de su id.*/
+
+  var id_user = id_user;
+
+  $.ajax({
+      url: "../consejo_tecnico/conexiones/administracion.php",
+      data: {"funcion": 1, "id_user":id_user},
+      type: "post",
+      success: function(data){
+        $('#bloque_edicion_usuario').html(data);
+      },
+      failure: function(){
+        alert("Error al mostrar formulario para editar usuario");
+      }
+    });
+
+}

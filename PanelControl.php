@@ -22,6 +22,7 @@
 		<script src="js/jquery-3.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
     <script src="js/down_value.js"></script>
+    <script src="js/show_docs.js"></script>
 
 		<link type="text/css" rel="stylesheet" href="style.css"/>
 		<link rel="icon" type="image/png" href="">
@@ -112,15 +113,15 @@
                 <td><center>'.$usuario['usuario'].'</center></td>
                 <td><center>'.$permisos.'</center></td>
                 <td><center>'.$usuario['nota'].'</center></td>
-                <td><center><a href="">Editar</a></center></td>
+                <td><center><a onclick="show_edit_user('.$usuario['id'].')" style="cursor: pointer">Editar</a>&nbsp;&nbsp;&nbsp;<a href="" onclick="deleteUser('.$usuario['id'].')" style="color: red; cursor:pointer">Eliminar</a></center></td>
               </tr>
               ';
               }
               ?>
           </table>
         </div>
-
-				<div class="bloque_desplegable">
+        <div id="bloque_edicion_usuario"></div>
+				<div class="bloque_desplegable" style="width: 80%;">
 
 					<div class ="titular"><center>REGISTRAR NUEVO USUARIO</center></div></br>
 
@@ -159,6 +160,7 @@
             </form>
 							</br></br>
             </div>
+            </br></br>
 					</div>
 			<div id="pie">
 			</div>

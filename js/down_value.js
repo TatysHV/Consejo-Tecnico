@@ -331,7 +331,9 @@ function delete_orden_dia(ID){
 
   }
 }
+/******************************************************************************/
 /************************CONTROLES DE ADMINISTRACIÓN***************************/
+/******************************************************************************/
 
 function addUser(){
   var nombreUsuario = $("#userName").val();
@@ -358,12 +360,57 @@ function addUser(){
      type: "post",
       success: function(data){
           alert("Registro de usuario exitoso "+data);
-
       },
       failure: function(){
         alert("No se pudo registrar el nuevo usuario");
       }
     });
+}
 
 
+function updateUser(id_user){
+  /**********************************************************************************************/
+
+  /********************* FALTA HACER FUNCIÓN PHP QUE MODIFIQUE LA BASE DE DATOS*******************/
+
+
+
+
+  var id_user = id_user;
+  var newname = $("#newuserName").val();
+  var newtype = $("#newuserType").val();
+  var newnote = $("#newuserDesc").val(); //La nota no es un campo obligatorio, puede ser vacío
+  var newpass = $("#newuserPass").val();
+
+  if (newname == ""){alert("Debes agregar un nombre de usuario");}
+  if (newtype == ""){alert("Debes seleccionar un tipo de usuario");}
+  if (newpass == ""){//Si no se escribió nada en el espacio de nueva contraseña, no se le hará ningún cambio.
+    //Así se mandan sólo 3 valores por ajax
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/administracion.php",
+       data: {"username":newname,"type":newtype,"nota": newnote, "funcion":2, "flagPass": false},
+       type: "post",
+        success: function(data){
+            alert("Modificación exitosa de usuario");
+        },
+        failure: function(){
+          alert("No se pudo modificar el usuario");
+        }
+      });
+
+  }
+  else{//Sí se colocó una nueva contraseña
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/administracion.php",
+       data: {"username":newname,"password":newpass,"type":newtype,"nota": newnote, "funcion":2, "flagPass": true},
+       //flagPass es un booleano que ayuda a no sufrir error en el PHP al no recibir la variable que espera, para no esperarlo, si no se manda =)
+       type: "post",
+        success: function(data){
+            alert("Modificación exitosa de usuario");
+        },
+        failure: function(){
+          alert("No se pudo modificar el usuario");
+        }
+      });
+  }
 }
