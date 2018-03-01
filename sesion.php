@@ -15,6 +15,7 @@ session_start(); ?>
 		<link type="text/css" rel="stylesheet" href="style.css"/>
 		<link type="text/css" rel="stylesheet" href="fonts.css"/>
 		  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
+		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Cinzel:400,700|Open+Sans:400,700' rel='stylesheet' type='text/css'/>
 		<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,500,700' rel='stylesheet' type='text/css'/>
 
@@ -96,9 +97,9 @@ session_start(); ?>
 					<div class="bloque_sesion" style="padding: 15px;">
 						ID Orden día: <input type="button" id="id_ordenDia" value=" '.$line["id"].'"/>
 						<div id="wrap-sesion">';
-							
+
 						if ($line["direccion"]){/*En esta parte revisamos que exista un documento referente a la orden del día*/
-							echo '<div id="pdf"> 
+							echo '<div id="pdf">
 									<embed src="conexiones/uploads/'.$line["direccion"].'" width="100%" height="900px"></embed>
 								  </div>';
 						}else{
@@ -115,10 +116,16 @@ session_start(); ?>
 									<img src="imagenes/flaticons/arrow.png" style="width: 15px; height: auto; margin-top:15px;">
 								</div>
 								<div id="sustrato" style="overflow: scroll; height:900px;">
-									<div id="Boton_Agregar">
-										<a href="add_sustrato.php?orden='.$line["id"].'">Agregar Punto</a>
-									</div>
 									<div class="titulo_sustrato"><center><br>CONTENIDO</center></div>
+									<div id="wrap">
+									<a href="add_sustrato.php?orden='.$line["id"].'">
+									<div id="punto">
+										<div>
+											<i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Agregar nuevo punto
+										</div>
+									</div>
+									</a>
+									</div>
 
 
 									';
@@ -134,9 +141,9 @@ session_start(); ?>
 										<div class="edit" onclick="delete_punto('.$sus["id_sustrato"].','.$sus['numero'].','.$ID.')">
 											<i class="fa fa-window-close" aria-hidden="true"></i>
 										</div>
-										<div class="edit" >
+										<div class="edit">
 											<a href="editar_contenido.php?orden='.$line["id"].'&punto='.$sus["numero"].'&idpunto='.$sus["id_sustrato"].'">
-												<i class="fa fa-pencil" aria-hidden="true"></i>
+												<i class="fas fa-pencil-alt"></i>
 											</a>
 										</div>
 									';

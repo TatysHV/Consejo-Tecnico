@@ -524,8 +524,8 @@ table#OrdenDia td, table#OrdenDia tr{padding:5px;}
 }
  #punto .edit{
 	display:inline-block;
-	width: 50px;
- 	padding-left: 15px;
+	width: 30px;
+ 	padding-left:0;
  	float: right;
  	cursor: pointer;
  }
@@ -745,7 +745,7 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 	cursor:  pointer;
 }
 
-#Boton_Agregar a{
+/*#Boton_Agregar a{
 	margin-top:5px;
 	color: white;
 	padding-left: 15px;
@@ -756,10 +756,10 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 	border-bottom: 1px solid #282892;
 	font-size: 1.1em;
 	float: right;
-	cursor:  pointer;	
+	cursor:  pointer;
 }
 
-
+*/
 
 #carp_punto{
 	height: auto;
