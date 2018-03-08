@@ -8,19 +8,13 @@ error_reporting(E_ALL);
   $funcion = $_POST['funcion'];
 
   switch ($funcion) {
-      case 0: //Registrar nuevo usuario
-        RegistrarUsuario();
+      case 0: RegistrarUsuario();
       break;
-
-      case 1:
-        ShowEditUser();
+      case 1: ShowEditUser();
       break;
-
-      case 2:
-        editUser();
+      case 2: editUser();
       break;
-
-      case 3:
+      case 3: showUsersTable();
       break;
   }
 
@@ -98,6 +92,64 @@ error_reporting(E_ALL);
         </br></br>
       </div>
     ';
+
+  }
+
+  function editUser(){
+    include "conexion.php";
+
+    $id_user = $_POST['id'];
+    $nombre = $_POST['username'];
+    $tipo = $_POST['type'];
+    $nota = $_POST['nota'];
+    $flagPass = $_POST['flagPass'];
+    $pass = "";
+
+    if($flagPass == true){//Se requiere hacer un cambio de contraseña
+        $pass = $_POST['password'];
+        $query= mysqli_query($con, "UPDATE users SET usuario='$nombre', password=SHA('$pass'), tipo='$tipo', nota='$nota' WHERE id ='$id_user'");
+
+    }else{
+      $query= mysqli_query($con, "UPDATE users SET usuario='$nombre', tipo='$tipo', nota='$nota' WHERE id ='$id_user'");
+    }
+  }
+
+  function showUsersTable(){
+    include "conexion.php";
+
+    $query= 'SELECT * FROM users WHERE 1'; //Consulta para obtener todos los usuarios registrados
+    $result = mysqli_query($con, $query) or die();
+
+    echo '
+    <legend>Tabla de usuarios registrados</legend>
+    <table border=1 color=grey id="Users" style="width: 800px;">
+      <tr>
+        <th>Nombre de usuario</th>
+        <th>Permisos</th>
+        <th>Descripción</th>
+        <th>Acción</th>
+      </tr>';
+
+      while ($usuario = mysqli_fetch_array($result)){
+
+        if($usuario['tipo'] == 0){
+          $permisos = "Todos";
+        }
+        elseif($usuario['tipo']== 1){
+          $permisos = "Limitados";
+        }
+
+        echo '
+        <tr>
+          <td><center>'.$usuario['usuario'].'</center></td>
+          <td><center>'.$permisos.'</center></td>
+          <td><center>'.$usuario['nota'].'</center></td>
+          <td><center><a onclick="show_edit_user('.$usuario['id'].')" style="cursor: pointer">Editar</a>&nbsp;&nbsp;&nbsp;<a href="" onclick="deleteUser('.$usuario['id'].')" style="color: red; cursor:pointer">Eliminar</a></center></td>
+        </tr>
+        ';
+        }
+    echo'
+    </table>';
 
   }
 

@@ -79,49 +79,18 @@
         <div class="bloque-blank">
           <legend>Gestión de usuarios</legend>
           <ul>
-            <li><a href="">Consultar usuarios registrados</a></li>
-            <li><a href="">Registrar nuevo usuario</a></li>
+            <li><a onclick="show_users_table()" class="onKlic">Consultar usuarios registrados</a></li>
+            <li><a onclick="show_add_user()" class="onKlic">Registrar nuevo usuario</a></li>
           </ul>
         </div>
 
-        <div class="bloque-blank">
-          <legend>Tabla de usuarios registrados</legend>
-          <table border=1 color=grey id="Users" style="width: 800px;">
-            <tr>
-              <th>Nombre de usuario</th>
-              <th>Permisos</th>
-              <th>Descripción</th>
-              <th>Acción</th>
-            </tr>
-            <?php
-              include "conexiones/conexion.php";
-
-              $query= 'SELECT * FROM users WHERE 1';
-    					$result = mysqli_query($con, $query) or die();
-
-              while ($usuario = mysqli_fetch_array($result)){
-
-                if($usuario['tipo'] == 0){
-                  $permisos = "Todos";
-                }
-                elseif($usuario['tipo']== 1){
-                  $permisos = "Limitados";
-                }
-
-              echo '
-              <tr>
-                <td><center>'.$usuario['usuario'].'</center></td>
-                <td><center>'.$permisos.'</center></td>
-                <td><center>'.$usuario['nota'].'</center></td>
-                <td><center><a onclick="show_edit_user('.$usuario['id'].')" style="cursor: pointer">Editar</a>&nbsp;&nbsp;&nbsp;<a href="" onclick="deleteUser('.$usuario['id'].')" style="color: red; cursor:pointer">Eliminar</a></center></td>
-              </tr>
-              ';
-              }
-              ?>
-          </table>
+        <div class="bloque-blank" id="tabla_usuarios">
+          <!--CARGA DESDE AJAX-->
         </div>
-        <div id="bloque_edicion_usuario"></div>
-				<div class="bloque_desplegable" style="width: 80%;">
+        <div id="bloque_edicion_usuario">
+          <!--CARGA DESDE AJAX-->
+        </div>
+				<div id="bloque_registrar_usuario" class="bloque_desplegable" style="width: 80%; display:none;">
 
 					<div class ="titular"><center>REGISTRAR NUEVO USUARIO</center></div></br>
 

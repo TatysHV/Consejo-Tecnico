@@ -370,10 +370,7 @@ function addUser(){
 
 function updateUser(id_user){
   /**********************************************************************************************/
-
   /********************* FALTA HACER FUNCIÓN PHP QUE MODIFIQUE LA BASE DE DATOS*******************/
-
-
 
 
   var id_user = id_user;
@@ -384,17 +381,19 @@ function updateUser(id_user){
 
   if (newname == ""){alert("Debes agregar un nombre de usuario");}
   if (newtype == ""){alert("Debes seleccionar un tipo de usuario");}
+
   if (newpass == ""){//Si no se escribió nada en el espacio de nueva contraseña, no se le hará ningún cambio.
-    //Así se mandan sólo 3 valores por ajax
+    //Así se mandan sólo 3 valores por ajax, nombre, tipo y nota.
     $.ajax({
        url: "../consejo_tecnico/conexiones/administracion.php",
-       data: {"username":newname,"type":newtype,"nota": newnote, "funcion":2, "flagPass": false},
+       data: {"id":id_user, "username":newname,"type":newtype,"nota": newnote, "funcion":2, "flagPass": false},
        type: "post",
         success: function(data){
             alert("Modificación exitosa de usuario");
+            show_users_table();//Actualiza la tabla de usuarios
         },
         failure: function(){
-          alert("No se pudo modificar el usuario");
+          alert("No se pudo modificar el usuario"+data);
         }
       });
 
@@ -402,14 +401,15 @@ function updateUser(id_user){
   else{//Sí se colocó una nueva contraseña
     $.ajax({
        url: "../consejo_tecnico/conexiones/administracion.php",
-       data: {"username":newname,"password":newpass,"type":newtype,"nota": newnote, "funcion":2, "flagPass": true},
+       data: {"id":id_user, "username":newname,"password":newpass,"type":newtype,"nota": newnote, "funcion":2, "flagPass": true},
        //flagPass es un booleano que ayuda a no sufrir error en el PHP al no recibir la variable que espera, para no esperarlo, si no se manda =)
        type: "post",
         success: function(data){
             alert("Modificación exitosa de usuario");
+            show_users_table();//Actualiza la tabla de usuarios
         },
         failure: function(){
-          alert("No se pudo modificar el usuario");
+          alert("No se pudo modificar el usuario"+data);
         }
       });
   }

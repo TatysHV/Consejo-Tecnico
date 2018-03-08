@@ -402,10 +402,43 @@ function nextPoint(){
 /************************ PANEL DE CONTROL *************************************/
 /*******************************************************************************/
 
+/*************************VISUALIZACION AGREGAR NUEVO USUARIO*******************/
+function show_add_user(){
+  document.getElementById("bloque_registrar_usuario").style.display="block";
+  hide_users_table();
+}
+function hide_add_user(){
+  document.getElementById("bloque_registrar_usuario").style.display="none";
+}
+/*******************************************************************************/
+
+/*****************VISUALIZACION DE TABLA DE USUARIOS****************************/
+function show_users_table(){
+  /*Función que muestra la tabla de usuarios desde un AJAX para facilitar las actualizaciones*/
+  hide_add_user();
+  document.getElementById("tabla_usuarios").style.display="block";
+  $.ajax({
+      url: "../consejo_tecnico/conexiones/administracion.php",
+      data: {"funcion": 3},
+      type: "post",
+      success: function(data){
+        $('#tabla_usuarios').html(data);
+      },
+      failure: function(){
+        alert("Error al mostrar tabla de usuarios");
+      }
+    });
+}
+function hide_users_table(){
+  document.getElementById("tabla_usuarios").style.display="none";
+}
+/******************************************************************************/
+
 function show_edit_user(id_user){
   /*Función que coloca en la div #bloque_edicion_usuario de PanelControl el fragmento
   de código html (php en realidad) para visualizar el editor de los datos de un usuario
   a partir de su id.*/
+  document.getElementById("bloque_registrar_usuario").style.display="none";
 
   var id_user = id_user;
 
