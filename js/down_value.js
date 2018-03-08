@@ -370,8 +370,7 @@ function addUser(){
 
 function updateUser(id_user){
   /**********************************************************************************************/
-  /********************* FALTA HACER FUNCIÓN PHP QUE MODIFIQUE LA BASE DE DATOS*******************/
-
+  /********************* función que modifica los datos de un usuario *******************/
 
   var id_user = id_user;
   var newname = $("#newuserName").val();
@@ -379,38 +378,63 @@ function updateUser(id_user){
   var newnote = $("#newuserDesc").val(); //La nota no es un campo obligatorio, puede ser vacío
   var newpass = $("#newuserPass").val();
 
-  if (newname == ""){alert("Debes agregar un nombre de usuario");}
-  if (newtype == ""){alert("Debes seleccionar un tipo de usuario");}
+  var eleccion = confirm("¿Seguro que quiere modificar el usuario?"); //Pregunta de seguridad para confirmar
 
-  if (newpass == ""){//Si no se escribió nada en el espacio de nueva contraseña, no se le hará ningún cambio.
-    //Así se mandan sólo 3 valores por ajax, nombre, tipo y nota.
-    $.ajax({
-       url: "../consejo_tecnico/conexiones/administracion.php",
-       data: {"id":id_user, "username":newname,"type":newtype,"nota": newnote, "funcion":2, "flagPass": false},
-       type: "post",
-        success: function(data){
-            alert("Modificación exitosa de usuario");
-            show_users_table();//Actualiza la tabla de usuarios
-        },
-        failure: function(){
-          alert("No se pudo modificar el usuario"+data);
-        }
-      });
+  if (eleccion){
+    if (newname == ""){alert("Debes agregar un nombre de usuario");}
+    if (newtype == ""){alert("Debes seleccionar un tipo de usuario");}
 
+    if (newpass == ""){//Si no se escribió nada en el espacio de nueva contraseña, no se le hará ningún cambio.
+      //Así se mandan sólo 3 valores por ajax, nombre, tipo y nota.
+      $.ajax({
+         url: "../consejo_tecnico/conexiones/administracion.php",
+         data: {"id":id_user, "username":newname,"type":newtype,"nota": newnote, "funcion":2, "flagPass": false},
+         type: "post",
+          success: function(data){
+              alert("Modificación exitosa de usuario");
+              show_users_table();//Actualiza la tabla de usuarios
+          },
+          failure: function(){
+            alert("No se pudo modificar el usuario"+data);
+          }
+        });
+
+    }
+    else{//Sí se colocó una nueva contraseña
+      $.ajax({
+         url: "../consejo_tecnico/conexiones/administracion.php",
+         data: {"id":id_user, "username":newname,"password":newpass,"type":newtype,"nota": newnote, "funcion":2, "flagPass": true},
+         //flagPass es un booleano que ayuda a no sufrir error en el PHP al no recibir la variable que espera, para no esperarlo, si no se manda =)
+         type: "post",
+          success: function(data){
+              alert("Modificación exitosa de usuario");
+              show_users_table();//Actualiza la tabla de usuarios
+          },
+          failure: function(){
+            alert("No se pudo modificar el usuario"+data);
+          }
+        });
+    }
   }
-  else{//Sí se colocó una nueva contraseña
+}
+
+function deleteUser(id_user){
+
+  var eleccion = confirm("¿Seguro que desea eliminar el usuario?");//Pregunta de seguridad
+
+  if(eleccion){
     $.ajax({
        url: "../consejo_tecnico/conexiones/administracion.php",
-       data: {"id":id_user, "username":newname,"password":newpass,"type":newtype,"nota": newnote, "funcion":2, "flagPass": true},
+       data: {"id":id_user, "funcion":4},
        //flagPass es un booleano que ayuda a no sufrir error en el PHP al no recibir la variable que espera, para no esperarlo, si no se manda =)
        type: "post",
         success: function(data){
-            alert("Modificación exitosa de usuario");
+            alert("Usuario eliminado con éxito");
             show_users_table();//Actualiza la tabla de usuarios
         },
         failure: function(){
-          alert("No se pudo modificar el usuario"+data);
+          alert("Error al eliminar usuario"+data);
         }
       });
-  }
+    }
 }

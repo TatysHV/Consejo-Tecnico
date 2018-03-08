@@ -16,6 +16,8 @@ error_reporting(E_ALL);
       break;
       case 3: showUsersTable();
       break;
+      case 4: deleteUser();
+      break;
   }
 
   function RegistrarUsuario(){
@@ -144,13 +146,24 @@ error_reporting(E_ALL);
           <td><center>'.$usuario['usuario'].'</center></td>
           <td><center>'.$permisos.'</center></td>
           <td><center>'.$usuario['nota'].'</center></td>
-          <td><center><a onclick="show_edit_user('.$usuario['id'].')" style="cursor: pointer">Editar</a>&nbsp;&nbsp;&nbsp;<a href="" onclick="deleteUser('.$usuario['id'].')" style="color: red; cursor:pointer">Eliminar</a></center></td>
+          <td><center><a onclick="show_edit_user('.$usuario['id'].')" style="cursor: pointer">Editar</a>&nbsp;&nbsp;&nbsp;<a onclick="deleteUser('.$usuario['id'].')" style="color: red; cursor:pointer">Eliminar</a></center></td>
         </tr>
         ';
         }
     echo'
     </table>';
 
+  }
+
+  function deleteUser(){
+    include "conexion.php";
+    $id_user = $_POST['id'];
+
+    $query= mysqli_query($con, "DELETE FROM users WHERE id ='$id_user'");
+
+    if(!$query){
+      die('Consulta no válida: ' . mysql_error());
+    }
   }
 
  ?>
