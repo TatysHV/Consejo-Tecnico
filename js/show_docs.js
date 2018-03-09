@@ -455,3 +455,11 @@ function show_edit_user(id_user){
     });
 
 }
+
+/****************** Visualización de la edición de calendarios **************/
+
+function showEditCalGral(){ document.getElementById("editCalGral").style.display="block"; }
+function hideEditCalGral(){ document.getElementById("editCalGral").style.display="none"; }
+
+function showEditCalSes(){ document.getElementById("editCalSes").style.display="block";}
+function hideEditCalSes(){ document.getElementById("editCalSes").style.display="none";}

@@ -57,22 +57,45 @@
         <div class="bloque-blank">
           <legend>Gestión de Calendario</legend>
           <ul>
-            <li><a href="">Cambiar calendario general</a></li>
-                <format>
-                  <input type="file" class="file" id="calendarioSesiones" style="width: 400px">
-                </format>
-            <li><a href="">Cambiar calendario de sesiones</a></li>
-              <format>
-                <input type="file" class="file" id="calendarioSesiones" style="width: 400px">
-              </format>
+            <li><a onclick="showEditCalGral()" class="onKlic">Cambiar calendario general</a></li>
+              <div id="editCalGral" class="notaEdit oculto">
+                <h5>Seleccionar imagen para usar en calendario general</h5>
+                <form >
+                  <input type="file" class="file" id="calendarioSesiones" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="calendarioGeneral()"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditCalGral()"/>
+                  <br>
+                </form>
+                <br>
+              </div>
+            <li><a onclick="showEditCalSes()" class="onKlic">Cambiar calendario de sesiones</a></li>
+              <div id="editCalSes" class="notaEdit oculto">
+                <h5>Seleccionar imagen para usar en calendario de sesiones</h5>
+                <form>
+                  <input type="file" class="file" id="calendarioSesiones" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="calendarioSesiones()"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditCalSes()"/>
+                  <br>
+                </form>
+              </div>
           </ul>
 
         </div>
         <div class="bloque-blank">
           <legend>Gestión de normatividad</legend>
           <ul>
-            <li><a href="">Cambiar reglamento general</a></li>
-            <li><a href="">Cambiar reglamento del Consejo Técnico</a></li>
+            <li><a class="onKlic">Cambiar reglamento general</a></li>
+            <div id="editCalSes" class="notaEdit oculto">
+              <h5>Seleccionar archivo PDF de reglamento general</h5>
+              <form>
+                <input type="file" class="file" id="calendarioSesiones" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="calendarioSesiones()"/>
+                <br>
+              </form>
+            </div>
+            <li><a class="onKlic">Cambiar reglamento del Consejo Técnico</a></li>
+            <div id="editCalSes" class="notaEdit oculto">
+              <h5>Seleccionar archivo PDF de reglamento del Consejo Técnico</h5>
+              <form>
+                <input type="file" class="file" id="calendarioSesiones" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="calendarioSesiones()"/>
+                <br>
+              </form>
+            </div>
           </ul>
         </div>
 
