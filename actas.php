@@ -4,7 +4,9 @@
     if(!isset($_SESSION['usuario'])){
         header("Location: index.php");
     }
-    /* Puede editar eascenciont */
+    /* Puede editar eascenciont 
+    prueba 1... algo no está funcionando bien :S
+    */
 ?>
 <!Doctype html>
 <html lang="es">
