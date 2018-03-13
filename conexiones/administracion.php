@@ -18,6 +18,8 @@ error_reporting(E_ALL);
       break;
       case 4: deleteUser();
       break;
+      case 5: subirCalendario();
+      break;
   }
 
   function RegistrarUsuario(){
@@ -163,6 +165,58 @@ error_reporting(E_ALL);
 
     if(!$query){
       die('Consulta no válida: ' . mysql_error());
+    }
+  }
+
+  function subirCalendario(){
+    include "conexion.php";
+    /*Existen dos tipos de calendarios que se pueden subir desde el panel de control, el js de down_value nos
+    ayuda a distingir entre el calendario general y el calendario de sesiones, las siguientes condiciones
+    sube uno u otro dependiendo del que se desea modificar.*/
+
+    $tipo = $_POST["tipo"];
+    $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+    if($tipo == 'calgeneral'){
+      //----------Subir cada uno de los archivos a la carpeta del servidor
+      foreach ($_FILES['cal_gral']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+        //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+        //----------- Subir la info de cada archivo a la base de datos------------
+        $nombre = basename($_FILES['cal_gral']['name'][$i]);
+
+        $url=basename($_FILES['cal_gral']['name'][$i]);
+
+        //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
+        $query = mysqli_query($con, "UPDATE admin_files set name = '$nombre', url = '$url' WHERE type = '$tipo'");
+
+        if (strlen($_FILES['cal_gral']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+          if (move_uploaded_file($_FILES['cal_gral']['tmp_name'][$i], $target_path.$name)) {
+
+          }else{echo "Error, no se han subido los archivos";}
+        }
+      }
+
+    }
+    if($tipo == 'calsesiones'){
+
+        //----------Subir cada uno de los archivos a la carpeta del servidor
+        foreach ($_FILES['cal_ses']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+          //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+          //----------- Subir la info de cada archivo a la base de datos------------
+          $nombre = basename($_FILES['cal_ses']['name'][$i]);
+
+          $url=basename($_FILES['cal_ses']['name'][$i]);
+
+          $query = mysqli_query($con, "UPDATE admin_files set name= '$nombre', url = '$url' WHERE type = '$tipo'");
+
+          if (strlen($_FILES['cal_ses']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+            if (move_uploaded_file($_FILES['cal_ses']['tmp_name'][$i], $target_path.$name)) {
+
+            }else{echo "Error, no se han subido los archivos";}
+          }
+        }
     }
   }
 

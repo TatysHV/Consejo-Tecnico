@@ -60,8 +60,8 @@
             <li><a onclick="showEditCalGral()" class="onKlic">Cambiar calendario general</a></li>
               <div id="editCalGral" class="notaEdit oculto">
                 <h5>Seleccionar imagen para usar en calendario general</h5>
-                <form >
-                  <input type="file" class="file" id="calendarioSesiones" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="calendarioGeneral()"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditCalGral()"/>
+                <form id="frm_CalendarGral" >
+                  <input type="file" class="file" id="calendarioSesiones" name="cal_gral[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="subirCalendario('calgeneral')"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditCalGral()"/>
                   <br>
                 </form>
                 <br>
@@ -69,8 +69,8 @@
             <li><a onclick="showEditCalSes()" class="onKlic">Cambiar calendario de sesiones</a></li>
               <div id="editCalSes" class="notaEdit oculto">
                 <h5>Seleccionar imagen para usar en calendario de sesiones</h5>
-                <form>
-                  <input type="file" class="file" id="calendarioSesiones" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="calendarioSesiones()"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditCalSes()"/>
+                <form id="frm_CalendarSes">
+                  <input type="file" class="file" id="calendarioSesiones" name="cal_ses[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="subirCalendario('calsesiones')"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditCalSes()"/>
                   <br>
                 </form>
               </div>

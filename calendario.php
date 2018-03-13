@@ -52,20 +52,34 @@
 			</br></br>
 
       <div id="calendarios">
+        <?php
+
+          $query1 = mysqli_query($con, "SELECT name FROM admin_files WHERE type = 'calgeneral'") or die ('<b>Error al obtener el calendario general</b>' . mysql_error());
+
+          if ($row = mysqli_fetch_array($query1)) {
+              $cal_gral= trim($row[0]);
+          }
+
+          $query2 = mysqli_query($con, "SELECT name FROM admin_files WHERE type = 'calsesiones'") or die ('<b>Error al obtener el calendario general</b>' . mysql_error());
+
+          if ($row = mysqli_fetch_array($query2)) {
+              $cal_ses= trim($row[0]);
+          }
+        ?>
         <div class="col-xs-6">
           <center>
             <legend>Calendario General</legend>
-              <a href="conexiones/uploads/calendario_semestral2018.jpg" download="Calendario Semestral.png">Descargar</a>
+              <a href="conexiones/uploads/<?php echo $cal_gral?>" download="Calendario Semestral.png">Descargar</a>
               </br>
-    				<img src="conexiones/uploads/calendario_semestral2018.jpg">
+    				<img src="conexiones/uploads/<?php echo $cal_gral?>">
     			</center>
         </div>
         <div class="col-xs-6">
           <center>
             <legend>Calendario de Sesiones</legend>
-            <a href="conexiones/uploads/calendario_sesiones2018.png" download="Calendario de Sesiones.png">Descargar</a>
+            <a href="conexiones/uploads/<?php echo $cal_ses?>" download="Calendario de Sesiones.png">Descargar</a>
             </br>
-            <img src="conexiones/uploads/calendario_sesiones2018.png">
+            <img src="conexiones/uploads/<?php echo $cal_ses?>">
 
           </center>
         </div>

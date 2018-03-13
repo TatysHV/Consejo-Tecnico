@@ -438,3 +438,35 @@ function deleteUser(id_user){
       });
     }
 }
+
+function subirCalendario(tipo){
+  //Envía el tipo de funcion a través de un input, y se manda mediante todo el paquete del formulario ;)
+  var formData;
+
+  if(tipo == 'calgeneral'){
+    var formData = new FormData(document.getElementById("frm_CalendarGral"));
+  }
+  else if(tipo == 'calsesiones'){
+    var formData = new FormData(document.getElementById("frm_CalendarSes"));
+  }
+
+  //alert(tipo);
+
+  formData.append('tipo', tipo);
+  formData.append('funcion', 5);
+
+
+  $.ajax({
+      url: "../consejo_tecnico/conexiones/administracion.php",
+      data: formData,
+      type: "post",
+      contentType: false,
+      processData: false,
+      success: function(data){
+        alert("Calendario modificado de manera correcta"+data);
+      },
+      failure: function(){
+        alert("Error al subir el nuevo calendario"+data);
+      }
+    });
+  }
