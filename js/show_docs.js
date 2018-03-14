@@ -456,10 +456,18 @@ function show_edit_user(id_user){
 
 }
 
-/****************** Visualización de la edición de calendarios **************/
+/****************** Visualización de la edición de calendarios ****************/
 
 function showEditCalGral(){ document.getElementById("editCalGral").style.display="block"; }
 function hideEditCalGral(){ document.getElementById("editCalGral").style.display="none"; }
 
 function showEditCalSes(){ document.getElementById("editCalSes").style.display="block";}
 function hideEditCalSes(){ document.getElementById("editCalSes").style.display="none";}
+
+/******************* Visualización de la edición de normatividad **************/
+
+function showEditRegGral(){ document.getElementById("reglamentoGral").style.display="block";}
+function hideEditRegGral(){ document.getElementById("reglamentoGral").style.display="none";}
+
+function showEditRegCT(){ document.getElementById("reglamentoCT").style.display="block";}
+function hideEditRegCT(){ document.getElementById("reglamentoCT").style.display="none";}

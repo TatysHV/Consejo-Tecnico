@@ -61,7 +61,7 @@
               <div id="editCalGral" class="notaEdit oculto">
                 <h5>Seleccionar imagen para usar en calendario general</h5>
                 <form id="frm_CalendarGral" >
-                  <input type="file" class="file" id="calendarioSesiones" name="cal_gral[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="subirCalendario('calgeneral')"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditCalGral()"/>
+                  <input type="file" class="file" id="calendarioSesiones" name="cal_gral[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="subirCalendario('calgeneral')"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cerrar" onclick="hideEditCalGral()"/>
                   <br>
                 </form>
                 <br>
@@ -70,7 +70,7 @@
               <div id="editCalSes" class="notaEdit oculto">
                 <h5>Seleccionar imagen para usar en calendario de sesiones</h5>
                 <form id="frm_CalendarSes">
-                  <input type="file" class="file" id="calendarioSesiones" name="cal_ses[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="subirCalendario('calsesiones')"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditCalSes()"/>
+                  <input type="file" class="file" id="calendarioSesiones" name="cal_ses[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="subirCalendario('calsesiones')"/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cerrar" onclick="hideEditCalSes()"/>
                   <br>
                 </form>
               </div>
@@ -80,21 +80,23 @@
         <div class="bloque-blank">
           <legend>Gestión de normatividad</legend>
           <ul>
-            <li><a class="onKlic">Cambiar reglamento general</a></li>
-            <div id="editCalSes" class="notaEdit oculto">
-              <h5>Seleccionar archivo PDF de reglamento general</h5>
-              <form>
-                <input type="file" class="file" id="calendarioSesiones" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="calendarioSesiones()"/>
+            <li><a onclick="showEditRegGral()" class="onKlic">Cambiar reglamento general</a></li>
+            <div id="reglamentoGral" class="notaEdit oculto">
+              <h5>Seleccionar PDF del reglamento general</h5>
+              <form id="frm_regGral" >
+                <input type="file" class="file" id="regGral" name="reg_gral[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick=""/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditRegGral()"/>
                 <br>
               </form>
+              <br>
             </div>
-            <li><a class="onKlic">Cambiar reglamento del Consejo Técnico</a></li>
-            <div id="editCalSes" class="notaEdit oculto">
-              <h5>Seleccionar archivo PDF de reglamento del Consejo Técnico</h5>
-              <form>
-                <input type="file" class="file" id="calendarioSesiones" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick="calendarioSesiones()"/>
+            <li><a onclick="showEditRegCT()" class="onKlic">Cambiar reglamento del Consejo Técnico</a></li>
+            <div id="reglamentoCT" class="notaEdit oculto">
+              <h5>Seleccionar PDF del reglamento del Consejo Técnico</h5>
+              <form id="frm_regCT" >
+                <input type="file" class="file" id="regConsejo" name="reg_ct[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick=""/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cancelar" onclick="hideEditRegCT()"/>
                 <br>
               </form>
+              <br>
             </div>
           </ul>
         </div>

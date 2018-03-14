@@ -126,7 +126,7 @@ error_reporting(E_ALL);
 
     echo '
     <legend>Tabla de usuarios registrados</legend>
-    <table border=1 color=grey id="Users" style="width: 800px;">
+    <table border=1 color=grey id="Users" style="width: 800px; class="tabla_usuarios">
       <tr>
         <th>Nombre de usuario</th>
         <th>Permisos</th>

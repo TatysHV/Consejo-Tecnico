@@ -293,7 +293,7 @@ img {display: block; margin: 0 auto;}
 table#OrdenDia{width: 90%; margin: auto;}
 table#OrdenDia td, table#OrdenDia th { padding: 5px;}
 
-.sesiones{
+.sesiones, .tabla_usuarios{
 	margin:auto;
 	width: 85%;
 	min-height: 200px;
