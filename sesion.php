@@ -76,7 +76,7 @@ session_start(); ?>
 					$sql= "SELECT s.nombre, s.id_sustrato, s.numero FROM orden_dia as o inner join orden_tiene as t inner join sustrato as s
 					on o.id = t.id_orden and t.id_sustrato = s.id_sustrato where t.id_orden='$ID' ORDER BY s.numero ASC";
 					$resultado = mysqli_query($conexion, $sql) or die('<b>No se encontraron coincidencias</b>' . mysqli_error());
-
+					$var1 = 1;
 					$query= 'SELECT * FROM orden_dia WHERE id = '.$ID.'';
 					$result = mysqli_query($conexion, $query) or die();
 
@@ -131,9 +131,10 @@ session_start(); ?>
 									';
 									while ($sus = mysqli_fetch_array($resultado)){
 							$padre = 0;
+
 							/*<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].')">*/
 						   echo '<div id="wrap" >
-						  			<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].','.$padre.')">
+						  			<div id="punto" onclick="desplegar_docs('.$var1,$sus["id_sustrato"].','.$padre.')">
 										<span class="icon-folder"></span>
 										<b>'.$sus["numero"].'.</b>  '.$sus["nombre"];
 									if($_SESSION['tipo'] == '0'){
@@ -149,11 +150,12 @@ session_start(); ?>
 									';
 								}
 								echo'	</div>
-									<div id="puntos'.$sus["id_sustrato"].'" style="width: 85%; margin:auto;">
+									<div id="puntos'.$var1,$sus["id_sustrato"].'" style="width: 85%; margin:auto;">
 									</div>
-									<input type="hidden" value="0" id="vista'.$sus["id_sustrato"].'"/>
+									<input type="hidden" value="0" id="vista'.$var1,$sus["id_sustrato"].'"/>
 
 							   	</div>';
+							   	$var1 = $var1 + 1;
 							}
 						echo '
 						</div>
