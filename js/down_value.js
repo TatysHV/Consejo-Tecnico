@@ -1,4 +1,10 @@
 
+/**************************** CONTROL DE SESION *******************************/
+/******************************************************************************/
+/*Funciones necesarias para obtener los valores correspondientes de los diferentes
+formularios para subir y modificar los datos de cada sesión, como la orden del día
+y todo el contenido que lo compone*/
+
 function registrar_punto(){
 
   //document.getElementById("btnAddPunto").disabled = true;
@@ -331,10 +337,38 @@ function delete_orden_dia(ID){
 
   }
 }
+
+/********************** CONTROL DE ACTAS **************************************/
+/******************************************************************************/
+
+function registrar_acta(){
+
+/**OBTIENE TODO EL FORMULARIO PARA SUBIR EL ACTA*/
+
+  var formData = new FormData(document.getElementById("frm_addActa"));
+
+  $.ajax({
+      url: "../consejo_tecnico/conexiones/subir_archivo.php",
+      data: formData,
+      type: "post",
+      contentType: false,
+      processData: false,
+      success: function(data){
+        alert(data);
+        showFilesViewer();
+        hideEditAll();
+        hideOptions();
+      }
+    });
+
+}
+
 /******************************************************************************/
 /************************CONTROLES DE ADMINISTRACIÓN***************************/
 /******************************************************************************/
 
+
+/************************** CONTROL DE USUARIOS ***************************/
 function addUser(){
   var nombreUsuario = $("#userName").val();
   var passUsuario = $("#userPass").val();
@@ -438,6 +472,9 @@ function deleteUser(id_user){
       });
     }
 }
+/********************************************************************/
+
+/************** CONTROL DE CALENDARIO **************************/
 
 function subirCalendario(tipo){
   //Envía el tipo de funcion a través de un input, y se manda mediante todo el paquete del formulario ;)
@@ -470,3 +507,4 @@ function subirCalendario(tipo){
       }
     });
   }
+  /*****************************************************************/

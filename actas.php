@@ -4,10 +4,7 @@
     if(!isset($_SESSION['usuario'])){
         header("Location: index.php");
     }
-    /* Puede editar eascenciont
-    prueba 1... algo no está funcionando bien :S
-    otro cambio?
-    */
+
 ?>
 <!Doctype html>
 <html lang="es">
@@ -53,12 +50,34 @@
 			</div>
 
 			<div id="principal">
-			</br></br></br>
-				<center><img src="imagenes/caution.png" style="width: 100px; height: auto;"><h2>Sitio en construcción<h2>
-				<img src="imagenes/actas1.png"><br>
-				<img src="imagenes/actas2.png">
-				</center>
-				</br>
+      </br></br>
+        <div class="bloque_year">
+          <div class ="titular"><center>ACTAS DEL H. CONSEJO TÉCNICO</center></div></br>
+          <form class="forma">
+            <center>
+              <span class="etiquetas">Mostrar actas del año: </span>
+                <select class="menu" id="year">
+                 <option value="2018" selected >2018</option>
+                 <option value="2017" >2017</option>
+                 <option value="2016">2016</option>
+                 <option value="2015">2015</option>
+                 <option value="2014">2014</option>
+                 <option value="2013">2013</option>
+                </select>
+              <a class="btn btn-info" role="button" onclick="" style="height: 30px; padding-top: 4px;">Consultar</a>
+              <?php
+                        if($_SESSION['tipo'] == '0')
+                          {
+                          echo '<a href="php/addActa.php" class="btn btn-primary" role="button" style="height: 30px; padding-top: 4px;">+ Agregar nueva Acta</a>';
+                          }
+
+                ?>
+              </center>
+              <!-- --------------HICE EL CAMBIO DE COLOR DE PANELCONTROL, HICE LA TABLA DE ACTAS EN BD Y COMENCÉ LA INTERFAZ DE ACTAS -->
+          </form>
+        </div>
+        <div id="showyear" style="width: 85%; margin:auto;"></div>
+        <div id="empty"></div></br>
 			</div>
 			<div id="pie">
 		  </div>
