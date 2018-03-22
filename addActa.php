@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "../conexiones/conexion.php";
+    include "conexiones/conexion.php";
     if(!isset($_SESSION['usuario'])){
         echo '<script> window.location="2016/consejo_tecnico/index.php"</script>';
     }
@@ -18,13 +18,14 @@
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="expires" content="0">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css"/>
-		<script src="../js/jquery-3.1.1.js"></script>
-		<script src="../js/bootstrap.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="Bootstrap/css/bootstrap.min.css"/>
+		<script src="js/jquery-3.1.1.js"></script>
+    <script src="js/down_value.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 
-		<link type="text/css" rel="stylesheet" href="../style.css"/>
-		<link rel="icon" type="../image/png" href="">
-		<link rel="shortcut icon" href="../imagenes/logoUnam.jpg"/>
+		<link type="text/css" rel="stylesheet" href="style.css"/>
+		<link rel="icon" type="image/png" href="">
+		<link rel="shortcut icon" href="imagenes/logoUnam.jpg"/>
 	</head>
 	<body>
 		<div id="contenedor">
@@ -34,18 +35,18 @@
 					</div>
 				-->
 					<div id="nombre">
-						<img src="../imagenes/logo-shct.png" style="display: inline-block;">
+						<img src="imagenes/logo-shct.png" style="display: inline-block;">
 						<span id="titulo">H. Consejo Técnico</span>
 					</div>
 					<div id="navbar">
 						<ul id="nav">
-							<li><a href="../portal.php">INICIO</a></li>
-							<li class="active"><a href="../actas.php">ACTAS</a></li>
-							<li><a href="../sesiones.php">SESIONES</a></li>
-							<li><a href="../calendario.php">CALENDARIO</a></li>
-							<li><a href="../normatividad.php">NORMATIVIDAD</a></li>
-							<li><a href="../acuerdos.php">ACUERDOS</a></li>
-							<li><a href="../oficios.php">OFICIOS</a></li>
+							<li><a href="portal.php">INICIO</a></li>
+							<li class="active"><a href="actas.php">ACTAS</a></li>
+							<li><a href="sesiones.php">SESIONES</a></li>
+							<li><a href="calendario.php">CALENDARIO</a></li>
+							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
+							<li><a href="acuerdos.php">ACUERDOS</a></li>
+							<li><a href="oficios.php">OFICIOS</a></li>
 							<li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>
             </ul>
 					</div>
@@ -91,53 +92,19 @@
 					</div>
 			</div>
 			<div id="pie">
-				<div class="contenido2">
-					<div class="col-xs-5" id="f1">
-						<div class="row">
-							<div class="col-xs-2" id="flat">
-								<img src="imagenes/flaticons/location.png"/>
-							</div>
-							<div class="col-xs-10">
-								<p class="ftitulo">Dirección:</p>
-								<p class="info"> Morelia, Mich.</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-2" id="flat">
-								<img  src="imagenes/flaticons/app.png"/>
-							</div>
-							<div class="col-xs-10">
-								<p class="ftitulo">Teléfono:</p>
-								<p class="info">(452) 44-33-22-11-00</p>
-							</div>
-						</div>
 
-					</div>
-					<div class="col-xs-2">
-					</div>
-					<div class="col-xs-5" id="f2">
-							<center>
-							<p class="ftitulo">Encuentranos también en:</p>
-							</center>
-
-							<div class="col-xs-6">
-								<img src="imagenes/flaticons/social.png"/>
-							</div>
-							<div class="col-xs-6">
-								<img src="imagenes/flaticons/youtube.png"/>
-							</div>
-
-					</div>
-					<div id="derechos">
-						<center><p>H. Consejo Técnico ENES Morelia</p><a href="fragmentos/PanelControl.php">Ir al Panel de Control</a></center>
-					</div>
-				</div>
 			</div>
 			</div>
 		</div>
 	</body>
 
 	<SCRIPT type="text/javascript">
+
+    window.onload = cargarFooter();
+    function cargarFooter(){
+      $("#pie").load("../consejo_tecnico/fragmentos/footer.php");
+    }
+
 
 	$(document).ready(function(){
 

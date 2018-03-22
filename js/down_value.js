@@ -348,16 +348,17 @@ function registrar_acta(){
   var formData = new FormData(document.getElementById("frm_addActa"));
 
   $.ajax({
-      url: "../consejo_tecnico/conexiones/subir_archivo.php",
+      url: "../consejo_tecnico/conexiones/registrar_acta.php",
       data: formData,
       type: "post",
       contentType: false,
       processData: false,
       success: function(data){
-        alert(data);
-        showFilesViewer();
-        hideEditAll();
-        hideOptions();
+        alert("Acta registrada con éxito, nombre: "+data);
+        window.location.assign("../consejo_tecnico/actas.php");
+      },
+      failure: function(){
+        alert("No se ha podido eliminar el punto"+data);
       }
     });
 

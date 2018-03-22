@@ -68,7 +68,7 @@
               <?php
                         if($_SESSION['tipo'] == '0')
                           {
-                          echo '<a href="php/addActa.php" class="btn btn-primary" role="button" style="height: 30px; padding-top: 4px;">+ Agregar nueva Acta</a>';
+                          echo '<a href="addActa.php" class="btn btn-primary" role="button" style="height: 30px; padding-top: 4px;">+ Agregar nueva Acta</a>';
                           }
 
                 ?>
