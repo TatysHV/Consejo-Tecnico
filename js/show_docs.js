@@ -398,6 +398,24 @@ function nextPoint(){
    }
 }
 
+function showactas(){
+
+  var lista = document.getElementById("yearActas");
+  var indice = lista.selectedIndex;
+  var opcion = lista.options[indice];
+  var year = opcion.value;
+
+  $.ajax({
+      url: "/consejo_tecnico/fragmentos/actasforyear.php",
+      data: {"year":year},
+      type: "post",
+      success: function(data){
+          document.getElementById("showyearActas").innerHTML = '</br>' + '<div class ="titular"><center>ACTAS DE DEL AÑO '+year+'</center><div>';
+          $('#emptyActas').html(data);
+      }
+    });
+}
+
 /*******************************************************************************/
 /************************ PANEL DE CONTROL *************************************/
 /*******************************************************************************/

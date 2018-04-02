@@ -18,6 +18,7 @@
 		<link rel="icon" type="image/png" href="">
 		<link rel="shortcut icon" href="imagenes/logoUnam.jpg"/>
     <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/show_docs.js"></script>
 	</head>
 	<body>
 		<div id="contenedor">
@@ -56,7 +57,7 @@
           <form class="forma">
             <center>
               <span class="etiquetas">Mostrar actas del año: </span>
-                <select class="menu" id="year">
+                <select class="menu" id="yearActas">
                  <option value="2018" selected >2018</option>
                  <option value="2017" >2017</option>
                  <option value="2016">2016</option>
@@ -64,7 +65,7 @@
                  <option value="2014">2014</option>
                  <option value="2013">2013</option>
                 </select>
-              <a class="btn btn-info" role="button" onclick="" style="height: 30px; padding-top: 4px;">Consultar</a>
+              <a class="btn btn-info" role="button" onclick="showactas()" style="height: 30px; padding-top: 4px;">Consultar</a>
               <?php
                         if($_SESSION['tipo'] == '0')
                           {
@@ -76,8 +77,8 @@
               <!-- --------------HICE EL CAMBIO DE COLOR DE PANELCONTROL, HICE LA TABLA DE ACTAS EN BD Y COMENCÉ LA INTERFAZ DE ACTAS -->
           </form>
         </div>
-        <div id="showyear" style="width: 85%; margin:auto;"></div>
-        <div id="empty"></div></br>
+        <div id="showyearActas" style="width: 85%; margin:auto;"></div>
+        <div id="emptyActas"></div></br>
 			</div>
 			<div id="pie">
 		  </div>
