@@ -34,8 +34,8 @@ session_start(); ?>
 					<div id="navbar">
 						<ul id="nav">
 							<li><a href="portal.php">INICIO</a></li>
-							<li><a href="actas.php">ACTAS</a></li>
-							<li class="active"><a href="sesiones.php">SESIONES</a></li>
+							<li class="active"><a href="actas.php">ACTAS</a></li>
+							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
             						<?php
@@ -54,18 +54,15 @@ session_start(); ?>
 
 
 				<?php
+				include "conexiones/conexion.php";
+
 					$ID = $_GET['acta'];
 
-					if(!isset($_GET['sesion'])){
+					if(!isset($_GET['acta'])){
    					   echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
-  					}
+  				}
 
-					if(!isset($_GET['sesion'])){
-						echo '<script> window.location="2016/consejo_tecnico/sesiones.php"</script>';
-					}
-
-
-					@$conexion = mysqli_connect($server, $username, $password)or die("Error en el servidor:". mysqli_connect_error());
+				/*	@$conexion = mysqli_connect($server, $username, $password)or die("Error en el servidor:". mysqli_connect_error());
 
 					if (!mysqli_select_db($conexion, $db))
   					{
@@ -79,15 +76,15 @@ session_start(); ?>
 					$resultado = mysqli_query($conexion, $sql) or die('<b>No se encontraron coincidencias</b>' . mysqli_error());
 					$var1 = 1;*/
 
-					$query= 'SELECT * FROM acta WHERE id = '.$ID.'';
-					$result = mysqli_query($conexion, $query) or die();
+					$query= 'SELECT * FROM actas WHERE id = '.$ID.'';
+					$result = mysqli_query($con, $query) or die('Error'.mysqli_error($con));
 
 					if($line = mysqli_fetch_array($result)){
 
 					echo '
 					</br></br>
 					<center>
-						<h3>Orden del día de la sesión <span style="text-transform:lowercase; color: #0080FF;">'.$line["tipo"].'</span> número <span style="text-transform:lowercase; color: #0080FF;">'.$line["numero_sesion"].'</span></h3>
+						<h3>Acta de la sesión <span style="text-transform:lowercase; color: #0080FF;">'.$line["tipo_sesion"].'</span> número <span style="text-transform:lowercase; color: #0080FF;">'.$line["numero_sesion"].'</span></h3>
 					</center>';
 
 						/*if($_SESSION['tipo'] == '0'){
@@ -97,7 +94,7 @@ session_start(); ?>
 
 					echo '
 					<div class="bloque_sesion" style="padding: 15px;">
-						ID Orden día: <input type="button" id="id_ordenDia" value=" '.$line["id"].'"/>
+						ID Acta: <input type="button" id="id_acta" value=" '.$line["id"].'"/>
 						<div id="wrap-sesion">';
 
 						if ($line["pdf"]){/*En esta parte revisamos que exista un documento referente a la orden del día*/
@@ -110,67 +107,14 @@ session_start(); ?>
 								  </div>';
 						}
 
-						/*
-						echo	'<div id="menu" onclick="show_menu()" title="Mostrar Menú">
-									<center><img src="imagenes/flaticons/menu.png" style="width: 30px; height:auto;"></center>
-								</div>
-								<div class="menu-sustrato" id="menu-sustrato">
-								<div id="bt-deslizante" onclick="hide_menu()" title="Ocultar Menú">
-									<img src="imagenes/flaticons/arrow.png" style="width: 15px; height: auto; margin-top:15px;">
-								</div>
-								<div id="sustrato" style="overflow: scroll; height:900px;">
-									<div class="titulo_sustrato"><center><br>CONTENIDO</center></div>
-									<div id="wrap">
-									<a href="add_sustrato.php?orden='.$line["id"].'">
-									<div id="punto">
-										<div>
-											<i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Agregar nuevo punto
-										</div>
-									</div>
-									</a>
-									</div>
-
-
-									';
-									while ($sus = mysqli_fetch_array($resultado)){
-							$padre = 0;
-							*/
-
-							/*<div id="punto" onclick="desplegar_docs('.$sus["id_sustrato"].')">
-						   echo '<div id="wrap" >
-						  			<div id="punto" onclick="desplegar_docs('.$var1,$sus["id_sustrato"].','.$padre.')">
-										<span class="icon-folder"></span>
-										<b>'.$sus["numero"].'.</b>  '.$sus["nombre"];
-									if($_SESSION['tipo'] == '0'){
-										echo '
-										<div class="edit" onclick="delete_punto('.$sus["id_sustrato"].','.$sus['numero'].','.$ID.')">
-											<i class="fa fa-window-close" aria-hidden="true"></i>
-										</div>
-										<div class="edit">
-											<a href="editar_contenido.php?orden='.$line["id"].'&punto='.$sus["numero"].'&idpunto='.$sus["id_sustrato"].'">
-												<i class="fas fa-pencil-alt"></i>
-											</a>
-										</div>
-									';
-								}
-								echo'	</div>
-									<div id="puntos'.$var1,$sus["id_sustrato"].'" style="width: 85%; margin:auto;">
-									</div>
-									<input type="hidden" value="0" id="vista'.$var1,$sus["id_sustrato"].'"/>
-
-							   	</div>';
-							   	$var1 = $var1 + 1;
-							}
-						echo '
+				echo '</div>
 						</div>
-							</div>
-						</div>
-					</div>
-				';*/
+						</div>';
 				}
-mysqli_close($conexion);
 
-		?>
+				mysqli_close($con);
+				?>
+				
 			<div id="pie">
 
 			</div>
