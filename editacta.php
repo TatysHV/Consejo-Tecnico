@@ -39,8 +39,8 @@
 					<div id="navbar">
 						<ul id="nav">
 							<li><a href="portal.html">INICIO</a></li>
-							<li><a href="actas.php">ACTAS</a></li>
-							<li class="active"><a href="sesiones.php">SESIONES</a></li>
+							<li class="active"><a href="actas.php">ACTAS</a></li>
+							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.html">CALENDARIO</a></li>
 							<li><a href="normatividad.html">NORMATIVIDAD</a></li>
 							<li><a href="acuerdos.html">ACUERDOS</a></li>
@@ -51,33 +51,33 @@
 
 			<div id="principal"></br></br>
 				<div class="bloque_desplegable">
-					<div class ="titular"><center>MODIFICAR ORDEN DEL DÍA</center></div></br>
+					<div class ="titular"><center>MODIFICAR ACTA</center></div></br>
 
           <?php
-            $ID = $_GET["sesion"];
+            $ID = $_GET["acta"];
 
 
-            $query = 'SELECT * FROM orden_dia WHERE id ='.$ID.'';
+            $query = 'SELECT * FROM actas WHERE id ='.$ID.'';
             $result = mysqli_query($con, $query) or die();
 
             if($line = mysqli_fetch_array($result)){
 
             echo '
-            <form enctype="multipart/form-data" action="conexiones/update_sesion.php" method="POST" class="forma">
+            <form enctype="multipart/form-data" action="conexiones/update_acta.php" method="POST" class="forma">
               <div class="auxiliar">
-                <input type="hidden" value="'.$ID.'" name="id_sesion">
+                <input type="hidden" value="'.$ID.'" name="id_acta">
 
             <table id="OrdenDia">
               <tr>
-                  <td><label class="Lform">Nombre de sesión: </label></th>
-                  <td colspan="3"><input type="text" class="fsesion" style="width:100%;" name="nombre"></td>
+                  <td><label class="Lform">Nombre del acta: </label></th>
+                  <td colspan="3"><input type="text" class="fsesion" style="width:100%;" name="nombre" value="'.$line["nombre"].'"></td>
                 </tr>
                 <tr>
                   <td><label>Tipo de sesión: </label></th>
                   <td><select class="menu" style="width: 100%; margin-bottom:5px;" name="tipo">
                       ';
 
-                      if($line["tipo"] == "Ordinaria"){
+                      if($line["tipo_sesion"] == "Ordinaria"){
                         echo'<option value="Ordinaria">Ordinaria</option>
                         <option value="Extraordinaria">Extraordinaria</option>';
                       }
