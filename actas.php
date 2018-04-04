@@ -19,6 +19,8 @@
 		<link rel="shortcut icon" href="imagenes/logoUnam.jpg"/>
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/show_docs.js"></script>
+    <script src="js/down_value.js"></script>
+
 	</head>
 	<body>
 		<div id="contenedor">

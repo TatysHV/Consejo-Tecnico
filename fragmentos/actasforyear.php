@@ -44,8 +44,8 @@ if (!mysqli_select_db($conexion, $db))
               <td> <a href="acta.php?acta='.$line["id"].'">Mostrar</a></td>';
 
               if($_SESSION["tipo"] == "0"){
-                echo '<td> <a href="editacta.php?acta='.$line["id"].'" style="color: orange">Modificar</a></td>
-                <td> <a onclick="delete_acta('.$line["id"].')" style="color:red">Eliminar</a></td>
+                echo '<td> <a href="editacta.php?acta='.$line["id"].'" class="onKlic" style="color: orange">Modificar</a></td>
+                <td> <a onclick="delete_acta('.$line["id"].')" class="onKlic" style="color:red">Eliminar</a></td>
                 ';
               }
 

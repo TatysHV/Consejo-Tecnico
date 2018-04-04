@@ -17,11 +17,9 @@ include "conexion.php";
       if(!$query){
         echo "Ocurrió un error" . $query;
       }
-
   }
 
   if($fichero != ""){ // Si se ha agregado un nuevo documento para sustituir el anterior.
-
       $query = mysqli_query($con, "UPDATE actas SET nombre = '$nombre', tipo_sesion = '$tipo', fecha_sesion = '$fecha',
       numero_sesion ='$numero', pdf = '$fichero' WHERE id = '$id_acta'");
 
@@ -51,7 +49,5 @@ include "conexion.php";
   //  window.location="http://132.247.186.25/2016/consejo_tecnico/actas.php"
       echo '<script language="javascript">alert("Acta modificada correctamente");
       window.location="http://localhost/consejo_tecnico/actas.php"</script>';
-
-
 
 ?>

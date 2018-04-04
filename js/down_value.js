@@ -364,6 +364,28 @@ function registrar_acta(){
 
 }
 
+function delete_acta(ID){
+  var id=ID;
+  var func = 10;
+  eleccion = confirm("¿Seguro que quiere eliminar el Acta"+ID+"?");
+  if(eleccion){
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/subir_archivo.php",
+       data: {"id_acta":id,"funcion":func},
+       type: "post",
+        success: function(data){
+            //alert("Eliminando acta");
+            alert(data);
+            window.location.assign("../consejo_tecnico/actas.php");
+        },
+        failure: function(){
+          alert("No se ha podido eliminar el acta");
+        }
+      });
+
+  }
+}
+
 /******************************************************************************/
 /************************CONTROLES DE ADMINISTRACIÓN***************************/
 /******************************************************************************/

@@ -47,6 +47,9 @@ Se ejecutará la función addFile para agregar los archivos y addFolder para las
       case 9:
           delete_orden_dia();
           break;
+      case 10:
+          delete_acta();
+          break;
   }
 
 //************************** OBTENER ID PADRE DE CARPETA HIJA ***********************************//
@@ -314,6 +317,22 @@ function delete_orden_dia(){
         }
 
   }
+
+  function delete_acta(){
+        include "conexion.php";
+        
+        $idacta=$_POST['id_acta'];
+
+        $eject7=mysqli_query($con, "DELETE FROM actas WHERE id='$idacta'");
+
+      if(!$eject7){
+            echo "Ocurrió un error al eliminar el acta" . $eject7;
+          }
+          else{
+            echo "El acta ha sido eliminada";
+          }
+
+    }
 
 
 
