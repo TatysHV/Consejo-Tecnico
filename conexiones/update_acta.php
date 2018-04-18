@@ -40,7 +40,7 @@ include "conexion.php";
      			if (move_uploaded_file($_FILES['archivos']['tmp_name'][$i], $target_path.$name)) {
             //Copia el archivo a la dirección específica de la concatenación: ../archivos/ordendia/nombre.
             echo "El archivo <b>". basename($_FILES['archivos']['name'][$i])." </b>ha sido subido.</br>";
-            echo '<script> window.location="2016/consejo_tecnico/sesiones.php"</script>';
+          //  echo '<script> window.location="2016/consejo_tecnico/sesiones.php"</script>';
      		   }
      	   }
        }
