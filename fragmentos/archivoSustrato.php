@@ -36,7 +36,7 @@
             <input type="hidden" value="0" id="vista'.$line["id_carpeta"].'"/>
 */
       echo '
-             <div id="carp_punto" onclick="desplegar_sub('.$var,$id2.','.$var$line["id_carpeta"].','.$padre.')">
+             <div id="carp_punto" onclick="desplegar_sub('.$var,$id2.','.$var,$line["id_carpeta"].','.$padre.')">
                   <span class="docs">
                     <span class="icon-folder"></span>'.$line["nombre"].'</span>
               </div>
