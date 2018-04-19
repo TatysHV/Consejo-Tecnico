@@ -799,6 +799,14 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 	border-radius: 2px;
 }
 
+
+
+/*****************NORMATIVIDAD****************************/
+
+.lista li{
+	padding: 5px;
+}
+
 /**********************PANEL DE CONTROL***************************/
 
 .bloque-blank{

@@ -35,10 +35,10 @@
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li class="active"><a href="normatividad.php">NORMATIVIDAD</a></li>
-							<?php
-                                                                if($_SESSION['tipo'] == '0')
-                                                                {
-                                                                	echo '<li><a href="acuerdos.php">ACUERDOS</a></li>';
+              <?php
+                      if($_SESSION['tipo'] == '0')
+                      {
+                      	echo '<li><a href="acuerdos.php">ACUERDOS</a></li>';
 							        	echo '<li><a href="oficios.php">OFICIOS</a></li>';
 								}
                                                         ?>
@@ -54,12 +54,56 @@
       -->
 
 			<div id="principal">
-			</br></br>
+      </br></br></br>
+      <div class="row" style="width: 80%; margin: auto;">
+        <center><h3 style="color:#3380FF">Normatividad</h3></center>
+        <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
 
-				<center><h2>Reglamento del H. Consejo Técnico<h2></br></br>
-        <embed src="archivos/reglamento-consejo.pdf" width="80%" height="800"></embed>
-				</center>
-			</br>
+          <legend style="margin-top: 30px; font-size: 1.4em">Estatutos y lineamientos generales de la UNAM</legend>
+
+          <div style="padding-left: 20px;" class="lista">
+            <ul>
+              <li><span style="color: #666"><strong>Ley Orgánica de la UNAM</strong></span></li>
+              <li><span style="color: #666"><strong>Estatuto General de la UNAM  </strong></span></li>
+              <li><span style="color: #666"><strong>Reglamento del H. Consejo Técnico </strong></span></li>
+            </ul>
+          </div>
+
+          <!--<embed src="archivos/reglamento-consejo.pdf" width="90%" height="800"></embed>-->
+
+        </div>
+
+        <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
+          <legend style="margin-top: 30px;font-size: 1.4em">Lineamientos y reglamentos ENES Morelia</legend>
+          <div style="border: 1px solid #cbcbcb; padding: 10px; border-radius: 3px; width: 100%; background-color: #F5F5F5;">
+          <span class="etiquetas">Consultar por año:
+            <select>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="all">Todos</option>
+            </select>
+          </span>
+          </div>
+          </br>
+
+          <div style="padding-left: 20px;" class="lista">
+            <ul>
+              <li><span style="color: #666"><strong>Reglamento 1 </strong></span></li>
+              <li><span style="color: #666"><strong>Reglamento 2 </strong></span></li>
+              <li><span style="color: #666"><strong>Reglamento 3 </strong></span></li>
+              <li><span style="color: #666"><strong>Reglamento 3 </strong></span></li>
+              <li><span style="color: #666"><strong>Reglamento 4 </strong></span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="f-actualiz" style="margin-left: 11%; margin-top: 40px; color: grey;">
+        Última fecha de actualización: 19/04/2018
+      </div>
+
 			</div>
 			<div id="pie">
 		  </div>
