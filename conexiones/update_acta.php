@@ -48,6 +48,6 @@ include "conexion.php";
 
   //  window.location="http://132.247.186.25/2016/consejo_tecnico/actas.php"
       echo '<script language="javascript">alert("Acta modificada correctamente");
-      window.location="http://localhost/consejo_tecnico/actas.php"</script>';
+      window.location="/consejo_tecnico/actas.php"</script>';
 
 ?>
