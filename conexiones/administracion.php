@@ -20,6 +20,10 @@ error_reporting(E_ALL);
       break;
       case 5: subirCalendario();
       break;
+      case 6: registrarRegGral();
+      break;
+      case 7: registrarRegCT();
+      break;
   }
 
   function RegistrarUsuario(){
@@ -218,6 +222,61 @@ error_reporting(E_ALL);
           }
         }
     }
+  }
+
+  function registrarRegGral(){
+    include "conexion.php";
+
+
+    $nombre = $_POST["nameNormGral"];
+    $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+    foreach ($_FILES['reg_gral']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+      //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+      //----------- Subir la info de cada archivo a la base de datos------------
+      //  $nombre = basename($_FILES['reg_gral']['name'][$i]);
+
+      $url=basename($_FILES['reg_gral']['name'][$i]);
+
+      //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
+      $query = mysqli_query($con, "INSERT INTO normatividad (nombre, url, tipo) VALUES ('$nombre','$url','G')"); //Tipo G = General
+
+      if (strlen($_FILES['reg_gral']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['reg_gral']['tmp_name'][$i], $target_path.$name)) {
+
+        }else{echo "Error, no se han subido los archivos";}
+      }
+    }
+
+  }
+
+  function registrarRegCT(){
+    include "conexion.php";
+
+    $nombre = $_POST["nameNormCT"];
+    $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+    foreach ($_FILES['reg_ct']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+      //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+      //----------- Subir la info de cada archivo a la base de datos------------
+      //$nombre = basename($_FILES['reg_gral']['name'][$i]);
+
+      $url=basename($_FILES['reg_ct']['name'][$i]);
+
+      //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
+      $query = mysqli_query($con, "INSERT INTO normatividad (nombre, url, tipo) VALUES ('$nombre','$url','C')"); //Tipo C = Consejo
+
+      if (strlen($_FILES['reg_ct']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['reg_ct']['tmp_name'][$i], $target_path.$name)) {
+
+        }else{echo "Error, no se han subido los archivos";}
+      }
+    }
+
   }
 
  ?>

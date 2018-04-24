@@ -80,24 +80,59 @@
         <div class="bloque-blank">
           <legend>Gestión de normatividad</legend>
           <ul>
-            <li><a onclick="showEditRegGral()" class="onKlic">Cambiar reglamento general</a></li>
-            <div id="reglamentoGral" class="notaEdit oculto">
-              <h5>Seleccionar <span style="color:red">PDF</span> del reglamento general</h5>
-              <form id="frm_regGral" >
-                <input type="file" class="file" id="regGral" name="reg_gral[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick=""/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cerrar" onclick="hideEditRegGral()"/>
-                <br>
-              </form>
-              <br>
-            </div>
-            <li><a onclick="showEditRegCT()" class="onKlic">Cambiar reglamento del Consejo Técnico</a></li>
-            <div id="reglamentoCT" class="notaEdit oculto">
-              <h5>Seleccionar <span style="color:red">PDF</span> del reglamento del Consejo Técnico</h5>
-              <form id="frm_regCT" >
-                <input type="file" class="file" id="regConsejo" name="reg_ct[]" style="width: 400px; display:inline-block"><input type="button" style="display:inline-block; margin-left: 10px;" value="Aceptar" onclick=""/><input type="button" style="display:inline-block; margin-left: 10px;" value="Cerrar" onclick="hideEditRegCT()"/>
-                <br>
-              </form>
-              <br>
-            </div>
+            <li><a onclick="showEditRegGral()" class="onKlic">Modificar y/o eliminar reglamentos</a></li>
+            <li><a onclick="showEditRegGral()" class="onKlic">Subir nuevo reglamento general UNAM</a></li>
+                <div id="reglamentoGral" class="notaEdit oculto">
+                  <center><h4>Subir nuevo reglamento general UNAM</h4></center>
+                  </br>
+                  <form id="frm_regGral" method="post">
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <label for="exampleInputEmail1">Nombre del reglamento: </label>
+                        <input type="text" class="form-control" name="nameNormGral" aria-describedby="emailHelp" placeholder="Ingresar nombre">
+                        <small id="blablibli" class="form-text text-muted">Es el nombre que visualizarán los usuarios</small>
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label for="exampleFormControlFile1">Seleccionar archivo <span style="color:red">PDF</span> del reglamento general</label>
+                        <input type="file" class="form-control-file" id="regGral" name="reg_gral[]">
+                      </div>
+                    </div>
+                    <div class="row">
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" style="float: right" onclick="regReglamentoGral()">Aceptar</button>
+                          </div>
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-secondary" onclick="hideEditRegGral()">Cancelar</button>
+                          </div>
+                    </div>
+                    </form>
+                  </div>
+            <li><a onclick="showEditRegCT()" class="onKlic">Subir nuevo reglamento abrobado por el H.CT</a></li>
+                <div id="reglamentoCT" class="notaEdit oculto">
+                  <center><h4>Subir nuevo reglamento y o lineamiento</h4></center>
+                  </br>
+                  <form id="frm_regCT" method="post">
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <label for="exampleInputEmail1">Nombre del reglamento: </label>
+                        <input type="text" class="form-control" name="nameNormCT" aria-describedby="emailHelp" placeholder="Ingresar nombre">
+                        <small id="blablibli" class="form-text text-muted">Es el nombre que visualizarán los usuarios</small>
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label for="exampleFormControlFile1">Seleccionar archivo <span style="color:red">PDF</span> del reglamento</label>
+                        <input type="file" class="form-control-file" id="regConsejo" name="reg_ct[]">
+                      </div>
+                    </div>
+                    <div class="row">
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" style="float: right" onclick="regReglamentoCT()">Aceptar</button>
+                          </div>
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-secondary" onclick="hideEditRegCT()">Cancelar</button>
+                          </div>
+                    </div>
+                    </form>
+                  </div>
           </ul>
         </div>
 

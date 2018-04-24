@@ -34,7 +34,6 @@ function registrar_punto(){
          document.getElementById("add_punto").style.heigth = "110px;"
          //document.getElementById("subtitulo1").style.display = 'none';
 
-
          //alert("numero: "+nuevo_numero);
          document.getElementById("nombrePunto").innerHTML = nombre_punto;        // document.getElementById("addp-btn").style.display = "block";
          document.getElementById("index_punto").value = numero_punto;
@@ -496,8 +495,7 @@ function deleteUser(id_user){
     }
 }
 /********************************************************************/
-
-/************** CONTROL DE CALENDARIO **************************/
+/************** CONTROL DE CALENDARIO *******************************/
 
 function subirCalendario(tipo){
   //Envía el tipo de funcion a través de un input, y se manda mediante todo el paquete del formulario ;)
@@ -530,4 +528,51 @@ function subirCalendario(tipo){
       }
     });
   }
-  /*****************************************************************/
+  /***************************************************************************/
+  /************************ Control de Normatividad **************************/
+
+  function regReglamentoGral(){
+    var formData = new FormData(document.getElementById("frm_regGral"));
+
+    formData.append('funcion', 6);
+
+    $.ajax({
+        url: "../consejo_tecnico/conexiones/administracion.php",
+        data: formData,
+        type: "post",
+        contentType: false,
+        processData: false,
+        success: function(data){
+          alert("Reglamento UNAM registrado correctamente. "+data);
+        },
+        failure: function(){
+          alert("Error al registrar nuevo reglamento. "+data);
+        }
+      });
+
+  }
+
+  function regReglamentoCT(){
+        var formData = new FormData(document.getElementById("frm_regCT"));
+
+        formData.append('funcion', 7);
+
+        $.ajax({
+            url: "../consejo_tecnico/conexiones/administracion.php",
+            data: formData,
+            type: "post",
+            contentType: false,
+            processData: false,
+            success: function(data){
+              alert("Reglamento HCT registrado correctamente. "+data);
+            },
+            failure: function(){
+              alert("Error al registrar nuevo reglamento. "+data);
+            }
+          });
+
+  }
+
+  function editReglamentoGral(id_reg){
+
+  }
