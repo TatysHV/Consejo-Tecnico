@@ -80,9 +80,9 @@
         <div class="bloque-blank">
           <legend>Gestión de normatividad</legend>
           <ul>
-            <li><a onclick="showEditRegGral()" class="onKlic">Modificar y/o eliminar reglamentos</a></li>
+            <li><a class="onKlic" onclick="veralerta()">Modificar y/o eliminar reglamentos</a></li>
             <li><a onclick="showEditRegGral()" class="onKlic">Subir nuevo reglamento general UNAM</a></li>
-                <div id="reglamentoGral" class="notaEdit oculto">
+                <div id="reglamentoGral" class="notaEdit oculto" style="padding: 20px;">
                   <center><h4>Subir nuevo reglamento general UNAM</h4></center>
                   </br>
                   <form id="frm_regGral" method="post">
@@ -108,7 +108,7 @@
                     </form>
                   </div>
             <li><a onclick="showEditRegCT()" class="onKlic">Subir nuevo reglamento abrobado por el H.CT</a></li>
-                <div id="reglamentoCT" class="notaEdit oculto">
+                <div id="reglamentoCT" class="notaEdit oculto" style="padding: 20px;">
                   <center><h4>Subir nuevo reglamento y o lineamiento</h4></center>
                   </br>
                   <form id="frm_regCT" method="post">
@@ -124,6 +124,15 @@
                       </div>
                     </div>
                     <div class="row">
+                      <div class="form-group col-sm-6" >
+                        <label for="example-date-input" class="col-2 col-form-label">Fecha de aprobación</label>
+                        <div class="col-10">
+                          <input class="form-control" type="date" name="fechaReg">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
                           <div class="col-sm-6">
                             <button type="button" class="btn btn-primary" style="float: right" onclick="regReglamentoCT()">Aceptar</button>
                           </div>
@@ -134,6 +143,16 @@
                     </form>
                   </div>
           </ul>
+          <!---------------Notificaciones de procesos-------------- -->
+
+          <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            El nuevo reglamento ha sido registrado con éxito.
+          </div>
+
+
         </div>
 
         <div class="bloque-blank">
@@ -199,6 +218,12 @@
     window.onload = cargarFooter();
     function cargarFooter(){
       $("#pie").load("../consejo_tecnico/fragmentos/footer.php");
+
+
+    }
+
+    function veralerta(){
+          $('#alerta1').alert();
     }
   </script>
 </html>

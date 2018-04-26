@@ -24,6 +24,8 @@ error_reporting(E_ALL);
       break;
       case 7: registrarRegCT();
       break;
+      case 8: deleteReg();
+      break;
   }
 
   function RegistrarUsuario(){
@@ -257,6 +259,7 @@ error_reporting(E_ALL);
 
     $nombre = $_POST["nameNormCT"];
     $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+    $fechareg = $_POST["fechaReg"];
 
     //----------Subir cada uno de los archivos a la carpeta del servidor
     foreach ($_FILES['reg_ct']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
@@ -268,7 +271,7 @@ error_reporting(E_ALL);
       $url=basename($_FILES['reg_ct']['name'][$i]);
 
       //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
-      $query = mysqli_query($con, "INSERT INTO normatividad (nombre, url, tipo) VALUES ('$nombre','$url','C')"); //Tipo C = Consejo
+      $query = mysqli_query($con, "INSERT INTO normatividad (nombre, url, tipo, fecha) VALUES ('$nombre','$url','C', '$fechareg')"); //Tipo C = Consejo
 
       if (strlen($_FILES['reg_ct']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
         if (move_uploaded_file($_FILES['reg_ct']['tmp_name'][$i], $target_path.$name)) {
@@ -276,7 +279,20 @@ error_reporting(E_ALL);
         }else{echo "Error, no se han subido los archivos";}
       }
     }
-
   }
+
+    function deleteReg(){
+      include "conexion.php";
+
+      $id_reg = $_POST['id'];
+
+      $query = mysqli_query($con, "DELETE FROM normatividad WHERE id='$id_reg'");
+
+      if(!$query){
+        echo 'Error al eliminar el reglamento';
+      }
+
+    }
+
 
  ?>

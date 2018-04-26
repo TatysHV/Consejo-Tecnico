@@ -4,6 +4,13 @@
     if(!isset($_SESSION['usuario'])){
         echo '<script> window.location="/2016/consejo_tecnico/index.php"</script>';
     }
+
+    if (!mysqli_select_db($con, $db))
+      {
+        echo "<h2>Error al seleccionar la base de datos!!!";
+        header("Location: index.php");
+        exit;
+      }
 ?>
 
 <!Doctype html>
@@ -17,7 +24,11 @@
 		<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,500,700' rel='stylesheet' type='text/css'>
 		<link rel="icon" type="image/png" href="">
 		<link rel="shortcut icon" href="imagenes/logoUnam.jpg"/>
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
     <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/show_docs.js"></script>
+    <script src="js/down_value.js"></script>
+
 	</head>
 	<body>
 		<div id="contenedor">
@@ -47,56 +58,68 @@
 					</div>
 			</div>
 
-			<!-- BANNER
-      <div id="banner">
-			<img style="width:100%; height=auto" src="Imagenes/Banner1.jpg">
-			</div>
-      -->
-
 			<div id="principal">
       </br></br></br>
       <div class="row" style="width: 80%; margin: auto;">
-        <center><h3 style="color:#3380FF">Normatividad</h3></center>
-        <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
+        <div id="normatividad">
+          <!--Carga de manera automática al abrir la página, el reglamento general de la UNAM
+          Y mostrará de manera dinámica el reglamento aprobado por el Consejo Técnico dependiendo del año elegido-->
+          <?php
+            $sql="SELECT * FROM normatividad WHERE tipo = 'G'";
 
-          <legend style="margin-top: 30px; font-size: 1.4em">Estatutos y lineamientos generales de la UNAM</legend>
+            $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($conexion));
 
-          <div style="padding-left: 20px;" class="lista">
-            <ul>
-              <li><span style="color: #666"><strong>Ley Orgánica de la UNAM</strong></span></li>
-              <li><span style="color: #666"><strong>Estatuto General de la UNAM  </strong></span></li>
-              <li><span style="color: #666"><strong>Reglamento del H. Consejo Técnico </strong></span></li>
-            </ul>
-          </div>
+            echo' <center><h3 style="color:#3380FF">Normatividad</h3></center>
+            <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
 
-          <!--<embed src="archivos/reglamento-consejo.pdf" width="90%" height="800"></embed>-->
+              <legend style="margin-top: 30px; font-size: 1.4em">Estatutos y lineamientos generales de la UNAM</legend>
 
-        </div>
+              <div style="padding-left: 20px;" class="lista">
+                <ul>';
 
-        <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
-          <legend style="margin-top: 30px;font-size: 1.4em">Lineamientos y reglamentos ENES Morelia</legend>
-          <div style="border: 1px solid #cbcbcb; padding: 10px; border-radius: 3px; width: 100%; background-color: #F5F5F5;">
-          <span class="etiquetas">Consultar por año:
-            <select>
-              <option value="2018">2018</option>
-              <option value="2017">2017</option>
-              <option value="2016">2016</option>
-              <option value="all">Todos</option>
-            </select>
-          </span>
-          </div>
-          </br>
+                  while ($line = mysqli_fetch_array($result)) {
 
-          <div style="padding-left: 20px;" class="lista">
-            <ul>
-              <li><span style="color: #666"><strong>Reglamento 1 </strong></span></li>
-              <li><span style="color: #666"><strong>Reglamento 2 </strong></span></li>
-              <li><span style="color: #666"><strong>Reglamento 3 </strong></span></li>
-              <li><span style="color: #666"><strong>Reglamento 3 </strong></span></li>
-              <li><span style="color: #666"><strong>Reglamento 4 </strong></span></li>
-            </ul>
-          </div>
+                  echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line["url"].'">'.$line["nombre"].'</a></strong></span>';
+                      if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
+                         echo'<div class="onKlic" onclick="deleteReg('.$line["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>';
+                      }
+                  echo'</li>';
 
+                }
+                echo'
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
+              <legend style="margin-top: 30px; font-size: 1.4em">Lineamientos y reglamentos ENES Morelia</legend>
+              <h4 style="color:#666">Seleccionar año:</h4>
+
+              <div class="row">
+                <form>
+                  <div class="form-group col-sm-9" style="padding-right:0px;">
+                    <select class="form-control" id="regYear">
+                      <option value="2018">2018</option>
+                      <option value="2017">2017</option>
+                      <option value="2016">2016</option>
+                      <option value="2015">2015</option>
+                      <option value="todos">Todos</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-3"><button type="button" class="btn btn-info" onclick="showRegCT()"> Buscar </button></div>
+                </form>
+              </div>
+
+              <div class="row">
+                <div style="padding-left: 30px;" class="lista" id="reg_aprobados">
+                  <!-- Espacio dinánico que muestra el resultado de la búsqueda -->
+                </div>
+              </div>
+
+            </div>
+        ';
+
+          ?>
         </div>
       </div>
 
@@ -113,5 +136,9 @@
     function cargarFooter(){
       $("#pie").load("../consejo_tecnico/fragmentos/footer.php");
     }
+
+    /*function cargarReglamentos(){
+      $("#normatividad").load("../consejo_tecnico/fragmentos/reglamentos.php");
+    }*/
   </script>
 </html>

@@ -573,6 +573,33 @@ function subirCalendario(tipo){
 
   }
 
+  function deleteReg(id_reg){
+
+    var eleccion = confirm("¿Estás seguro de eliminar este reglamento?"); //Pregunta de seguridad para confirmar
+
+    if (eleccion){
+      //Así se mandan sólo 3 valores por ajax, nombre, tipo y nota.
+      $.ajax({
+         url: "../consejo_tecnico/conexiones/administracion.php",
+         data: {"id":id_reg, "funcion":8},
+         type: "post",
+          success: function(data){
+              alert("Se ha eliminado el reglamento");
+              window.location.assign("../consejo_tecnico/normatividad.php");
+
+          },
+          failure: function(){
+            alert("No se logró eliminar el reglamento"+data);
+          }
+        });
+
+    }
+
+
+
+
+  }
+
   function editReglamentoGral(id_reg){
 
   }

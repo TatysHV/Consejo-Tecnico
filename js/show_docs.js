@@ -489,3 +489,23 @@ function hideEditRegGral(){ document.getElementById("reglamentoGral").style.disp
 
 function showEditRegCT(){ document.getElementById("reglamentoCT").style.display="block";}
 function hideEditRegCT(){ document.getElementById("reglamentoCT").style.display="none";}
+
+function showRegCT(){
+
+  var lista = document.getElementById("regYear");
+  var indice = lista.selectedIndex;
+  var opcion = lista.options[indice];
+  var year = opcion.value;
+
+  $.ajax({
+      url: "../consejo_tecnico/fragmentos/reglamentos.php",
+      data: {"year":year},
+      type: "post",
+      success: function(data){
+        $('#reg_aprobados').html(data);
+      },
+      failure: function(){
+        alert("Error al mostrar formulario para editar usuario");
+      }
+    });
+}
