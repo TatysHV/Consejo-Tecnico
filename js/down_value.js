@@ -594,12 +594,4 @@ function subirCalendario(tipo){
         });
 
     }
-
-
-
-
-  }
-
-  function editReglamentoGral(id_reg){
-
   }

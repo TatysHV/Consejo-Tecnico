@@ -14,8 +14,16 @@ if (!mysqli_select_db($conexion, $db))
 
   $year = $_POST['year'];
 
-  //Consulta SQL que muestra los reglamentos de tipo Consejo Técnico de acuerdo al año seleccionado y los ordena de manera ascendente.
-  $sql="SELECT * FROM normatividad WHERE tipo = 'C' and year(fecha) = '$year' ORDER BY fecha ASC";
+
+ if($year!="Todos"){
+   //Consulta SQL que muestra los reglamentos de tipo Consejo Técnico de acuerdo al año seleccionado y los ordena de manera ascendente.
+   $sql="SELECT * FROM normatividad WHERE tipo = 'C' and year(fecha) = '$year' ORDER BY fecha ASC";
+ }
+ else{
+   //Consulta SQL que muestra todos los reglamentos de tipo Consejo Técnico.
+   $sql="SELECT * FROM normatividad WHERE tipo = 'C'";
+ }
+
 
   $result = mysqli_query($conexion, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($conexion));
 

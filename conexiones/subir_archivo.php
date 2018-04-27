@@ -233,7 +233,7 @@ function deleteFolder(){
   include "conexion.php";
 
   $id_folder = $_POST["carpeta"];
-  echo"hola que hace";
+  //echo"hola que hace";
 
   $query = mysqli_query($con, "DELETE FROM carpeta_hija WHERE id_carpeta='$id_folder' ");
 
@@ -253,7 +253,7 @@ function deleteFile(){
 
   $query = mysqli_query($con, "DELETE FROM archivo WHERE id= '$id_file' ");
   //Eliminarlo de la base de datos
-  echo"entra al php";
+  //echo"entra al php";
 }
 
 /*function updatePunto(){
@@ -320,7 +320,7 @@ function delete_orden_dia(){
 
   function delete_acta(){
         include "conexion.php";
-        
+
         $idacta=$_POST['id_acta'];
 
         $eject7=mysqli_query($con, "DELETE FROM actas WHERE id='$idacta'");
