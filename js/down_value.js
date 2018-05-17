@@ -543,7 +543,8 @@ function subirCalendario(tipo){
         contentType: false,
         processData: false,
         success: function(data){
-          alert("Reglamento UNAM registrado correctamente. "+data);
+          alert("Reglamento UNAM registrado correctamente. ");
+          window.location.assign("../consejo_tecnico/normatividad.php");
         },
         failure: function(){
           alert("Error al registrar nuevo reglamento. "+data);
@@ -564,7 +565,8 @@ function subirCalendario(tipo){
             contentType: false,
             processData: false,
             success: function(data){
-              alert("Reglamento HCT registrado correctamente. "+data);
+              alert("Reglamento HCT registrado correctamente. ");
+              window.location.assign("../consejo_tecnico/normatividad.php");
             },
             failure: function(){
               alert("Error al registrar nuevo reglamento. "+data);

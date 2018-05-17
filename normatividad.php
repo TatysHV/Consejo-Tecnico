@@ -123,9 +123,10 @@
         </div>
       </div>
 
-      <div class="f-actualiz" style="margin-left: 11%; margin-top: 40px; color: grey;">
+      <!--<div class="f-actualiz" style="margin-left: 11%; margin-top: 40px; color: grey;">
         Última fecha de actualización: 19/04/2018
       </div>
+      -->
 
 			</div>
 			<div id="pie">

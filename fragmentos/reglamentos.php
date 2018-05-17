@@ -15,7 +15,7 @@ if (!mysqli_select_db($conexion, $db))
   $year = $_POST['year'];
 
 
- if($year!="Todos"){
+ if($year!="todos"){
    //Consulta SQL que muestra los reglamentos de tipo Consejo Técnico de acuerdo al año seleccionado y los ordena de manera ascendente.
    $sql="SELECT * FROM normatividad WHERE tipo = 'C' and year(fecha) = '$year' ORDER BY fecha ASC";
  }
