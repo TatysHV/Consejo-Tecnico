@@ -1,55 +1,87 @@
 <?php
 
-  $nombre = $_POST['nombre'];
-  $tipo = $_POST['tipo'];
-  $fecha = $_POST['fecha'];
-  $numero = $_POST['numero'];
-  $puntos = $_POST['puntos'];
-  $fichero="ordendia/".basename($_FILES['archivos']['name'][0]);
+  include "conexion.php";
 
-  /*+++++++++++++++++++++++++++++++++++++++++
-    SUBIR A LA BASE DE DATOS LA ORDEN DEL DIA
-    +++++++++++++++++++++++++++++++++++++++++*/
+  $etiqueta = $_POST['etiqueta'];
+  $pertenece = $_POST['pertenece'];
 
-    include "conexion.php";
 
-    $query = mysqli_query($conexion, "INSERT INTO orden_dia (nombre_sesion, tipo, fecha_sesion,
-      numero_sesion, cant_puntos, direccion) values ('$nombre', '$tipo', '$fecha', '$numero', '$puntos', '$fichero')");
+  $query = mysqli_query($con, "INSERT INTO lista_etiquetas(etiqueta, pertenece) VALUES ('$etiqueta', '$pertenece')");
 
-      if(!$query){
-        echo "Ocurrió un error" . $query;
+    if(!$query){
+      //echo "Ocurrió un error" . $query;
+    }
+    else{
+      //echo "Etiqueta registrada";
+    }
+
+
+
+    $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
+    $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+  echo'
+    <div class="form-group">
+    <label for="">Etiqueta:</label><br>
+    <select class="selectpicker" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
+    <optgroup label="Secretaría académica">';
+
+      while ($line = mysqli_fetch_array($result)) {
+        echo'<option>'.$line["etiqueta"].'</option>';
       }
-      else{
-        echo "EL REGISTRO SE REALIZÓ DE MANERA EXITOSA <br><br>";
-        echo "DATOS DE LA ORDEN DEL DÍA <br>"."<b>Nombre:</b> ".$nombre."<br><b>Fecha: </b>".$fecha."<br><b>Tipo:</b> ".$tipo."<br><b>Direccion:</b> ".$fichero."<br>";
+      echo'</optgroup>';
+
+      //Muestra las etiquetas que pertenecen a servicios escolares
+      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Servicios escolares' ORDER BY etiqueta ASC";
+      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+      echo'
+      <optgroup label="Servicios escolares">';
+
+      while ($line = mysqli_fetch_array($result)) {
+        echo'<option>'.$line["etiqueta"].'</option>';
+      }
+      echo'</optgroup>';
+
+      //Muestra las etiquetas que pertenecen a Secretaría de investigación y posgrado
+      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de investigación y posgrado' ORDER BY etiqueta ASC";
+      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+      echo'
+      <optgroup label="Secretaría de investigación y posgrado">';
+
+      while ($line = mysqli_fetch_array($result)) {
+        echo'<option>'.$line["etiqueta"].'</option>';
+      }
+      echo'</optgroup>';
+
+      //Muestra las etiquetas que pertenecen a Secretaría de vinculación
+      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de vinculación' ORDER BY etiqueta ASC";
+      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+      echo'
+      <optgroup label="Secretaría de vinculación">';
+
+      while ($line = mysqli_fetch_array($result)) {
+        echo'<option>'.$line["etiqueta"].'</option>';
+      }
+      echo'</optgroup>';
+
+      //Muestra las etiquetas que pertenecen a Comités y comisiones
+      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Comités y comisiones' ORDER BY etiqueta ASC";
+      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+      echo'
+      <optgroup label="Comités y comisiones">';
+
+      while ($line = mysqli_fetch_array($result)) {
+        echo'<option>'.$line["etiqueta"].'</option>';
       }
 
-  /*+++++++++++++++++++++++++++++++++++++++
-    SUBIR EL ARCHIVO A LA CARPETA/SERVIDOR
-    +++++++++++++++++++++++++++++++++++++++*/
+      echo'</optgroup>
+      </select>
+          </div>';
 
-    $target_path = "../archivos/ordendia/"; // carpeta donde se guardarán los archivos
-
-    foreach ($_FILES['archivos']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
-      //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
-   		if (strlen($_FILES['archivos']['name'][$i]) > 1) { //Garantiza que la cat de caracteres del nombre sea mayor a 1 (No es esencial).
-   			if (move_uploaded_file($_FILES['archivos']['tmp_name'][$i], $target_path.$name)) {
-          //Copia el archivo a la dirección específica de la concatenación: ../archivos/ordendia/nombre.
-          echo "El archivo <b>". basename($_FILES['archivos']['name'][$i])." </b>ha sido subido.</br>";
-        }
-   		}
-   	}
-
- /*+++++++++++++++++++++++++++++++++++++++++++
-    SUBIR SUSTRATO Y ARCHIVOS
-    ++++++++++++++++++++++++++++++++++++++++++*/
-
-/* 1. Consultar el último insert realizado para obtener la ID de la orden del día
-   2. Ir registrando en un ciclo cada una de las filas de la tabla del sustrato.
-   3. Obtener la ID del punto del sustrato registrato.
-   4. Insertar ID_ordendia e ID_sustrato en la tabla de relación.
-   */
-
+  
 
  ?>
-

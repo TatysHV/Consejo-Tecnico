@@ -529,7 +529,7 @@ function subirCalendario(tipo){
     });
   }
   /***************************************************************************/
-  /************************ Control de Normatividad **************************/
+  /************************ CONTROL DE NORMATIVIDAD **************************/
 
   function regReglamentoGral(){
     var formData = new FormData(document.getElementById("frm_regGral"));
@@ -597,3 +597,30 @@ function subirCalendario(tipo){
 
     }
   }
+
+  /*----------------------------------------------------------------------------
+  -------------------------CONTROL DE ACUERDOS ----------------------------------*/
+
+function add_etiqueta(){
+  var etiqueta = $("#new_etiqueta").val();
+
+  var lista = document.getElementById("perteneceAC");
+  var indice = lista.selectedIndex;
+  var opcion = lista.options[indice];
+  var pertenece = opcion.value;
+
+  $.ajax({
+     url: "../consejo_tecnico/conexiones/upload.php",
+     data: {"etiqueta":etiqueta, "pertenece":pertenece},
+     type: "post",
+      success: function(data){
+          alert("Etiqueta registrada correctamente");
+
+          $("#etiqueta").load('../consejo_tecnico/fragmentos/etiquetas.php'); // Volver a colocar el select de etiquetas actualizado
+
+      },
+      failure: function(){
+        alert("Error al registrar etiqueta"+data);
+      }
+    });
+}

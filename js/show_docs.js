@@ -490,6 +490,8 @@ function hideEditRegGral(){ document.getElementById("reglamentoGral").style.disp
 function showEditRegCT(){ document.getElementById("reglamentoCT").style.display="block";}
 function hideEditRegCT(){ document.getElementById("reglamentoCT").style.display="none";}
 
+/**************** Mostrar contenido dinámico de la busqueda de reglamentos por año *************/
+
 function showRegCT(){
 
   var lista = document.getElementById("regYear");

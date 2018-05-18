@@ -24,10 +24,15 @@
 		<script src="js/bootstrap.min.js"></script>
 
     <!-- Importación necesaria para la búsqueda inteligente del select etiqueta --->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
     <!------------------------------------------------------------------------------->
+    <!-- Importar ventana modal -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <!--Ya está importado arriba<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!------------------------------------------------------------------------------------>
 
 		<link type="text/css" rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -68,24 +73,58 @@
 
 			<div id="principal"></br></br>
 				<div class="bloque_desplegable">
-          <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+          <div class="modal fade" id="nueva_etiqueta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           	<div class="modal-dialog" role="document">
           		<div class="modal-content">
           			<div class="modal-header">
           				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
           				</button>
-          				<h4 class="modal-title" id="myModalLabel">Esto es un modal</h4>
+          				<h4 class="modal-title" id="myModalLabel">Agregar nueva etiqueta</h4>
           			</div>
           			<div class="modal-body">
-          				Texto del modal
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <form id="frm_addEtiqueta" encrypte="multipart/form-data" action="conexiones/upload.php" method="POST" class="forma">
+
+                        <div class="form-group">
+                          <div class="alert alert-danger oculto" role="alert" id="alert-etiqueta-larga">
+                            El nombre de la etiqueta es muy largo.
+                          </div>
+                          <label for="">Nombre de la etiqueta:</label>
+                          <input type="text" class="form-control" id="new_etiqueta"  name="new_etiqueta" rows="3" placeholder="Nombre de la etiqueta no más de 150 caracteres" onkeyup="contCaracteres()">
+                          <div class="contadorCaracteres" style="color: grey">
+                            Has escrito en total: <span id="cantCaract">0</span> caracteres.
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="">Pertenece a:</label>
+                          <select class="selectpicker" name="perteneceAC" id="perteneceAC" data-width="100%" title="Seleccionar departamento">
+                            <option>Secretaría académica</option>
+                            <option>Secretaría de investigación y posgrado</option>
+                            <option>Secretaría de vinculación</option>
+                            <option>Servicios escolares</option>
+                            <option>Comités y comisiones</option>
+                          </select>
+                        </div>
+
+                        <center><button type="button" class="btn btn-success" onclick="add_etiqueta()">Registrar</button></center>
+                      </form>
+                    </div>
+                  </div>
           			</div>
           		</div>
           	</div>
           </div>
 
 					<div class ="titular"><center>Registro de nuevo acuerdo</center></div></br>
-
+          <!--
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#miModal">
+          	Abrir modal
+          </button>
+          -->
           <form id="frm_addActa" enctype="multipart/form-data" action="conexiones/upload_files.php" method="POST" class="forma">
             <div class="auxiliar">
 
@@ -97,79 +136,81 @@
             </div>
             <div class="row">
               <div class="col-xs-6">
-                <div class="form-group">
-                  <label for="">Etiqueta:</label><br>
+                <div id="etiqueta">
+                  <div class="form-group">
+                    <label for="">Etiqueta:</label><br>
 
-                  <?php
-                    //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
+                    <?php
+                      //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
 
-                    $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
-                    $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
+                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
 
-                    echo'
-                    <select class="selectpicker" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
-                    <optgroup label="Secretaría académica">';
+                      echo'
+                      <select class="selectpicker" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
+                      <optgroup label="Secretaría académica">';
 
-                    while ($line = mysqli_fetch_array($result)) {
-                      echo'<option>'.$line["etiqueta"].'</option>';
-                    }
-                    echo'</optgroup>';
+                      while ($line = mysqli_fetch_array($result)) {
+                        echo'<option>'.$line["etiqueta"].'</option>';
+                      }
+                      echo'</optgroup>';
 
-                    //Muestra las etiquetas que pertenecen a servicios escolares
-                    $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Servicios escolares' ORDER BY etiqueta ASC";
-                    $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                      //Muestra las etiquetas que pertenecen a servicios escolares
+                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Servicios escolares' ORDER BY etiqueta ASC";
+                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
 
-                    echo'
-                    <optgroup label="Servicios escolares">';
+                      echo'
+                      <optgroup label="Servicios escolares">';
 
-                    while ($line = mysqli_fetch_array($result)) {
-                      echo'<option>'.$line["etiqueta"].'</option>';
-                    }
-                    echo'</optgroup>';
+                      while ($line = mysqli_fetch_array($result)) {
+                        echo'<option>'.$line["etiqueta"].'</option>';
+                      }
+                      echo'</optgroup>';
 
-                    //Muestra las etiquetas que pertenecen a Secretaría de investigación y posgrado
-                    $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de investigación y posgrado' ORDER BY etiqueta ASC";
-                    $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                      //Muestra las etiquetas que pertenecen a Secretaría de investigación y posgrado
+                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de investigación y posgrado' ORDER BY etiqueta ASC";
+                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
 
-                    echo'
-                    <optgroup label="Secretaría de investigación y posgrado">';
+                      echo'
+                      <optgroup label="Secretaría de investigación y posgrado">';
 
-                    while ($line = mysqli_fetch_array($result)) {
-                      echo'<option>'.$line["etiqueta"].'</option>';
-                    }
-                    echo'</optgroup>';
+                      while ($line = mysqli_fetch_array($result)) {
+                        echo'<option>'.$line["etiqueta"].'</option>';
+                      }
+                      echo'</optgroup>';
 
-                    //Muestra las etiquetas que pertenecen a Secretaría de vinculación
-                    $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de vinculación' ORDER BY etiqueta ASC";
-                    $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                      //Muestra las etiquetas que pertenecen a Secretaría de vinculación
+                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de vinculación' ORDER BY etiqueta ASC";
+                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
 
-                    echo'
-                    <optgroup label="Secretaría de vinculación">';
+                      echo'
+                      <optgroup label="Secretaría de vinculación">';
 
-                    while ($line = mysqli_fetch_array($result)) {
-                      echo'<option>'.$line["etiqueta"].'</option>';
-                    }
-                    echo'</optgroup>';
+                      while ($line = mysqli_fetch_array($result)) {
+                        echo'<option>'.$line["etiqueta"].'</option>';
+                      }
+                      echo'</optgroup>';
 
-                    //Muestra las etiquetas que pertenecen a Comités y comisiones
-                    $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Comités y comisiones' ORDER BY etiqueta ASC";
-                    $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                      //Muestra las etiquetas que pertenecen a Comités y comisiones
+                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Comités y comisiones' ORDER BY etiqueta ASC";
+                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
 
-                    echo'
-                    <optgroup label="Comités y comisiones">';
+                      echo'
+                      <optgroup label="Comités y comisiones">';
 
-                    while ($line = mysqli_fetch_array($result)) {
-                      echo'<option>'.$line["etiqueta"].'</option>';
-                    }
+                      while ($line = mysqli_fetch_array($result)) {
+                        echo'<option>'.$line["etiqueta"].'</option>';
+                      }
 
-                    echo'</optgroup>
-                    </select>';
+                      echo'</optgroup>
+                      </select>';
 
-                    ?>
-                </div>
+                      ?>
+                    </div>
+                  </div>
                 <div>
-                <i class="fas fa-plus-circle" style="color: green; font-size: 1.3em"></i>
-                <a>Agregar otra etiqueta</a>
+                  <i class="fas fa-plus-circle" style="color: green; font-size: 1.3em"></i>
+                  <a data-toggle="modal" data-target="#nueva_etiqueta" clasS="onKlic">Agregar otra etiqueta</a>
                 </div>
               </div>
 
@@ -230,29 +271,29 @@
 	</body>
 	<SCRIPT type="text/javascript">
 
+    var caracteres = 0;
+
     window.onload = cargarFooter();
     function cargarFooter(){
       $("#pie").load("../consejo_tecnico/fragmentos/footer.php");
     }
 
+    function contCaracteres(){
+      var etiqueta;
+      var cant;
 
-	$(document).ready(function(){
+      etiqueta = $("#new_etiqueta").val();
+      cant = etiqueta.length;
+      $('#cantCaract').html(cant);
+
+      if(cant>150){
+        document.getElementById("alert-etiqueta-larga").style.display="block";
+      }else{
+        document.getElementById("alert-etiqueta-larga").style.display="none";
+      }
 
 
-	$("#continuar").on("click",function(){
-		var nPuntos = $('#puntos').val();
-
-			 $.ajax({
-						url: "php/tabla_sustrato.php",
-						data: {"cantidad": nPuntos},
-						type: "post",
-						success: function(data){
-							$('#tabla_sus').html(data);
-						}
-				});
-	});
-});
-
+    }
 
 	</SCRIPT>
 </html>
