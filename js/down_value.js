@@ -598,10 +598,11 @@ function subirCalendario(tipo){
     }
   }
 
-  /*----------------------------------------------------------------------------
-  -------------------------CONTROL DE ACUERDOS ----------------------------------*/
+  /*------------------------------------------------------------------------------
+  -------------------------CONTROL DE ACUERDOS ----------------------------------
+  -----------------------------------------------------------------------------*/
 
-function add_etiqueta(){
+function add_etiqueta(){ //Registrar nuevas etiquetas
   var etiqueta = $("#new_etiqueta").val();
 
   var lista = document.getElementById("perteneceAC");
@@ -609,18 +610,61 @@ function add_etiqueta(){
   var opcion = lista.options[indice];
   var pertenece = opcion.value;
 
+
+  //------------ Salvar valores escritos en formulario --------
+  var titulo = $("#titulo_acuerdo").val();
+  var fecha = $("#fecha_acuerdo").val();
+  var acuerdo = $("#acuerdo").val();
+  var observaciones = $("#observaciones").val();
+  var estatus = $("#estatus").val();
+
   $.ajax({
      url: "../consejo_tecnico/conexiones/upload.php",
      data: {"etiqueta":etiqueta, "pertenece":pertenece},
      type: "post",
       success: function(data){
           alert("Etiqueta registrada correctamente");
+        //  $("#etiqueta").load('../consejo_tecnico/fragmentos/etiquetas.php'); // Volver a colocar el select de etiquetas actualizado
+        //  Se intentó cargar mediante ajax pero hay un problema externo con el select de bootstrap, que no se puede cambiar el display: none. :c
+        //  mejor hacerlo de manera tradicional, refrescando página y recargando los valores anteriores para evitar pérdida de información.
+          location.reload();
 
-          $("#etiqueta").load('../consejo_tecnico/fragmentos/etiquetas.php'); // Volver a colocar el select de etiquetas actualizado
+        //A partir de que se recarga la página ya no sigue realizando las tareas :c
+          alert("nofunciona");
+          $("#titulo_acuerdo").val(titulo);
+          $("#fecha_acuerdo").val(fecha);
+          $("#acuerdo").val(acuerdo);
+          $("#observaciones").val(observaciones);
+          $("#estatus").val(estatus);
 
       },
       failure: function(){
         alert("Error al registrar etiqueta"+data);
       }
     });
+}
+
+function registrar_acuerdo(){
+
+      alert("Registrando acuerdo...");
+
+      var formData = new FormData(document.getElementById("frm_acuerdo"));
+
+      formData.append('funcion', 0);
+
+      $.ajax({
+          url: "../consejo_tecnico/conexiones/acuerdos.php",
+          data: formData,
+          type: "post",
+          contentType: false,
+          processData: false,
+          success: function(data){
+            alert("Acuerdo registrado correctamente"+data);
+            //window.location.assign("../consejo_tecnico/normatividad.php");
+          },
+          failure: function(){
+            alert("Error al registrar acuerdo. "+data);
+          }
+        });
+
 }

@@ -10,7 +10,7 @@
     $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
 
     echo'
-    <select class="selectpicker" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta" style="display: block">
+    <select class="selectpicker" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta" >
     <optgroup label="Secretaría académica">';
 
     while ($line = mysqli_fetch_array($result)) {

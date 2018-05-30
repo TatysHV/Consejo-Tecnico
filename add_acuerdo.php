@@ -22,6 +22,7 @@
 		<script src="js/jquery-3.1.1.js"></script>
     <script src="js/down_value.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
 
     <!-- Importación necesaria para la búsqueda inteligente del select etiqueta --->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
@@ -30,11 +31,11 @@
     <!------------------------------------------------------------------------------->
     <!-- Importar ventana modal -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-      <!--Ya está importado arriba<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+      <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
     <!------------------------------------------------------------------------------------>
 
-		<link type="text/css" rel="stylesheet" href="style.css"/>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 		<link rel="icon" type="image/png" href="">
 		<link rel="shortcut icon" href="imagenes/logoUnam.jpg"/>
@@ -125,13 +126,13 @@
           	Abrir modal
           </button>
           -->
-          <form id="frm_addActa" enctype="multipart/form-data" action="conexiones/upload_files.php" method="POST" class="forma">
+          <form id="frm_acuerdo" enctype="multipart/form-data" action="conexiones/upload_files.php" method="POST" class="forma">
             <div class="auxiliar">
 
             <div class="row">
               <div class="col-xs-12">
                 <label for"tituloAcuerdo">Título del acuerdo: </label>
-                <input class="form-control" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
+                <input class="form-control" id="titulo_acuerdo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
               </div>
             </div>
             <div class="row">
@@ -147,7 +148,7 @@
                       $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
 
                       echo'
-                      <select class="selectpicker" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
+                      <select class="selectpicker" id="etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
                       <optgroup label="Secretaría académica">';
 
                       while ($line = mysqli_fetch_array($result)) {
@@ -206,6 +207,7 @@
                       </select>';
 
                       ?>
+
                     </div>
                   </div>
                 <div>
@@ -216,7 +218,7 @@
 
               <div class="col-xs-6">
                 <label>Fecha sesión: </label>
-                <input type="date" class="fsesion" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaEtiqueta">
+                <input type="date" class="fsesion" id="fecha_acuerdo" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaEtiqueta">
               </div>
             </div>
             <br>
@@ -224,12 +226,12 @@
               <div class="col-xs-12">
                 <div class="form-group">
                   <label for="">Acuerdo:</label>
-                  <textarea class="form-control" id=""  name="" rows="3" placeholder="Escribir el contenido del acuerdo"></textarea>
+                  <textarea class="form-control" id="acuerdo"  name="acuerdo" rows="3" placeholder="Escribir el contenido del acuerdo"></textarea>
                 </div>
 
                 <div class="form-group">
                   <label for="">Observaciones:</label>
-                  <textarea class="form-control" id=""  name="" rows="3" placeholder="Notas u observaciones sobre el acuerdo"></textarea>
+                  <textarea class="form-control" id="observaciones"  name="observaciones" rows="3" placeholder="Notas u observaciones sobre el acuerdo"></textarea>
                 </div>
               </div>
             </div>
@@ -238,7 +240,7 @@
               <div class="col-xs-6">
                 <div class="form-group">
                   <label for"estatus">Estatus: </label>
-                  <select class="form-control" id="">
+                  <select class="form-control" id="estatus" name="estatusAcuerdo">
                     <option>Entregado</option>
                     <option>Pendiente</option>
                     <option>En seguimiento</option>
@@ -256,7 +258,7 @@
             </div>
 
             </br></br>
-            <center><input class="btn btn-info" type="button" onclick="registrar_acta()" value="Registrar Acta"></center>
+            <center><input class="btn btn-info" type="button" onclick="registrar_acuerdo()" value="Registrar Acta"></center>
 
             </div>
             </form>
@@ -284,16 +286,13 @@
 
       etiqueta = $("#new_etiqueta").val();
       cant = etiqueta.length;
-      $('#cantCaract').html(cant);
+      $("#cantCaract").html(cant);
 
       if(cant>150){
         document.getElementById("alert-etiqueta-larga").style.display="block";
       }else{
         document.getElementById("alert-etiqueta-larga").style.display="none";
       }
-
-
     }
-
 	</SCRIPT>
 </html>

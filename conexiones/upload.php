@@ -16,14 +16,14 @@
     }
 
 
-
+/*
     $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
     $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
 
   echo'
     <div class="form-group">
     <label for="">Etiqueta:</label><br>
-    <select class="selectpicker" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
+    <select class="selectpicker" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta" >
     <optgroup label="Secretaría académica">';
 
       while ($line = mysqli_fetch_array($result)) {
@@ -81,7 +81,7 @@
       echo'</optgroup>
       </select>
           </div>';
+*/
 
-  
 
  ?>
