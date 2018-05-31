@@ -27,6 +27,22 @@ function add_acuerdo(){
   $estatus = $_POST['estatusAcuerdo'];
   $oficio = $_POST['oficio'];
 
+
+  //----------Subir cada uno de los archivos a la carpeta del servidor
+  foreach ($_FILES['oficio']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+    //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+    //----------- Subir la info de cada archivo a la base de datos------------
+    $nombre = basename($_FILES['acuerdo_pdf']['name'][$i]);
+    $url = basename($_FILES['acuerdo_pdf']['name'][$i]);
+
+    if (strlen($_FILES['acuerdo_pdf']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+      if (move_uploaded_file($_FILES['file_archivo']['tmp_name'][$i], $target_path.$name)) {
+
+      }else{echo "Error, no se han subido los archivos";}
+    }
+  }
+
   $query= mysqli_query($con, "INSERT INTO acuerdos(etiqueta, acuerdo, observaciones, estatus, oficio, titulo, fecha) VALUES ('$etiqueta','$acuerdo','$observaciones','$estatus','$oficio','$titulo','$fecha')");
 
   if(!$query){
