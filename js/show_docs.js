@@ -376,6 +376,7 @@ var id_orden = $("#index_orden").val();
 
 }
 
+
 function nextPoint(){
   document.getElementById("carp_selec").value = 0;
   var puntoActual = parseInt($("#index_punto").val());

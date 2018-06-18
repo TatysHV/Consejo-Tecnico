@@ -40,6 +40,8 @@
 		<link rel="icon" type="image/png" href="">
 		<link rel="shortcut icon" href="imagenes/logoUnam.jpg"/>
 
+    <script src="js/jquery-3.1.1.js"></script>
+
 
 	</head>
 	<body>
@@ -218,10 +220,14 @@
 
               <div class="col-xs-6">
                 <label>Fecha sesión: </label>
-                <input type="date" class="fsesion" id="fecha_acuerdo" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaEtiqueta">
+                <input type="date" class="fsesion" id="fecha_acuerdo1" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaEtiqueta" onchange="showActa()" >
               </div>
             </div>
             <br>
+            <div class="row" id="acta_acuerdo">
+                <label>Acta a la que pertenece: <label>
+
+            </div>
             <div class="row">
               <div class="col-xs-12">
                 <div class="form-group">
@@ -276,6 +282,7 @@
     var caracteres = 0;
 
     window.onload = cargarFooter();
+
     function cargarFooter(){
       $("#pie").load("../consejo_tecnico/fragmentos/footer.php");
     }
@@ -293,6 +300,24 @@
       }else{
         document.getElementById("alert-etiqueta-larga").style.display="none";
       }
+    }
+
+    function showActa(){
+      
+      var fecha = String($("#fecha_acuerdo1").val());
+
+      alert(fecha);
+
+      $.ajax({
+        url: "/fragmentos/acta_acuerdo.php",
+        data: {"fecha":fecha},
+        type: "post",
+        success: function(data){
+          //$('#acta_acuerdo').html(data);
+          alert(data);
+          alert("hola");
+        } 
+      });
     }
 	</SCRIPT>
 </html>
