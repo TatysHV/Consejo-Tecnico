@@ -1,4 +1,4 @@
-function irPortal(){
+afunction irPortal(){
     window.location.assign("../consejo_tecnico/portal.php");
 }
 
@@ -86,6 +86,8 @@ function add_punto(){
 
   document.getElementById("add_punto").innerHTML = punto;
   document.getElementById("add_punto").style.background="#F7F7F7";
+  document.getElementById("edit_punto").style.display = "none";
+  document.getElementById("bloque").style.display = "none";
 
   show_addPunto();
 
@@ -117,7 +119,7 @@ function show_addCont(){
 }
 
 function show_addPunto(){
-  document.getElementById("visor_contenido").style.display = "none";
+  document.getElementById("titular1").style.display = "none";
   document.getElementById("notaAddPunto").style.display = "block";
   document.getElementById("add_punto").style.display = "block";
   document.getElementById("tituloZ").style.display = "block";

@@ -99,7 +99,7 @@
 
 
 				<div class="bloque_desplegable1" id="visor_contenido" style="display:none">
-
+          <div id="edit_punto" style="display: none;"></div>
 					<div class ="titular1"><center>Añadir Sustrato de la orden del día</center></div></br>
 
 							<div id="add_sustrato">
@@ -136,7 +136,7 @@
                       </div>
                     </div>
 
-                    <div id="carpetas-tree">
+                    <div id="carpetas-tree" style="overflow: scroll; height:480px;">
                       <div id="listaContenido">
 
                       </div>

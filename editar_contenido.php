@@ -62,7 +62,7 @@
 
 			<div id="principal">
         <br><br><br><br>
-
+        <div id="notaAddPunto" style="display: none;"></div>
         <div class ="titular1"><center>Modificar punto de la orden del día</center></div></br>
         <div id="edit_punto" style="width: 80%;">
           <img src="imagenes/checklist.png" style="max-width: 60px; height: auto; margin-left: 2%; float: left;"/>
@@ -109,7 +109,7 @@
         echo 'ID Orden dia: <input type="button" id="index_orden" value="'.$id_orden.'"/>
         <br>
 
-        <div class="bloque_desplegable1">
+        <div class="bloque_desplegable1" id="bloque">
 
 					<div class ="titular1"><center>Modificar contenido del punto</center></div></br>
 
@@ -148,7 +148,7 @@
                       </div>
                     </div>
 
-                    <div id="carpetas-tree">
+                    <div id="carpetas-tree" style="overflow: scroll; height:480px;">
                       <div id="listaContenido">
 
                       </div>
