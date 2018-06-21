@@ -114,6 +114,11 @@
 			</div>
 		</div>
 	</body>
-
+<script>
+    window.onload = cargarFooter();
+    function cargarFooter(){
+      $("#pie").load("../consejo_tecnico/fragmentos/footer.html");
+    }
+  </script>
 
 </html>
