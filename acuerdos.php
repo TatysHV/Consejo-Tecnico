@@ -58,7 +58,7 @@
           <form class="forma">
             <center>
               <span class="etiquetas">Mostrar acuerdos del año: </span>
-                <select class="menu" id="yearActas">
+                <select class="menu" id="fecha_acuerdoZ" onchange="showActa()">
                  <option value="2018" selected >2018</option>
                  <option value="2017" >2017</option>
                  <option value="2016">2016</option>

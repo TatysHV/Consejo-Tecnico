@@ -138,7 +138,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-6">
+              <div class="col-xs-4">
                 <div id="etiqueta">
                   <div class="form-group">
                     <label for="">Etiqueta:</label><br>
@@ -218,15 +218,25 @@
                 </div>
               </div>
 
-              <div class="col-xs-6">
-                <label>Fecha sesión: </label>
-                <input type="date" class="fsesion" id="fecha_acuerdo1" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaEtiqueta" onchange="showActa()" >
+              <div class="col-xs-4">
+                <label>Tipo sesión: </label>
+                <select class="selectpicker" data-width="100%" id="tipo_sesion1">
+                  <option value="Ordinaria">Ordinaria</option>
+                  <option value="Extraordinaria">Extraordinaria</option>
+                </select>
               </div>
-            </div>
-            <br>
-            <div class="row" id="acta_acuerdo">
-                <label>Acta a la que pertenece: <label>
 
+              <div class="col-xs-4">
+                <label>Fecha acta: </label>
+                <input type="date" class="fsesion" id="fecha_acuerdo1" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaActa" onchange="showActa()" >
+              </div>
+
+            </div>
+            <div class="row">
+              <div id="acta_acuerdo">
+
+
+              </div>
             </div>
             <div class="row">
               <div class="col-xs-12">
@@ -303,20 +313,20 @@
     }
 
     function showActa(){
-      
-      var fecha = String($("#fecha_acuerdo1").val());
 
-      alert(fecha);
+      var fecha = $("#fecha_acuerdo1").val();
+      var tipo = $("#tipo_sesion1").val();
+
+      //alert(fecha);
 
       $.ajax({
-        url: "/fragmentos/acta_acuerdo.php",
-        data: {"fecha":fecha},
+        url: "../consejo_tecnico/fragmentos/acta_acuerdo.php",
+        data: {"fecha":fecha, "tipo":tipo},
         type: "post",
         success: function(data){
-          //$('#acta_acuerdo').html(data);
-          alert(data);
-          alert("hola");
-        } 
+          document.getElementById("acta_acuerdo").innerHTML = data;
+          //alert("hola");
+        }
       });
     }
 	</SCRIPT>

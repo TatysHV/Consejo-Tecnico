@@ -1,10 +1,12 @@
 <?php
 
-//include '../conexiones/conexion.php';
-/*session_start();
+include '../conexiones/conexion.php';
+session_start();
 
 @$conexion = mysqli_connect($server, $username, $password)or die("Error en el servidor:". mysqli_connect_error());
 
+$fecha = $_POST["fecha"];
+$tipo = $_POST["tipo"];
 
 if (!mysqli_select_db($conexion, $db))
   {
@@ -13,17 +15,25 @@ if (!mysqli_select_db($conexion, $db))
     exit;
   }
 
-$fecha = $_POST["fecha"];
 
-$sql = 'SELECT * FROM actas WHERE fecha_sesion = '.$fecha;
+
+$sql = 'SELECT * FROM actas WHERE fecha_sesion = "'.$fecha.'" and tipo_sesion = "'.$tipo.'"';
 $result = mysqli_query($conexion,$sql) or die ("Error");
 
 if ($line = mysqli_fetch_array($result)) {
-    echo '<td>'.$line["tipo_sesion"].'</td><td>'.$line["numero_sesion"].'</td><td>'.$fecha.'</td><td><a href="'.$line["pdf"].'>"Ver acta</a></td>';
+    echo '<div class="alert alert-info" role="alert">
+            El acuerdo pertenece a la <a href="conexiones/uploads/'.$line["pdf"].'" class="alert-link" target="_blank">Sesión '.$line["tipo_sesion"].' '.$line["numero_sesion"].' del '.$fecha.'</a>
+            <input type="hidden" value="'.$line["pdf"].'" name="url_acta">
+          </div>';
 }
 else{
-    echo 'No existe el acta registrado. <a href="http://localhost/consejo_tecnico/actas.php">Registrar aquí</a>';
+    echo '
+    <div class="alert alert-danger" role="alert">
+        No se encuentra registrada el acta. <a href="http://localhost/consejo_tecnico/actas.php" class="alert-link">Registrar acta aquí</a>
+        <input type="hidden" value="" name="url_acta">
+    </div>';
+
 }
-*/
-echo 'tuputamadre';
+
+
 ?>

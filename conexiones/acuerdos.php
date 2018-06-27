@@ -21,38 +21,43 @@ function add_acuerdo(){
 
   $titulo = $_POST['nombreAcuerdo'];
   $etiqueta = $_POST['etiquetaAC'];
-  $fecha = $_POST['fechaEtiqueta'];
+  $fecha = $_POST['fechaActa'];
+  $url_acta = $_POST['url_acta'];
   $acuerdo = $_POST['acuerdo'];
   $observaciones = $_POST['observaciones'];
   $estatus = $_POST['estatusAcuerdo'];
-  $oficio = $_POST['oficio'];
 
+  if($url_acta!=""){
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+    foreach ($_FILES['oficio']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+      //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
 
-  //----------Subir cada uno de los archivos a la carpeta del servidor
-  foreach ($_FILES['oficio']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
-    //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+      //----------- Subir la info de cada archivo a la base de datos------------
+      $oficio = basename($_FILES['oficio']['name'][$i]);
+      $url = basename($_FILES['oficio']['name'][$i]);
 
-    //----------- Subir la info de cada archivo a la base de datos------------
-    $nombre = basename($_FILES['acuerdo_pdf']['name'][$i]);
-    $url = basename($_FILES['acuerdo_pdf']['name'][$i]);
+      if (strlen($_FILES['oficio']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['oficio']['tmp_name'][$i], $target_path.$name)) {
 
-    if (strlen($_FILES['acuerdo_pdf']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
-      if (move_uploaded_file($_FILES['file_archivo']['tmp_name'][$i], $target_path.$name)) {
-
-      }else{echo "Error, no se han subido los archivos";}
+        }else{echo "Error, no se han subido los archivos";}
+      }
     }
-  }
 
-  $query= mysqli_query($con, "INSERT INTO acuerdos(etiqueta, acuerdo, observaciones, estatus, oficio, titulo, fecha) VALUES ('$etiqueta','$acuerdo','$observaciones','$estatus','$oficio','$titulo','$fecha')");
+    $query= mysqli_query($con, "INSERT INTO acuerdos(etiqueta, acuerdo, observaciones, estatus, oficio, titulo, fecha_acta, pdf_acta) VALUES ('$etiqueta','$acuerdo','$observaciones','$estatus','$oficio','$titulo','$fecha', '$url_acta')");
 
-  if(!$query){
-    die('Error al registrar el acuerdo:'.mysql_error());
+    if(!$query){
+      die('Error al registrar el acuerdo:');
+    }
+    else{
+      echo 'Acuerdo registrado correctamente';
+    }
+
   }
   else{
-    echo 'Acuerdo registrado correctamente';
+    echo 'Debes seleccionar el acta a la que pertenece el acuerdo';
   }
-
 }
+
 
 
  ?>

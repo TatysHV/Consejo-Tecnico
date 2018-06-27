@@ -82,6 +82,7 @@ session_start(); ?>
 					if($line = mysqli_fetch_array($result)){
 
 					echo '
+					
 					</br></br>
 					<center>
 						<h3>Acta de la sesión <span style="text-transform:lowercase; color: #0080FF;">'.$line["tipo_sesion"].'</span> número <span style="text-transform:lowercase; color: #0080FF;">'.$line["numero_sesion"].'</span></h3>
@@ -114,7 +115,7 @@ session_start(); ?>
 
 				mysqli_close($con);
 				?>
-				
+
 			<div id="pie">
 
 			</div>
