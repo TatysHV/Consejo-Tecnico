@@ -62,7 +62,7 @@
 
 			<div id="principal">
         <br><br><br><br>
-
+        <div id="notaAddPunto" style="display: none;"></div>
         <div class ="titular1"><center>Modificar punto de la orden del día</center></div></br>
         <div id="edit_punto" style="width: 80%;">
           <img src="imagenes/checklist.png" style="max-width: 60px; height: auto; margin-left: 2%; float: left;"/>
@@ -109,7 +109,7 @@
         echo 'ID Orden dia: <input type="button" id="index_orden" value="'.$id_orden.'"/>
         <br>
 
-        <div class="bloque_desplegable1">
+        <div class="bloque_desplegable1" id="bloque">
 
 					<div class ="titular1"><center>Modificar contenido del punto</center></div></br>
 
@@ -148,7 +148,7 @@
                       </div>
                     </div>
 
-                    <div id="carpetas-tree">
+                    <div id="carpetas-tree" style="overflow: scroll; height:480px;">
                       <div id="listaContenido">
 
                       </div>
@@ -222,52 +222,16 @@
 
         <br><br>
 			<div id="pie">
-				<div class="contenido2">
-					<div class="col-xs-5" id="f1">
-						<div class="row">
-							<div class="col-xs-2" id="flat">
-								<img src="imagenes/flaticons/location.png"/>
-							</div>
-							<div class="col-xs-10">
-								<p class="ftitulo">Dirección:</p>
-								<p class="info"> Morelia, Mich.</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-2" id="flat">
-								<img  src="imagenes/flaticons/app.png"/>
-							</div>
-							<div class="col-xs-10">
-								<p class="ftitulo">Teléfono:</p>
-								<p class="info">(452) 44-33-22-11-00</p>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-xs-2">
-					</div>
-					<div class="col-xs-5" id="f2">
-							<center>
-							<p class="ftitulo">Encuentranos también en:</p>
-							</center>
-
-							<div class="col-xs-6">
-								<img src="imagenes/flaticons/social.png"/>
-							</div>
-							<div class="col-xs-6">
-								<img src="imagenes/flaticons/youtube.png"/>
-							</div>
-
-					</div>
-					<div id="derechos">
-						<center><p>H. Consejo Técnico ENES Morelia</p></center>
-					</div>
-				</div>
-			</div>
+				
 			</div>
 		</div>
 	</body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
+<script>
+    window.onload = cargarFooter();
+    function cargarFooter(){
+      $("#pie").load("../consejo_tecnico/fragmentos/footer.html");
+    }
+  </script>
 </html>
