@@ -268,14 +268,52 @@
               <div class="col-xs-6">
                 <div class="form-group">
                   <label for="">Oficio PDF</label>
-                  <input id="actapdf" name="oficio[]" type="file" multiple="true" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                  <input id="actapdf" name="oficio[]" type="file" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                </div>
+              </div>
+              <br><br>
+            </div>
+
+
+            </br></br>
+            <center>
+              <input class="btn btn-info" style="width: 250px; margin-right: 5px;" type="button" data-toggle="modal" data-target="#acuerdos_files"  value="Agregar archivos de seguimiento" ><input class="btn btn-success" style="width: 250px; margin-left: 5px;" type="button" onclick="registrar_acuerdo()" value="Registrar Acta">
+            </center>
+            <div class="modal" tabindex="-1" id="acuerdos_files" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <center><h4 class="modal-title">Archivos de seguimiento</h4></center>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <center>
+                    <label>Selecciona los archivos a subir:</label>
+
+                    <input type="file" class="file" id="" name="acuerdo_files[]" style="width: 450px; display:inline-block" multiple="true">
+
+                    </center>
+                    <br><br>
+                    <!--<div class="row">
+                      <div class="col-xs-12">
+                        <div style="width: 100%; background-color: #E0ECF8; padding: 10px; padding-left: 20px; margin: auto;">
+                        <div class="files_ac">
+                            <div class=""><img src="imagenes/file.png">Archivo 1</div>
+                            <div class=""><img src="imagenes/file.png">Archivo 2</div>
+                            <div class=""><img src="imagenes/file.png">Archivo 3</div>
+                        </div>
+                        </div>
+                      </div>
+                    </div>-->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  </div>
                 </div>
               </div>
             </div>
-
-            </br></br>
-            <center><input class="btn btn-info" type="button" onclick="registrar_acuerdo()" value="Registrar Acta"></center>
-
             </div>
             </form>
 							</br></br>

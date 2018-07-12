@@ -1,4 +1,4 @@
-afunction irPortal(){
+function irPortal(){
     window.location.assign("../consejo_tecnico/portal.php");
 }
 

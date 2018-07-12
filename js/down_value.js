@@ -668,3 +668,27 @@ function registrar_acuerdo(){
         });
 
 }
+
+function add_acuerdo_file(){
+  alert("Registrando archivos de seguimiento");
+
+  var formData = new FormData(document.getElementById("frm_acuerdo_files"));
+
+  formData.append('funcion', 1);
+
+  $.ajax({
+      url: "../consejo_tecnico/conexiones/acuerdos.php",
+      data: formData,
+      type: "post",
+      contentType: false,
+      processData: false,
+      success: function(data){
+        alert("Archivos de seguimiento registrados"+data);
+        //window.location.assign("../consejo_tecnico/normatividad.php");
+      },
+      failure: function(){
+        alert("Error al registrar archivos de seguimiento"+data);
+      }
+    });
+
+}

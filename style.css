@@ -589,6 +589,7 @@ label {
 	font-family: 'Open Sans', sans-serif;
 	margin-bottom: 5px;
 	margin-top: 5px;
+	font-weight: normal;
 }
 
 p.dfon{
@@ -800,7 +801,6 @@ table#sesiones th{ background-color: #337AB7; color: white;}
 }
 
 
-
 /*****************NORMATIVIDAD****************************/
 
 .lista li{
@@ -842,6 +842,24 @@ text-align: center;
 
 #acta_acuerdo{
 	padding: 15px;
+}
+
+.files_ac div{
+	margin-bottom: 5px;
+}
+
+.files_ac img{
+	width: 20px;
+	height: auto;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#tabla_acuerdos{
+	width: 90%;
+	margin:auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 /****************************ACUERDOS***************************/
