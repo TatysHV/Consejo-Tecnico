@@ -692,3 +692,16 @@ function add_acuerdo_file(){
     });
 
 }
+
+function show_acuerdo(id_acuerdo){
+  var id = id_acuerdo;
+
+  $.ajax({
+    url: "../consejo_tecnico/fragmentos/modal_acuerdo.php",
+    data: {"id":id},
+    type: "post",
+    success: function(data){
+      document.getElementById("modal_acuerdo").innerHTML = data;
+    }
+  });
+}

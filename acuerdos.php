@@ -75,236 +75,278 @@
 			</div>
 
 			<div id="principal"></br></br>
-				<div class="bloque_desplegable" style="width: 90%">
 
-          <div class="modal fade" id="nueva_etiqueta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          	<div class="modal-dialog" role="document">
-          		<div class="modal-content">
-          			<div class="modal-header">
-          				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          					<span aria-hidden="true">&times;</span>
-          				</button>
-          				<h4 class="modal-title" id="myModalLabel">Agregar nueva etiqueta</h4>
-          			</div>
-          			<div class="modal-body">
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <form id="frm_addEtiqueta" encrypte="multipart/form-data" action="conexiones/upload.php" method="POST" class="forma">
+        <div id="tabla_acuerdos">
+          <center><h3 style="color:#3380FF">Acuerdos del H. Consejo Técnico </h3></center>
+          </br></br>
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#form_acuerdo">Buscar acuerdos</button>
+          <a class="btn btn-primary" href="add_acuerdo.php">Registrar nuevo acuerdo</a>
+          </br></br>
+          <?php
 
-                        <div class="form-group">
-                          <div class="alert alert-danger oculto" role="alert" id="alert-etiqueta-larga">
-                            El nombre de la etiqueta es muy largo.
-                          </div>
-                          <label for="">Nombre de la etiqueta:</label>
-                          <input type="text" class="form-control" id="new_etiqueta"  name="new_etiqueta" rows="3" placeholder="Nombre de la etiqueta no más de 150 caracteres" onkeyup="contCaracteres()">
-                          <div class="contadorCaracteres" style="color: grey">
-                            Has escrito en total: <span id="cantCaract">0</span> caracteres.
-                          </div>
+          $year = date("Y");
+          $color = ''; //Variable para guardar un string hexadecimal
+          $i = 1;
+
+          $pag = $_GET['pag']; /* $pag es la pagina actual*/
+
+          $cantidad = 2; // cantidad de resultados por página
+          $inicial = $pag * $cantidad;
+
+          /*--------------------------------------------------------------------
+           Realizar consulta de acuerdos del año en curso, mostrando de 10 en 10
+          ---------------------------------------------------------------------*/
+          $sql = "SELECT * FROM acuerdos WHERE year(fecha_acta) = '$year' LIMIT $inicial, $cantidad";
+          $result = mysqli_query($con,$sql) or die('Error al consultar acuerdos');
+
+
+          //Obtener el total de resultados de la consulta para crear páginas
+          $acuerdos= "SELECT * FROM acuerdos WHERE year(fecha_acta) = '$year'";
+          $result2= mysqli_query($con,$acuerdos);
+          $num_resultados = mysqli_num_rows($result2);
+          $pages = intval($num_resultados / $cantidad); //Total/numero de filas
+
+
+          echo '
+              <div style="float: right;"><h5><b>Total de resultados: </b>'.$num_resultados.'</h5></div>
+              <table class="table thead-dark table-bordered">
+               <thead>
+                 <tr>
+                   <th>N°</th>
+                   <th>Fecha acta</th>
+                   <th>Etiqueta</th>
+                   <th>Título</th>
+                   <th>Mostrar</th>
+                   <th>Admin</th>
+                 </tr>
+               </thead>
+               <tbody>';
+               while ($line = mysqli_fetch_array($result)){
+
+                 switch($line["estatus"]){
+                   case 'Entregado': $color = '#D1ECF1';
+                    break;
+                   case 'Pendiente': $color = '#FFF3CD';
+                    break;
+                   case 'Cancelado': $color = '#F8D7DA';
+                    break;
+                   case 'En seguimiento': $color = '#E2E3E5';
+                    break;
+                   case 'Completado': $color = '#C3E6CB';
+                 }
+
+                 echo '<tr style="background-color:'.$color.'">
+                        <td>'.$i.'</td>
+                        <td><center>'.$line["fecha_acta"].'</center></td>
+                        <td>'.$line["etiqueta"].'</td>
+                        <td>'.$line["titulo"].'</td>
+                        <td><center>
+                        <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#info_acuerdo">
+                          Ver contenido
+                        </button></center></td>
+                        <td><a href="?id='.$line["id"].'">Editar</a></br><a href="'.$line["id"].'">Eliminar</a></td>
+                      </tr>';
+                $i = $i+1;
+               }
+
+               echo '
+                </tbody>
+              </table>';
+              mysqli_close($con);
+
+              /*----------------------------------------------------------------
+                              Creación de botones de paginación
+              ----------------------------------------------------------------*/
+              echo'
+              <center>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">';
+
+                if($pag>0){
+                  echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag-1).'">Anterior</a></li>';
+                }
+                else{
+                  echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag).'">Anterior</a></li>';
+                }
+
+                for($li = 0; $li < ($pages+1); $li++){
+                      echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.$li.'">'.$li.'</a></li>';
+                }
+
+                if($pages>20){
+                    echo'<li class="page-item"><a class="page-link" href="#">...</a></li>';
+                }
+
+                echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag+1).'">Siguiente</a></li>
+                </ul>
+              </nav>
+              </center>';
+
+              ?>
+
+              <!--Ventana modal para mostrar la información completa de un acuerdo
+               ------------------------------------------------------------------>
+
+               <div id="modal_acuerdo">
+                 Empty
+               </div>
+
+        </div>
+
+        <div id="blablibli" style="width:100%">
+          <!-- Modal formulario para la búsqueda de acuerdos -->
+          <div class="modal fade" id="form_acuerdo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <center><h4 class="modal-title" id="exampleModalLabel">Filtro de búsqueda de acuerdos</h5></center>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="frm_acuerdo" enctype="multipart/form-data" action="conexiones/upload_files.php" method="POST" class="forma">
+                    <div class="auxiliar" style="width: 95%">
+
+                    <div class="row">
+                      <div class="col-xs-5">
+                        <label for"tituloAcuerdo">Año del acta/sesión:</label>
+                        <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Seleccionar año de inicio">
+                         <option value="2018" selected >2018</option>
+                         <option value="2017">2017</option>
+                         <option value="2016">2016</option>
+                         <option value="2015">2015</option>
+                         <option value="2014">2014</option>
+                         <option value="2013">2013</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-7">
+                          <div id="etiqueta">
+                            <div class="form-group">
+                              <label for="">Etiqueta:</label><br>
+
+                              <?php
+                                //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
+
+                                $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
+                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+                                echo'
+                                <select class="selectpicker" id="etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
+                                <optgroup label="Secretaría académica">';
+
+                                while ($line = mysqli_fetch_array($result)) {
+                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                }
+                                echo'</optgroup>';
+
+                                //Muestra las etiquetas que pertenecen a servicios escolares
+                                $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Servicios escolares' ORDER BY etiqueta ASC";
+                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+                                echo'
+                                <optgroup label="Servicios escolares">';
+
+                                while ($line = mysqli_fetch_array($result)) {
+                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                }
+                                echo'</optgroup>';
+
+                                //Muestra las etiquetas que pertenecen a Secretaría de investigación y posgrado
+                                $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de investigación y posgrado' ORDER BY etiqueta ASC";
+                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+                                echo'
+                                <optgroup label="Secretaría de investigación y posgrado">';
+
+                                while ($line = mysqli_fetch_array($result)) {
+                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                }
+                                echo'</optgroup>';
+
+                                //Muestra las etiquetas que pertenecen a Secretaría de vinculación
+                                $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de vinculación' ORDER BY etiqueta ASC";
+                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+                                echo'
+                                <optgroup label="Secretaría de vinculación">';
+
+                                while ($line = mysqli_fetch_array($result)) {
+                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                }
+                                echo'</optgroup>';
+
+                                //Muestra las etiquetas que pertenecen a Comités y comisiones
+                                $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Comités y comisiones' ORDER BY etiqueta ASC";
+                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+
+                                echo'
+                                <optgroup label="Comités y comisiones">';
+
+                                while ($line = mysqli_fetch_array($result)) {
+                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                }
+
+                                echo'</optgroup>
+                                </select>';
+
+                                ?>
+                            </div>
                         </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <label for"tituloAcuerdo">Título del acuerdo: </label>
+                        <input class="form-control" id="titulo_acuerdo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
+                      </div>
+                    </div>
 
+                    <div class="row">
+                      <div class="col-xs-4">
                         <div class="form-group">
-                          <label for="">Pertenece a:</label>
-                          <select class="selectpicker" name="perteneceAC" id="perteneceAC" data-width="100%" title="Seleccionar departamento">
-                            <option>Secretaría académica</option>
-                            <option>Secretaría de investigación y posgrado</option>
-                            <option>Secretaría de vinculación</option>
-                            <option>Servicios escolares</option>
-                            <option>Comités y comisiones</option>
+                          <br>
+                          <label for="">Busqueda por rango de años:</label>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <div class="form-group">
+                          <label></label>
+                          <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Seleccionar año de inicio">
+                           <option value="2018" selected >2018</option>
+                           <option value="2017" >2017</option>
+                           <option value="2016">2016</option>
+                           <option value="2015">2015</option>
+                           <option value="2014">2014</option>
+                           <option value="2013">2013</option>
                           </select>
                         </div>
-
-                        <center><button type="button" class="btn btn-success" onclick="add_etiqueta()">Registrar</button></center>
-                      </form>
+                      </div>
+                      <div class="col-xs-4">
+                        <label></label>
+                        <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Seleccionar año de inicio">
+                         <option value="2018" selected >2018</option>
+                         <option value="2017" >2017</option>
+                         <option value="2016">2016</option>
+                         <option value="2015">2015</option>
+                         <option value="2014">2014</option>
+                         <option value="2013">2013</option>
+                        </select>
+                      </div>
                     </div>
-                  </div>
-          			</div>
-          		</div>
-          	</div>
+                    <br><br>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary">Realizar búsqueda por filtro</button>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
 
-					<div class ="titular"><center>Consulta de acuerdos del H. Consejo Técnico</center></div></br>
-
-          <form id="frm_acuerdo" enctype="multipart/form-data" action="conexiones/upload_files.php" method="POST" class="forma">
-            <div class="auxiliar" style="width: 80%">
-
-            <div class="row">
-              <div class="col-xs-5">
-                <label for"tituloAcuerdo">Año del acta/sesión:</label>
-              <input type="date" class="fsesion" id="" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="" onchange="" >
-              </div>
-              <div class="col-xs-7">
-                  <div id="etiqueta">
-                    <div class="form-group">
-                      <label for="">Etiqueta:</label><br>
-
-                      <?php
-                        //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
-
-                        $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
-                        $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
-
-                        echo'
-                        <select class="selectpicker" id="etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
-                        <optgroup label="Secretaría académica">';
-
-                        while ($line = mysqli_fetch_array($result)) {
-                          echo'<option>'.$line["etiqueta"].'</option>';
-                        }
-                        echo'</optgroup>';
-
-                        //Muestra las etiquetas que pertenecen a servicios escolares
-                        $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Servicios escolares' ORDER BY etiqueta ASC";
-                        $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
-
-                        echo'
-                        <optgroup label="Servicios escolares">';
-
-                        while ($line = mysqli_fetch_array($result)) {
-                          echo'<option>'.$line["etiqueta"].'</option>';
-                        }
-                        echo'</optgroup>';
-
-                        //Muestra las etiquetas que pertenecen a Secretaría de investigación y posgrado
-                        $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de investigación y posgrado' ORDER BY etiqueta ASC";
-                        $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
-
-                        echo'
-                        <optgroup label="Secretaría de investigación y posgrado">';
-
-                        while ($line = mysqli_fetch_array($result)) {
-                          echo'<option>'.$line["etiqueta"].'</option>';
-                        }
-                        echo'</optgroup>';
-
-                        //Muestra las etiquetas que pertenecen a Secretaría de vinculación
-                        $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de vinculación' ORDER BY etiqueta ASC";
-                        $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
-
-                        echo'
-                        <optgroup label="Secretaría de vinculación">';
-
-                        while ($line = mysqli_fetch_array($result)) {
-                          echo'<option>'.$line["etiqueta"].'</option>';
-                        }
-                        echo'</optgroup>';
-
-                        //Muestra las etiquetas que pertenecen a Comités y comisiones
-                        $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Comités y comisiones' ORDER BY etiqueta ASC";
-                        $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
-
-                        echo'
-                        <optgroup label="Comités y comisiones">';
-
-                        while ($line = mysqli_fetch_array($result)) {
-                          echo'<option>'.$line["etiqueta"].'</option>';
-                        }
-
-                        echo'</optgroup>
-                        </select>';
-
-                        ?>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <label for"tituloAcuerdo">Título del acuerdo: </label>
-                <input class="form-control" id="titulo_acuerdo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-4">
-                <div class="form-group">
-                  <br>
-                  <label for="">Busqueda por rango de años:</label>
-                </div>
-              </div>
-              <div class="col-xs-4">
-                <div class="form-group">
-                  <label></label>
-                  <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Seleccionar año de inicio">
-                   <option value="2018" selected >2018</option>
-                   <option value="2017" >2017</option>
-                   <option value="2016">2016</option>
-                   <option value="2015">2015</option>
-                   <option value="2014">2014</option>
-                   <option value="2013">2013</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-xs-4">
-                <label></label>
-                <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Seleccionar año de inicio">
-                 <option value="2018" selected >2018</option>
-                 <option value="2017" >2017</option>
-                 <option value="2016">2016</option>
-                 <option value="2015">2015</option>
-                 <option value="2014">2014</option>
-                 <option value="2013">2013</option>
-                </select>
-              </div>
-            </div>
-            <br><br>
-            <center><button type="button" class="btn btn-success">Realizar búsqueda</button></center>
-            </div>
-            </form>
-							</br></br>
-            </div>
-
-            <div id="tabla_acuerdos">
-
-              <table class="table thead-dark table-bordered">
-                 <thead style="">
-                   <tr>
-                     <th>N°</th>
-                     <th>Fecha acta</th>
-                     <th>Etiqueta</th>
-                     <th>Título</th>
-                     <th>Mostrar</th>
-                     <th>Admin</th>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   <tr style="background-color:#C3E6CB ">
-                     <td>1</td>
-                     <td>2018/01/01</td>
-                     <td>Contrataciones (Asignatura de profesores y ayudantes)</td>
-                     <td>Título de no sé qué acuerdo ksdaksld alksjdla ksdalksd las dlaksd oqiweo qiwue qwjdoiqwuqh </td>
-                     <td><img src="asdasd"></td>
-                     <td><a href="">Editar</a> <a href="">Eliminar</a></td>
-                   </tr>
-                   <tr style="background-color:#FFEEBA">
-                     <td>2</td>
-                     <td>2018/01/01</td>
-                     <td>Contrataciones (Asignatura de profesores y ayudantes)</td>
-                     <td>Título de no sé qué acuerdo ksdaksld alksjdla ksdalksd las dlaksd oqiweo qiwue qwjdoiqwuqh </td>
-                     <td><img src="asasd"></td>
-                     <td><a href="">Editar</a> <a href="">Eliminar</a></td>
-
-                   </tr>
-                   <tr style="background-color:#BEE5EB">
-                     <td>3</td>
-                     <td>2018/01/01</td>
-                     <td>Contrataciones (Asignatura de profesores y ayudantes)</td>
-                     <td>Título de no sé qué acuerdo ksdaksld alksjdla ksdalksd las dlaksd oqiweo qiwue qwjdoiqwuqh </td>
-                     <td><img src="asdasd"></td>
-                     <td><a href="">Editar</a> <a href="">Eliminar</a></td>
-                   </tr>
-                   <tr style="background-color:#F5C6CB">
-                     <td>3</td>
-                     <td>2018/01/01</td>
-                     <td>Contrataciones (Asignatura de profesores y ayudantes)</td>
-                     <td>Título de no sé qué acuerdo ksdaksld alksjdla ksdalksd las dlaksd oqiweo qiwue qwjdoiqwuqh </td>
-                     <td><img src="asdasd"></td>
-                     <td><a href="">Editar</a> <a href="">Eliminar</a></td>
-                   </tr>
-                 </tbody>
-               </table>
-            </div>
-
-				</div>
 			<div id="pie">
 
 			</div>
@@ -353,5 +395,6 @@
         }
       });
     }
+
 	</SCRIPT>
 </html>
