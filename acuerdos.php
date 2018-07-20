@@ -19,7 +19,7 @@
 		<meta http-equiv="expires" content="0">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="Bootstrap/css/bootstrap.min.css"/>
-		<script src="js/jquery-3.1.1.js"></script>
+	  <script src="js/jquery-3.1.1.js"></script>
     <script src="js/down_value.js"></script>
 		<script src="js/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="style.css"/>
@@ -31,16 +31,13 @@
     <!------------------------------------------------------------------------------->
     <!-- Importar ventana modal -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-      <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-      <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+      <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!------------------------------------------------------------------------------------>
-
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 		<link rel="icon" type="image/png" href="">
 		<link rel="shortcut icon" href="imagenes/logoUnam.jpg"/>
-
-    <script src="js/jquery-3.1.1.js"></script>
 
 
 	</head>
@@ -143,7 +140,7 @@
                         <td>'.$line["etiqueta"].'</td>
                         <td>'.$line["titulo"].'</td>
                         <td><center>
-                        <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#info_acuerdo">
+                        <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" >
                           Ver contenido
                         </button></center></td>
                         <td><a href="?id='.$line["id"].'">Editar</a></br><a href="'.$line["id"].'">Eliminar</a></td>
@@ -154,7 +151,6 @@
                echo '
                 </tbody>
               </table>';
-              mysqli_close($con);
 
               /*----------------------------------------------------------------
                               Creación de botones de paginación
@@ -190,7 +186,7 @@
                ------------------------------------------------------------------>
 
                <div id="modal_acuerdo">
-                 Empty
+                 data-toggle="modal" data-target="#info_acuerdo"
                </div>
 
         </div>
@@ -212,8 +208,8 @@
                     <div class="row">
                       <div class="col-xs-5">
                         <label for"tituloAcuerdo">Año del acta/sesión:</label>
-                        <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Seleccionar año de inicio">
-                         <option value="2018" selected >2018</option>
+                        <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Selecciona un año">
+                         <option value="2018">2018</option>
                          <option value="2017">2017</option>
                          <option value="2016">2016</option>
                          <option value="2015">2015</option>
@@ -230,7 +226,7 @@
                                 //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
 
                                 $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
-                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>');
 
                                 echo'
                                 <select class="selectpicker" id="etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
@@ -243,7 +239,7 @@
 
                                 //Muestra las etiquetas que pertenecen a servicios escolares
                                 $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Servicios escolares' ORDER BY etiqueta ASC";
-                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>');
 
                                 echo'
                                 <optgroup label="Servicios escolares">';
@@ -291,6 +287,7 @@
                                 echo'</optgroup>
                                 </select>';
 
+                                mysqli_close($con);
                                 ?>
                             </div>
                         </div>
@@ -313,8 +310,8 @@
                       <div class="col-xs-4">
                         <div class="form-group">
                           <label></label>
-                          <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Seleccionar año de inicio">
-                           <option value="2018" selected >2018</option>
+                          <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Selecciona año de inicio">
+                           <option value="2018">2018</option>
                            <option value="2017" >2017</option>
                            <option value="2016">2016</option>
                            <option value="2015">2015</option>
@@ -325,9 +322,9 @@
                       </div>
                       <div class="col-xs-4">
                         <label></label>
-                        <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Seleccionar año de inicio">
-                         <option value="2018" selected >2018</option>
-                         <option value="2017" >2017</option>
+                        <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Selecciona año de fin">
+                         <option value="2018">2018</option>
+                         <option value="2017">2017</option>
                          <option value="2016">2016</option>
                          <option value="2015">2015</option>
                          <option value="2014">2014</option>

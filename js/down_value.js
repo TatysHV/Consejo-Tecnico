@@ -845,6 +845,7 @@ function show_acuerdo(id_acuerdo){
     type: "post",
     success: function(data){
       document.getElementById("modal_acuerdo").innerHTML = data;
+      $("#info_acuerdo").modal('show');
     }
   });
 }

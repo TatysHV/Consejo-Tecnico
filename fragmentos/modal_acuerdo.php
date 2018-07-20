@@ -26,8 +26,8 @@
              <label>Observaciones:</label></br><p class="inf_acuerdo">'.$row['observaciones'].'</p>
              <label>Etiqueta:</label></br><p class="inf_acuerdo">'.$row['etiqueta'].'</p>
              <label>Estado:</label></br><p class="inf_acuerdo">'.$row['estatus'].'</p>
-             <label>Oficio:</label></br><p class="inf_acuerdo">'.$row['oficio'].'</p>
-             <label>Acta:</label></br><p class="inf_acuerdo">'.$row['pdf_acta'].'</p>';
+             <label>Oficio:</label></br><p class="inf_acuerdo"><a href="conexiones/uploads/'.$row['oficio'].'">'.$row['oficio'].'</a></p>
+             <label>Acta:</label></br><p class="inf_acuerdo"><a href="conexiones/uploads/'.$row['pdf_acta'].'">'.$row['pdf_acta'].'</a></p>';
            }
 
       echo'
