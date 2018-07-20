@@ -598,6 +598,149 @@ function subirCalendario(tipo){
     }
   }
 
+    /***************************************************************************/
+  /************************ CONTROL DE COMITES **************************/
+
+  function regComiteA(){
+    var formData = new FormData(document.getElementById("frm_comA"));
+
+    formData.append('funcion', 9);
+
+    $.ajax({
+        url: "../consejo_tecnico/conexiones/administracion.php",
+        data: formData,
+        type: "post",
+        contentType: false,
+        processData: false,
+        success: function(data){
+          alert("Comité de académicos, licenciaturas y programas registrado correctamente. ");
+          window.location.assign("../consejo_tecnico/comites.php");
+        },
+        failure: function(){
+          alert("Error al registrar nuevo comité. "+data);
+        }
+      });
+
+  }
+
+  function regComiteO(){
+        var formData = new FormData(document.getElementById("frm_comO"));
+
+        formData.append('funcion', 10);
+
+        $.ajax({
+            url: "../consejo_tecnico/conexiones/administracion.php",
+            data: formData,
+            type: "post",
+            contentType: false,
+            processData: false,
+            success: function(data){
+              alert("Comité de otro tipo registrado correctamente. ");
+              window.location.assign("../consejo_tecnico/comites.php");
+            },
+            failure: function(){
+              alert("Error al registrar nuevo comité. "+data);
+            }
+          });
+
+  }
+
+
+  function deleteCom(id_reg){
+
+    var eleccion = confirm("¿Estás seguro de eliminar este comité?"); //Pregunta de seguridad para confirmar
+
+    if (eleccion){
+      //Así se mandan sólo 3 valores por ajax, nombre, tipo y nota.
+      $.ajax({
+         url: "../consejo_tecnico/conexiones/administracion.php",
+         data: {"id":id_reg, "funcion":11},
+         type: "post",
+          success: function(data){
+              alert("Se ha eliminado el comité");
+              window.location.assign("../consejo_tecnico/comites.php");
+
+          },
+          failure: function(){
+            alert("No se logró eliminar el comité"+data);
+          }
+        });
+
+    }
+  }
+
+/***************************************************************************/
+  /************************ CONTROL DE COMISIONES **************************/
+
+  function regComisionD(){
+    var formData = new FormData(document.getElementById("frm_comD"));
+
+    formData.append('funcion', 12);
+
+    $.ajax({
+        url: "../consejo_tecnico/conexiones/administracion.php",
+        data: formData,
+        type: "post",
+        contentType: false,
+        processData: false,
+        success: function(data){
+          alert("Comisión dictaminadora registrada correctamente. ");
+          window.location.assign("../consejo_tecnico/comisiones.php");
+        },
+        failure: function(){
+          alert("Error al registrar nueva comisión. "+data);
+        }
+      });
+
+  }
+
+  function regComisionE(){
+        var formData = new FormData(document.getElementById("frm_comE"));
+
+        formData.append('funcion', 13);
+
+        $.ajax({
+            url: "../consejo_tecnico/conexiones/administracion.php",
+            data: formData,
+            type: "post",
+            contentType: false,
+            processData: false,
+            success: function(data){
+              alert("Comisión evaluadora registrado correctamente. ");
+              window.location.assign("../consejo_tecnico/comisiones.php");
+            },
+            failure: function(){
+              alert("Error al registrar nueva comisión. "+data);
+            }
+          });
+
+  }
+
+
+  function deleteComision(id_reg){
+
+    var eleccion = confirm("¿Estás seguro de eliminar esta comisión?"); //Pregunta de seguridad para confirmar
+
+    if (eleccion){
+      //Así se mandan sólo 3 valores por ajax, nombre, tipo y nota.
+      $.ajax({
+         url: "../consejo_tecnico/conexiones/administracion.php",
+         data: {"id":id_reg, "funcion":14},
+         type: "post",
+          success: function(data){
+              alert("Se ha eliminado la comisión");
+              window.location.assign("../consejo_tecnico/comisiones.php");
+
+          },
+          failure: function(){
+            alert("No se logró eliminar la comisión"+data);
+          }
+        });
+
+    }
+  }
+
+
   /*------------------------------------------------------------------------------
   -------------------------CONTROL DE ACUERDOS ----------------------------------
   -----------------------------------------------------------------------------*/

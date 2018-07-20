@@ -158,6 +158,148 @@
 
 
         <div class="bloque-blank">
+          <legend>Gestión de comités</legend>
+          <ul>
+            <!--<li><a class="onKlic" onclick="veralerta()">Modificar y/o eliminar comités</a></li>-->
+            <li><a onclick="showEditComA()" class="onKlic">Subir nuevo comité de académicos, licenciaturas y programas</a></li>
+                <div id="comiteA" class="notaEdit oculto" style="padding: 20px;">
+                  <center><h4>Subir nuevo comité de académicos, licenciaturas y programas</h4></center>
+                  </br>
+                  <form id="frm_comA" method="post">
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <label for="exampleInputEmail1">Nombre del comité: </label>
+                        <input type="text" class="form-control" name="nameNomrA" aria-describedby="emailHelp" placeholder="Ingresar nombre">
+                        <small id="blablibli" class="form-text text-muted">Es el nombre que visualizarán los usuarios</small>
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label for="exampleFormControlFile1">Seleccionar archivo <span style="color:red">PDF</span> del comité</label>
+                        <input type="file" class="form-control-file" id="regGral" name="reg_a[]">
+                      </div>
+                    </div>
+                    <div class="row">
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" style="float: right" onclick="regComiteA()">Aceptar</button>
+                          </div>
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-secondary" onclick="hideEditComA()">Cancelar</button>
+                          </div>
+                    </div>
+                    </form>
+                  </div>
+            <li><a onclick="showEditComO()" class="onKlic">Subir nuevo comité de otro tipo</a></li>
+                <div id="comiteO" class="notaEdit oculto" style="padding: 20px;">
+                  <center><h4>Subir nuevo comité de otro tipo</h4></center>
+                  </br>
+                  <form id="frm_comO" method="post">
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <label for="exampleInputEmail1">Nombre del comité: </label>
+                        <input type="text" class="form-control" name="nameNomrO" aria-describedby="emailHelp" placeholder="Ingresar nombre">
+                        <small id="blablibli" class="form-text text-muted">Es el nombre que visualizarán los usuarios</small>
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label for="exampleFormControlFile1">Seleccionar archivo <span style="color:red">PDF</span> del comité</label>
+                        <input type="file" class="form-control-file" id="regConsejo" name="reg_o[]">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" style="float: right" onclick="regComiteO()">Aceptar</button>
+                          </div>
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-secondary" onclick="hideEditComO()">Cancelar</button>
+                          </div>
+                    </div>
+                    </form>
+                  </div>
+          </ul>
+          <!---------------Notificaciones de procesos-------------- -->
+
+          <!--<div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            El nuevo reglamento ha sido registrado con éxito.
+          </div>-->
+
+
+        </div>
+
+
+        <div class="bloque-blank">
+          <legend>Gestión de comisiones</legend>
+          <ul>
+            <!--<li><a class="onKlic" onclick="veralerta()">Modificar y/o eliminar comités</a></li>-->
+            <li><a onclick="showEditComD()" class="onKlic">Subir nueva comisión dictaminadora</a></li>
+                <div id="comisionD" class="notaEdit oculto" style="padding: 20px;">
+                  <center><h4>Subir nueva comisión dictaminadora</h4></center>
+                  </br>
+                  <form id="frm_comD" method="post">
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <label for="exampleInputEmail1">Nombre de la comisión: </label>
+                        <input type="text" class="form-control" name="nameNomrD" aria-describedby="emailHelp" placeholder="Ingresar nombre">
+                        <small id="blablibli" class="form-text text-muted">Es el nombre que visualizarán los usuarios</small>
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label for="exampleFormControlFile1">Seleccionar archivo <span style="color:red">PDF</span> de la comisión</label>
+                        <input type="file" class="form-control-file" id="regGral" name="reg_d[]">
+                      </div>
+                    </div>
+                    <div class="row">
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" style="float: right" onclick="regComisionD()">Aceptar</button>
+                          </div>
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-secondary" onclick="hideEditComD()">Cancelar</button>
+                          </div>
+                    </div>
+                    </form>
+                  </div>
+            <li><a onclick="showEditComE()" class="onKlic">Subir nueva comisión evaluadora</a></li>
+                <div id="comisionE" class="notaEdit oculto" style="padding: 20px;">
+                  <center><h4>Subir nueva comisión evaluadora</h4></center>
+                  </br>
+                  <form id="frm_comE" method="post">
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <label for="exampleInputEmail1">Nombre de la comisión: </label>
+                        <input type="text" class="form-control" name="nameNomrE" aria-describedby="emailHelp" placeholder="Ingresar nombre">
+                        <small id="blablibli" class="form-text text-muted">Es el nombre que visualizarán los usuarios</small>
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label for="exampleFormControlFile1">Seleccionar archivo <span style="color:red">PDF</span> de la comisión</label>
+                        <input type="file" class="form-control-file" id="regConsejo" name="reg_e[]">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" style="float: right" onclick="regComisionE()">Aceptar</button>
+                          </div>
+                          <div class="col-sm-6">
+                            <button type="button" class="btn btn-secondary" onclick="hideEditComE()">Cancelar</button>
+                          </div>
+                    </div>
+                    </form>
+                  </div>
+          </ul>
+          <!---------------Notificaciones de procesos-------------- -->
+
+          <!--<div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            El nuevo reglamento ha sido registrado con éxito.
+          </div>-->
+
+
+        </div>
+
+
+        <div class="bloque-blank">
           <legend>Gestión de usuarios</legend>
           <ul>
             <li><a onclick="show_users_table()" class="onKlic">Consultar usuarios registrados</a></li>

@@ -26,6 +26,18 @@ error_reporting(E_ALL);
       break;
       case 8: deleteReg();
       break;
+      case 9: registrarComiteA();
+      break;
+      case 10: registrarComiteO();
+      break;
+      case 11: deleteCom();
+      break;
+      case 12: registrarComisionD();
+      break;
+      case 13: registrarComisionE();
+      break;
+      case 14: deleteComision();
+      break;
   }
 
   function RegistrarUsuario(){
@@ -293,6 +305,148 @@ error_reporting(E_ALL);
       }
 
     }
+
+
+  function registrarComiteA(){
+    include "conexion.php";
+
+
+    $nombre = $_POST["nameNomrA"];
+    $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+    foreach ($_FILES['reg_a']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+      //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+      //----------- Subir la info de cada archivo a la base de datos------------
+      //  $nombre = basename($_FILES['reg_a']['name'][$i]);
+
+      $url=basename($_FILES['reg_a']['name'][$i]);
+
+      //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
+      $query = mysqli_query($con, "INSERT INTO comites (nombre, url, tipo) VALUES ('$nombre','$url','A')"); //Tipo A = Académico
+
+      if (strlen($_FILES['reg_a']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['reg_a']['tmp_name'][$i], $target_path.$name)) {
+
+        }else{echo "Error, no se han subido los archivos";}
+      }
+    }
+
+  }
+
+  function registrarComiteO(){
+    include "conexion.php";
+
+
+    $nombre = $_POST["nameNomrO"];
+    $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+    foreach ($_FILES['reg_o']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+      //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+      //----------- Subir la info de cada archivo a la base de datos------------
+      //  $nombre = basename($_FILES['reg_a']['name'][$i]);
+
+      $url=basename($_FILES['reg_o']['name'][$i]);
+
+      //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
+      $query = mysqli_query($con, "INSERT INTO comites (nombre, url, tipo) VALUES ('$nombre','$url','O')"); //Tipo O = Otros
+
+      if (strlen($_FILES['reg_o']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['reg_o']['tmp_name'][$i], $target_path.$name)) {
+
+        }else{echo "Error, no se han subido los archivos";}
+      }
+    }
+
+  }
+
+ function deleteCom(){
+      include "conexion.php";
+
+      $id_com = $_POST['id'];
+
+      $query = mysqli_query($con, "DELETE FROM comites WHERE id='$id_com'");
+
+      if(!$query){
+        echo 'Error al eliminar el comité';
+      }
+
+    }
+
+
+
+  function registrarComisionD(){
+    include "conexion.php";
+
+
+    $nombre = $_POST["nameNomrD"];
+    $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+    foreach ($_FILES['reg_d']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+      //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+      //----------- Subir la info de cada archivo a la base de datos------------
+      //  $nombre = basename($_FILES['reg_a']['name'][$i]);
+
+      $url=basename($_FILES['reg_d']['name'][$i]);
+
+      //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
+      $query = mysqli_query($con, "INSERT INTO comisiones (nombre, url, tipo) VALUES ('$nombre','$url','D')"); //Tipo D = Dictaminadoras
+
+      if (strlen($_FILES['reg_d']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['reg_d']['tmp_name'][$i], $target_path.$name)) {
+
+        }else{echo "Error, no se han subido los archivos";}
+      }
+    }
+
+  }
+
+  function registrarComisionE(){
+    include "conexion.php";
+
+
+    $nombre = $_POST["nameNomrE"];
+    $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+    foreach ($_FILES['reg_e']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+      //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+      //----------- Subir la info de cada archivo a la base de datos------------
+      //  $nombre = basename($_FILES['reg_a']['name'][$i]);
+
+      $url=basename($_FILES['reg_e']['name'][$i]);
+
+      //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
+      $query = mysqli_query($con, "INSERT INTO comisiones (nombre, url, tipo) VALUES ('$nombre','$url','E')"); //Tipo E = Evaluadoras
+
+      if (strlen($_FILES['reg_e']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['reg_e']['tmp_name'][$i], $target_path.$name)) {
+
+        }else{echo "Error, no se han subido los archivos";}
+      }
+    }
+
+  }
+
+ function deleteComision(){
+      include "conexion.php";
+
+      $id_comi = $_POST['id'];
+
+      $query = mysqli_query($con, "DELETE FROM comisiones WHERE id='$id_comi'");
+
+      if(!$query){
+        echo 'Error al eliminar el comité';
+      }
+
+    }
+
 
 
  ?>
