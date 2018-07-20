@@ -493,6 +493,22 @@ function hideEditRegGral(){ document.getElementById("reglamentoGral").style.disp
 function showEditRegCT(){ document.getElementById("reglamentoCT").style.display="block";}
 function hideEditRegCT(){ document.getElementById("reglamentoCT").style.display="none";}
 
+/******************* Visualización de la edición de comités **************/
+
+function showEditComA(){ document.getElementById("comiteA").style.display="block";}
+function hideEditComA(){ document.getElementById("comiteA").style.display="none";}
+
+function showEditComO(){ document.getElementById("comiteO").style.display="block";}
+function hideEditComO(){ document.getElementById("comiteO").style.display="none";}
+
+/******************* Visualización de la edición de comisiones **************/
+
+function showEditComD(){ document.getElementById("comisionD").style.display="block";}
+function hideEditComD(){ document.getElementById("comisionD").style.display="none";}
+
+function showEditComE(){ document.getElementById("comisionE").style.display="block";}
+function hideEditComE(){ document.getElementById("comisionE").style.display="none";}
+
 /**************** Mostrar contenido dinámico de la busqueda de reglamentos por año *************/
 
 function showRegCT(){

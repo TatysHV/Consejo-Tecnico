@@ -45,8 +45,8 @@
 							<li><a href="actas.php">ACTAS</a></li>
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
-							<li class="active"><a href="normatividad.php">NORMATIVIDAD</a></li>
-              <li><a href="comites.php">COMITES</a></li>
+							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
+              <li class="active"><a href="comites.php">COMITES</a></li>
               <li><a href="comisiones.php">COMISIONES</a></li>
               <?php
                       if($_SESSION['tipo'] == '0')
@@ -63,18 +63,18 @@
 			<div id="principal">
       </br></br></br>
       <div class="row" style="width: 80%; margin: auto;">
-        <div id="normatividad">
+        <div id="comites">
           <!--Carga de manera automática al abrir la página, el reglamento general de la UNAM
           Y mostrará de manera dinámica el reglamento aprobado por el Consejo Técnico dependiendo del año elegido-->
           <?php
-            $sql="SELECT * FROM normatividad WHERE tipo = 'G'";
+            $sql="SELECT * FROM comites WHERE tipo = 'A' ORDER BY nombre ASC";
 
             $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($conexion));
 
-            echo' <center><h3 style="color:#3380FF">Normatividad</h3></center>
+            echo' <center><h3 style="color:#3380FF">Comités</h3></center>
             <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
 
-              <legend style="margin-top: 30px; font-size: 1.4em">Estatutos y lineamientos generales de la UNAM</legend>
+              <legend style="margin-top: 30px; font-size: 1.4em">Comités de Académicos, Licenciaturas y Programas</legend>
 
               <div style="padding-left: 20px;" class="lista">
                 <ul>';
@@ -83,7 +83,7 @@
 
                   echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line["url"].'">'.$line["nombre"].'</a></strong></span>';
                       if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
-                         echo'<div class="onKlic" onclick="deleteReg('.$line["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>';
+                         echo'<div class="onKlic" onclick="deleteCom('.$line["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>';
                       }
                   echo'</li>';
 
@@ -91,35 +91,39 @@
                 echo'
                 </ul>
               </div>
-            </div>
+            </div>';
 
+          ?>
+        </div>
+        <div id="comites">
+          <!--Carga de manera automática al abrir la página, el reglamento general de la UNAM
+          Y mostrará de manera dinámica el reglamento aprobado por el Consejo Técnico dependiendo del año elegido-->
+          <?php
+            $sql2="SELECT * FROM comites WHERE tipo = 'O' ORDER BY nombre ASC";
+
+            $result2 = mysqli_query($con, $sql2) or die('<b>No se encontraron coincidencias</b>' . mysql_error($conexion));
+
+            echo'
             <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
-              <legend style="margin-top: 30px; font-size: 1.4em">Lineamientos y reglamentos ENES Morelia</legend>
-              <h4 style="color:#666">Seleccionar año:</h4>
 
-              <div class="row">
-                <form>
-                  <div class="form-group col-sm-9" style="padding-right:0px;">
-                    <select class="form-control" id="regYear">
-                      <option value="2018">2018</option>
-                      <option value="2017">2017</option>
-                      <option value="2016">2016</option>
-                      <option value="2015">2015</option>
-                      <option value="todos">Todos</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-3"><button type="button" class="btn btn-info" onclick="showRegCT()"> Buscar </button></div>
-                </form>
+              <legend style="margin-top: 30px; font-size: 1.4em"> Otros Comités</legend>
+
+              <div style="padding-left: 20px;" class="lista">
+                <ul>';
+
+                  while ($line2 = mysqli_fetch_array($result2)) {
+
+                  echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line2["url"].'">'.$line2["nombre"].'</a></strong></span>';
+                      if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
+                         echo'<div class="onKlic" onclick="deleteCom('.$line2["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>';
+                      }
+                  echo'</li>';
+
+                }
+                echo'
+                </ul>
               </div>
-
-              <div class="row">
-                <div style="padding-left: 30px;" class="lista" id="reg_aprobados">
-                  <!-- Espacio dinánico que muestra el resultado de la búsqueda -->
-                </div>
-              </div>
-
-            </div>
-        ';
+            </div>';
 
           ?>
         </div>

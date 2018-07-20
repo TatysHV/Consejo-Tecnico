@@ -35,6 +35,8 @@
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li class="active"><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
+              <li><a href="comites.php">COMITES</a></li>
+              <li><a href="comisiones.php">COMISIONES</a></li>
 							<?php
               if($_SESSION['tipo'] == '0')
               {
