@@ -849,3 +849,145 @@ function show_acuerdo(id_acuerdo){
     }
   });
 }
+
+function bloqueo_años(){
+
+}
+
+function busqueda_acuerdos(){
+
+  var fecha = $("#srch_year").val();
+  var etiqueta = $("#srch_etiqueta").val();
+  var titulo = $("#srch_titulo").val();
+
+  var init = $("#srch_init").val();
+  var finish = $("#srch_finish").val();
+
+
+//****************Identifica el tipo de búsqueda y combinaciones ***************
+ /* Índice de combinaciones disponibles de búsqueda
+ 1. Año
+ 2. Año, Título
+ 3. Año, Etiqueta
+ 4. Año, Título, Etiqueta
+
+ 5. Etiqueta
+ 6. Etiqueta, Título
+
+ 7. Título
+
+ 8. Rango
+ 9. Rango, Etiqueta
+ 10. Rango, Título
+ 11. Rango, Etiqueta, Título
+
+ */
+
+  var nivel_busqueda = 0;
+
+  if(fecha!=""){
+      if(etiqueta!=""){
+          if(titulo!=""){
+            nivel_busqueda = 4; //Fecha, etiqueta, titulo
+          }
+          else{
+             nivel_busqueda = 3; //Fecha, etiqueta
+          }
+      }
+      else if(titulo!=""){
+        nivel_busqueda = 2;//Fecha, titulo
+      }
+    nivel_busqueda = 1; //Fecha
+  }//***************************************************************************
+  else if(etiqueta!="") {
+      if(fecha!=""){
+          if(titulo!=""){ // Etiqueta, fecha, titulo
+              nivel_busqueda = 4;
+          }
+          else{
+            nivel_busqueda = 3; // Etiqueta, fecha
+          }
+      }
+      else if (titulo!="") { // Etiqueta, titulo
+        nivel_busqueda = 6;
+      }
+    nivel_busqueda = 5; // Etiqueta
+  }//***************************************************************************
+  else if(titulo!="") {
+      if(fecha!=""){
+          if(etiqueta!=""){ // Titulo, fecha, etiqueta
+              nivel_busqueda = 4;
+          }else{
+            nivel_busqueda = 2; // Titulo, fecha
+          }
+      }
+      else if (etiqueta!="") {
+        nivel_busqueda = 6; // Titulo, etiqueta
+      }
+    nivel_busqueda = 7; // Titulo
+  }//***************************************************************************
+  else if(init!="" && finish!="") {
+      if(etiqueta!=""){
+          if(titulo!=""){ // Rango, etiqueta, titulo
+              nivel_busqueda = 11;
+          }
+          else{
+            nivel_busqueda = 9;// Rango, etiqueta
+          }
+      }
+      else if (titulo!="") {
+          nivel_busqueda = 10; // Rango, título
+    }
+    nivel_busqueda = 8; // Rango
+  }
+
+  var consulta ="";
+
+  switch (nivel_busqueda){
+    case 1: // Año
+      consulta = "SELECT * FROM acuerdos WHERE fecha_acta = '' ";
+      break;
+    case 2: // Año, Título
+      consulta = "SELECT * FROM acuerdos WHERE fecha_acta = '' AND titulo = %''% ";
+      break;
+    case 3: // Año, Etiqueta
+      consulta = "SELECT * FROM acuerdos WHERE fecha_acta = '' AND etiqueta = ''";
+      break;
+    case 4: // Año, Título, Etiqueta
+      consulta = "SELECT * FROM acuerdos WHERE fecha_acta = '' AND titulo = %''% AND etiqueta = '' ";
+      break;
+    case 5: // Etiqueta
+      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '' ";
+      break;
+    case 6: // Etiqueta, Titulo
+      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '' AND titulo = %''% ";
+      break;
+    case 7: // Titulo
+      consulta = "SELECT * FROM acuerdos WHERE titulo = %''% "; // % cualquier valor antes o despues de lo que escribes.
+      break;
+    case 8: // Rango
+      consulta = "SELECT * FROM acuerdos WHERE fecha_acta > x AND fecha_acta < y ";
+      break;
+    case 9: // Rango, Etiqueta
+      consulta = "SELECT * FROM acuerdos WHERE fecha_acta > x AND fecha_acta < y AND etiqueta = ''";
+      break;
+    case 10: // Rango, Titulo
+      consulta = "SELECT * FROM acuerdos WHERE fecha_acta > x AND fecha_acta < y AND titulo = %''% ";
+      break;
+    case 11: // Rango, Etiqueta, Titulo
+      consulta = "SELECT * FROM acuerdos WHERE fecha_acta > x AND fecha_acta < y AND etiqueta = '' AND titulo = %''% ";
+      break;
+  }
+
+  $.ajax({
+    url: "../consejo_tecnico/conexiones/acuerdos.php",
+    data: {"query":consulta, "funcion", n},
+    type: "post",
+    success: function(data){
+      document.getElementById("modal_acuerdo").innerHTML = data;
+      $("#info_acuerdo").modal('show');
+    }
+  });
+
+
+}

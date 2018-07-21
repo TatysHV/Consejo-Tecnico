@@ -186,7 +186,7 @@
                ------------------------------------------------------------------>
 
                <div id="modal_acuerdo">
-                 data-toggle="modal" data-target="#info_acuerdo"
+
                </div>
 
         </div>
@@ -208,7 +208,7 @@
                     <div class="row">
                       <div class="col-xs-5">
                         <label for"tituloAcuerdo">Año del acta/sesión:</label>
-                        <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Selecciona un año">
+                        <select class="selectpicker" id="srch_year" name="" data-width="100%" data-live-search="false" title="Selecciona un año">
                          <option value="2018">2018</option>
                          <option value="2017">2017</option>
                          <option value="2016">2016</option>
@@ -229,7 +229,7 @@
                                 $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>');
 
                                 echo'
-                                <select class="selectpicker" id="etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
+                                <select class="selectpicker" id="srch_etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
                                 <optgroup label="Secretaría académica">';
 
                                 while ($line = mysqli_fetch_array($result)) {
@@ -296,7 +296,7 @@
                     <div class="row">
                       <div class="col-xs-12">
                         <label for"tituloAcuerdo">Título del acuerdo: </label>
-                        <input class="form-control" id="titulo_acuerdo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
+                        <input class="form-control" id="srch_titulo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
                       </div>
                     </div>
 
@@ -310,7 +310,7 @@
                       <div class="col-xs-4">
                         <div class="form-group">
                           <label></label>
-                          <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Selecciona año de inicio">
+                          <select class="selectpicker" id="srch_init" name="" data-width="100%" data-live-search="false" title="Selecciona año de inicio">
                            <option value="2018">2018</option>
                            <option value="2017" >2017</option>
                            <option value="2016">2016</option>
@@ -322,7 +322,7 @@
                       </div>
                       <div class="col-xs-4">
                         <label></label>
-                        <select class="selectpicker" id="" name="" data-width="100%" data-live-search="false" title="Selecciona año de fin">
+                        <select class="selectpicker" id="srch_finish" name="" data-width="100%" data-live-search="false" title="Selecciona año de fin">
                          <option value="2018">2018</option>
                          <option value="2017">2017</option>
                          <option value="2016">2016</option>
