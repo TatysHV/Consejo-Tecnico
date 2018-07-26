@@ -8,6 +8,9 @@
 	{
 		echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
 	}
+
+
+
 ?>
 
 <!Doctype html>
@@ -29,6 +32,7 @@
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
     <!------------------------------------------------------------------------------->
+
     <!-- Importar ventana modal -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
       <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
@@ -60,11 +64,11 @@
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
-              <li><a href="comites.php">COMITES</a></li>
+              <li><a href="comites.php">COMITÉS</a></li>
               <li><a href="comisiones.php">COMISIONES</a></li>
               <?php
                   if($_SESSION['tipo'] == '0'){
-                    echo '<li class="active"><a href="acuerdos.php">ACUERDOS</a></li>
+                    echo '<li class="active"><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
                     <li><a href="oficios.php">OFICIOS</a></li>';
                   }
               ?>
@@ -74,6 +78,7 @@
 			</div>
 
 			<div id="principal"></br></br>
+        <input type="text" id="pag_acuerdos" value="0">
 
         <div id="tabla_acuerdos">
           <center><h3 style="color:#3380FF">Acuerdos del H. Consejo Técnico </h3></center>
@@ -338,7 +343,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary">Realizar búsqueda por filtro</button>
+                  <button type="button" class="btn btn-primary" onclick="busqueda_acuerdos()">Realizar búsqueda por filtro</button>
                 </div>
               </div>
             </div>

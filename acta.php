@@ -37,11 +37,13 @@ session_start(); ?>
 							<li class="active"><a href="actas.php">ACTAS</a></li>
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
+							<li><a href="comites.php">COMITÉS</a></li>
+              <li><a href="comisiones.php">COMISIONES</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
             						<?php
                         if($_SESSION['tipo'] == '0')
                           {
-                          echo '<li><a href="acuerdos.php">ACUERDOS</a></li>
+                          echo '<li><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
                                 <li><a href="oficios.php">OFICIOS</a></li>';
                           }
                         ?>
@@ -82,7 +84,7 @@ session_start(); ?>
 					if($line = mysqli_fetch_array($result)){
 
 					echo '
-					
+
 					</br></br>
 					<center>
 						<h3>Acta de la sesión <span style="text-transform:lowercase; color: #0080FF;">'.$line["tipo_sesion"].'</span> número <span style="text-transform:lowercase; color: #0080FF;">'.$line["numero_sesion"].'</span></h3>

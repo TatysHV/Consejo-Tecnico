@@ -46,12 +46,12 @@
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
-              <li><a href="comites.php">COMITES</a></li>
+              <li><a href="comites.php">COMITÉS</a></li>
               <li class="active"><a href="comisiones.php">COMISIONES</a></li>
               <?php
                       if($_SESSION['tipo'] == '0')
                       {
-                      	echo '<li><a href="acuerdos.php">ACUERDOS</a></li>';
+                      	echo '<li><a href="acuerdos.php?pag=0">ACUERDOS</a></li>';
 							        	echo '<li><a href="oficios.php">OFICIOS</a></li>';
 								}
                                                         ?>
@@ -77,7 +77,13 @@
               <legend style="margin-top: 30px; font-size: 1.4em">Comisiones Dictaminadoras</legend>
 
               <div style="padding-left: 20px;" class="lista">
-                <ul>';
+                <ul>
+
+                <li><a href="#">Comisión Dictaminadora de la ENES Morelia del área de las Ciencias Físico, Matemáticas y de las Ingenierías (CAACFMI)</a></li>
+                <li><a href="#">Comisión Dictaminadora de la ENES Morelia del área de las Ciencias Biológicas, Químicas y de la Salud (CAABQyS)</a></li>
+                <li><a href="#">Comisión Dictaminadora de la ENES Morelia del área de las Ciencias Sociales (CAACS)</a></li>
+                <li><a href="#">Comisión Dictaminadora de la ENES Morelia del área de las Humanidades y de las Artes (CAAHyA)</a></li>
+';
 
                   while ($line = mysqli_fetch_array($result)) {
 
@@ -109,7 +115,11 @@
               <legend style="margin-top: 30px; font-size: 1.4em">Comisiones Evaluadoras</legend>
 
               <div style="padding-left: 20px;" class="lista">
-                <ul>';
+                <ul>
+                  <li><a href="#">Comisión Evaluadora de la ENES Morelia del área de (CAABQyS-CAACFMI)</a></li>
+                  <li><a href="#">Comisión Evaluadora de la ENES Morelia del área de (CAACS-CAAHyA)</a></li>
+
+                ';
 
                   while ($line2 = mysqli_fetch_array($result2)) {
 

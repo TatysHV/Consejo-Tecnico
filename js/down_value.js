@@ -854,6 +854,28 @@ function bloqueo_años(){
 
 }
 
+function change_page(pag){
+    $("#pag_acuerdos").val(pag);
+    busqueda_acuerdos();
+}
+
+function check_file(file, type){
+
+//Cualquier cantidad de letras de la a a la z sin importar mayúsculas
+//y minúsculas y símbolos en cualquier parte, seguido por un punto . y en seguida (pdf o PDF)
+var exReg_word = '/[a-z]/';
+var exReg_pdf = '';
+
+  switch(type){
+    case 'word':
+
+    break;
+    case 'pdf':
+    break;
+  }
+
+}
+
 function busqueda_acuerdos(){
 
   var fecha = $("#srch_year").val();
@@ -897,8 +919,27 @@ function busqueda_acuerdos(){
       else if(titulo!=""){
         nivel_busqueda = 2;//Fecha, titulo
       }
-    nivel_busqueda = 1; //Fecha
+      else if(etiqueta==""&&titulo==""){
+          nivel_busqueda = 1; //Fecha
+      }
+
   }//***************************************************************************
+  else if(init!="" && finish!="") {
+      if(etiqueta!=""){
+          if(titulo!=""){ // Rango, etiqueta, titulo
+              nivel_busqueda = 11;
+          }
+          else{
+              nivel_busqueda = 9;// Rango, etiqueta
+          }
+      }
+      else if (titulo!="") {
+          nivel_busqueda = 10; // Rango, título
+      }
+      else if (etiqueta==""&&titulo=="") {
+          nivel_busqueda = 8; // Rango
+      }
+  }/***************************************************************************/
   else if(etiqueta!="") {
       if(fecha!=""){
           if(titulo!=""){ // Etiqueta, fecha, titulo
@@ -911,7 +952,9 @@ function busqueda_acuerdos(){
       else if (titulo!="") { // Etiqueta, titulo
         nivel_busqueda = 6;
       }
-    nivel_busqueda = 5; // Etiqueta
+      else if (fecha==""&&titulo=="") {
+          nivel_busqueda = 5; // Etiqueta
+      }
   }//***************************************************************************
   else if(titulo!="") {
       if(fecha!=""){
@@ -924,68 +967,73 @@ function busqueda_acuerdos(){
       else if (etiqueta!="") {
         nivel_busqueda = 6; // Titulo, etiqueta
       }
-    nivel_busqueda = 7; // Titulo
-  }//***************************************************************************
-  else if(init!="" && finish!="") {
-      if(etiqueta!=""){
-          if(titulo!=""){ // Rango, etiqueta, titulo
-              nivel_busqueda = 11;
-          }
-          else{
-            nivel_busqueda = 9;// Rango, etiqueta
-          }
+      else if (fecha==""&&etiqueta=="") {
+        nivel_busqueda = 7; // Titulo
       }
-      else if (titulo!="") {
-          nivel_busqueda = 10; // Rango, título
-    }
-    nivel_busqueda = 8; // Rango
-  }
+  }//***************************************************************************
+
 
   var consulta ="";
 
+  var pag = $("#pag_acuerdos").val();
+  var cantidad = 2; // cantidad de resultados por página
+  var inicial = pag * cantidad;
+
+
   switch (nivel_busqueda){
     case 1: // Año
-      consulta = "SELECT * FROM acuerdos WHERE fecha_acta = '' ";
+      alert("búsqueda por año");
+      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) = "+fecha+"";
       break;
     case 2: // Año, Título
-      consulta = "SELECT * FROM acuerdos WHERE fecha_acta = '' AND titulo = %''% ";
+      alert("búsqueda por año y titulo");
+      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) = "+fecha+" AND titulo LIKE '%"+titulo+"%'";
       break;
     case 3: // Año, Etiqueta
-      consulta = "SELECT * FROM acuerdos WHERE fecha_acta = '' AND etiqueta = ''";
+      alert("búsqueda por año y etiqueta");
+      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) = "+fecha+" AND etiqueta = '"+etiqueta+"'";
       break;
     case 4: // Año, Título, Etiqueta
-      consulta = "SELECT * FROM acuerdos WHERE fecha_acta = '' AND titulo = %''% AND etiqueta = '' ";
+      alert("búsqueda por año, titulo, etiqueta");
+      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) = "+fecha+" AND titulo LIKE '%"+titulo+"%' AND etiqueta = '"+etiqueta+"' ";
       break;
     case 5: // Etiqueta
-      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '' ";
+      alert("búsqueda por etiqueta");
+      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' ";
       break;
     case 6: // Etiqueta, Titulo
-      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '' AND titulo = %''% ";
+      alert("búsqueda por etiqueta y titulo");
+      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND titulo LIKE '%"+titulo+"%'";
       break;
     case 7: // Titulo
-      consulta = "SELECT * FROM acuerdos WHERE titulo = %''% "; // % cualquier valor antes o despues de lo que escribes.
+      alert("búsqueda por titulo");
+      consulta = "SELECT * FROM acuerdos WHERE titulo LIKE '%"+titulo+"%' "; // % cualquier valor antes o despues de lo que escribes.
       break;
     case 8: // Rango
-      consulta = "SELECT * FROM acuerdos WHERE fecha_acta > x AND fecha_acta < y ";
+      alert("búsqueda por rango");
+      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
       break;
     case 9: // Rango, Etiqueta
-      consulta = "SELECT * FROM acuerdos WHERE fecha_acta > x AND fecha_acta < y AND etiqueta = ''";
+      alert("búsqueda por rango y etiqueta");
+      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+" AND etiqueta = '"+etiqueta+"'";
       break;
     case 10: // Rango, Titulo
-      consulta = "SELECT * FROM acuerdos WHERE fecha_acta > x AND fecha_acta < y AND titulo = %''% ";
+      alert("búsqueda por rango y titulo");
+      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+" AND titulo LIKE '%"+titulo+"%'";
       break;
     case 11: // Rango, Etiqueta, Titulo
-      consulta = "SELECT * FROM acuerdos WHERE fecha_acta > x AND fecha_acta < y AND etiqueta = '' AND titulo = %''% ";
+      alert("búsqueda por rango, etiqueta y titulo");
+      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+" AND etiqueta = '"+etiqueta+"' AND titulo LIKE '%"+titulo+"%'";
       break;
   }
 
   $.ajax({
-    url: "../consejo_tecnico/conexiones/acuerdos.php",
-    data: {"query":consulta, "funcion", n},
+    url: "../consejo_tecnico/fragmentos/tabla_acuerdos.php",
+    data: {"query":consulta, "pag":pag},
     type: "post",
     success: function(data){
-      document.getElementById("modal_acuerdo").innerHTML = data;
-      $("#info_acuerdo").modal('show');
+      alert("Mostrando resultados");
+      document.getElementById("tabla_acuerdos").innerHTML = data;
     }
   });
 

@@ -46,12 +46,12 @@
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
-              <li class="active"><a href="comites.php">COMITES</a></li>
+              <li class="active"><a href="comites.php">COMITÉS</a></li>
               <li><a href="comisiones.php">COMISIONES</a></li>
               <?php
                       if($_SESSION['tipo'] == '0')
                       {
-                      	echo '<li><a href="acuerdos.php">ACUERDOS</a></li>';
+                      	echo '<li><a href="acuerdos.php?pag=0">ACUERDOS</a></li>';
 							        	echo '<li><a href="oficios.php">OFICIOS</a></li>';
 								}
                                                         ?>
@@ -74,10 +74,23 @@
             echo' <center><h3 style="color:#3380FF">Comités</h3></center>
             <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
 
-              <legend style="margin-top: 30px; font-size: 1.4em">Comités de Académicos, Licenciaturas y Programas</legend>
+              <legend style="margin-top: 30px; font-size: 1.4em">Comités académicos de licenciaturas</legend>
 
               <div style="padding-left: 20px;" class="lista">
-                <ul>';
+                <ul>
+                  <li><a href="#">Comité Académico Licenciatura en Ciencias Ambientales</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Ecología</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Geociencias</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Ciencia de Materiales Sustentables</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Tecnologías para la Información en Ciencias</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Estudios Sociales y Gestión Local</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Geohistoria</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Historia del Arte</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Literatura Intercultural</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Arte y Diseño</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Administración de Archivos y Gestión Documental</a></li>
+                  <li><a href="#">Comité Académico Licenciatura en Música y Tecnología Artística</a></li>
+                ';
 
                   while ($line = mysqli_fetch_array($result)) {
 
@@ -105,11 +118,42 @@
 
             echo'
             <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
+              <div class="row">
+                <legend style="margin-top: 30px; font-size: 1.4em">Comités académicos de posgrado</legend>
 
+                <div style="padding-left: 20px;" class="lista">
+                  <ul>
+
+                ';
+
+                    while ($line2 = mysqli_fetch_array($result2)) {
+
+                    echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line2["url"].'">'.$line2["nombre"].'</a></strong></span>';
+                        if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
+                           echo'<div class="onKlic" onclick="deleteCom('.$line2["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>';
+                        }
+                    echo'</li>';
+
+                  }
+                  echo'
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
               <legend style="margin-top: 30px; font-size: 1.4em"> Otros Comités</legend>
 
               <div style="padding-left: 20px;" class="lista">
-                <ul>';
+                <ul>
+                  <li><a href="#">Comité Académico del Archivo Alfredo Zalce</a></li>
+                  <li><a href="#">Comité Académico de la Maestría en Docencia para la Educación Media Superior (MADEMS)</a></li>
+                  <li><a href="#">Comité Académico de Formación Complementaria</a></li>
+                  <li><a href="#">Comité Académico de Bibliotecas</a></li>
+                  <li><a href="#">Comité Académico Editorial</a></li>
+                  <li><a href="#">Comité Académico de Idiomas y Mediateca</a></li>
+                  <li><a href="#">Comité del Laboratorio de Microscopia</a></li>
+                  <li><a href="#">Comité de Educación Continua</a></li>
+                  <li><a href="#">Comité de Ética</a></li>
+                ';
 
                   while ($line2 = mysqli_fetch_array($result2)) {
 
@@ -123,6 +167,9 @@
                 echo'
                 </ul>
               </div>
+              </div>
+
+
             </div>';
 
           ?>

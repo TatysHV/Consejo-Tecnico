@@ -29,7 +29,7 @@ if ($line = mysqli_fetch_array($result)) {
 else{
     echo '
     <div class="alert alert-danger" role="alert">
-        No se encuentra registrada el acta. <a href="http://localhost/consejo_tecnico/actas.php" class="alert-link">Registrar acta aquí</a>
+        No se encuentra registrada el acta. <a href="http://localhost/consejo_tecnico/actas.php" class="alert-link">Registrar acta aquí</a> o <a href="">continuar sin acta</a>
         <input type="hidden" value="" name="url_acta">
     </div>';
 
