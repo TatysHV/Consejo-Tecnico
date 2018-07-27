@@ -63,6 +63,8 @@
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
+              <li><a href="comites.php">COMITÉS</a></li>
+              <li><a href="comisiones.php">COMISIONES</a></li>
               <?php
                   if($_SESSION['tipo'] == '0'){
                     echo '<li class="active"><a href="acuerdos.php">ACUERDOS</a></li>

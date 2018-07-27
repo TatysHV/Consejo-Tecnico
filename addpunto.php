@@ -44,6 +44,8 @@
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
+							<li><a href="comites.php">COMITÉS</a></li>
+              				<li><a href="comisiones.php">COMISIONES</a></li>
 							<li><a href="acuerdos.php">ACUERDOS</a></li>
 							<li><a href="oficios.php">OFICIOS</a></li>
 							<li class="active"><a href="addpunto.php">Modificar</a></li>

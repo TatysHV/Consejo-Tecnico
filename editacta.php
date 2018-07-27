@@ -43,6 +43,8 @@
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.html">CALENDARIO</a></li>
 							<li><a href="normatividad.html">NORMATIVIDAD</a></li>
+              <li><a href="comites.php">COMITÉS</a></li>
+              <li><a href="comisiones.php">COMISIONES</a></li>
 							<li><a href="acuerdos.html">ACUERDOS</a></li>
 							<li><a href="oficios.php">OFICIOS</a></li>
             </ul>
