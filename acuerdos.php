@@ -8,9 +8,6 @@
 	{
 		echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
 	}
-
-
-
 ?>
 
 <!Doctype html>
@@ -32,7 +29,6 @@
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
     <!------------------------------------------------------------------------------->
-
     <!-- Importar ventana modal -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
       <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->

@@ -850,6 +850,53 @@ function show_acuerdo(id_acuerdo){
   });
 }
 
+
+function edit_acuerdo(){
+
+      alert("Registrando modificaciones...");
+
+      var formData = new FormData(document.getElementById("frm_acuerdo"));
+
+      formData.append('funcion', 2);
+
+      $.ajax({
+          url: "../consejo_tecnico/conexiones/acuerdos.php",
+          data: formData,
+          type: "post",
+          contentType: false,
+          processData: false,
+          success: function(data){
+            alert("Modificación registrada correctamente"+data);
+            window.location.assign("../consejo_tecnico/acuerdos.php");
+          },
+          failure: function(){
+            alert("Error al registrar modificación. "+data);
+          }
+        });
+
+}
+
+function delete_acuerdo(ID){
+  var id=ID;
+  var func = 3;
+  eleccion = confirm("¿Seguro que quiere eliminar el acuerdo"+ID+"?");
+  if(eleccion){
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/acuerdos.php",
+       data: {"id":id,"funcion":func},
+       type: "post",
+        success: function(data){
+            //alert("Eliminando acta");
+            alert(data);
+            window.location.assign("../consejo_tecnico/acuerdos.php");
+        },
+        failure: function(){
+          alert("No se ha podido eliminar el acuerdo");
+        }
+      });
+
+  }
+}
 function bloqueo_años(){
 
 }
