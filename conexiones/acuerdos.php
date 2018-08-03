@@ -18,7 +18,7 @@ switch ($func) {
   case 3:
     delete_acuerdo();
     break;
-    
+
 }
 
 function add_acuerdo(){

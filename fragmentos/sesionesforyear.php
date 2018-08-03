@@ -23,8 +23,8 @@ if (!mysqli_select_db($conexion, $db))
   echo '<div class="sesiones" id="bloque_desplegable">
           <table id="sesiones">
             <tr>
-              <th><center>Número </br>de sesión</center></th>
-              <th>Tipo de sesión</th>
+              <th><center>N°</center></th>
+              <th width="350">Tipo de sesión</th>
               <th><center>Fecha </br>(AA/MM/DD)</center></th>
               <th>Orden día</th>
               <th>Acta</th>
@@ -36,7 +36,9 @@ if (!mysqli_select_db($conexion, $db))
               }
   echo'</tr>';
 
+  $i = 0;
   while ($line = mysqli_fetch_array($result)) {
+      $i++;
 
       $fecha_sesion = $line["fecha_sesion"];
       $tipo_sesion = $line["tipo"];
@@ -45,7 +47,7 @@ if (!mysqli_select_db($conexion, $db))
       $query = "SELECT a.pdf FROM actas as a INNER JOIN orden_dia as od ON a.fecha_sesion = od.fecha_sesion
                 AND a.tipo_sesion = od.tipo WHERE od.fecha_sesion = '.$fecha_sesion.' AND od.tipo = '.$tipo_sesion.'";
       $ejec = mysqli_query($conexion,$query) or die ('Error al obtener acta'.mysql_error($conexion));
-      
+
       //Obtener el archivo pdf de la minuta cuya fecha y tipo sesión son iguales a la orden del día.
       $query_minuta = "SELECT a.minuta FROM actas as a INNER JOIN orden_dia as od ON a.fecha_sesion = od.fecha_sesion
                       AND a.tipo_sesion = od.tipo WHERE od.fecha_sesion = '.$fecha_sesion.' AND od.tipo = '.$tipo_sesion.'";
@@ -53,8 +55,8 @@ if (!mysqli_select_db($conexion, $db))
 
       echo '
             <tr>
-              <td> <center>'.$line["numero_sesion"].'<input type="hidden" name="id_sesion" value="'.$line["id"].'"/></center></td>
-              <td>'.$line["tipo"].'</td>
+              <td> <center> '.$i.' <input type="hidden" name="id_sesion" value="'.$line["id"].'"/></center></td>
+              <td><center>'.$line["tipo"].' '.$line["numero_sesion"].'</center></td>
               <td> <center>'.$line["fecha_sesion"].'</center></td>
               <td> <a href="sesion.php?sesion='.$line["id"].'"><img style="width:20px; height:auto" src="imagenes/flaticons/folder.png"></a></td>';
 

@@ -23,7 +23,7 @@ if (!mysqli_select_db($conexion, $db))
   echo '<div class="sesiones" id="bloque_desplegable">
           <table id="sesiones">
             <tr>
-              <th><center>Número </br>de sesión</center></th>
+              <th><center>N°</center></th>
               <th>Tipo de sesión</th>
               <th><center>Fecha </br>(AA/MM/DD)</center></th>
               <th>Orden día</th>
@@ -36,8 +36,10 @@ if (!mysqli_select_db($conexion, $db))
               }
   echo'</tr>';
 
-  while ($line = mysqli_fetch_array($result)) {
+  $i=0;
 
+  while ($line = mysqli_fetch_array($result)) {
+      $i++;
 
       $fecha_sesion = $line["fecha_sesion"];
       $tipo = $line["tipo_sesion"];
@@ -50,8 +52,8 @@ if (!mysqli_select_db($conexion, $db))
 
       echo '
             <tr>
-              <td> <center>'.$line["numero_sesion"].'<input type="hidden" name="id_sesion" value="'.$line["id"].'"/></center></td>
-              <td>'.$line["tipo_sesion"].'</td>
+              <td> <center>'.$i.'<input type="hidden" name="id_sesion" value="'.$line["id"].'"/></center></td>
+              <td> <center>'.$line["tipo_sesion"].' '.$line["numero_sesion"].'</center></td>
               <td> <center>'.$line["fecha_sesion"].'</center></td>';
 
               if($row = mysqli_fetch_row($ejec)){
