@@ -96,8 +96,12 @@
                 <tr>
                   <td collspan="1"><label class="Lform">Número de sesión: </label></th>
                   <td collspan="1"><input type="number" class="fsesion" min="01" max="30" style="width:100%" name="numero" value="'.$line["numero_sesion"].'"></td>
-                  <td><label class="Lform">Subir Orden del Día:</label></th>
+                  <td><label class="Lform">Sustituir acta:</label></th>
                   <td><input name="archivos[]" type="file" multiple="true" class="file"/></td>
+                </tr>
+                <tr>
+                  <td><label class="Lform">Cambiar minuta:</label></td>
+                  <td><input id="minuta" name="minuta" type="file" class="file"/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" /></td>
                 </tr>
               </table>
               </div>
