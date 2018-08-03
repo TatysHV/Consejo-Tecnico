@@ -26,7 +26,9 @@ if (!mysqli_select_db($conexion, $db))
               <th><center>Número </br>de sesión</center></th>
               <th>Tipo de sesión</th>
               <th><center>Fecha </br>(AA/MM/DD)</center></th>
-              <th>Acción</th> ';
+              <th>Orden día</th>
+              <th>Acta</th>
+              <th>Minuta</th>';
               if($_SESSION["tipo"] == "0"){
                 echo '
                 <th colspan="2">Administrar</th>
@@ -36,12 +38,30 @@ if (!mysqli_select_db($conexion, $db))
 
   while ($line = mysqli_fetch_array($result)) {
 
+
+      $fecha_sesion = $line["fecha_sesion"];
+      $tipo = $line["tipo_sesion"];
+
+      //Obtener el archivo pdf de la orden del día.
+      $query_orden = "SELECT od.direccion FROM orden_dia as od INNER JOIN actas as a ON od.fecha_sesion = a.fecha_sesion
+                      AND od.tipo = a.tipo_sesion WHERE a.fecha_sesion = '$fecha_sesion' AND a.tipo_sesion = '$tipo'";
+
+      $ejec = mysqli_query($conexion,$query_orden) or die ('Error al obtener acta'.mysql_error($conexion));
+
       echo '
             <tr>
               <td> <center>'.$line["numero_sesion"].'<input type="hidden" name="id_sesion" value="'.$line["id"].'"/></center></td>
               <td>'.$line["tipo_sesion"].'</td>
-              <td> <center>'.$line["fecha_sesion"].'</center></td>
-              <td> <a href="acta.php?acta='.$line["id"].'">Mostrar</a></td>';
+              <td> <center>'.$line["fecha_sesion"].'</center></td>';
+
+              if($row = mysqli_fetch_row($ejec)){
+                echo '<td> <a href="conexiones/uploads/'.$row[0].'" target="_blank"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></td>';
+              }else{
+                echo '<td> <span title="Orden día no registrada"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></span></td>';
+              }
+              echo'
+              <td> <center><a href="conexiones/uploads/'.$line["pdf"].'" target="_blank"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>
+              <td> <center><a href="conexiones/uploads/'.$line["minuta"].'" target="_blank"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>';
 
               if($_SESSION["tipo"] == "0"){
                 echo '<td> <a href="editacta.php?acta='.$line["id"].'" class="onKlic" style="color: orange">Modificar</a></td>

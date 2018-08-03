@@ -145,7 +145,6 @@
               <div style="padding-left: 20px;" class="lista">
                 <ul>
                   <li><a href="#">Comité Académico del Archivo Alfredo Zalce</a></li>
-                  <li><a href="#">Comité Académico de la Maestría en Docencia para la Educación Media Superior (MADEMS)</a></li>
                   <li><a href="#">Comité Académico de Formación Complementaria</a></li>
                   <li><a href="#">Comité Académico de Bibliotecas</a></li>
                   <li><a href="#">Comité Académico Editorial</a></li>

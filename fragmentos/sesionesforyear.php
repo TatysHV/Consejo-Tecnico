@@ -26,7 +26,9 @@ if (!mysqli_select_db($conexion, $db))
               <th><center>Número </br>de sesión</center></th>
               <th>Tipo de sesión</th>
               <th><center>Fecha </br>(AA/MM/DD)</center></th>
-              <th>Acción</th> ';
+              <th>Orden día</th>
+              <th>Acta</th>
+              <th>Minuta</th>';
               if($_SESSION["tipo"] == "0"){
                 echo '
                 <th colspan="2">Administrar</th>
@@ -36,12 +38,37 @@ if (!mysqli_select_db($conexion, $db))
 
   while ($line = mysqli_fetch_array($result)) {
 
+      $fecha_sesion = $line["fecha_sesion"];
+      $tipo_sesion = $line["tipo"];
+
+      //Obtener el archivo pdf del acta cuyo fecha y tipo sesión son iguales a la orden del día.
+      $query = "SELECT a.pdf FROM actas as a INNER JOIN orden_dia as od ON a.fecha_sesion = od.fecha_sesion
+                AND a.tipo_sesion = od.tipo WHERE od.fecha_sesion = '.$fecha_sesion.' AND od.tipo = '.$tipo_sesion.'";
+      $ejec = mysqli_query($conexion,$query) or die ('Error al obtener acta'.mysql_error($conexion));
+      
+      //Obtener el archivo pdf de la minuta cuya fecha y tipo sesión son iguales a la orden del día.
+      $query_minuta = "SELECT a.minuta FROM actas as a INNER JOIN orden_dia as od ON a.fecha_sesion = od.fecha_sesion
+                      AND a.tipo_sesion = od.tipo WHERE od.fecha_sesion = '.$fecha_sesion.' AND od.tipo = '.$tipo_sesion.'";
+      $ejec_minuta = mysqli_query($conexion,$query_minuta) or die ('Error al obtener minuta');
+
       echo '
             <tr>
               <td> <center>'.$line["numero_sesion"].'<input type="hidden" name="id_sesion" value="'.$line["id"].'"/></center></td>
               <td>'.$line["tipo"].'</td>
               <td> <center>'.$line["fecha_sesion"].'</center></td>
-              <td> <a href="sesion.php?sesion='.$line["id"].'">Mostrar</a></td>';
+              <td> <a href="sesion.php?sesion='.$line["id"].'"><img style="width:20px; height:auto" src="imagenes/flaticons/folder.png"></a></td>';
+
+              if($row = mysqli_fetch_row($ejec)){
+                echo '<td> <center><a href="conexiones/uploads/'.$row[0].'"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>';
+              }else{
+                echo '<td> <center><span title="No hay acta registrada"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></span></center></td>';
+              }
+
+              if($row2 = mysqli_fetch_row($ejec_minuta)){
+                echo '<td> <center><a href="conexiones/uploads/'.$row2[0].'"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>';
+              }else{
+                echo '<td> <center><span title="No hay minuta registrada"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></span></center></td>';
+              }
 
               if($_SESSION["tipo"] == "0"){
                 echo '<td> <a href="editsesion.php?sesion='.$line["id"].'" style="color: orange">Modificar</a></td>
