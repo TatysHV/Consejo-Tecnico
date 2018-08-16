@@ -669,6 +669,30 @@ function subirCalendario(tipo){
     }
   }
 
+
+function editComite(){
+  alert("Registrando modificaciones...");
+
+      var formData = new FormData(document.getElementById("frm_com"));
+
+      formData.append('funcion', 16);
+
+      $.ajax({
+          url: "../consejo_tecnico/conexiones/administracion.php",
+          data: formData,
+          type: "post",
+          contentType: false,
+          processData: false,
+          success: function(data){
+            alert("Modificación registrada correctamente"+data);
+            window.location.assign("../consejo_tecnico/comites.php");
+          },
+          failure: function(){
+            alert("Error al registrar modificación. "+data);
+          }
+        });
+
+}
 /***************************************************************************/
   /************************ CONTROL DE COMISIONES **************************/
 

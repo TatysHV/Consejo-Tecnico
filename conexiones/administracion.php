@@ -40,6 +40,8 @@ error_reporting(E_ALL);
       break;
       case 15: editComision();
       break;
+      case 16: editComite();
+      break;
   }
 
   function RegistrarUsuario(){
@@ -485,6 +487,46 @@ function editComision(){
       }
       else{
         echo 'Comisión modificada correctamente';
+      }
+    }
+}
+
+
+function editComite(){
+  include "conexion.php";
+
+    $id = $_POST["id"];
+    $nombre = $_POST["nameNomr"];
+    $tipo = $_POST["tipo"];
+    $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+    $fichero="".basename($_FILES['reg']['name'][0]);
+    if($fichero =! ""){
+            //----------Subir cada uno de los archivos a la carpeta del servidor
+      foreach ($_FILES['reg']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+        //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+        //----------- Subir la info de cada archivo a la base de datos------------
+        //  $nombre = basename($_FILES['reg_a']['name'][$i]);
+
+        $url=basename($_FILES['reg']['name'][$i]);
+
+        //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
+        $query = mysqli_query($con, "UPDATE comites SET nombre='$nombre', url = '$url', tipo = '$tipo' WHERE id = '$id' "); //Tipo D = Dictaminadoras
+
+        if (strlen($_FILES['reg']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+          if (move_uploaded_file($_FILES['reg']['tmp_name'][$i], $target_path.$name)) {
+
+          }else{echo "Error, no se han subido los archivos";}
+        }
+      }
+
+    }else{
+      $query = mysqli_query($con, "UPDATE comites SET nombre='$nombre', tipo = '$tipo' WHERE id = '$id' ");
+      if(!$query){
+        die('Error al modificar comité:');
+      }
+      else{
+        echo 'Comité modificado correctamente';
       }
     }
 }
