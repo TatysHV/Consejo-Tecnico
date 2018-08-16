@@ -90,7 +90,7 @@
 
           $pag = $_GET['pag']; /* $pag es la pagina actual*/
 
-          $cantidad = 2; // cantidad de resultados por página
+          $cantidad = 5; // cantidad de resultados por página
           $inicial = $pag * $cantidad;
 
           /*--------------------------------------------------------------------
@@ -109,14 +109,18 @@
 
           echo '
               <div style="float: right;"><h5><b>Total de resultados: </b>'.$num_resultados.'</h5></div>
-              <table class="table thead-dark table-bordered">
+              <table class="table thead-dark table-bordered" id="acuerdos">
                <thead>
                  <tr>
                    <th>N°</th>
-                   <th>Fecha acta</th>
                    <th>Etiqueta</th>
                    <th>Título</th>
-                   <th>Mostrar</th>
+                   <th>Acuerdo</th>
+                   <th>Sesión</th>
+                   <th>Oficios</th>
+                   <th>Actas</th>
+                   <th>Notas</th>
+                   <th>Seguimiento</th>
                    <th>Admin</th>
                  </tr>
                </thead>
@@ -137,12 +141,16 @@
 
                  echo '<tr style="background-color:'.$color.'">
                         <td>'.$i.'</td>
-                        <td><center>'.$line["fecha_acta"].'</center></td>
                         <td>'.$line["etiqueta"].'</td>
                         <td>'.$line["titulo"].'</td>
+                        <td>'.$line["acuerdo"].'</td>
+                        <td><center>'.$line["tipo"].' '.$line['numero_sesion'].'</br>'.$line["fecha_acta"].'</center></td>
+                        <td><span title="Ver oficio PDF"><img src="imagenes/flaticons/pdf.png"></span><br><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></td>
+                        <td><span title="Ver acta"><img src="imagenes/flaticons/pdf.png"></span></td>
+                        <td><center><a onclick ="show_notes('.$line["id"].')"><img src="imagenes/flaticons/notepad.png"></a></center></td>
                         <td><center>
                         <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" >
-                          Ver contenido
+                          Ver
                         </button></center></td>
                         <td><a href="?id='.$line["id"].'">Editar</a></br><a href="'.$line["id"].'">Eliminar</a></td>
                       </tr>';
@@ -190,6 +198,12 @@
 
                </div>
 
+               <!-- Ventana modal para mostrar NOTAS de acuerdos ----------------->
+
+               <div id="modal_notes">
+
+               </div>
+
         </div>
 
         <div id="blablibli" style="width:100%">
@@ -208,7 +222,7 @@
 
                     <div class="row">
                       <div class="col-xs-5">
-                        <label for"tituloAcuerdo">Año del acta/sesión:</label>
+                        <label for"tituloAcuerdo">Año:</label>
                         <select class="selectpicker" id="srch_year" name="" data-width="100%" data-live-search="false" title="Selecciona un año">
                          <option value="2018">2018</option>
                          <option value="2017">2017</option>

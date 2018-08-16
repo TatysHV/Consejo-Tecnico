@@ -860,17 +860,44 @@ text-align: center;
 }
 
 #tabla_acuerdos{
-	width: 90%;
+	width: 96%;
 	margin:auto;
 	margin-top: 40px;
 	margin-bottom: 40px;
+	font-size: 10pt;
 }
 
 #informacion_acuerdo label{
 	color: #4998cf;
 }
 
-/****************************ACUERDOS***************************/
+table#acuerdos th{
+	background-color: #337AB7;
+	color: white;
+	font-size: 9pt;
+}
+
+table#acuerdos img{
+	width: 20px;
+	height: auto;
+}
+
+table#acuerdos_notas {
+	color: #566573;
+	margin: auto;
+}
+
+table#acuerdos_notas img{
+	display: inline-block;
+	width: 15px;
+	height: auto;
+	margin-bottom: 3px;
+	margin-right: 5px;
+}
+
+table#acuerdos_notas th, table#acuerdos_notas td{
+	padding: 5px;
+}
 
 /*--------------------------Pie de página----------------------*/
 /*-------------------------------------------------------------*/

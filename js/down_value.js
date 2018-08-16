@@ -860,6 +860,8 @@ function add_acuerdo_file(){
 }
 
 function show_acuerdo(id_acuerdo){
+  // Coloca el contenido PHP en el div de la ventana Modal
+  // para ver los archivos de seguimiento del acuerdo
   var id = id_acuerdo;
 
   $.ajax({
@@ -869,6 +871,22 @@ function show_acuerdo(id_acuerdo){
     success: function(data){
       document.getElementById("modal_acuerdo").innerHTML = data;
       $("#info_acuerdo").modal('show');
+    }
+  });
+}
+
+function show_notes(id_acuerdo){
+  // Coloca el contenido PHP en el div de la ventana Modal
+  // para ver las notas del acuerdo
+  var id = id_acuerdo;
+
+  $.ajax({
+    url: "../consejo_tecnico/fragmentos/modal_notes.php",
+    data: {"id":id},
+    type: "post",
+    success: function(data){
+      document.getElementById("modal_notes").innerHTML = data;
+      $("#notas_acuerdo").modal('show');
     }
   });
 }

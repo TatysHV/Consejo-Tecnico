@@ -222,14 +222,14 @@
 
               <div class="col-xs-4">
                 <label>Tipo sesión: </label>
-                <select class="selectpicker" data-width="100%" id="tipo_sesion1">
+                <select class="selectpicker" data-width="100%" id="tipo_sesion1" name="tipo_sesion1">
                   <option value="Ordinaria">Ordinaria</option>
                   <option value="Extraordinaria">Extraordinaria</option>
                 </select>
               </div>
 
               <div class="col-xs-4">
-                <label>Fecha acta: </label>
+                <label>Fecha sesion: </label>
                 <input type="date" class="fsesion" id="fecha_acuerdo1" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaActa" onchange="showActa()" >
               </div>
 
@@ -259,10 +259,9 @@
                 <div class="form-group">
                   <label for"estatus">Estatus: </label>
                   <select class="form-control" id="estatus" name="estatusAcuerdo">
-                    <option>Entregado</option>
                     <option>Pendiente</option>
                     <option>En seguimiento</option>
-                    <option>Completado</option>
+                    <option>Finalizado</option>
                     <option>Cancelado</option>
                   </select>
                 </div>
@@ -278,11 +277,11 @@
             <div class="row">
               </br>
               <div class="col-xs-4">
-                <label>Oficio WORD:</label>
+                <label>Oficio Word:</label>
                 <input type="file" class="file" id="" name="oficio_word[]" style="width: 100%; height: 34px; border: 1px solid #CCC">
               </div>
               <div class="col-xs-4">
-                <label>Acta administrativo:</label>
+                <label>Acta:</label>
                 <input type="file" class="file" id="" name="acta_admin[]" style="width: 100%; height: 34px; border: 1px solid #CCC">
               </div>
               <div class="col-xs-4">

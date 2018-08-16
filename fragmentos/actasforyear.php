@@ -62,8 +62,15 @@ if (!mysqli_select_db($conexion, $db))
                 echo '<td> <span title="Orden día no registrada"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></span></td>';
               }
               echo'
-              <td> <center><a href="conexiones/uploads/'.$line["pdf"].'" target="_blank"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>
-              <td> <center><a href="conexiones/uploads/'.$line["minuta"].'" target="_blank"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>';
+              <td> <center><a href="conexiones/uploads/'.$line["pdf"].'" target="_blank"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>';
+
+              if($line["minuta"]==""){
+                echo '<td> <center><span title="Minuta sin registrar"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></span></center></td>';
+              }
+              else{
+                echo '<td> <center><a href="conexiones/uploads/'.$line["minuta"].'" target="_blank"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>';
+              }
+
 
               if($_SESSION["tipo"] == "0"){
                 echo '<td> <a href="editacta.php?acta='.$line["id"].'" class="onKlic" style="color: orange">Modificar</a></td>

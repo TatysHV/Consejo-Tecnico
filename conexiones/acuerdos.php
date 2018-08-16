@@ -33,6 +33,8 @@ function add_acuerdo(){
   $acuerdo = $_POST['acuerdo'];
   $observaciones = $_POST['observaciones'];
   $estatus = $_POST['estatusAcuerdo'];
+  $tipo = $_POST['tipo_sesion1'];
+  $num_sesion = $_POST['num_sesion'];
 
   /*if($url_acta!=""){*/
     //----------Subir cada uno de los archivos a la carpeta del servidor
@@ -76,7 +78,7 @@ function add_acuerdo(){
       }
     }
 
-    $query= mysqli_query($con, "INSERT INTO acuerdos(etiqueta, acuerdo, observaciones, estatus, oficio, oficio_word, acta_admin, titulo, fecha_acta, pdf_acta) VALUES ('$etiqueta','$acuerdo','$observaciones','$estatus','$oficio','$oficio_word','$acta_admin','$titulo','$fecha', '$url_acta')");
+    $query= mysqli_query($con, "INSERT INTO acuerdos(etiqueta, acuerdo, observaciones, estatus, oficio, oficio_word, acta_admin, titulo, fecha_acta, tipo, numero_sesion, pdf_acta) VALUES ('$etiqueta','$acuerdo','$observaciones','$estatus','$oficio','$oficio_word','$acta_admin','$titulo','$fecha','$tipo','$num_sesion', '$url_acta')");
 
     if(!$query){
       die('Error al registrar el acuerdo:');

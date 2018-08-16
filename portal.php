@@ -42,7 +42,7 @@
                 if($_SESSION['tipo'] == '0')
                 {
                         echo '<li><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
-                        <li><a href="oficios.php">OFICIOS</a></li>';
+                        <!--<li><a href="oficios.php">OFICIOS</a></li>-->';
                 }
                 ?>
 								<li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>
@@ -78,35 +78,30 @@
 
       <span style="color: #0064B9">CONSEJEROS REPRESENTANTES (2012-2018)</span></br></br>
         <span style="color: #0064B9">Área de las Humanidades y las Artes</span></br>
-        Dra. Berenice Araceli Granados Vázquez. Consejera Titular</br>
+        Consejera Titular: Dra. Berenice Araceli Granados Vázquez</br>
         Correo: berenice_granados@enesmorelia.unam.mx</br></br>
 
-        Dr. Rodolfo González Equihua. Consejero Suplente</br>
+        Consejero Suplente: Dr. Rodolfo González Equihua</br>
         Correo: rodolfoge@gmail.com</br></br>
 
         <span style="color: #0064B9">Área de las Ciencias Físico-Matemáticas y las Ingenierías</span></br>
-        Dr. Miguel Cervantes Solano. Consejero Titular</br>
+        Consejero Titular: Dr. Miguel Cervantes Solano</br>
         Correo: miguel_cervantes@enesmorelia.unam.mx</br></br>
 
         <span style="color: #0064B9">Área de las Ciencias Sociales</span></br>
-        Mtra. Claudia Escalera Matamoros. Consejera Titular</br>
+        Consejera Titular: Mtra. Claudia Escalera Matamoros</br>
         Correo: cescalera@enesmorelia.unam.mx</br></br>
 
-        Dr. Fernando Antonio Rosete Vergés. Consejero Suplente</br>
+        Consejero Suplente: Dr. Fernando Antonio Rosete Vergés</br>
         Correo: fernando.rosetev@enesmorelia.unam.mx</br></br>
 
         <span style="color: #0064B9">Área de las Ciencias Biológicas, Químicas y de la Salud</span></br>
-        Dr. Luis Daniel Ávila Cabadilla. Consejero Titular</br>
-        Correo: luis_avila@enesmorelia.unam.mx</br></br>
-
-        Dra. Yunuen Tapia Torres. Consejera Suplente</br>
+        Consejera Titular: Dra. Yunuen Tapia Torres</br>
         Correo: ytapia@enesmorelia.unam.mx</br></br>
 
-        <span style="color: #0064B9">Consejeros Representantes Técnicos Académicos (2016-2020)</span></br>
-        Consejero Titular: Dr. José Santiago Arizaga Pérez</br>
-        Correo: santiago_arizaga@enesmorelia.unam.mx</br></br>
 
-        Consejero Suplente: Mtra. Ana Yesica Martínez Villalba</br>
+        <span style="color: #0064B9">Consejeros Representantes Técnicos Académicos (2016-2020)</span></br>
+        Consejero Titular: Mtra. Ana Yesica Martínez Villalba</br>
         Correo: amartinez@enesmorelia.unam.mx</br></br>
 
         Consejeros Alumnos (2016-2018)</br>
@@ -125,6 +120,7 @@
         </center>
       </div>
       </div>
+
 			</div>
 
 			<div id="pie">

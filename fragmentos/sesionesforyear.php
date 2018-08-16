@@ -45,12 +45,12 @@ if (!mysqli_select_db($conexion, $db))
 
       //Obtener el archivo pdf del acta cuyo fecha y tipo sesión son iguales a la orden del día.
       $query = "SELECT a.pdf FROM actas as a INNER JOIN orden_dia as od ON a.fecha_sesion = od.fecha_sesion
-                AND a.tipo_sesion = od.tipo WHERE od.fecha_sesion = '.$fecha_sesion.' AND od.tipo = '.$tipo_sesion.'";
+                AND a.tipo_sesion = od.tipo WHERE od.fecha_sesion = '$fecha_sesion' AND od.tipo = '$tipo_sesion'";
       $ejec = mysqli_query($conexion,$query) or die ('Error al obtener acta'.mysql_error($conexion));
 
       //Obtener el archivo pdf de la minuta cuya fecha y tipo sesión son iguales a la orden del día.
       $query_minuta = "SELECT a.minuta FROM actas as a INNER JOIN orden_dia as od ON a.fecha_sesion = od.fecha_sesion
-                      AND a.tipo_sesion = od.tipo WHERE od.fecha_sesion = '.$fecha_sesion.' AND od.tipo = '.$tipo_sesion.'";
+                      AND a.tipo_sesion = od.tipo WHERE od.fecha_sesion = '$fecha_sesion' AND od.tipo = '$tipo_sesion'";
       $ejec_minuta = mysqli_query($conexion,$query_minuta) or die ('Error al obtener minuta');
 
       echo '
@@ -67,9 +67,12 @@ if (!mysqli_select_db($conexion, $db))
               }
 
               if($row2 = mysqli_fetch_row($ejec_minuta)){
-                echo '<td> <center><a href="conexiones/uploads/'.$row2[0].'"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>';
-              }else{
-                echo '<td> <center><span title="No hay minuta registrada"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></span></center></td>';
+                if ($row2[0]==""){
+                  echo '<td> <center><span title="No hay minuta registrada"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></span></center></td>';
+                }
+                else{
+                  echo '<td> <center><a href="conexiones/uploads/'.$row2[0].'"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>';
+                }
               }
 
               if($_SESSION["tipo"] == "0"){
