@@ -26,14 +26,18 @@ $pages = intval($num_resultados / $cantidad); //Total/numero de filas
 
 echo '
     <div style="float: right;"><h5><b>Total de resultados: </b>'.$num_resultados.'</h5></div>
-    <table class="table thead-dark table-bordered">
+    <table class="table thead-dark table-bordered" id="acuerdos">
      <thead>
        <tr>
          <th>N°</th>
-         <th>Fecha acta</th>
          <th>Etiqueta</th>
          <th>Título</th>
-         <th>Mostrar</th>
+         <th>Acuerdo</th>
+         <th>Sesión</th>
+         <th>Oficios</th>
+         <th>Actas</th>
+         <th>Notas</th>
+         <th>Seguimiento</th>
          <th>Admin</th>
        </tr>
      </thead>
@@ -52,7 +56,7 @@ echo '
          case 'Completado': $color = '#C3E6CB';
        }
 
-       echo '<tr style="background-color:'.$color.'">
+       /*echo '<tr style="background-color:'.$color.'">
               <td>'.$i.'</td>
               <td><center>'.$line["fecha_acta"].'</center></td>
               <td>'.$line["etiqueta"].'</td>
@@ -63,7 +67,25 @@ echo '
               </button></center></td>
               <td><a href="?id='.$line["id"].'">Editar</a></br><a href="'.$line["id"].'">Eliminar</a></td>
             </tr>';
-      $i = $i+1;
+      $i = $i+1;*/
+
+      echo '<tr style="background-color:'.$color.'">
+             <td>'.$i.'</td>
+             <td>'.$line["etiqueta"].'</td>
+             <td>'.$line["titulo"].'</td>
+             <td>'.$line["acuerdo"].'</td>
+             <td><center>'.$line["tipo"].' '.$line['numero_sesion'].'</br>'.$line["fecha_acta"].'</center></td>
+             <td><span title="Ver oficio PDF"><img src="imagenes/flaticons/pdf.png"></span><br><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></td>
+             <td><span title="Ver acta"><img src="imagenes/flaticons/pdf.png"></span></td>
+             <td><center><a onclick ="show_notes('.$line["id"].')"><img src="imagenes/flaticons/notepad.png"></a></center></td>
+             <td><center>
+             <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" >
+               Ver
+             </button></center></td>
+             <td><a href="?id='.$line["id"].'">Editar</a></br><a href="'.$line["id"].'">Eliminar</a></td>
+           </tr>';
+     $i = $i+1;
+
      }
 
      echo '

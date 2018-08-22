@@ -1144,7 +1144,7 @@ function busqueda_acuerdos(){
     data: {"query":consulta, "pag":pag},
     type: "post",
     success: function(data){
-      alert("Mostrando resultados");
+      //alert("Mostrando resultados");
       document.getElementById("tabla_acuerdos").innerHTML = data;
     }
   });

@@ -230,7 +230,7 @@
 
               <div class="col-xs-4">
                 <label>Fecha sesion: </label>
-                <input type="date" class="fsesion" id="fecha_acuerdo1" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaActa" onchange="showActa()" >
+                <input type="date" class="fsesion" id="fecha_acuerdo1" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaActa">
               </div>
 
             </div>

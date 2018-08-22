@@ -21,7 +21,7 @@
            if ($row = mysqli_fetch_array($result3)){
 
        echo '
-              <table id="acuerdos_notas">
+              <table id="acuerdos_notas" >
                 <tr>
                   <th>Nombre del archivo</th>
                   <th>Fecha </th>

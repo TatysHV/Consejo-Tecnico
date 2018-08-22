@@ -34,8 +34,6 @@ function add_acuerdo(){
   $observaciones = $_POST['observaciones'];
   $estatus = $_POST['estatusAcuerdo'];
   $tipo = $_POST['tipo_sesion1'];
-  $num_sesion = $_POST['num_sesion'];
-
   /*if($url_acta!=""){*/
     //----------Subir cada uno de los archivos a la carpeta del servidor
     foreach($_FILES['oficio']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
@@ -78,6 +76,12 @@ function add_acuerdo(){
       }
     }
 
+    $query_num = mysqli_query($con, "SELECT numero_sesion FROM orden_dia WHERE fecha_sesion = '$fecha' AND tipo = '$tipo'");
+
+    if($result_num = mysqli_fetch_array($query_num)){
+      $num_sesion = trim($result_num[0]);
+    }
+
     $query= mysqli_query($con, "INSERT INTO acuerdos(etiqueta, acuerdo, observaciones, estatus, oficio, oficio_word, acta_admin, titulo, fecha_acta, tipo, numero_sesion, pdf_acta) VALUES ('$etiqueta','$acuerdo','$observaciones','$estatus','$oficio','$oficio_word','$acta_admin','$titulo','$fecha','$tipo','$num_sesion', '$url_acta')");
 
     if(!$query){
@@ -114,6 +118,8 @@ function add_acuerdo_file($id_acuerdo){
     //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
 
     //----------- Subir la info de cada archivo a la base de datos------------
+
+    //$size = $_FILES['acuerdo_files']['size'][$i];
 
     $name = basename($_FILES['acuerdo_files']['name'][$i]);
     $query= mysqli_query($con, "INSERT INTO acuerdos_files(id_acuerdo, name, url) VALUES ('$id_acuerdo','$name','$name')");

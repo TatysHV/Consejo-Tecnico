@@ -221,7 +221,7 @@
                     <div class="auxiliar" style="width: 95%">
 
                     <div class="row">
-                      <div class="col-xs-5">
+                      <div class="col-xs-4">
                         <label for"tituloAcuerdo">Año:</label>
                         <select class="selectpicker" id="srch_year" name="" data-width="100%" data-live-search="false" title="Selecciona un año">
                          <option value="2018">2018</option>
@@ -232,7 +232,7 @@
                          <option value="2013">2013</option>
                         </select>
                       </div>
-                      <div class="col-xs-7">
+                      <div class="col-xs-8">
                           <div id="etiqueta">
                             <div class="form-group">
                               <label for="">Etiqueta:</label><br>
@@ -309,22 +309,40 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-xs-12">
-                        <label for"tituloAcuerdo">Título del acuerdo: </label>
-                        <input class="form-control" id="srch_titulo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
-                      </div>
-                    </div>
-
-                    <div class="row">
                       <div class="col-xs-4">
                         <div class="form-group">
-                          <br>
+                          <label>Estatus:</label>
+                          <select class="selectpicker" id="" data-width="100%" data-live-search="false" title="Seleccionar estatus">
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="En seguimiento">En seguimiento</option>
+                            <option value="Finalizado">Finalizado</option>
+                            <option value="Cancelado">Cancelado</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-xs-8">
+                        <div class="form-group">
+                          <label>Título del acuerdo</label>
+                          <input class="form-control" id="srch_titulo" type="text" name="nombreAcuerdo" placeholder=""="Ingresar el nombre o título del acuerdo">
+                      </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <label for"tituloAcuerdo">Contenido del acuerdo:</label>
+                        <input class="form-control" id="srch_acuerdo" type="text" name="contAcuerdo" placeholder="Escribe el texto de contenido del acuerdo">
+                      </div>
+                    </div>
+                    </br>
+                    <div class="row">
+                        <hr/>
+                      <div class="col-xs-4">
+                        <div class="form-group">
                           <label for="">Busqueda por rango de años:</label>
                         </div>
                       </div>
                       <div class="col-xs-4">
                         <div class="form-group">
-                          <label></label>
                           <select class="selectpicker" id="srch_init" name="" data-width="100%" data-live-search="false" title="Selecciona año de inicio">
                            <option value="2018">2018</option>
                            <option value="2017" >2017</option>
@@ -336,7 +354,6 @@
                         </div>
                       </div>
                       <div class="col-xs-4">
-                        <label></label>
                         <select class="selectpicker" id="srch_finish" name="" data-width="100%" data-live-search="false" title="Selecciona año de fin">
                          <option value="2018">2018</option>
                          <option value="2017">2017</option>
@@ -347,7 +364,7 @@
                         </select>
                       </div>
                     </div>
-                    <br><br>
+                    <br>
                     </div>
                   </form>
                 </div>

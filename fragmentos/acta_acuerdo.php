@@ -24,6 +24,7 @@ if ($line = mysqli_fetch_array($result)) {
     echo '<div class="alert alert-info" role="alert">
             El acuerdo pertenece a la <a href="conexiones/uploads/'.$line["pdf"].'" class="alert-link" target="_blank">Sesión '.$line["tipo_sesion"].' '.$line["numero_sesion"].' del '.$fecha.'</a>
             <input type="hidden" value="'.$line["pdf"].'" name="url_acta">
+            <input type="hidden" value="'.$line["numero_sesion"].'" name="num_sesion">
           </div>';
 }
 else{
