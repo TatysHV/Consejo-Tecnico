@@ -90,8 +90,20 @@ echo '
 
      echo '
       </tbody>
-    </table>';
+    </table>
 
+    <div>
+      <div>
+      <center>
+      <form action=conexiones/create_table2.php method=post>
+        <input type="hidden" name="url" value="'.$sql.'">
+        <input type="submit" value="confirmar">
+      </form>
+      </center>
+      </div>
+    </div>'
+
+    ;
     /*----------------------------------------------------------------
                     Creación de botones de paginación
     ----------------------------------------------------------------*/
