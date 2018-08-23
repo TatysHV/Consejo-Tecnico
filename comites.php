@@ -177,13 +177,12 @@
 
                   while ($line2 = mysqli_fetch_array($result2)) {
 
-                 echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line2["url"].'">'.$line2["nombre"].'</a></strong></span>';
+                 echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line2["url"].'">'.$line2["nombre"].'</a></strong></span></li>';
                       if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
                          echo'<div class="onKlic" onclick="deleteCom('.$line2["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>
                               <div style="display: inline-block; margin-left: 8px; "><a href="editcomite.php?id='.$line2["id"].'"><img src="imagenes/flaticons/edit-icon.png" style="width: 15px; heigth: auto;" title="Editar"/></a></div>';
-                      }
-                    echo'</li>';
-                    }else{
+
+                      }else{
                       echo'<li><span style="color: #666"><strong><a href="#">'.$line2["nombre"].'</a></strong></span>';
                       if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
                          echo'<div class="onKlic" onclick="deleteCom('.$line2["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>
