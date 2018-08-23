@@ -159,8 +159,16 @@
 
                echo '
                 </tbody>
-              </table>';
+              </table>';?>
 
+              <div>
+                <div>
+                  <center>
+                    <a href="conexiones/create_table.php"> Generar tabla en Excel</a>
+                  </center>
+                </div>
+              </div>
+              <?php
               /*----------------------------------------------------------------
                               Creación de botones de paginación
               ----------------------------------------------------------------*/
