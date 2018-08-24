@@ -1086,7 +1086,8 @@ function busqueda_acuerdos(){
 
 
   var consulta ="";
-
+  var consulta2 ="";
+  
   var pag = $("#pag_acuerdos").val();
   var cantidad = 2; // cantidad de resultados por página
   var inicial = pag * cantidad;
