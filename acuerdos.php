@@ -145,8 +145,8 @@
                         <td>'.$line["titulo"].'</td>
                         <td>'.$line["acuerdo"].'</td>
                         <td><center>'.$line["tipo"].' '.$line['numero_sesion'].'</br>'.$line["fecha_acta"].'</center></td>
-                        <td><span title="Ver oficio PDF"><img src="imagenes/flaticons/pdf.png"></span><br><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></td>
-                        <td><span title="Ver acta"><img src="imagenes/flaticons/pdf.png"></span></td>
+                        <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
+                        <td><span title="Ver acta"><a href="conexiones/uploads/'.$line["acta_admin"].' target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span></td>
                         <td><center><a onclick ="show_notes('.$line["id"].')"><img src="imagenes/flaticons/notepad.png"></a></center></td>
                         <td><center>
                         <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" >

@@ -842,6 +842,11 @@ text-align: center;
 	height: auto;
 }
 
+/***************************COMITÉS*****************************/
+#comites li{
+	margin-bottom: 10px;
+}
+
 /****************************ACUERDOS***************************/
 
 #acta_acuerdo{
