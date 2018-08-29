@@ -16,6 +16,7 @@ $pag = $_POST['pag'];
 $cantidad = 2; // cantidad de resultados por página
 $inicial = $pag * $cantidad;
 $sql = $_POST['query'];
+$sql2 = $_POST['query2'];
 $result = mysqli_query($con,$sql) or die('Error al consultar acuerdos');
 
 
@@ -96,7 +97,7 @@ echo '
       <div>
       <center>
       <form action=conexiones/create_table2.php method=post>
-        <input type="hidden" name="url" value="'.$sql.'">
+        <input type="hidden" name="url" value="'.$sql2.'">
         <input type="submit" value="confirmar">
       </form>
       </center>
