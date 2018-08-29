@@ -1003,7 +1003,14 @@ function busqueda_acuerdos(){
  1. Año
  2. Año, Título
  3. Año, Etiqueta
+12  Año, Estatus
+13  Año, Acuerdo
  4. Año, Título, Etiqueta
+14  Año, Título, Estatus
+15    Año, Título, Acuerdo
+16    Año, Etiqueta, Estatus
+17    Año, Etiqueta, Acuerdo
+18    Año, Estatus, Acuerdo
 
  5. Etiqueta
  6. Etiqueta, Título
@@ -1015,21 +1022,107 @@ function busqueda_acuerdos(){
  10. Rango, Título
  11. Rango, Etiqueta, Título
 
+
+
  */
 
   var nivel_busqueda = 0;
 
   if(fecha!=""){
+    if(titulo!=""){
       if(etiqueta!=""){
-          if(titulo!=""){
+        if(estatus!=""){ //fecha, titulo, etiqueta, estatus
+          nivel_busqueda = ;
+        }
+        else if(auerdo!=""){ //fecha, titulo, etiqueta, acuerdo
+          nivel_busqueda = ;
+        }
+        else if(estatus=="" && acuerdo==""){ //fecha, titulo, etiqueta
+          nivel_busqueda = ;
+        }
+      }
+      else if(estatus!=""){
+        if(acuerdo!=""){ //fecha, titulo, estatus, acuerdo
+          nivel_busqueda = ;
+        }
+        else{ //fecha, titulo, estatus
+          nivel_busqueda = ;
+        }
+      }
+      else if(acuerdo!=""){ //fecha, titulo, acuerdo
+        nivel_busqueda = ;
+      }
+      else if(etiqueta=="" && estatus=="" && acuerdo==""){ //fecha, titulo
+
+      }
+    }
+    else if(estatus!=""){
+      if(etiqueta!=""){
+        if(acuerdo!=""){ //fecha, estatus, etiqueta, acuerdo
+          nivel_busqueda = ;
+        }
+        else{ //fecha, estatus, etiqueta
+          nivel_busqueda = ;
+        }
+      }
+      else if(acuerdo!=""){ //fecha, estatus, acuerdo
+        nivel_busqueda = ;
+      }
+      else if(etiqueta==""&&acuerdo==""){ //fecha, estatus
+
+      }
+    }
+
+    else if(etiqueta!=""){
+      if(acuerdo!=""){ //fecha, etiqueta, acuerdo
+
+      }
+      else{
+                //fecha, etiqueta
+      }
+
+    }
+    else if(acuerdo!=""){ //fecha, acuerdo
+
+    }
+    else if(titulo==""&&estatus==""&&etiqueta==""&&acuerdo==""){
+        //fecha
+    }
+  }
+
+
+  if(fecha!=""){
+      if(etiqueta!=""){
+          if(titulo!=""){ //año, etiqueta, titulo
+              if(estatus!=""){ // año, etiqueta, titulo, estatus, ...
+                  if(acuerdo!=""){ //etiqueta, año, titulo, estatus, acuerdo
+                    nivel_busqueda = ;
+                  }
+                  else{ //etiqueta, año, titulo, estatus
+                    nivel_busqueda = ;
+                  }
+              }
+              else if(acuerdo!=""){ //año, titulo, acuerdo
+                nivel_busqueda = ;
+              }
+
             nivel_busqueda = 4; //Fecha, etiqueta, titulo
           }
           else{
              nivel_busqueda = 3; //Fecha, etiqueta
           }
       }
-      else if(titulo!=""){
-        nivel_busqueda = 2;//Fecha, titulo
+      else if(titulo!=""){ //fecha, titulo, ...
+
+        else if(estatus =="" && acuerdo ==""){
+            nivel_busqueda = 2;//Fecha, titulo
+        }
+      }
+      else if(estatus!=""){
+        nivel_busqueda = ;
+      }
+      else if(acuerdo!=""){
+        nivel_busqueda = ;
       }
       else if(etiqueta==""&&titulo==""){
           nivel_busqueda = 1; //Fecha
