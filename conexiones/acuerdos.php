@@ -153,43 +153,13 @@ function edit_acuerdo(){
   $observaciones = $_POST['observaciones'];
   $estatus = $_POST['estatusAcuerdo'];
   $fichero="".basename($_FILES['oficio']['name'][0]);
+  $fword="".basename($_FILES['oficio_word']['name'][0]);
+  $factad="".basename($_FILES['acta_admin']['name'][0]);
+  $facufil="".basename($_FILES['acuerdo_files']['name'][0]);
+
 
   if($url_acta!=""){
-    if($fichero != ""){
-    //----------Subir cada uno de los archivos a la carpeta del servidor
-      foreach($_FILES['oficio']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
-        //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
 
-        //----------- Subir la info de cada archivo a la base de datos------------
-        $oficio = basename($_FILES['oficio']['name'][$i]);
-        $url = basename($_FILES['oficio']['name'][$i]);
-
-        if (strlen($_FILES['oficio']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
-          if (move_uploaded_file($_FILES['oficio']['tmp_name'][$i], $target_path.$name)) {
-
-          }else{echo "Error, no se han subido los archivos";}
-        }
-      }
-
-      $query= mysqli_query($con, "UPDATE acuerdos SET etiqueta = '$etiqueta', acuerdo = '$acuerdo', observaciones = '$observaciones', estatus = '$estatus', oficio = '$oficio', titulo = '$titulo', fecha_acta = '$fecha', pdf_acta = '$url_acta' WHERE id = '$id'");
-
-      if(!$query){
-        die('Error al registrar el acuerdo:');
-      }
-      else{
-        echo 'Acuerdo registrado correctamente';
-      }
-
-      //------ Registro de archivos de seguimiento ------------------------------//
-      //-------Obtener id del último acuerdo registrado--------------------------//
-      $result = mysqli_query($con, "SELECT MAX(id) AS id FROM acuerdos") or die ('<b>Error al obtener id_acuerdo</b>' . mysql_error($con));
-      if ($row = mysqli_fetch_array($result)) {
-           $id_acuerdo = trim($row[0]);
-      }
-
-      add_acuerdo_file($id_acuerdo); //Función que se encarga de subir cada uno de los archivos seleccionados como seguimieto.
-    }else{
-      echo 'Segundo caso';
       $query= mysqli_query($con, "UPDATE acuerdos SET etiqueta = '$etiqueta', acuerdo = '$acuerdo', observaciones = '$observaciones', estatus = '$estatus', titulo = '$titulo', fecha_acta = '$fecha', pdf_acta = '$url_acta' WHERE id = '$id'");
 
       if(!$query){
@@ -198,12 +168,93 @@ function edit_acuerdo(){
       else{
         echo 'Acuerdo registrado correctamente';
       }
+
+      if($fichero != ""){
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+        foreach($_FILES['oficio']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+          //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+          //----------- Subir la info de cada archivo a la base de datos------------
+          $fichero = basename($_FILES['oficio']['name'][$i]);
+          $url = basename($_FILES['oficio']['name'][$i]);
+
+          if (strlen($_FILES['oficio']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+            if (move_uploaded_file($_FILES['oficio']['tmp_name'][$i], $target_path.$name)) {
+
+              $query= mysqli_query($con, "UPDATE acuerdos SET oficio = '$fichero' WHERE id = '$id'");
+
+              if(!$query){
+                die('Error al registrar el oficio:');
+              }
+              else{
+                echo 'Oficio registrado correctamente';
+              }
+            }else{echo "Error, no se han subido los archivos";}
+          }
+        }
+      }
+
+      if($fword != ""){
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+        foreach($_FILES['oficio_word']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+          //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+          //----------- Subir la info de cada archivo a la base de datos------------
+          $fword = basename($_FILES['oficio_word']['name'][$i]);
+          $url = basename($_FILES['oficio_word']['name'][$i]);
+
+          if (strlen($_FILES['oficio_word']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+            if (move_uploaded_file($_FILES['oficio_word']['tmp_name'][$i], $target_path.$name)) {
+              $query= mysqli_query($con, "UPDATE acuerdos SET oficio_word = '$fword' WHERE id = '$id'");
+
+              if(!$query){
+                die('Error al registrar el oficio de word:');
+              }
+              else{
+                echo 'Oficio de word registrado correctamente';
+              }
+            }else{echo "Error, no se han subido los archivos";}
+          }
+        }
+      }
+      if($factad != ""){
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+        foreach($_FILES['acta_admin']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+          //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+          //----------- Subir la info de cada archivo a la base de datos------------
+          $factad = basename($_FILES['acta_admin']['name'][$i]);
+          $url = basename($_FILES['acta_admin']['name'][$i]);
+
+          if (strlen($_FILES['acta_admin']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+            if (move_uploaded_file($_FILES['acta_admin']['tmp_name'][$i], $target_path.$name)) {
+              $query= mysqli_query($con, "UPDATE acuerdos SET acta_admin = '$factad' WHERE id = '$id'");
+
+              if(!$query){
+                die('Error al registrar el acta:');
+              }
+              else{
+                echo 'Acta de word registrado correctamente';
+              }
+            }else{echo "Error, no se han subido los archivos";}
+          }
+        }
+      }
+      if($facufil != ""){
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+        $result = mysqli_query($con, "SELECT MAX(id) AS id FROM acuerdos") or die ('<b>Error al obtener id_acuerdo</b>' . mysql_error($con));
+        if ($row = mysqli_fetch_array($result)) {
+             $id_acuerdo = trim($row[0]);
+        }
+
+        add_acuerdo_file($id_acuerdo); //Función que se encarga de subir cada uno de los archivos seleccionados como seguimieto.
+
+      }
+    }else{
+      echo 'Debes seleccionar el acta a la que pertenece el acuerdo';
     }
   }
-  else{
-    echo 'Debes seleccionar el acta a la que pertenece el acuerdo';
-  }
-}
+
 
 function delete_acuerdo(){
         include "conexion.php";

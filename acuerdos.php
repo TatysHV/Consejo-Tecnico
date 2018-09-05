@@ -152,7 +152,7 @@
                         <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" >
                           Ver
                         </button></center></td>
-                        <td><a href="?id='.$line["id"].'">Editar</a></br><a href="'.$line["id"].'">Eliminar</a></td>
+                        <td><a href="editacuerdo.php?id='.$line["id"].'">Editar</a></br><a href="" onclick = "delete_acuerdo('.$line["id"].')">Eliminar</a></td>
                       </tr>';
                 $i = $i+1;
                }
