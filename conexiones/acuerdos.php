@@ -18,6 +18,9 @@ switch ($func) {
   case 3:
     delete_acuerdo();
     break;
+  case 4:
+    delete_file_seguimiento();
+    break;
 
 }
 
@@ -122,19 +125,37 @@ function add_acuerdo_file($id_acuerdo){
     //$size = $_FILES['acuerdo_files']['size'][$i];
 
     $name = basename($_FILES['acuerdo_files']['name'][$i]);
-    $query= mysqli_query($con, "INSERT INTO acuerdos_files(id_acuerdo, name, url) VALUES ('$id_acuerdo','$name','$name')");
+    
+    $result = mysqli_query($con,"SELECT CURDATE()"); 
+    if ($row = mysqli_fetch_array($result)) {
+             $time = trim($row[0]);
+        }
+    $query= mysqli_query($con, "INSERT INTO acuerdos_files(id_acuerdo, name, url, fecha) VALUES ('$id_acuerdo','$name','$name','$time')");
 
     if(!$query){
       die('Error al registrar archivos de seguimiento');
     }
     else{
-      //echo 'Archivos de seguimiento registrados';
+      echo 'Archivos de seguimiento registrados';
     }
 
     //---------------- Sube los archivos al servidor ---------------------------
     if (strlen($_FILES['acuerdo_files']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
       if (move_uploaded_file($_FILES['acuerdo_files']['tmp_name'][$i], $target_path.$name)) {
+        $length =  filesize($target_path.$name);
 
+        $result = mysqli_query($con, "SELECT MAX(id) AS id FROM acuerdos_files") or die ('<b>Error al obtener id_acuerdo</b>' . mysql_error($con));
+        if ($row = mysqli_fetch_array($result)) {
+             $id_acuerdo_file = trim($row[0]);
+        }
+
+        $query2= mysqli_query($con, "UPDATE acuerdos_files SET tamaño = '$length' WHERE id = '$id_acuerdo_file' ");
+        if(!$query2){
+          die('Error al registrar archivos de seguimiento');
+        }
+        else{
+          echo 'Archivos de seguimiento registrados';
+        }
       }else{echo "Error, no se han subido los archivos";}
     }
   }
@@ -242,12 +263,12 @@ function edit_acuerdo(){
       }
       if($facufil != ""){
     //----------Subir cada uno de los archivos a la carpeta del servidor
-        $result = mysqli_query($con, "SELECT MAX(id) AS id FROM acuerdos") or die ('<b>Error al obtener id_acuerdo</b>' . mysql_error($con));
+        /*$result = mysqli_query($con, "SELECT MAX(id) AS id FROM acuerdos") or die ('<b>Error al obtener id_acuerdo</b>' . mysql_error($con));
         if ($row = mysqli_fetch_array($result)) {
              $id_acuerdo = trim($row[0]);
-        }
+        }*/
 
-        add_acuerdo_file($id_acuerdo); //Función que se encarga de subir cada uno de los archivos seleccionados como seguimieto.
+        add_acuerdo_file($id); //Función que se encarga de subir cada uno de los archivos seleccionados como seguimieto.
 
       }
     }else{
@@ -272,6 +293,20 @@ function delete_acuerdo(){
 
     }
 
+function delete_file_seguimiento(){
+        include "conexion.php";
 
+        $id=$_POST['id'];
+
+        $eject8=mysqli_query($con, "DELETE FROM acuerdos_files WHERE id='$id'");
+
+      if(!$eject8){
+            echo "Ocurrió un error al eliminar el archivo" . $eject7;
+          }
+          else{
+            echo "El archivo ha sido eliminado";
+          }
+
+    }
 
  ?>

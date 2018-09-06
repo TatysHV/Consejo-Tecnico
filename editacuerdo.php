@@ -66,8 +66,6 @@
               <li><a href="normatividad.php">NORMATIVIDAD</a></li>
               <li><a href="comites.php">COMITÉS</a></li>
               <li><a href="comisiones.php">COMISIONES</a></li>
-              <li><a href="comites.php">COMITES</a></li>
-              <li><a href="comisiones.php">COMISIONES</a></li>
               <?php
                   if($_SESSION['tipo'] == '0'){
                     echo '<li class="active"><a href="acuerdos.php">ACUERDOS</a></li>
@@ -319,35 +317,11 @@
               </div>
             </div>
 
-
             </br></br>
             <center>
-              <input class="btn btn-info" style="width: 250px; margin-right: 5px;" type="button" data-toggle="modal" data-target="#acuerdos_files"  value="Agregar archivos de seguimiento" ><input class="btn btn-success" style="width: 250px; margin-left: 5px;" type="button" onclick="edit_acuerdo()" value="Registrar cambios"><input class="btn btn-danger" type="button" value="Cancelar" style="margin-left: 20px" onclick="irPortal()">
+              <input class="btn btn-success" style="width: 250px; margin-left: 5px;" type="button" onclick="edit_acuerdo()" value="Registrar cambios"><input class="btn btn-danger" type="button" value="Cancelar" style="margin-left: 20px" onclick="irPortal()">
             </center>
-            <div class="modal" tabindex="-1" id="acuerdos_files" role="dialog">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <center><h4 class="modal-title">Archivos de seguimiento</h4></center>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <center>
-                    <label>Selecciona los archivos a subir:</label>
 
-                    <input type="file" class="file" id="" name="acuerdo_files[]" style="width: 450px; display:inline-block" multiple="true">
-
-                    </center>
-                    <br><br>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
             </div>
             </form>';
             }
