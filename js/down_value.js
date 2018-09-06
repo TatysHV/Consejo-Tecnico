@@ -962,6 +962,29 @@ function delete_acuerdo(ID){
 
   }
 }
+
+function delete_file_seguimiento(ID){
+  var id=ID;
+  var func = 4;
+  eleccion = confirm("¿Seguro que quiere eliminar el archivo "+ID+"?");
+  if(eleccion){
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/acuerdos.php",
+       data: {"id":id,"funcion":func},
+       type: "post",
+        success: function(data){
+            //alert("Eliminando acta");
+            alert(data);
+            window.location.assign("../consejo_tecnico/acuerdos.php");
+        },
+        failure: function(){
+          alert("No se ha podido eliminar el archivo");
+        }
+      });
+
+  }
+}
+
 function bloqueo_años(){
 
 }

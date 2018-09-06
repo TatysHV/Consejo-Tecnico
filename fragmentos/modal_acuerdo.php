@@ -14,29 +14,30 @@
          <div class="modal-body">
          <div class="row" style="width: 90%; margin: auto;">';
 
-
-           $sql = "SELECT * FROM acuerdos_files WHERE id = '$id_acuerdo'";
-           $result3 = mysqli_query($con,$sql) or die('Error al mostrar acuerdo');
-
-           if ($row = mysqli_fetch_array($result3)){
-
-       echo '
+echo '
               <table id="acuerdos_notas" >
                 <tr>
                   <th>Nombre del archivo</th>
                   <th>Fecha </th>
                   <th>Tamaño </th>
-                </tr>
+                  <th>Admin </th>
+                </tr>';
+            $sql = "SELECT * FROM acuerdos_files WHERE id_acuerdo = '$id_acuerdo'";
+           $result3 = mysqli_query($con,$sql) or die('Error al mostrar acuerdo');
+           while ($row = mysqli_fetch_array($result3)){
+
+       echo '
                 <tr>
                   <td><img src="imagenes/flaticons/document.png"><a href="conexiones/uploads/'.$row['name'].'" targer="_blank">'.$row['name'].'</td>
-                  <td><center>2018/01/01</center></td>
-                  <td><center>128kb</center></td>
+                  <td><center>'.$row["fecha"].'</center></td>
+                  <td><center>'.$row["tamaño"].'.bytes</center></td>
+                  <td><a href="" onclick = "delete_file_seguimiento('.$row["id"].')">Eliminar</a></td>
                 </tr>
-              </table>
+              
             ';
            }
 
-      echo'
+      echo'</table>
            </div>
          </div>
          <div class="modal-footer">
