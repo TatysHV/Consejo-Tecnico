@@ -143,13 +143,14 @@ function add_acuerdo_file($id_acuerdo){
     if (strlen($_FILES['acuerdo_files']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
       if (move_uploaded_file($_FILES['acuerdo_files']['tmp_name'][$i], $target_path.$name)) {
         $length =  filesize($target_path.$name);
-
+        $length1 = $length * 0.00097656;
+        $length1 = round($length1, 2);
         $result = mysqli_query($con, "SELECT MAX(id) AS id FROM acuerdos_files") or die ('<b>Error al obtener id_acuerdo</b>' . mysql_error($con));
         if ($row = mysqli_fetch_array($result)) {
              $id_acuerdo_file = trim($row[0]);
         }
 
-        $query2= mysqli_query($con, "UPDATE acuerdos_files SET tamaño = '$length' WHERE id = '$id_acuerdo_file' ");
+        $query2= mysqli_query($con, "UPDATE acuerdos_files SET tamaño = '$length1' WHERE id = '$id_acuerdo_file' ");
         if(!$query2){
           die('Error al registrar archivos de seguimiento');
         }

@@ -30,7 +30,7 @@ echo '
                 <tr>
                   <td><img src="imagenes/flaticons/document.png"><a href="conexiones/uploads/'.$row['name'].'" targer="_blank">'.$row['name'].'</td>
                   <td><center>'.$row["fecha"].'</center></td>
-                  <td><center>'.$row["tamaño"].'.bytes</center></td>
+                  <td><center>'.$row["tamaño"].' KB</center></td>
                   <td><a href="" onclick = "delete_file_seguimiento('.$row["id"].')">Eliminar</a></td>
                 </tr>
               
