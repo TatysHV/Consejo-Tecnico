@@ -320,7 +320,7 @@
                       <div class="col-xs-4">
                         <div class="form-group">
                           <label>Estatus:</label>
-                          <select class="selectpicker" id="" data-width="100%" data-live-search="false" title="Seleccionar estatus">
+                          <select class="selectpicker" id="srch_status" data-width="100%" data-live-search="false" title="Seleccionar estatus">
                             <option value="Pendiente">Pendiente</option>
                             <option value="En seguimiento">En seguimiento</option>
                             <option value="Finalizado">Finalizado</option>
@@ -377,6 +377,7 @@
                   </form>
                 </div>
                 <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">Limpiar</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                   <button type="button" class="btn btn-primary" onclick="busqueda_acuerdos()">Realizar búsqueda por filtro</button>
                 </div>
@@ -433,6 +434,14 @@
           //alert("hola");
         }
       });
+    }
+    function limpiarFormulario() { 
+       $("#frm_acuerdo")[0].reset();
+       $("#srch_year").val('default').selectpicker("refresh");
+       $("#srch_etiqueta").val('default').selectpicker("refresh");
+       $("#srch_finish").val('default').selectpicker("refresh");
+       $("#srch_init").val('default').selectpicker("refresh");
+       $("#srch_status").val('default').selectpicker("refresh");
     }
 
 	</SCRIPT>
