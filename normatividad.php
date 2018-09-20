@@ -61,7 +61,8 @@
 			</div>
 
 			<div id="principal">
-      </br></br></br>
+        <img src="imagenes/normatividad.jpg" style="width:100%; height: auto">
+      </br>
       <div class="row" style="width: 80%; margin: auto;">
         <div id="normatividad">
           <!--Carga de manera automática al abrir la página, el reglamento general de la UNAM
@@ -70,8 +71,7 @@
             $sql="SELECT * FROM normatividad WHERE tipo = 'G'";
 
             $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($conexion));
-
-            echo' <center><h3 style="color:#3380FF">Normatividad</h3></center>
+            echo'<!--<center><h3 style="color:#3380FF">Normatividad</h3></center>-->
             <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
 
               <legend style="margin-top: 30px; font-size: 1.4em">Estatutos y lineamientos generales de la UNAM</legend>

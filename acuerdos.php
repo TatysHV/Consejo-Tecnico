@@ -86,17 +86,19 @@
 
           $year = date("Y");
           $color = ''; //Variable para guardar un string hexadecimal
-          $i = 1;
 
           $pag = $_GET['pag']; /* $pag es la pagina actual*/
 
           $cantidad = 5; // cantidad de resultados por página
           $inicial = $pag * $cantidad;
 
+          $i = $inicial+1; // índice de fila
+
           /*--------------------------------------------------------------------
            Realizar consulta de acuerdos del año en curso, mostrando de 10 en 10
           ---------------------------------------------------------------------*/
           $sql = "SELECT * FROM acuerdos WHERE year(fecha_acta) = '$year' LIMIT $inicial, $cantidad";
+          //Consulta auxiliar SELECT *, @s:=@s+1 FROM acuerdos, (SELECT @s:= 0) AS s WHERE year(fecha_acta) = '$year'
           $result = mysqli_query($con,$sql) or die('Error al consultar acuerdos');
 
 
@@ -140,18 +142,15 @@
                  }
 
                  echo '<tr style="background-color:'.$color.'">
-                        <td>'.$i.'</td>
+                        <td><strong>'.$i.'</strong></td>
                         <td>'.$line["etiqueta"].'</td>
                         <td>'.$line["titulo"].'</td>
                         <td>'.$line["acuerdo"].'</td>
                         <td><center>'.$line["tipo"].' '.$line['numero_sesion'].'</br>'.$line["fecha_acta"].'</center></td>
                         <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
                         <td><span title="Ver acta"><a href="conexiones/uploads/'.$line["acta_admin"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span></td>
-                        <td><center><a onclick ="show_notes('.$line["id"].')"><img src="imagenes/flaticons/notepad.png"></a></center></td>
-                        <td><center>
-                        <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" >
-                          Ver
-                        </button></center></td>
+                        <td><center><a onclick ="show_notes('.$line["id"].')" class="onKlic"><img src="imagenes/flaticons/notepad.png"></a></center></td>
+                        <td><center><img src="imagenes/flaticons/folder.png" onclick="show_acuerdo('.$line["id"].')" class="onKlic"></center></td>
                         <td><a href="editacuerdo.php?id='.$line["id"].'">Editar</a></br><a href="" onclick = "delete_acuerdo('.$line["id"].')">Eliminar</a></td>
                       </tr>';
                 $i = $i+1;
@@ -161,13 +160,6 @@
                 </tbody>
               </table>';?>
 
-              <div>
-                <div>
-                  <center>
-                    <a href="conexiones/create_table.php"> Generar tabla en Excel</a>
-                  </center>
-                </div>
-              </div>
               <?php
               /*----------------------------------------------------------------
                               Creación de botones de paginación
@@ -198,6 +190,16 @@
               </center>';
 
               ?>
+
+              <div>
+                <div>
+                  <center>
+                    <form action="conexiones/create_table.php">
+                        <input type="submit" class="btn btn-success" value="Descargar tabla en Excel" />
+                    </form>
+                  </center>
+                </div>
+              </div>
 
               <!--Ventana modal para mostrar la información completa de un acuerdo
                ------------------------------------------------------------------>
@@ -320,7 +322,11 @@
                       <div class="col-xs-4">
                         <div class="form-group">
                           <label>Estatus:</label>
+<<<<<<< HEAD
+                          <select class="selectpicker" id="srch_estatus" data-width="100%" data-live-search="false" title="Seleccionar estatus">
+=======
                           <select class="selectpicker" id="srch_status" data-width="100%" data-live-search="false" title="Seleccionar estatus">
+>>>>>>> 3915e50148fa6fd1fe9d8855f35b4ba8275ede7f
                             <option value="Pendiente">Pendiente</option>
                             <option value="En seguimiento">En seguimiento</option>
                             <option value="Finalizado">Finalizado</option>

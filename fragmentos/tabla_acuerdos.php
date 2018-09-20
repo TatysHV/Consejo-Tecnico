@@ -11,13 +11,14 @@ include "../conexiones/conexion.php";
 ---------------------------------------------------------------------*/
 
 $color = ''; //Variable para guardar un string hexadecimal
-$i = 1;
 $pag = $_POST['pag'];
 $cantidad = 2; // cantidad de resultados por página
 $inicial = $pag * $cantidad;
 $sql = $_POST['query'];
 $sql2 = $_POST['query2'];
 $result = mysqli_query($con,$sql) or die('Error al consultar acuerdos');
+
+$i = $inicial+1;
 
 
 //Obtener el total de resultados de la consulta para crear páginas
@@ -71,18 +72,15 @@ echo '
       $i = $i+1;*/
 
       echo '<tr style="background-color:'.$color.'">
-             <td>'.$i.'</td>
+             <td><strong>'.$i.'</strong></td>
              <td>'.$line["etiqueta"].'</td>
              <td>'.$line["titulo"].'</td>
              <td>'.$line["acuerdo"].'</td>
              <td><center>'.$line["tipo"].' '.$line['numero_sesion'].'</br>'.$line["fecha_acta"].'</center></td>
              <td><span title="Ver oficio PDF"><img src="imagenes/flaticons/pdf.png"></span><br><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></td>
              <td><span title="Ver acta"><img src="imagenes/flaticons/pdf.png"></span></td>
-             <td><center><a onclick ="show_notes('.$line["id"].')"><img src="imagenes/flaticons/notepad.png"></a></center></td>
-             <td><center>
-             <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" >
-               Ver
-             </button></center></td>
+             <td><center><a onclick ="show_notes('.$line["id"].')" class="onKlic"><img src="imagenes/flaticons/notepad.png"></a></center></td>
+             <td><center><img src="imagenes/flaticons/folder.png" onclick="show_acuerdo('.$line["id"].')" class="onKlic"></center></td>
              <td><a href="?id='.$line["id"].'">Editar</a></br><a href="'.$line["id"].'">Eliminar</a></td>
            </tr>';
      $i = $i+1;
