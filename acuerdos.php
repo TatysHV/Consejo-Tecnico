@@ -322,11 +322,7 @@
                       <div class="col-xs-4">
                         <div class="form-group">
                           <label>Estatus:</label>
-<<<<<<< HEAD
-                          <select class="selectpicker" id="srch_estatus" data-width="100%" data-live-search="false" title="Seleccionar estatus">
-=======
                           <select class="selectpicker" id="srch_status" data-width="100%" data-live-search="false" title="Seleccionar estatus">
->>>>>>> 3915e50148fa6fd1fe9d8855f35b4ba8275ede7f
                             <option value="Pendiente">Pendiente</option>
                             <option value="En seguimiento">En seguimiento</option>
                             <option value="Finalizado">Finalizado</option>
@@ -441,7 +437,7 @@
         }
       });
     }
-    function limpiarFormulario() { 
+    function limpiarFormulario() {
        $("#frm_acuerdo")[0].reset();
        $("#srch_year").val('default').selectpicker("refresh");
        $("#srch_etiqueta").val('default').selectpicker("refresh");

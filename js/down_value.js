@@ -1033,24 +1033,24 @@ function busqueda_acuerdos(){
 //****************Identifica el tipo de búsqueda y combinaciones ***************
  /* Índice de combinaciones disponibles de búsqueda
 
- ORDEN JERÁRQUICO: Año, Título, Estatus, Etiqueta, Acuerdo, Rango
+ ORDEN JERÁRQUICO: Año, Título, Etiqueta, Estatus, Acuerdo, Rango
 
-1. año *
-2. año, titulo *
-3. año, estatus *
-4. año, etiqueta *
-5. año, acuerdo *
-6. año, titulo, estatus *
-24. año, titulo, estatus, etiqueta, acuerdo
-7. año, titulo, etiqueta *
-8. año, titulo, acuerdo *
-9. año, estatus, etiqueta *
-10. año, estatus, acuerdo *
-11. año, etiqueta, acuerdo *
-12. año, titulo, etiqueta, estatus * ####
-13. año, titulo, etiqueta, acuerdo *
-14. año, titulo, estatus, acuerdo *
-15. año, estatus, etiqueta, acuerdo *
+ 1. año *
+ 2. año, titulo *
+ 3. año, etiqueta *
+ 4. año, estatus *
+ 5. año, acuerdo *
+ 6. año, titulo, etiqueta *
+ 7. año, titulo, etiqueta, estatus *
+ 8. año, titulo, etiqueta, estatus, acuerdo *
+ 9. año, titulo, etiqueta, acuerdo *
+ 10. año, titulo, estatus *
+ 11. año, titulo, estatus, acuerdo *
+ 12. año, titulo, acuerdo *
+ 13. año, etiqueta, acuerdo *
+ 14. año, estatus, etiqueta *
+ 15. año, estatus, etiqueta, acuerdo *
+ 1515. año, estatus, acuerdo *
 
 
 16. etiqueta *
@@ -1099,35 +1099,36 @@ function busqueda_acuerdos(){
 
 
 /**************************** FECHA ***************************/
-año, titulo, estatus, etiqueta, acuerdo
   if(fecha!=""){
     if(titulo!=""){
       if(etiqueta!=""){
-          if(estatus!=""){ //fecha, titulo, etiqueta, estatus
-            nivel_busqueda = 12;
+          if(estatus!=""){
+            if(acuerdo!=""){ //fecha, titulo, etiqueta, estatus, acuerdo
+              nivel_busqueda = 8;
+            }
+            else{
+              nivel_busqueda = 7; //fecha, titulo, etiqueta, estatus
+            }
           }
-          else if(auerdo!=""){ //fecha, titulo, etiqueta, acuerdo
-            nivel_busqueda = 13;
+          else if(acuerdo!=""){ //fecha, titulo, etiqueta, acuerdo
+            nivel_busqueda = 9;
           }
           else if(estatus=="" && acuerdo==""){ //fecha, titulo, etiqueta
-            nivel_busqueda = 7;
-          }
-      }
-
-      else if(estatus!=""){
-          if(etiqueta!=""){
-            //###########################################################
-          }
-          if(acuerdo!=""){ //fecha, titulo, estatus, acuerdo
-            nivel_busqueda = 14;
-          }
-          else{ //fecha, titulo, estatus
             nivel_busqueda = 6;
           }
       }
 
+      else if(estatus!=""){
+          if(acuerdo!=""){ //fecha, titulo, estatus, acuerdo
+            nivel_busqueda = 11;
+          }
+          else{ //fecha, titulo, estatus
+            nivel_busqueda = 10;
+          }
+      }
+
       else if(acuerdo!=""){ //fecha, titulo, acuerdo
-        nivel_busqueda = 8;
+        nivel_busqueda = 12;
       }
 
       else if(etiqueta=="" && estatus=="" && acuerdo==""){ //fecha, titulo
@@ -1141,23 +1142,23 @@ año, titulo, estatus, etiqueta, acuerdo
           nivel_busqueda = 15;
         }
         else{ //fecha, estatus, etiqueta
-          nivel_busqueda = 9;
+          nivel_busqueda = 14;
         }
       }
       else if(acuerdo!=""){ //fecha, estatus, acuerdo
-        nivel_busqueda =  10;
+        nivel_busqueda =  1515;
       }
       else if(etiqueta==""&&acuerdo==""){ //fecha, estatus
-        nivel_busqueda = 3;
+        nivel_busqueda = 4;
       }
     }
 
     else if(etiqueta!=""){
       if(acuerdo!=""){ //fecha, etiqueta, acuerdo
-        nivel_busqueda = 11;
+        nivel_busqueda = 13;
       }
       else{
-        nivel_busqueda = 4;    //fecha, etiqueta
+        nivel_busqueda = 3;    //fecha, etiqueta
       }
     }
 
