@@ -1060,38 +1060,38 @@ function busqueda_acuerdos(){
 20. etiqueta, rango [OK]
 21. etiqueta, titulo, acuerdo [OK]
 22. etiqueta, titulo, rango [OK]
-23. etiqueta, titulo, estatus [OK]
+23. etiqueta, titulo, estatus [OK] igual que el 29
 24. etiqueta, titulo, estatus, acuerdo [OK]
 25. ################################### año (Número 8 = 25, se cambió de posición)
 26. etiqueta, titulo, estatus, acuerdo, rango [OK]
 27. etiqueta, titulo, estatus, rango [OK]
 28. etiqueta, titulo, acuerdo, rango [OK]
-29. #################################
-30. etiqueta, estatus, acuerdo
-31. etiqueta, estatus, acuerdo, rango
-32. etiqueta, estatus, rango
-33. etiqueta, acuerdo, rango
+29. ################################# etiqueta, estatus, titulo = 23 [OK]
+30. etiqueta, estatus, acuerdo [OK]
+31. etiqueta, estatus, acuerdo, rango [OK]
+32. etiqueta, estatus, rango [OK]
+33. etiqueta, acuerdo, rango [OK]
 
-33. estatus
-34. estatus, titulo
-35. estatus, titulo, acuerdo
-36. estatus, titulo, acuerdo, año
-37. estatus, titulo, acuerdo, rango
-38. estatus, titulo, rango
-39. estatus, acuerdo
-40. estatus, acuerdo, rango
-41. estatus, rango
+34. estatus [OK]
+35. estatus, titulo [OK]
+36. estatus, titulo, acuerdo [OK]
+37. ########################## estatus, titulo, acuerdo, año  = 11 [OK]
+38. estatus, titulo, acuerdo, rango [OK]
+39. estatus, titulo, rango [OK]
+40. estatus, acuerdo [OK]
+41. estatus, acuerdo, rango [OK]
+42. estatus, rango [OK]
 
-42. titulo
-43. titulo, acuerdo
-44. titulo, acuerdo, rango
-45. titulo, acuerdo, año
-46. titulo, rango
+43. titulo [OK]
+44. titulo, acuerdo [OK]
+45. titulo, acuerdo, rango [OK]
+46. titulo, acuerdo, año [OK]
+47. titulo, rango [OK]
 
-47. acuerdo
-48. acuerdo, rango
+48. acuerdo [OK]
+49. acuerdo, rango [OK]
 
-49. rango
+50. rango [OK]
 
 
  */
@@ -1214,15 +1214,15 @@ function busqueda_acuerdos(){
 
     else if(estatus!=""){
       if(acuerdo!=""){
-        if(rango!=""){ //etiqueta, estatus, rango
-          nivel_busqueda = 30;
+        if(rango!=""){ //etiqueta, estatus, acuerdo, rango
+          nivel_busqueda = 31;
         }
         else{ //etiqueta, estatus, acuerdo
-          nivel_busqueda = 9;
+          nivel_busqueda = 30;
         }
       }
       else if(rango!=""){ // etiqueta, estatus, rango
-        nivel_busqueda = 11;
+        nivel_busqueda = 32;
       }
       else if(titulo=="" && acuerdo =="" && rango==""){
         nivel_busqueda = 18; // etiqueta, estatus
@@ -1231,7 +1231,7 @@ function busqueda_acuerdos(){
 
     else if(acuerdo!=""){
       if(rango!=""){ //etiqueta, acuerdo, rango
-        nivel_busqueda = 32;
+        nivel_busqueda = 33;
       }
       else{ //etiqueta, acuerdo
         nivel_busqueda = 19;
@@ -1250,66 +1250,69 @@ function busqueda_acuerdos(){
     if(titulo!=""){
       if(acuerdo!=""){
         if(fecha!=""){ // estatus, titulo, acuerdo, fecha
-          nivel_busqueda = 36;
+          nivel_busqueda = 11;
         }
         else if(rango!=""){ //estatus, titulo, acuerdo, rango
-          nivel_busqueda = 37;
+          nivel_busqueda = 38;
         }
         else if(fecha=="" && rango==""){ //estatus, titulo, acuerdo
-          nivel_busqueda = 35;
+          nivel_busqueda = 36;
         }
       }
-      else if(rango!=""){
-        nivel_busqueda = 38;
+      else if(rango!=""){ // estatus, titulo, rango
+        nivel_busqueda = 39;
+      }
+      else if(acuerdo==""&&rango==""&&etiqueta==""&&fecha==""){
+        nivel_busqueda = 35; // estatus, título
       }
     }
     else if(acuerdo!=""){
       if(rango!=""){ //estatus, acuerdo, rango
-        nivel_busqueda = 40;
+        nivel_busqueda = 41;
       }
       else{ //estatus, acuerdo
-        nivel_busqueda = 39;
+        nivel_busqueda = 40;
       }
     }
     else if(rango!=""){ //estatus, rango
-      nivel_busqueda = 41;
+      nivel_busqueda = 42;
     }
     else if(titulo=="" && acuerdo=="" && fecha=="" && rango==""){
-      nivel_busqueda = 33; //estatus
+      nivel_busqueda = 34; //estatus
     }
   } /************************ TITULO ********************************/
 
   else if(titulo!=""){
     if (acuerdo!=""){
       if(rango!=""){ //titulo, acuerdo, rango
-        nivel_busqueda = 44;
-      }
-      else if(fecha!=""){ //titulo, acuerdo, año
         nivel_busqueda = 45;
       }
+      else if(fecha!=""){ //titulo, acuerdo, año
+        nivel_busqueda = 12;
+      }
       else if(rango=="" && fecha==""){ //titulo, acuerdo
-        nivel_busqueda =43;
+        nivel_busqueda =44;
       }
     }
     else if(rango!=""){ //titulo, rango
-      nivel_busqueda = 46;
+      nivel_busqueda = 47;
     }
     else if(acuerdo=="" && rango==""){ // titulo
-      nivel_busqueda = 42;
+      nivel_busqueda = 43;
     }
   }/********************* ACUERDO ***********************/
 
   else if(acuerdo!=""){
     if(rango!=""){ //acuerdo, rango
-      nivel_busqueda = 48;
+      nivel_busqueda = 49;
     }
     else{ //acuerdo
-      nivel_busqueda = 47;
+      nivel_busqueda = 48;
     }
   }/******************** RANGO ************************/
 
   else if(rango!=""){ //rango
-    nivel_busqueda = 49;
+    nivel_busqueda = 50;
   }
 
 /******************************************************************/
@@ -1478,102 +1481,107 @@ function busqueda_acuerdos(){
       consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%'";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+titulo+"' AND acuerdo LIKE '%"+titulo+"%'";
       break;
-    case 30: // Etiqueta, Estatus, Acuerdo, Rango
-      alert("Búsqueda por año, título, etiqueta y acuerdo");
-      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
+    case 30: // Etiqueta, Estatus, Acuerdo
+      alert("Búsqueda por etiqueta, estatus, acuerdo");
+      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%'";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%'";
       break;
-    case 31: // Etiqueta, Estatus, Rango
-      alert("Búsqueda por etiqueta");
-      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
+    case 31: // Etiqueta, Estatus, Acuerdo, Rango
+      alert("Búsqueda por etiqueta, estatus, acuerdo, rango");
+      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
       break;
-    case 32: // Etiqueta, Acuerdo, Rango
+    case 32: // Etiqueta, Estatus, Rango
+      alert("Búsqueda por etiqueta, estatus, rango");
+      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND estatus = '"+estatus+"' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      break;
+    case 33: // Etiqueta, Acuerdo, Rango
       alert("Búsqueda por etiqueta, acuerdo y rango");
-      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
+      consulta = "SELECT * FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE etiqueta = '"+etiqueta+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
       break;
-    case 33: // Estatus
+    case 34: // Estatus
       alert("Búsqueda por estatus"+estatus+"");
       consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"'";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"'";
       break;
-    case 34: // Estatus, Título
+    case 35: // Estatus, Título
       alert("Búsqueda por estatus y título");
       consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%'";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%'";
       break;
-    case 35: // Estatus, Título, Acuerdo
+    case 36: // Estatus, Título, Acuerdo
       alert("Búsqueda por estatus, título y acuerdo");
       consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%'";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%'";
       break;
-    case 36: // Estatus, Título, Acuerdo, Año
+    case 37: // Estatus, Título, Acuerdo, Año //######## INNECESARIA ########## = CASE 11
       alert("Búsqueda por estatus, título, acuerdo y año");
       consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) = "+fecha+"";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) = "+fecha+"";
       break;
-    case 37: // Estatus, Título, Acuerdo, Rango
+    case 38: // Estatus, Título, Acuerdo, Rango
       alert("Búsqueda por estatus, título, acuerdo y rango");
-      consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
+      consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
       break;
-    case 38: // Estatus, Título, Rango
+    case 39: // Estatus, Título, Rango
       alert("Búsqueda por estatus, título y rango");
-      consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
+      consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND titulo LIKE '%"+titulo+"%' AND year(fecha_acta) >= "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) <= "+finish+"";
       break;
-    case 39: // Estatus, Acuerdo
+    case 40: // Estatus, Acuerdo
       alert("Búsqueda por estatus, acuerdo");
       consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%'";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%'";
       break;
-    case 40: // Estatus, Acuerdo, Rango
+    case 41: // Estatus, Acuerdo, Rango
       alert("Búsqueda por estatus, acuerdo y rango");
-      consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
+      consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
       break;
-    case 41: // Estatus, Rango
+    case 42: // Estatus, Rango
       alert("Búsqueda por estatus y rango");
-      consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
+      consulta = "SELECT * FROM acuerdos WHERE estatus = '"+estatus+"' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE estatus = '"+estatus+"' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
       break;
-    case 42: // Título
+    case 43: // Título
       alert("Búsqueda por título");
       consulta = "SELECT * FROM acuerdos WHERE titulo LIKE '%"+titulo+"%'";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE titulo LIKE '%"+titulo+"%'";
       break;
-    case 43: // Título, Acuerdo
+    case 44: // Título, Acuerdo
       alert("Búsqueda por título y acuerdo");
-      consulta = "SELECT * FROM acuerdos WHERE titulo LIKE '%"+titulo+"%'";
+      consulta = "SELECT * FROM acuerdos WHERE titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%'";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE titulo LIKE '%"+titulo+"%'";
       break;
-    case 44: // Título, Acuerdo, Rango
+    case 45: // Título, Acuerdo, Rango
       alert("Búsqueda por título, acuerdo y rango");
-      consulta = "SELECT * FROM acuerdos WHERE titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+"";
+      consulta = "SELECT * FROM acuerdos WHERE titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
       break;
-    case 45: // Título, Acuerdo, Año
+    case 46: // Título, Acuerdo, Año == Año, título, acuerdo == 12
       alert("Búsqueda por título, acuerdo y año");
       consulta = "SELECT * FROM acuerdos WHERE titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) = "+fecha+"";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE titulo LIKE '%"+titulo+"%' AND acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) = "+fecha+"";
       break;
-    case 46: // Título, Rango
+    case 47: // Título, Rango
       alert("Búsqueda por título y rango");
-      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+" AND titulo LIKE '%"+titulo+"%'";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+" AND titulo LIKE '%"+titulo+"%'";
+      consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+" AND titulo LIKE '%"+titulo+"%'";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+" AND titulo LIKE '%"+titulo+"%'";
       break;
-    case 47: // Acuerdo
+    case 48: // Acuerdo
       alert("Búsqueda por acuerdo");
       consulta = "SELECT * FROM acuerdos WHERE acuerdo LIKE '%"+acuerdo+"%'";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE acuerdo LIKE '%"+acuerdo+"%'";
       break;
-    case 48: // Acuerdo, Rango
+    case 49: // Acuerdo, Rango
       alert("Búsqueda por acuerdo y rango");
-      consulta = "SELECT * FROM acuerdos WHERE acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+" AND titulo LIKE '%"+titulo+"%'";
-      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) > "+init+" OR year(fecha_acta) = "+init+" AND year(fecha_acta) < "+finish+" OR year(fecha_acta) = "+finish+" AND titulo LIKE '%"+titulo+"%'";
+      consulta = "SELECT * FROM acuerdos WHERE acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
+      consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE acuerdo LIKE '%"+acuerdo+"%' AND year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
       break;
-    case 49: // Rango
+    case 50: // Rango
       alert("Búsqueda por rango");
       consulta = "SELECT * FROM acuerdos WHERE year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
       consulta2 = "SELECT id, titulo, acuerdo, etiqueta, estatus, tipo, numero_sesion, fecha_acta, observaciones FROM acuerdos WHERE year(fecha_acta) >= "+init+" AND year(fecha_acta) <= "+finish+"";
