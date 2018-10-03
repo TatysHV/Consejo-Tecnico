@@ -74,7 +74,7 @@
 			</div>
 
 			<div id="principal"></br></br>
-        <input type="text" id="pag_acuerdos" value="0">
+        <input type="hidden" id="pag_acuerdos" value="0">
 
         <div id="tabla_acuerdos">
           <center><h3 style="color:#3380FF">Acuerdos del H. Consejo Técnico </h3></center>

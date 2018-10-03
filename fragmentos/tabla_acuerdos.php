@@ -12,17 +12,24 @@ include "../conexiones/conexion.php";
 
 $color = ''; //Variable para guardar un string hexadecimal
 $pag = $_POST['pag'];
-$cantidad = 2; // cantidad de resultados por página
+$cantidad = 5; // cantidad de resultados por página
 $inicial = $pag * $cantidad;
 $sql = $_POST['query'];
+$query = $sql.' LIMIT '.$inicial.','.$cantidad.''; //Se agrega la limitante de resultados para hacer la paginación
 $sql2 = $_POST['query2'];
-$result = mysqli_query($con,$sql) or die('Error al consultar acuerdos');
+//echo ''.$query.' -->2:'.$sql2.''; //auxiliar en la visualización de las consultas a realizar
+$result = mysqli_query($con, $query) or die('Error al consultar acuerdos');
+
+$result2 = mysqli_query($con, $sql2) or die('Error al consultar acuerdos'); // Necesario para obtener el total de resultados
+
+
 
 $i = $inicial+1;
 
 
 //Obtener el total de resultados de la consulta para crear páginas
-$num_resultados = mysqli_num_rows($result);
+$num_resultados = mysqli_num_rows($result2);
+
 $pages = intval($num_resultados / $cantidad); //Total/numero de filas
 
 
@@ -94,15 +101,13 @@ echo '
     <div>
       <div>
       <center>
-      <form action=conexiones/create_table2.php method=post>
-        <input type="hidden" name="url" value="'.$sql2.'">
-        <input type="submit" value="confirmar">
-      </form>
+        <form action="conexiones/create_table2.php" method="POST">
+          <input type="hidden" name="qry" value="'.$sql2.'">
+          <input type="submit" class="btn btn-success" value="Descargar tabla en Excel" />
+        </form>
       </center>
       </div>
-    </div>'
-
-    ;
+    </div>';
     /*----------------------------------------------------------------
                     Creación de botones de paginación
     ----------------------------------------------------------------*/
@@ -132,9 +137,3 @@ echo '
     </center>';
 
     ?>
-
-    <!--Ventana modal para mostrar la información completa de un acuerdo
-     ------------------------------------------------------------------>
-    <div id="modal_acuerdo">
-
-    </div>
