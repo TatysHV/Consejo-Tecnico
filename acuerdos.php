@@ -180,7 +180,7 @@
                       echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.$li.'">'.$li.'</a></li>';
                 }
 
-                if($pages>20){
+                if($pages>60){ //Es necesario programar lo que sucede en este caso
                     echo'<li class="page-item"><a class="page-link" href="#">...</a></li>';
                 }
 
@@ -233,7 +233,7 @@
                     <div class="row">
                       <div class="col-xs-4">
                         <label for"tituloAcuerdo">Año:</label>
-                        <select class="selectpicker" id="srch_year" name="" data-width="100%" data-live-search="false" title="Selecciona un año">
+                        <select class="selectpicker" id="srch_year" name="" data-width="100%" data-live-search="false" title="Selecciona un año" onchange="bloquear_campos()">
                          <option value="2018">2018</option>
                          <option value="2017">2017</option>
                          <option value="2016">2016</option>
@@ -353,7 +353,7 @@
                       </div>
                       <div class="col-xs-4">
                         <div class="form-group">
-                          <select class="selectpicker" id="srch_init" name="" data-width="100%" data-live-search="false" title="Selecciona año de inicio">
+                          <select class="selectpicker" id="srch_init" name="" data-width="100%" data-live-search="false" title="Selecciona año de inicio"  onchange="bloquear_campos()" >
                            <option value="2018">2018</option>
                            <option value="2017" >2017</option>
                            <option value="2016">2016</option>
@@ -420,7 +420,7 @@
       }
     }
 
-    function showActa(){
+    /*function showActa(){
 
       var fecha = $("#fecha_acuerdo1").val();
       var tipo = $("#tipo_sesion1").val();
@@ -436,7 +436,8 @@
           //alert("hola");
         }
       });
-    }
+    }*/
+
     function limpiarFormulario() {
        $("#frm_acuerdo")[0].reset();
        $("#srch_year").selectpicker("refresh");
@@ -445,6 +446,10 @@
        // $("#srch_finish").val('default').selectpicker("refresh");
        $("#srch_init").selectpicker("refresh");
        $("#srch_estatus").selectpicker("refresh");
+
+       document.getElementById("srch_init").disabled = false;
+       document.getElementById("srch_finish").disabled = false;
+       document.getElementById("srch_year").disabled = false;
     }
 
 	</SCRIPT>

@@ -127,7 +127,7 @@ echo '
             echo'<li class="page-item"><a class="page-link" onclick="change_page('.$li.')">'.$li.'</a></li>';
       }
 
-      if($pages>20){
+      if($pages>60){ //Es necesario programar lo que sucede en este caso
           echo'<li class="page-item"><a class="page-link" href="#">...</a></li>';
       }
 

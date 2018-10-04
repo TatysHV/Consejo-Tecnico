@@ -46,7 +46,7 @@
 							<li><a href="sesiones.php">SESIONES</a></li>
 							<li><a href="calendario.php">CALENDARIO</a></li>
 							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
-							<li><a href="acuerdos.php">ACUERDOS</a></li>
+							<li><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
 							<li><a href="oficios.php">OFICIOS</a></li>
 							<li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>
             </ul>
@@ -145,12 +145,12 @@
           </ul>
           <!---------------Notificaciones de procesos-------------- -->
 
-          <div class="alert alert-success" role="alert">
+          <!--<div class="alert alert-success" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             El nuevo reglamento ha sido registrado con éxito.
-          </div>
+          </div>-->
 
 
         </div>

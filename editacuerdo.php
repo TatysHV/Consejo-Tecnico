@@ -68,7 +68,7 @@
               <li><a href="comisiones.php">COMISIONES</a></li>
               <?php
                   if($_SESSION['tipo'] == '0'){
-                    echo '<li class="active"><a href="acuerdos.php">ACUERDOS</a></li>
+                    echo '<li class="active"><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
                     <li><a href="oficios.php">OFICIOS</a></li>';
                   }
               ?>
@@ -126,7 +126,7 @@
           </div>
 
           <div class ="titular"><center>Modificar acuerdo</center></div></br>
-          
+
 
           <?php
             $ID = $_GET["id"];
@@ -154,7 +154,7 @@
                   <div class="form-group">
                     <label for="">Etiqueta:</label><br>';
 
-                    
+
                       //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
 
                       $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
@@ -164,7 +164,7 @@
                       <select class="selectpicker" id="etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true">
                       <option valou="" selected>'.$line0["etiqueta"].'</option>
 
-                      
+
                       <optgroup label="Secretaría académica">';
 
                       while ($line = mysqli_fetch_array($result)) {
@@ -232,33 +232,32 @@
               <div class="col-xs-4">
                 <label>Tipo sesión: </label>
                 <select class="selectpicker" data-width="100%" id="tipo_sesion1">';
-                
 
-                      $fecha = $line0['fecha_acta'];
-                      $sql = "SELECT * FROM actas WHERE fecha_sesion = '$fecha'";
-                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' .mysql_error($con));
 
-                      while ($line = mysqli_fetch_array($result)) {
-                        if($line["tipo_sesion"] == "Ordinaria"){
-                          echo'<option value="Ordinaria">Ordinaria</option>
-                          <option value="Extraordinaria">Extraordinaria</option>
-                          <option value="'.$line['tipo_sesion'].'">'.$line['tipo_sesion'].'</option>';
-                        }
-                        else{
-                          echo'<option value="Extraordinaria">Extraordinaria</option>
-                          <option value="Ordinaria">Ordinaria</option>
-                          <option value="'.$line['tipo_sesion'].'">'.$line['tipo_sesion'].'</option>';
-                        }
-                      }
+                  /*$fecha = $line0['fecha_acta'];
+                  $sql = "SELECT * FROM actas WHERE fecha_sesion = '$fecha'";
+                  $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' .mysql_error($con));
+                  */
+                  //while ($line = mysqli_fetch_array($result)) {
+                    if($line0["tipo"] == "Ordinaria"){
+                      echo'<option value="Ordinaria">Ordinaria</option>
+                      <option value="Extraordinaria">Extraordinaria</option>';
+
+                    }
+                    else{
+                      echo'<option value="Extraordinaria">Extraordinaria</option>
+                      <option value="Ordinaria">Ordinaria</option>';
+
+                    }
 
                       echo'
                 </select>
               </div>
               <div class="col-xs-4">
                 <label>Fecha acta: </label>
-                <input type="date" class="fsesion" id="fecha_acuerdo1" value="'.$line0['fecha_acta'].'" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaActa" onchange="showActa()">
+                <input type="date" class="fsesion" id="fecha_acuerdo1" value="'.$line0['fecha_acta'].'" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaActa">
               </div>
-                
+
             </div>
             <div class="row">
               <div id="acta_acuerdo">
@@ -360,22 +359,5 @@
       }
     }
 
-    function showActa(){
-
-      var fecha = $("#fecha_acuerdo1").val();
-      var tipo = $("#tipo_sesion1").val();
-
-      //alert(fecha);
-
-      $.ajax({
-        url: "../consejo_tecnico/fragmentos/acta_acuerdo.php",
-        data: {"fecha":fecha, "tipo":tipo},
-        type: "post",
-        success: function(data){
-          document.getElementById("acta_acuerdo").innerHTML = data;
-          //alert("hola");
-        }
-      });
-    }
   </SCRIPT>
 </html>

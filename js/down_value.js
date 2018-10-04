@@ -1011,6 +1011,23 @@ var exReg_pdf = '';
 
 }
 
+function bloquear_campos(){
+  //Bloqueo de Año & Rango, permitido Año o Rango
+  var fecha = $("#srch_year").val();
+  var init = $("#srch_init").val();
+  var finish = $("#srch_finish").val();
+
+  if(fecha!=""){
+    document.getElementById("srch_init").disabled = true;
+    document.getElementById("srch_finish").disabled = true;
+  }
+
+  else if(init!=""||finish!=""){
+      document.getElementById("srch_year").disabled = true;
+  }
+
+}
+
 function busqueda_acuerdos(){
 
   var fecha = $("#srch_year").val();
@@ -1026,8 +1043,6 @@ function busqueda_acuerdos(){
   if(init!="" && finish!=""){
     var rango = "=)";
   }
-
-
 
 
 //****************Identifica el tipo de búsqueda y combinaciones ***************
