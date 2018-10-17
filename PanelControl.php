@@ -80,7 +80,6 @@
         <div class="bloque-blank">
           <legend>Gestión de normatividad</legend>
           <ul>
-            <li><a class="onKlic" onclick="veralerta()">Modificar y/o eliminar reglamentos</a></li>
             <li><a onclick="showEditRegGral()" class="onKlic">Subir nuevo reglamento general UNAM</a></li>
                 <div id="reglamentoGral" class="notaEdit oculto" style="padding: 20px;">
                   <center><h4>Subir nuevo reglamento general UNAM</h4></center>

@@ -134,11 +134,22 @@
             <div class="auxiliar">
 
             <div class="row">
-              <div class="col-xs-12">
+              <div class="col-xs-7">
                 <label for"tituloAcuerdo">Título del acuerdo: </label>
                 <input class="form-control" id="titulo_acuerdo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
               </div>
+              <div class="col-xs-5">
+                <div class="form-group">
+                  <label for"estatus">Estatus: </label>
+                  <select class="form-control" id="estatus" name="estatusAcuerdo">
+                    <option>Pendiente</option>
+                    <option>En seguimiento</option>
+                    <option>Finalizado</option>
+                    <option>Cancelado</option>
+                  </select>
+              </div>
             </div>
+          </div>
             <div class="row">
               <div class="col-xs-4">
                 <div id="etiqueta">
@@ -146,6 +157,7 @@
                     <label for="">Etiqueta:</label><br>
 
                     <?php
+                      mysqli_set_charset($con,'utf8');  // LÍNEA BENDITA QUE ARREGLA PROBLEMAS DE CARACTERES D: <3
                       //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
 
                       $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
@@ -220,7 +232,7 @@
                 </div>
               </div>
 
-              <div class="col-xs-4">
+              <div class="col-xs-3">
                 <label>Tipo sesión: </label>
                 <select class="selectpicker" data-width="100%" id="tipo_sesion1" name="tipo_sesion1">
                   <option value="Ordinaria">Ordinaria</option>
@@ -228,8 +240,13 @@
                 </select>
               </div>
 
-              <div class="col-xs-4">
-                <label>Fecha sesion: </label>
+              <div class="col-xs-2">
+                <label>Num sesión:</label>
+                <input type="text" class="form-control" name="numsesion"/>
+              </div>
+
+              <div class="col-xs-3">
+                <label>Fecha sesión: </label>
                 <input type="date" class="fsesion" id="fecha_acuerdo1" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaActa">
               </div>
 
@@ -257,39 +274,25 @@
             <div class="row">
               <div class="col-xs-6">
                 <div class="form-group">
-                  <label for"estatus">Estatus: </label>
-                  <select class="form-control" id="estatus" name="estatusAcuerdo">
-                    <option>Pendiente</option>
-                    <option>En seguimiento</option>
-                    <option>Finalizado</option>
-                    <option>Cancelado</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-xs-6">
-                <div class="form-group">
                   <label for="">Oficio PDF:</label>
                   <input id="actapdf" name="oficio[]" type="file" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
                 </div>
               </div>
-              <br><br>
-            </div>
-            <div class="row">
-              </br>
-              <div class="col-xs-4">
+              <div class="col-xs-6">
                 <label>Oficio Word:</label>
                 <input type="file" class="file" id="" name="oficio_word[]" style="width: 100%; height: 34px; border: 1px solid #CCC">
               </div>
-              <div class="col-xs-4">
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
                 <label>Acta:</label>
                 <input type="file" class="file" id="" name="acta_admin[]" style="width: 100%; height: 34px; border: 1px solid #CCC">
               </div>
-              <div class="col-xs-4">
+              <div class="col-xs-6">
                 <label>Archivos de seguimiento:</label>
                 <input type="file" class="file" id="" name="acuerdo_files[]" style="width: 100%; height: 34px; border: 1px solid #CCC" multiple="true">
               </div>
             </div>
-
 
             </br></br>
             <center>

@@ -65,32 +65,32 @@ echo '
          case 'Completado': $color = '#C3E6CB';
        }
 
-       /*echo '<tr style="background-color:'.$color.'">
-              <td>'.$i.'</td>
-              <td><center>'.$line["fecha_acta"].'</center></td>
-              <td>'.$line["etiqueta"].'</td>
-              <td>'.$line["titulo"].'</td>
-              <td><center>
-              <button onclick="show_acuerdo('.$line["id"].')" type="button" class="btn btn-primary" >
-                Ver contenido
-              </button></center></td>
-              <td><a href="?id='.$line["id"].'">Editar</a></br><a href="'.$line["id"].'">Eliminar</a></td>
-            </tr>';
-      $i = $i+1;*/
-
-      echo '<tr style="background-color:'.$color.'">
+     /*echo '<tr style="background-color:'.$color.'">
              <td><strong>'.$i.'</strong></td>
              <td>'.$line["etiqueta"].'</td>
              <td>'.$line["titulo"].'</td>
              <td>'.$line["acuerdo"].'</td>
              <td><center>'.$line["tipo"].' '.$line['numero_sesion'].'</br>'.$line["fecha_acta"].'</center></td>
-             <td><span title="Ver oficio PDF"><img src="imagenes/flaticons/pdf.png"></span><br><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></td>
-             <td><span title="Ver acta"><img src="imagenes/flaticons/pdf.png"></span></td>
+             <td><span title="Ver oficio PDF"><img src="imagenes/flaticons/pdf.png"></span><br><a href="conexiones/uploads/'.$line["oficio"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></td>
+             <td><span title="Ver acta"><a href="conexiones/uploads/'.$line["acta_admin"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span></td>
              <td><center><a onclick ="show_notes('.$line["id"].')" class="onKlic"><img src="imagenes/flaticons/notepad.png"></a></center></td>
              <td><center><img src="imagenes/flaticons/folder.png" onclick="show_acuerdo('.$line["id"].')" class="onKlic"></center></td>
-             <td><a href="?id='.$line["id"].'">Editar</a></br><a href="'.$line["id"].'">Eliminar</a></td>
+             <td><a href="editacuerdo.php?id='.$line["id"].'">Editar</a></br><a href="" onclick="delete_acuerdo('.$line["id"].')">Eliminar</a></td>
            </tr>';
-     $i = $i+1;
+     $i = $i+1;*/
+
+     echo '<tr style="background-color:'.$color.'">
+            <td><strong>'.$i.'</strong></td>
+            <td>'.$line["etiqueta"].'</td>
+            <td>'.$line["titulo"].'</td>
+            <td>'.$line["acuerdo"].'</td>
+            <td><center>'.$line["tipo"].' '.$line['numero_sesion'].'</br>'.$line["fecha_acta"].'</center></td>
+            <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
+            <td><span title="Ver acta"><a href="conexiones/uploads/'.$line["acta_admin"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span></td>
+            <td><center><a onclick ="show_notes('.$line["id"].')" class="onKlic"><img src="imagenes/flaticons/notepad.png"></a></center></td>
+            <td><center><img src="imagenes/flaticons/folder.png" onclick="show_acuerdo('.$line["id"].')" class="onKlic"></center></td>
+            <td><a href="editacuerdo.php?id='.$line["id"].'">Editar</a></br><a href="" onclick = "delete_acuerdo('.$line["id"].')">Eliminar</a></td>
+          </tr>';
 
      }
 
@@ -134,6 +134,21 @@ echo '
       echo'<li class="page-item"><a class="page-link" onclick="change_page('.($pag+1).')">Siguiente</a></li>
       </ul>
     </nav>
-    </center>';
+    </center>
+
+    <!--Ventana modal para mostrar la información completa de un acuerdo
+     ------------------------------------------------------------------>
+
+     <div id="modal_acuerdo">
+
+     </div>
+
+     <!-- Ventana modal para mostrar NOTAS de acuerdos ----------------->
+
+     <div id="modal_notes">
+
+     </div>
+
+    ';
 
     ?>

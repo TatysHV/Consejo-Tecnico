@@ -38,6 +38,8 @@ function add_acuerdo(){
   $tipo = $_POST['tipo_sesion1'];
   $num_sesion = $_POST['numsesion'];
 
+  $aux_files="".basename($_FILES['acuerdo_files']['name'][0]);
+
   /*if($url_acta!=""){*/
     //----------Subir cada uno de los archivos a la carpeta del servidor
     foreach($_FILES['oficio']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
@@ -81,13 +83,13 @@ function add_acuerdo(){
     }
 
 
-    $query= mysqli_query($con, "INSERT INTO acuerdos(etiqueta, acuerdo, observaciones, estatus, oficio, oficio_word, acta_admin, titulo, fecha_acta, tipo, numero_sesion) VALUES ('$etiqueta','$acuerdo','$observaciones','$estatus','$oficio','$oficio_word','$acta_admin','$titulo','$fecha','$tipo','$num_sesion')");
+    $query= mysqli_query($con, "INSERT INTO acuerdos(etiqueta, acuerdo, observaciones, estatus, oficio, oficio_word, acta_admin, titulo, fecha_acta, tipo, numero_sesion) VALUES ('$etiqueta','$acuerdo','$observaciones','$estatus','$oficio','$oficio_word','$acta_admin','$titulo','$fecha','$tipo','$num_sesion') ") or die ('Error al registrar el acuerdo'.mysql_error());
 
     if(!$query){
-      die('Error al registrar el acuerdo:');
+      echo 'Error al registrar el acuerdo';
     }
     else{
-      //echo 'Acuerdo registrado correctamente';
+      echo 'Acuerdo registrado correctamente';
     }
 
     //------ Registro de archivos de seguimiento ------------------------------//
@@ -97,8 +99,10 @@ function add_acuerdo(){
          $id_acuerdo = trim($row[0]);
     }
 
-    add_acuerdo_file($id_acuerdo); //Función que se encarga de subir cada uno de los archivos seleccionados como seguimieto.
-
+    if($aux_files!=""){
+      add_acuerdo_file($id_acuerdo); //Función que se encarga de subir cada uno de los archivos seleccionados como seguimieto.
+    }
+    
   /*}
   else{
     echo 'Debes seleccionar el acta a la que pertenece el acuerdo';
@@ -141,7 +145,7 @@ function add_acuerdo_file($id_acuerdo){
         $length =  filesize($target_path.$name);
         $length1 = $length * 0.00097656;
         $length1 = round($length1, 2);
-        $result = mysqli_query($con, "SELECT MAX(id) AS id FROM acuerdos_files") or die ('<b>Error al obtener id_acuerdo</b>' . mysql_error($con));
+        $result = mysqli_query($con, "SELECT MAX(id) AS id FROM acuerdos_files") or die ('<b>Error al obtener id_acuerdo</b>' . mysqli_error($con));
         if ($row = mysqli_fetch_array($result)) {
              $id_acuerdo_file = trim($row[0]);
         }

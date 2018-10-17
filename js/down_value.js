@@ -25,7 +25,7 @@ function registrar_punto(){
      data: {"nombre":nombre_punto, "numero":numero_punto, "proteger":proteger, "caso":2, "orden":id_orden},
      type: "post",
       success: function(data){
-        alert("Punto registrado correctamente");
+        //alert("Punto registrado correctamente");
          document.getElementById("indice_puntos").value = cant_puntos+1;
          document.getElementById("nPunto").innerHTML = numero_punto;
 
@@ -78,7 +78,8 @@ function registrar_archivo(){
   var orden_dia = $("#index_orden").val();
   var num_punto = $("#index_punto").val();
 
-  //alert("punto actual: "+num_punto);
+  //Desactivamos el botón de "Subir" para evitar duplicados
+  document.getElementById('file_archivo').disabled = true;
 
   formData.append('carpeta', carpeta);
   formData.append('punto', num_punto);
@@ -92,6 +93,7 @@ function registrar_archivo(){
       processData: false,
       success: function(data){
         //alert(data);
+        document.getElementById('file_archivo').disabled = false;
         showFilesViewer();
         hideAddFil();
       }
@@ -849,11 +851,11 @@ function registrar_acuerdo(){
           contentType: false,
           processData: false,
           success: function(data){
-            alert("Acuerdo registrado correctamente"+data);
+            alert("Acuerdo registrado correctamente js"+data);
             //window.location.assign("../consejo_tecnico/normatividad.php");
           },
           failure: function(){
-            alert("Error al registrar acuerdo. "+data);
+            alert("Error al registrar acuerdo js"+data);
           }
         });
 
@@ -983,10 +985,6 @@ function delete_file_seguimiento(ID){
       });
 
   }
-}
-
-function bloqueo_años(){
-
 }
 
 function change_page(pag){

@@ -248,6 +248,7 @@
                               <label for="">Etiqueta:</label><br>
 
                               <?php
+                                mysqli_set_charset($con,'utf8'); 
                                 //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
 
                                 $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";

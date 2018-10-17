@@ -143,9 +143,21 @@
             <input type="hidden" value="'.$ID.'" name="id">
 
             <div class="row">
-              <div class="col-xs-12">
-                <label for"tituloAcuerdo">Título del acuerdo: </label>
+              <div class="col-xs-7">
+                <label for="tituloAcuerdo">Título del acuerdo: </label>
                 <input class="form-control" id="titulo_acuerdo" type="text" name="nombreAcuerdo" value="'.$line0['titulo'].'">
+              </div>
+              <div class="col-xs-5">
+                <div class="form-group">
+                  <label for="estatus">Estatus: </label>
+                  <select class="form-control" id="estatus" name="estatusAcuerdo">
+                    <option selected>'.$line0["estatus"].'</option>
+                    <option>Pendiente</option>
+                    <option>En seguimiento</option>
+                    <option>Finalizado</option>
+                    <option>Cancelado</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -229,15 +241,10 @@
                 </div>
               </div>
 
-              <div class="col-xs-4">
+              <div class="col-xs-3">
                 <label>Tipo sesión: </label>
                 <select class="selectpicker" data-width="100%" id="tipo_sesion1">';
 
-
-                  /*$fecha = $line0['fecha_acta'];
-                  $sql = "SELECT * FROM actas WHERE fecha_sesion = '$fecha'";
-                  $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' .mysql_error($con));
-                  */
                   //while ($line = mysqli_fetch_array($result)) {
                     if($line0["tipo"] == "Ordinaria"){
                       echo'<option value="Ordinaria">Ordinaria</option>
@@ -253,15 +260,20 @@
                       echo'
                 </select>
               </div>
-              <div class="col-xs-4">
-                <label>Fecha acta: </label>
+
+              <div class="col-xs-2">
+                <label>Num sesión</label>
+                <input type="text" class="form-control" name="numsesion" value="'.$line0['numero_sesion'].'"/>
+              </div>
+
+              <div class="col-xs-3">
+                <label>Fecha sesión: </label>
                 <input type="date" class="fsesion" id="fecha_acuerdo1" value="'.$line0['fecha_acta'].'" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaActa">
               </div>
 
             </div>
             <div class="row">
               <div id="acta_acuerdo">
-
 
               </div>
             </div>
@@ -282,35 +294,21 @@
             <div class="row">
               <div class="col-xs-6">
                 <div class="form-group">
-                  <label for"estatus">Estatus: </label>
-                  <select class="selectpicker"id="estatus" name="estatusAcuerdo">
-                    <option valou="" selected>'.$line0["estatus"].'</option>
-                    <option>Pendiente</option>
-                    <option>En seguimiento</option>
-                    <option>Finalizado</option>
-                    <option>Cancelado</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-xs-6">
-                <div class="form-group">
                   <label for="">Oficio PDF</label>
                   <input id="" name="oficio[]" type="file" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
                 </div>
               </div>
-              <br><br>
-            </div>
-             <div class="row">
-              </br>
-              <div class="col-xs-4">
+              <div class="col-xs-6">
                 <label>Oficio Word:</label>
                 <input type="file" class="file" id="" name="oficio_word[]" style="width: 100%; height: 34px; border: 1px solid #CCC">
               </div>
-              <div class="col-xs-4">
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
                 <label>Acta:</label>
                 <input type="file" class="file" id="" name="acta_admin[]" style="width: 100%; height: 34px; border: 1px solid #CCC">
               </div>
-              <div class="col-xs-4">
+              <div class="col-xs-6">
                 <label>Archivos de seguimiento:</label>
                 <input type="file" class="file" id="" name="acuerdo_files[]" style="width: 100%; height: 34px; border: 1px solid #CCC" multiple="true">
               </div>
