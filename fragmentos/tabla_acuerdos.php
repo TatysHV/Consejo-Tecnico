@@ -54,7 +54,7 @@ echo '
      while ($line = mysqli_fetch_array($result)){
 
        switch($line["estatus"]){
-         case 'Entregado': $color = '#D1ECF1';
+         case 'Finalizado': $color = '#D1ECF1';
           break;
          case 'Pendiente': $color = '#FFF3CD';
           break;

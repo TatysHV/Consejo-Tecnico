@@ -15,8 +15,8 @@
 
     include "conexion.php";
 
-    $query = mysqli_query($con, "INSERT INTO actas (nombre, tipo_sesion,
-      numero_sesion, fecha_sesion, pdf, minuta) values ('$nombre', '$tipo',  '$numero', '$fecha', '$fichero', '$minuta')")or die("Error al subir el acta" .mysql_error());
+    $query = mysqli_query($con, "INSERT INTO actas (nombre, tipo_sesion, numero_sesion, fecha_sesion, pdf, minuta)
+    values ('$nombre', '$tipo',  '$numero', '$fecha', '$fichero', '$minuta')")or die("Error al subir el acta" .mysqli_error($con));
 
     if(!$query){
       echo "Ocurrió un error al registrar el acta" . $query;

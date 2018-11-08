@@ -81,11 +81,11 @@
                 <td collspan="1"><label class="Lform">Número de sesión: </label></th>
                 <td collspan="1"><input type="number" class="fsesion" min="01" max="30" style="width:100%" name="numeroSA"></td>
                 <td><label class="Lform">Subir acta:</label></th>
-                <td><input id="actapdf" name="acta" type="file" class="file"/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" /> </td>
+                <td><input id="actapdf" name="acta" type="file" class="file"/><input type="hidden" name="MAX_FILE_SIZE" value="90000000" /> </td>
               </tr>
               <tr>
                 <td><label class="Lform">Subir minuta:</label></td>
-                <td><input id="minuta" name="minuta" type="file" class="file"/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" /></td>
+                <td><input id="minuta" name="minuta" type="file" class="file"/><input type="hidden" name="MAX_FILE_SIZE" value="90000000" /></td>
               </tr>
             </table>
             </br></br>

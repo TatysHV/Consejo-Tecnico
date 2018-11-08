@@ -82,6 +82,8 @@
           <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#form_acuerdo">Buscar acuerdos</button>
           <a class="btn btn-primary" href="add_acuerdo.php">Registrar nuevo acuerdo</a>
           </br></br>
+
+
           <?php
 
           $year = date("Y");
@@ -110,6 +112,7 @@
 
 
           echo '
+              <div style="float: left"><img src="imagenes/indicecolores.png" style="width: 390px; height: auto;" /></div>
               <div style="float: right;"><h5><b>Total de resultados: </b>'.$num_resultados.'</h5></div>
               <table class="table thead-dark table-bordered" id="acuerdos">
                <thead>
@@ -130,7 +133,7 @@
                while ($line = mysqli_fetch_array($result)){
 
                  switch($line["estatus"]){
-                   case 'Entregado': $color = '#D1ECF1';
+                   case 'Finalizado': $color = '#D1ECF1';
                     break;
                    case 'Pendiente': $color = '#FFF3CD';
                     break;
@@ -248,7 +251,7 @@
                               <label for="">Etiqueta:</label><br>
 
                               <?php
-                                mysqli_set_charset($con,'utf8'); 
+                                mysqli_set_charset($con,'utf8');
                                 //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
 
                                 $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
