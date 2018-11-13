@@ -124,37 +124,28 @@
           	</div>
           </div>
 
-					<div class ="titular"><center>Registro de nuevo acuerdo</center></div></br>
-          <!--
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#miModal">
-          	Abrir modal
-          </button>
-          -->
-          <form id="frm_acuerdo" enctype="multipart/form-data" action="conexiones/upload_files.php" method="POST" class="forma">
+					<div class ="titular"><center>Registro de nuevo oficio</center></div></br>
+
+          <form id="frm_oficio" enctype="multipart/form-data" method="POST" class="forma">
             <div class="auxiliar">
 
             <div class="row">
-              <div class="col-xs-7">
-                <label for"tituloAcuerdo">Título del acuerdo: </label>
-                <input class="form-control" id="titulo_acuerdo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
+              <div class="col-xs-6">
+                <label>Folio del oficio:</label>
+                <input class="form-control" id="folio_oficio" type="text" name="folio_oficio" placeholder="H.T.C/000/AAAA">
               </div>
-              <div class="col-xs-5">
+              <div class="col-xs-6">
                 <div class="form-group">
-                  <label for"estatus">Estatus: </label>
-                  <select class="form-control" id="estatus" name="estatusAcuerdo">
-                    <option>Pendiente</option>
-                    <option>En seguimiento</option>
-                    <option>Finalizado</option>
-                    <option>Cancelado</option>
-                  </select>
+                  <label>Fecha de emisión:</label>
+                  <input type="date" class="fsesion" id="fecha_emision" name="fecha_emision" style="width:100%; height:34px; border: 1px solid #CCC;"/>
+                </div>
               </div>
             </div>
-          </div>
             <div class="row">
               <div class="col-xs-4">
                 <div id="etiqueta">
                   <div class="form-group">
-                    <label for="">Etiqueta:</label><br>
+                    <label>Asunto/etiqueta</label><br>
 
                     <?php
                       mysqli_set_charset($con,'utf8');  // LÍNEA BENDITA QUE ARREGLA PROBLEMAS DE CARACTERES D: <3
@@ -164,7 +155,7 @@
                       $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
 
                       echo'
-                      <select class="selectpicker" id="etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
+                      <select class="selectpicker" id="etiqueta" name="etiquetaOF" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
                       <optgroup label="Secretaría académica">';
 
                       while ($line = mysqli_fetch_array($result)) {
@@ -234,7 +225,7 @@
 
               <div class="col-xs-3">
                 <label>Tipo sesión: </label>
-                <select class="selectpicker" data-width="100%" id="tipo_sesion1" name="tipo_sesion1">
+                <select class="selectpicker" data-width="100%" id="tipo_of" name="tipo_of">
                   <option value="Ordinaria">Ordinaria</option>
                   <option value="Extraordinaria">Extraordinaria</option>
                 </select>
@@ -242,40 +233,42 @@
 
               <div class="col-xs-2">
                 <label>Num sesión:</label>
-                <input type="text" class="form-control" name="numsesion"/>
+                <input type="text" class="form-control" name="numsesion_of"/>
               </div>
 
               <div class="col-xs-3">
                 <label>Fecha sesión: </label>
-                <input type="date" class="fsesion" id="fecha_acuerdo1" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;" name="fechaActa">
+                <input type="date" class="fsesion" name="fechasesion_of" id="fecha_sesion" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;">
               </div>
 
-            </div>
-            <div class="row">
-              <div id="acta_acuerdo">
-
-
-              </div>
             </div>
             <div class="row">
               <div class="col-xs-12">
                 <div class="form-group">
-                  <label for="">Acuerdo:</label>
-                  <textarea class="form-control" id="acuerdo"  name="acuerdo" rows="3" placeholder="Escribir el contenido del acuerdo"></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="">Observaciones:</label>
-                  <textarea class="form-control" id="observaciones"  name="observaciones" rows="3" placeholder="Notas u observaciones sobre el acuerdo"></textarea>
+                  <label>Nombre del oficio</label>
+                  <input type="text" class="form-control" id="nombre_oficio"  name="acuerdo" rows="3" placeholder="Escribir el contenido del acuerdo"></textarea>
                 </div>
               </div>
             </div>
-
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="form-group">
+                  <label>Estatus</label>
+                  <select name="estatus_of" class="form-control" >
+                    <option value="entregado">Entregado</option>
+                    <option value="seguimiento">En seguimiento</option>
+                    <option value="cancelado">Cancelado</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="completado">Completado</option>
+                  </select>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-xs-6">
                 <div class="form-group">
                   <label for="">Oficio PDF:</label>
-                  <input id="actapdf" name="oficio[]" type="file" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                  <input id="actapdf" name="oficio_pdf[]" type="file" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
                 </div>
               </div>
               <div class="col-xs-6">
@@ -285,18 +278,19 @@
             </div>
             <div class="row">
               <div class="col-xs-6">
-                <label>Acta:</label>
-                <input type="file" class="file" id="" name="acta_admin[]" style="width: 100%; height: 34px; border: 1px solid #CCC">
+                <div class="form-group">
+                  <label for="">Anexos:</label>
+                  <input id="actapdf" name="anexos[]" type="file" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                </div>
               </div>
               <div class="col-xs-6">
-                <label>Archivos de seguimiento:</label>
-                <input type="file" class="file" id="" name="acuerdo_files[]" style="width: 100%; height: 34px; border: 1px solid #CCC" multiple="true">
+                <label>Seguimiento:</label>
+                <input type="file" class="file" id="" name="seguimiento[]" style="width: 100%; height: 34px; border: 1px solid #CCC">
               </div>
             </div>
-
             </br></br>
             <center>
-              <input class="btn btn-success" style="width: 250px; margin-left: 5px;" type="button" onclick="registrar_acuerdo()" value="Registrar acuerdo">
+              <input class="btn btn-success" style="width: 250px; margin-left: 5px;" type="button" onclick="add_oficio()" value="Registrar acuerdo">
             </center>
             </div>
             </form>

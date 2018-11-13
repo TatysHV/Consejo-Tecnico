@@ -1615,3 +1615,31 @@ function busqueda_acuerdos(){
 
 
 }
+
+/*------------------------------------------------------------------------------
+-------------------------CONTROL DE OFICIOS ----------------------------------
+-----------------------------------------------------------------------------*/
+
+function add_oficio(){
+  alert("Registrando oficio");
+
+  var formData = new FormData(document.getElementById("frm_oficio"));
+
+  formData.append('funcion', 0);
+
+  $.ajax({
+      url: "../consejo_tecnico/conexiones/oficios.php",
+      data: formData,
+      type: "post",
+      contentType: false,
+      processData: false,
+      success: function(data){
+        alert("Oficio registrado"+data);
+        //window.location.assign("../consejo_tecnico/normatividad.php");
+      },
+      failure: function(){
+        alert("Error al registrar oficio"+data);
+      }
+    });
+
+}
