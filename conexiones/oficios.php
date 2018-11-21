@@ -3,7 +3,7 @@ include "conexion.php";
 
 $funcion = $_POST['funcion'];
 
-switch ($func){
+switch ($funcion){
   case 0 : add_oficio();
   break;
   case 1: add_oficio_anexo();
@@ -14,42 +14,54 @@ switch ($func){
 }
 
 function add_oficio(){
-  include "conexión.php";
+  include "conexion.php";
 
   $target_path = "../conexiones/uploads/";
 
   $folio = $_POST['folio_oficio'];
-  $fecha_emision = $_POST['fecha_emision'];
+  $nombre = $_POST['nombre_oficio'];
+  $dirigido = $_POST['dirigido'];
   $asunto = $_POST['etiquetaOF'];
+  $estatus = $_POST['estatus_of'];
+  $fecha_emision = $_POST['fecha_emision'];
   $tipo = $_POST['tipo_of'];
   $num_sesion = $_POST['numsesion_of'];
   $fecha_sesion = $_POST['fechasesion_of'];
-  $estatus = $_POST['estatus_of'];
 
   $oficio_pdf="".basename($_FILES['oficio_pdf']['name'][0]);
   $oficio_word="".basename($_FILES['oficio_word']['name'][0]);
   $anexos="".basename($_FILES['anexos']['name'][0]);
-  $seguimiento="".basename($_FILES['seguimiento']['name'][0]);
 
-  //*******Subiendo el oficio PDF al servidor**************/
+  //*******Subiendo el oficio PDF al servidor*************************************/
   if($oficio_pdf!=""){
-    if (strlen($_FILES['oficio_pdf']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
-      if (move_uploaded_file($_FILES['oficio_pdf']['tmp_name'][$i], $target_path.$oficio_pdf)) {
+    if (strlen($_FILES['oficio_pdf']['name'][0]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+      if (move_uploaded_file($_FILES['oficio_pdf']['tmp_name'][0], $target_path.$oficio_pdf)) {
         //Subiendo archivo al servidor
       }else{echo "Error al subir al servidor el oficio PDF";}
     }
   }
 
-  //******Subiendo el oficio Word al servidor***************/
+  //******Subiendo el oficio Word al servidor***********************************/
   if($oficio_word!=""){
-    if (strlen($_FILES['oficio_word']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
-      if (move_uploaded_file($_FILES['oficio_word']['tmp_name'][$i], $target_path.$oficio_word)) {
+    if (strlen($_FILES['oficio_word']['name'][0]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+      if (move_uploaded_file($_FILES['oficio_word']['tmp_name'][0], $target_path.$oficio_word)) {
         //Subiendo archivo al servidor
       }else{echo "Error al subir al servidor el oficio word";}
     }
   }
 
-  //*****Obtener id del oficio registrado *****************/
+  //*****Registrar en la base de datos el nuevo oficio**************************/
+  $query= mysqli_query($con, "INSERT INTO oficios(folio, nombre, dirigidoA, asunto, estatus, fecha_emision, oficio_word, oficio_pdf, tipo_sesion, numero_sesion, fecha_sesion)
+  VALUES ('$folio', '$nombre', '$dirigido', '$asunto', '$estatus', '$fecha_emision', '$oficio_word', '$oficio_pdf', '$tipo', '$num_sesion', '$fecha_sesion') ") or die ('Error al registrar el oficio'.mysqli_error($con));
+
+  if(!$query){
+    echo 'Error al registrar el nuevo oficio';
+  }
+  else{
+    echo 'Oficio registrado correctamente';
+  }
+
+  //*****Obtener id del oficio registrado *************************************/
   $id_oficio ="";
   $query_id = mysqli_query($con, "SELECT MAX(id_oficio) AS id FROM oficios") or die ('Error al obtener el id del oficio'.mysqli_error($con));
   if ($row = mysqli_fetch_array($query_id)) {
@@ -60,10 +72,11 @@ function add_oficio(){
   if($anexos!=""){
     add_oficio_anexo($id_oficio);
   }
+
   //*****Si se necesitan subir archivos de seguimiento, la función lo hace*****/
-  if($seguimiento!=""){
+  /*if($seguimiento!=""){
     add_oficio_seguimiento($id_oficio);
-  }
+  }*/
 
 
 }

@@ -79,6 +79,7 @@
 			<div id="principal"></br></br>
 				<div class="bloque_desplegable">
 
+          <!-- ---------------- VENTANA MODAL PARA REGISTRO DE NUEVA ETIQUETA -------------- -->
           <div class="modal fade" id="nueva_etiqueta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           	<div class="modal-dialog" role="document">
           		<div class="modal-content">
@@ -124,6 +125,89 @@
           	</div>
           </div>
 
+          <!-- ---------------- VENTANA MODAL PARA EL REGISTRO DE TABLA DE SEGUIMIENTO --------- -->
+          <div class="modal fade" id="add_seguimiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <center><h4 class="modal-title">Registro de seguimiento</h4></center>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="frm_seguimiento" encrypte="multipart/form-data" method="POST" class="forma">
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label>Turnado a:</label>
+                          <input type="text" class="form-control" id="" name="turnadoA"/>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label>Dependencia:</label>
+                          <select class="selectpicker" data-width="100%">
+                            <option value="">Secretaría académica</option>
+                            <option value="">Secretaría de investigación y posgrado</option>
+                            <option value="">Secretaría de vinculación</option>
+                            <option value="">Servicios escolares</option>
+                            <option value="">Otro departamento</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label>Responsable:</label>
+                          <input type="text" class="form-control" id="" name="responsable"/>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label>Observaciones:</label>
+                          <input type="textarea" rows="5" class="form-control" id="" name="observaciones"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label>Tipo: </label>
+                          <select class="selectpicker" data-width="100%">
+                            <option value="seguimiento">En seguimiento</option>
+                            <option value="modificacion">Solicitud de modificación</option>
+                            <option value="completado">Completado</option>
+                            <option value="copia">Copia de conocimiento</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label>Fecha: </label>
+                          <input type="date" class="form-control" id="" name="" style="width:100%; border: 1px solid #CCC;"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <label></label>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- -------------- FORMULARIO DE REGISTRO DE NUEVO OFICIO --------------- -->
 					<div class ="titular"><center>Registro de nuevo oficio</center></div></br>
 
           <form id="frm_oficio" enctype="multipart/form-data" method="POST" class="forma">
@@ -142,7 +226,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-4">
+              <div class="col-xs-6">
                 <div id="etiqueta">
                   <div class="form-group">
                     <label>Asunto/etiqueta</label><br>
@@ -222,8 +306,27 @@
                   <a data-toggle="modal" data-target="#nueva_etiqueta" clasS="onKlic">Agregar otra etiqueta</a>
                 </div>
               </div>
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <label>Dirigido a:</label>
+                  <select name="dirigido" class="form-control" >
+                    <option value="dependencia">Dependencia BD</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <br>
 
-              <div class="col-xs-3">
+
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <label>Nombre del oficio</label>
+                  <input type="text" class="form-control" id="nombre_oficio"  name="nombre_oficio">
+                </div>
+              </div>
+
+              <div class="col-xs-2">
                 <label>Tipo sesión: </label>
                 <select class="selectpicker" data-width="100%" id="tipo_of" name="tipo_of">
                   <option value="Ordinaria">Ordinaria</option>
@@ -236,34 +339,17 @@
                 <input type="text" class="form-control" name="numsesion_of"/>
               </div>
 
-              <div class="col-xs-3">
+              <div class="col-xs-2">
                 <label>Fecha sesión: </label>
                 <input type="date" class="fsesion" name="fechasesion_of" id="fecha_sesion" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;">
               </div>
 
             </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <div class="form-group">
-                  <label>Nombre del oficio</label>
-                  <input type="text" class="form-control" id="nombre_oficio"  name="acuerdo" rows="3" placeholder="Escribir el contenido del acuerdo"></textarea>
-                </div>
-              </div>
+            <div>
+              <i class="fas fa-plus-circle" style="color: green; font-size: 1.3em"></i>
+              <a data-toggle="modal" data-target="#nueva_etiqueta" clasS="onKlic">Agregar otra dependencia</a>
             </div>
-            <div class="row">
-              <div class="col-xs-4">
-                <div class="form-group">
-                  <label>Estatus</label>
-                  <select name="estatus_of" class="form-control" >
-                    <option value="entregado">Entregado</option>
-                    <option value="seguimiento">En seguimiento</option>
-                    <option value="cancelado">Cancelado</option>
-                    <option value="pendiente">Pendiente</option>
-                    <option value="completado">Completado</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+            <br>
             <div class="row">
               <div class="col-xs-6">
                 <div class="form-group">
@@ -279,13 +365,30 @@
             <div class="row">
               <div class="col-xs-6">
                 <div class="form-group">
-                  <label for="">Anexos:</label>
-                  <input id="actapdf" name="anexos[]" type="file" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                  <label>Estatus</label>
+                  <select name="estatus_of" class="form-control" >
+                    <option value="entregado">Entregado</option>
+                    <option value="seguimiento">En seguimiento</option>
+                    <option value="cancelado">Cancelado</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="completado">Completado</option>
+                  </select>
                 </div>
               </div>
               <div class="col-xs-6">
-                <label>Seguimiento:</label>
-                <input type="file" class="file" id="" name="seguimiento[]" style="width: 100%; height: 34px; border: 1px solid #CCC">
+                <br>
+                <center><input class="btn btn-warning" style="width: 50%; margin-top: 15px;" type="button" data-toggle="modal" data-target="#add_seguimiento" value="Agregar seguimiento"></center>
+              </div>
+            </div>
+            <div class="row">
+              <br><br>
+              <div style="width: 40%; margin: auto">
+                <div class="form-group">
+                  <center>
+                    <label for="">Anexos:</label>
+                    <input id="actapdf" name="anexos[]" type="file" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                  </center>
+                </div>
               </div>
             </div>
             </br></br>
