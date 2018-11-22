@@ -8,7 +8,6 @@ switch ($func) {
   case 0:
     add_acuerdo();
     break;
-
   case 1:
     add_acuerdo_file();
     break;
@@ -102,7 +101,7 @@ function add_acuerdo(){
     if($aux_files!=""){
       add_acuerdo_file($id_acuerdo); //Función que se encarga de subir cada uno de los archivos seleccionados como seguimieto.
     }
-    
+
   /*}
   else{
     echo 'Debes seleccionar el acta a la que pertenece el acuerdo';

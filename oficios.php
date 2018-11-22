@@ -64,8 +64,8 @@
               <li><a href="comisiones.php">COMISIONES</a></li>
               <?php
                   if($_SESSION['tipo'] == '0'){
-                    echo '<li class="active"><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
-                    <li><a href="oficios.php">OFICIOS</a></li>';
+                    echo '<li><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
+                    <li class="active"><a href="oficios.php?pag=0">OFICIOS</a></li>';
                   }
               ?>
 							<li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>
@@ -76,11 +76,146 @@
 			<div id="principal"></br></br>
         <input type="hidden" id="pag_acuerdos" value="0">
 
+        <div id="modal_anexos">
+
+        </div>
+
+        <div id="modal_tablaseguimiento">
+          <div class="modal" id="tabla_seguimiento" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <center><h3 class="modal-title">Tabla de seguimiento</h3></center>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <table class="table thead-dark table-bordered" id="oficios">
+                    <thead>
+                      <tr>
+                        <th>Turnado a</th>
+                        <th>Dependencia</th>
+                        <th>Responsable</th>
+                        <th>Tipo</th>
+                        <th>Observaciones</th>
+                        <th>Fecha</th>
+                        <th>Oficios respuesta</th>
+                      </tr>
+                      <tr>
+                        <td>Nombre de persona</td>
+                        <td>Secretaría académica</td>
+                        <td>Nombre de responsable</td>
+                        <td>Copia de conocimiento</td>
+                        <td>Recibió Agustín para firma de Alejando</td>
+                        <td>2018/11/21</td>
+                        <td><img src="imagenes/flaticons/doc.png"></td>
+                      </tr>
+                      <tr>
+                        <td>Nombre de persona</td>
+                        <td>Secretaría académica</td>
+                        <td>Nombre de responsable</td>
+                        <td>Copia de conocimiento</td>
+                        <td>Recibió Agustín para firma de Alejando</td>
+                        <td>2018/11/21</td>
+                        <td><img src="imagenes/flaticons/doc.png"></td>
+                      </tr>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------------- VENTANA MODAL PARA EL REGISTRO DE TABLA DE SEGUIMIENTO --------- -->
+        <div class="modal fade" id="add_seguimiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <center><h4 class="modal-title">Registro de seguimiento</h4></center>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="frm_seguimiento" encrypte="multipart/form-data" method="POST" class="forma">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label>Turnado a:</label>
+                        <input type="text" class="form-control" id="" name="turnadoA"/>
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label>Dependencia:</label>
+                        <select class="selectpicker" data-width="100%">
+                          <option value="">Secretaría académica</option>
+                          <option value="">Secretaría de investigación y posgrado</option>
+                          <option value="">Secretaría de vinculación</option>
+                          <option value="">Servicios escolares</option>
+                          <option value="">Otro departamento</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label>Responsable:</label>
+                        <input type="text" class="form-control" id="" name="responsable"/>
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label>Observaciones:</label>
+                        <input type="textarea" rows="5" class="form-control" id="" name="observaciones"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label>Tipo: </label>
+                        <select class="selectpicker" data-width="100%">
+                          <option value="seguimiento">En seguimiento</option>
+                          <option value="modificacion">Solicitud de modificación</option>
+                          <option value="completado">Completado</option>
+                          <option value="copia">Copia de conocimiento</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label>Fecha: </label>
+                        <input type="date" class="form-control" id="" name="" style="width:100%; border: 1px solid #CCC;"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group">
+                        <label></label>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <div id="tabla_acuerdos">
           <center><h3 style="color:#3380FF">Oficios del H. Consejo Técnico </h3></center>
           </br></br>
           <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#form_acuerdo">Buscar oficios</button>
-          <a class="btn btn-primary" href="add_acuerdo.php">Registrar nuevo oficio</a>
+          <a class="btn btn-primary" href="add_oficio.php">Registrar nuevo oficio</a>
           </br></br>
 
 
@@ -154,8 +289,8 @@
                         <td>'.$line["dirigidoA"].'</td>
                         <td><center>'.$line["tipo_sesion"].' '.$line['numero_sesion'].'</br>'.$line["fecha_sesion"].'</center></td>
                         <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio_pdf"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
-                        <td><span title="Ver acta"><a href="" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span></td>
-                        <td><center><img src="imagenes/flaticons/folder.png" onclick="" class="onKlic"></center></td>
+                        <td><span title="Ver archivos anexos"><a type="button" class="onKlic" onclick="show_anexos('.$line["id_oficio"].')"><img src="imagenes/flaticons/folder.png"></a></span></td>
+                        <td><center><img src="imagenes/flaticons/folder.png" onclick="show_tabla_seguimiento()" class="onKlic"><br><span title="Agregar seguimiento"><a type="button" href="" data-toggle="modal" data-target="#add_seguimiento"> <img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic"></a></span></center></td>
                         <td><a href="editacuerdo.php? ">Editar</a></br><a href="" onclick = "">Eliminar</a></td>
                       </tr>';
                 $i = $i+1;
@@ -409,6 +544,7 @@
 
     function cargarFooter(){
       $("#pie").load("../consejo_tecnico/fragmentos/footer.php");
+
     }
 
     function contCaracteres(){

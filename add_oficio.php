@@ -67,8 +67,8 @@
               <li><a href="comisiones.php">COMISIONES</a></li>
               <?php
                   if($_SESSION['tipo'] == '0'){
-                    echo '<li class="active"><a href="acuerdos.php">ACUERDOS</a></li>
-                    <li><a href="oficios.php">OFICIOS</a></li>';
+                    echo '<li><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
+                    <li class="active"><a href="oficios.php?pag=0">OFICIOS</a></li>';
                   }
               ?>
 							<li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>
@@ -310,7 +310,11 @@
                 <div class="form-group">
                   <label>Dirigido a:</label>
                   <select name="dirigido" class="form-control" >
-                    <option value="dependencia">Dependencia BD</option>
+                    <option value="Secretaria academica">Secretaría académica</option>
+                    <option value="Secretaría de investigación y posgrado">Secretaría de investigación y posgrado</option>
+                    <option value="Secretaría de vinculación">Secretaría de vinculación</option>
+                    <option value="Servicios escolares">Servicios escolares</option>
+                    <option value="Otro departamento">Otro departamento</option>
                   </select>
                 </div>
               </div>

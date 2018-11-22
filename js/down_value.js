@@ -1643,3 +1643,23 @@ function add_oficio(){
     });
 
 }
+
+function show_anexos(id_oficio){
+  // Coloca el contenido PHP en el div de la ventana Modal
+  // para ver los archivos anexados del oficio
+  var id = id_oficio;
+
+  $.ajax({
+    url: "../consejo_tecnico/fragmentos/modal_anexos.php",
+    data: {"id":id},
+    type: "post",
+    success: function(data){
+      document.getElementById("modal_anexos").innerHTML = data;
+      $("#oficio_anexos").modal('show');
+    }
+  });
+}
+
+function show_tabla_seguimiento(){
+  $("#tabla_seguimiento").modal('show');
+}

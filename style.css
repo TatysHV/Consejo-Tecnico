@@ -885,7 +885,7 @@ table#acuerdos th{
 	font-size: 9pt;
 }
 
-table#acuerdos img{
+table#acuerdos img, table#oficios img{
 	width: 20px;
 	height: auto;
 }
