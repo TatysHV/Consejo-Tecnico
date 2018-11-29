@@ -374,6 +374,7 @@
                       <div class="col-xs-4">
                         <label for"tituloAcuerdo">Año:</label>
                         <select class="selectpicker" id="srch_year" name="" data-width="100%" data-live-search="false" title="Selecciona un año" onchange="bloquear_campos()">
+                         <option value="2019">2019</option>
                          <option value="2018">2018</option>
                          <option value="2017">2017</option>
                          <option value="2016">2016</option>
@@ -385,7 +386,7 @@
                       <div class="col-xs-8">
                           <div id="etiqueta">
                             <div class="form-group">
-                              <label for="">Etiqueta:</label><br>
+                              <label for="">Asunto:</label><br>
 
                               <?php
                                 mysqli_set_charset($con,'utf8');
@@ -473,15 +474,23 @@
                       </div>
                       <div class="col-xs-8">
                         <div class="form-group">
-                          <label>Título del acuerdo</label>
-                          <input class="form-control" id="srch_titulo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre o título del acuerdo">
+                          <label>Nombre del oficio</label>
+                          <input class="form-control" id="srch_titulo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre del oficio">
                       </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-xs-12">
-                        <label for"tituloAcuerdo">Contenido del acuerdo:</label>
-                        <input class="form-control" id="srch_acuerdo" type="text" name="contAcuerdo" placeholder="Escribe el texto de contenido del acuerdo">
+                      <div class="col-xs-4">
+                        <label for"tituloAcuerdo">Folio: </label>
+                        <input class="form-control" id="srch_acuerdo" type="text" name="contAcuerdo" placeholder="H.C.T/0000/AAAA">
+                      </div>
+                      <div class="col-xs-4">
+                        <label>Fecha de emisión: </label>
+                        <input type="date" class="form-control" id="" name="" style="width:100%; border: 1px solid #CCC;"/>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for"tituloAcuerdo">Dirigido a:</label>
+                        <input class="form-control" id="srch_acuerdo" type="text" name="contAcuerdo">
                       </div>
                     </div>
                     </br>

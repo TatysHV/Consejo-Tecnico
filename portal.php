@@ -76,26 +76,29 @@
 
         Correo: secretaria_general@enesmorelia.unam.mx</br></br>
 
-      <span style="color: #0064B9">CONSEJEROS REPRESENTANTES (2012-2018)</span></br></br>
-        <span style="color: #0064B9">Área de las Humanidades y las Artes</span></br>
-        Consejera Titular: Dra. Berenice Araceli Granados Vázquez</br>
-        Correo: berenice_granados@enesmorelia.unam.mx</br></br>
+      <span style="color: #0064B9">CONSEJEROS REPRESENTANTES</span></br></br>
+        <span style="color: #0064B9">Área de las Humanidades y las Artes (2018-2022)</span></br>
+        Consejero Titular: Dr. Félix Alejandro Lerma Rodríguez</br>
+        Correo: flerma@enesmorelia.unam.mxsa</br></br>
 
-        Consejero Suplente: Dr. Rodolfo González Equihua</br>
-        Correo: rodolfoge@gmail.com</br></br>
+        Consejero Suplente: Dr. Santiago Cortés Hernández</br>
+        Correo: scortes@enesmorelia.unam.mx</br></br>
 
-        <span style="color: #0064B9">Área de las Ciencias Físico-Matemáticas y las Ingenierías</span></br>
-        Consejero Titular: Dr. Miguel Cervantes Solano</br>
-        Correo: miguel_cervantes@enesmorelia.unam.mx</br></br>
+        <span style="color: #0064B9">Área de las Ciencias Físico-Matemáticas y las Ingenierías (2018-2022)</span></br>
+        Consejero Titular: Dr. Mario Rodríguez Martínez</br>
+        Correo: mrodriguez@enesmorelia.unam.mx</br></br>
 
-        <span style="color: #0064B9">Área de las Ciencias Sociales</span></br>
+        Consejera Suplente:	Dra. Yesenia Arredondeo León<br>
+        Correo: yesenia@enesmorelia.unam.mx</br></br>
+
+        <span style="color: #0064B9">Área de las Ciencias Sociales (2017-2021)</span></br>
         Consejera Titular: Mtra. Claudia Escalera Matamoros</br>
         Correo: cescalera@enesmorelia.unam.mx</br></br>
 
         Consejero Suplente: Dr. Fernando Antonio Rosete Vergés</br>
         Correo: fernando.rosetev@enesmorelia.unam.mx</br></br>
 
-        <span style="color: #0064B9">Área de las Ciencias Biológicas, Químicas y de la Salud</span></br>
+        <span style="color: #0064B9">Área de las Ciencias Biológicas, Químicas y de la Salud (2017-2021)</span></br>
         Consejera Titular: Dra. Yunuen Tapia Torres</br>
         Correo: ytapia@enesmorelia.unam.mx</br></br>
 
@@ -104,14 +107,19 @@
         Consejero Titular: Mtra. Ana Yesica Martínez Villalba</br>
         Correo: amartinez@enesmorelia.unam.mx</br></br>
 
-        Consejeros Alumnos (2016-2018)</br>
-        Consejero Titular (AAGD): Salvador Luna Perales</br></br>
+        <span style="color: #0064B9">Consejeros Alumnos (2018-2020)</span></br>
 
-        Consejero Suplente (LCA): Isaac Rhodart Hernández Zamorano</br></br>
+        Consejero Titular (HA):	Diana Cotoñeto Luevano</br>
+        Correo: diianna.luevano@gmail.com</br></br>
 
-        Consejero Titular (LI): Quetzal Mata Trejo</br></br>
+        Consejero Suplente (TIC'S): Carlos Cortés Méndez</br>
+        Correo: alcros33@gmail.com</br></br>
 
-        Consejero Suplente (ESGL): Eduardo Munguía Chocoteco</br></br>
+        Consejero Titular (ESGL):	Marco Sánchez Mendoza</br>
+        Correo: soccermsm98@gmail.com</br></br>
+
+        Consejero Suplente (LCA): Fernando Aldair Valencia Vázquez</br>
+        Correo: aldaval.vaz@enesmorelia.unam.mx</br></br>
 
       <span style="color: #0064B9">SECRETARIO AUXILIAR</span></br>
         Lic. Marcela Katia Méndez Flores</br>
@@ -129,7 +137,7 @@
   <script>
     window.onload = cargarFooter();
     function cargarFooter(){
-      $("#pie").load("../consejo_tecnico/fragmentos/footer.html");
+      $("#pie").load("../consejo_tecnico/fragmentos/footer.php");
     }
   </script>
 </html>
