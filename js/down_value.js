@@ -1635,6 +1635,7 @@ function add_oficio(){
       processData: false,
       success: function(data){
         alert("Oficio registrado"+data);
+        document.getElementById("form_add_oficio").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Oficio registrado correctamente<span style="color: #0B3B0B"><b>Hola</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar seguimiento" onclick="show_addCont()"><input type="button" class="btn btn-danger" value="Agregar después" onclick="">';
         //window.location.assign("../consejo_tecnico/normatividad.php");
       },
       failure: function(){

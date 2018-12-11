@@ -45,8 +45,8 @@
 							<?php
 								if($_SESSION['tipo'] == '0')
 								{
-        								echo '<li><a href="acuerdos.php">ACUERDOS</a></li>
-        	  							<li><a href="oficios.php">OFICIOS</a></li>';
+        								echo '<li><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
+        	  							<li><a href="oficios.php?pag=0">OFICIOS</a></li>';
     								}
 							?>
 							<li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>

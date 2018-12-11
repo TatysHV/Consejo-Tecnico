@@ -362,7 +362,7 @@
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <center><h4 class="modal-title" id="exampleModalLabel">Filtro de búsqueda de acuerdos</h5></center>
+                  <center><h4 class="modal-title" id="exampleModalLabel">Filtro de búsqueda de oficioss</h5></center>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   </button>
                 </div>

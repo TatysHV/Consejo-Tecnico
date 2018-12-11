@@ -4,7 +4,7 @@ include "conexion.php";
 $funcion = $_POST['funcion'];
 
 switch ($funcion){
-  case 0 : add_oficio();
+  case 0: add_oficio();
   break;
   case 1: add_oficio_anexo();
   break;
@@ -30,7 +30,9 @@ function add_oficio(){
 
   $oficio_pdf="".basename($_FILES['oficio_pdf']['name'][0]);
   $oficio_word="".basename($_FILES['oficio_word']['name'][0]);
+  $seguimiento = false;
   $anexos="".basename($_FILES['anexos']['name'][0]);
+
 
   //*******Subiendo el oficio PDF al servidor*************************************/
   if($oficio_pdf!=""){
@@ -74,6 +76,7 @@ function add_oficio(){
   }
 
   //*****Si se necesitan subir archivos de seguimiento, la función lo hace*****/
+
   /*if($seguimiento!=""){
     add_oficio_seguimiento($id_oficio);
   }*/
@@ -92,45 +95,45 @@ function add_oficio_anexo($id_oficio){
 
     //----------- Subir la info de cada archivo a la base de datos------------
 
-    //$size = $_FILES['acuerdo_files']['size'][$i];
-
     $name = basename($_FILES['anexos']['name'][$i]);
-
-    $result = mysqli_query($con,"SELECT CURDATE()");
-    if ($row = mysqli_fetch_array($result)) {
-             $time = trim($row[0]);
-        }
-
-    $query= mysqli_query($con, "INSERT INTO oficios_anexos(id_oficio, nombre, url, fecha) VALUES ('$id_acuerdo','$name','$name','$time')");
-
-    if(!$query){
-      die('Error al registrar archivos de seguimiento');
-    }
-    else{
-      echo 'Archivos de seguimiento registrados';
-    }
-
     //---------------- Sube los archivos al servidor ---------------------------
-    if (strlen($_FILES['acuerdo_files']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
-      if (move_uploaded_file($_FILES['acuerdo_files']['tmp_name'][$i], $target_path.$name)) {
+    if (strlen($_FILES['anexos']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+      if (move_uploaded_file($_FILES['anexos']['tmp_name'][$i], $target_path.$name)) {
+
         $length =  filesize($target_path.$name);
         $length1 = $length * 0.00097656;
         $length1 = round($length1, 2);
-        $result = mysqli_query($con, "SELECT MAX(id) AS id FROM acuerdos_files") or die ('<b>Error al obtener id_acuerdo</b>' . mysqli_error($con));
+
+        $result = mysqli_query($con,"SELECT CURDATE()");
         if ($row = mysqli_fetch_array($result)) {
-             $id_acuerdo_file = trim($row[0]);
+                 $time = trim($row[0]);
+            }
+
+        /******** Obtener el id del último elemento agregado a la tabla de archivos_anexos ****/
+        $result = mysqli_query($con, "SELECT MAX(id) AS id FROM archivos_anexos") or die ('<b>Error al obtener id_anexo</b>' . mysqli_error($con));
+        if ($row = mysqli_fetch_array($result)) {
+             $id_anexo = trim($row[0]);
         }
 
-        $query2= mysqli_query($con, "UPDATE acuerdos_files SET tamaño = '$length1' WHERE id = '$id_acuerdo_file' ");
-        if(!$query2){
-          die('Error al registrar archivos de seguimiento');
+        /******* Registro de los datos del archivo en la base de datos ***********************/
+
+        $query= mysqli_query($con, "INSERT INTO archivos_anexos(id_oficio, nombre, url, fecha, tamaño) VALUES ('$id_oficio','$name','$name','$time','$length1')");
+        if(!$query){
+          die('Error al registrar los anexos');
         }
         else{
-          echo 'Archivos de seguimiento registrados';
+          echo 'Archivos anexos registrados correctamente';
         }
-      }else{echo "Error, no se han subido los archivos";}
+
+      }else{echo "Error al copiar el archivo a la carpeta de uploads";}
     }
   }
+
+}
+
+function add_oficio_seguimiento($id_oficio){
+
+
 
 }
 

@@ -77,7 +77,7 @@
 			</div>
 
 			<div id="principal"></br></br>
-				<div class="bloque_desplegable">
+				<div class="bloque_desplegable" id="form_add_oficio">
 
           <!-- ---------------- VENTANA MODAL PARA REGISTRO DE NUEVA ETIQUETA -------------- -->
           <div class="modal fade" id="nueva_etiqueta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -390,7 +390,7 @@
                 <div class="form-group">
                   <center>
                     <label for="">Anexos:</label>
-                    <input id="actapdf" name="anexos[]" type="file" class="file" style="width: 100%; height: 34px; border: 1px solid #CCC";/><input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                    <input id="actapdf" name="anexos[]" type="file" class="file" multiple="true" style="width: 100%; height: 34px; border: 1px solid #CCC";/>
                   </center>
                 </div>
               </div>
