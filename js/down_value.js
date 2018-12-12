@@ -1635,8 +1635,8 @@ function add_oficio(){
       processData: false,
       success: function(data){
         alert("Oficio registrado"+data);
-        document.getElementById("form_add_oficio").innerHTML = '<div class="row" style="width:80%; margin:auto;"><div class="col-xs-5"><img src="imagenes/success.png" style="width:100px; height:auto;"/></div><div class="col-xs-7"><br><center><p style="font-size: 1.2em;">Oficio registrado correctamente<span style="color: #0B3B0B"><b>Hola</b></span> Registrado Correctamente</p><input type="button" class="btn btn-warning" value="Agregar seguimiento" onclick="show_addCont()"><input type="button" class="btn btn-danger" value="Agregar después" onclick="">';
-        //window.location.assign("../consejo_tecnico/normatividad.php");
+        document.getElementById("form_add_oficio").innerHTML = '<div class="row" style="width:80%; margin:auto; margin-top: 10%; background-color:#BCF5A9; border-radius:4px; "><div class="col-xs-5" style="padding:20px;"><img src="imagenes/success.png" style="width:100px; height:auto"/></div><div class="col-xs-7" style="padding:15px"><br><center><p style="font-size: 1.3em; color: #0B3B0B">Oficio registrado correctamente</p><input data-toggle="modal" data-target="#add_seguimiento" type="button" class="btn btn-warning" value="Agregar seguimiento"><form action="oficios.php?pag=0" method="get" style="display:inline-block"><input type="submit" class="btn btn-danger" style="margin-left: 15px; display:inline-block;" value="Agregar después"></form>';
+        window.scrollTo(0, 0);
       },
       failure: function(){
         alert("Error al registrar oficio"+data);
