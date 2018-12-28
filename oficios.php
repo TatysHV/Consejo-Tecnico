@@ -150,7 +150,7 @@
                     <div class="col-xs-6">
                       <div class="form-group">
                         <label>Dependencia:</label>
-                        <select class="selectpicker" data-width="100%">
+                        <select class="selectpicker" data-width="100%" name="dependencia">
                           <option value="">Secretaría académica</option>
                           <option value="">Secretaría de investigación y posgrado</option>
                           <option value="">Secretaría de vinculación</option>
@@ -178,7 +178,7 @@
                     <div class="col-xs-6">
                       <div class="form-group">
                         <label>Tipo: </label>
-                        <select class="selectpicker" data-width="100%">
+                        <select class="selectpicker" data-width="100%" name="tipo">
                           <option value="seguimiento">En seguimiento</option>
                           <option value="modificacion">Solicitud de modificación</option>
                           <option value="completado">Completado</option>
@@ -196,7 +196,8 @@
                   <div class="row">
                     <div class="col-xs-6">
                       <div class="form-group">
-                        <label></label>
+                        <label>Oficios respuesta</label>
+                        <input type="file" name="seguimiento[]" multiple="false" class="file"/>
                       </div>
                     </div>
                   </div>
@@ -204,7 +205,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-primary" onclick="">Guardar</button>
               </div>
             </div>
           </div>

@@ -1645,6 +1645,28 @@ function add_oficio(){
 
 }
 
+function add_seguimiento(){
+  alert("Registrando seguimiento");
+
+  var formData = new FormData(document.getElementById("frm_seguimiento"));
+  formData.append('funcion', 2);
+
+  $.ajax({
+    url: "../consejo_tecnico/fragmentos/oficio.php",
+    data: formData,
+    type: "post",
+    contentType: false,
+    processData: false,
+    success: function(data){
+      alert("Información de seguimiento registrado correctamente");
+    },
+    failure: function(){
+      alert("Error al registrar seguimiento"+data);
+    }
+  });
+
+}
+
 function show_anexos(id_oficio){
   // Coloca el contenido PHP en el div de la ventana Modal
   // para ver los archivos anexados del oficio

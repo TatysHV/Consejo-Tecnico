@@ -33,13 +33,13 @@ function add_oficio(){
   $seguimiento = false;
   $anexos="".basename($_FILES['anexos']['name'][0]);
 
-
   //*******Subiendo el oficio PDF al servidor*************************************/
   if($oficio_pdf!=""){
     if (strlen($_FILES['oficio_pdf']['name'][0]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
       if (move_uploaded_file($_FILES['oficio_pdf']['tmp_name'][0], $target_path.$oficio_pdf)) {
         //Subiendo archivo al servidor
-      }else{echo "Error al subir al servidor el oficio PDF";}
+      }else{//echo "Error al subir al servidor el oficio PDF";
+      }
     }
   }
 
@@ -48,7 +48,8 @@ function add_oficio(){
     if (strlen($_FILES['oficio_word']['name'][0]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
       if (move_uploaded_file($_FILES['oficio_word']['tmp_name'][0], $target_path.$oficio_word)) {
         //Subiendo archivo al servidor
-      }else{echo "Error al subir al servidor el oficio word";}
+      }else{//echo "Error al subir al servidor el oficio word";
+      }
     }
   }
 
@@ -57,10 +58,10 @@ function add_oficio(){
   VALUES ('$folio', '$nombre', '$dirigido', '$asunto', '$estatus', '$fecha_emision', '$oficio_word', '$oficio_pdf', '$tipo', '$num_sesion', '$fecha_sesion') ") or die ('Error al registrar el oficio'.mysqli_error($con));
 
   if(!$query){
-    echo 'Error al registrar el nuevo oficio';
+    //echo 'Error al registrar el nuevo oficio';
   }
   else{
-    echo 'Oficio registrado correctamente';
+    //echo 'Oficio registrado correctamente';
   }
 
   //*****Obtener id del oficio registrado *************************************/
@@ -75,12 +76,7 @@ function add_oficio(){
     add_oficio_anexo($id_oficio);
   }
 
-  //*****Si se necesitan subir archivos de seguimiento, la función lo hace*****/
-
-  /*if($seguimiento!=""){
-    add_oficio_seguimiento($id_oficio);
-  }*/
-
+  echo $id_oficio;
 
 }
 
@@ -131,10 +127,54 @@ function add_oficio_anexo($id_oficio){
 
 }
 
-function add_oficio_seguimiento($id_oficio){
+function add_oficio_seguimiento(){
+
+  include "conexion.php";
+
+  $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+  $turno = $_POST['turnadoA'];
+  $dependencia = $_POST['dependencia'];
+  $responsable = $_POST['responsable'];
+  $observaciones = $_POST['observaciones'];
+  $tipo = $_POST['tipo'];
+  $fecha = $_POST['fecha'];
+
+  $of_respuesta = 'No_hay.pdf';
+
+  if($turno!="" && $dependencia !="" && $responsable!="" && $observaciones!="" && $tipo!="" && $fecha!=""){
+
+    //***** OBTENER ID DEL ÚLTIMO OFICIO REGISTRADO ****************************/
+    $id_oficio ="";
+    $query_id = mysqli_query($con, "SELECT MAX(id_oficio) AS id FROM oficios") or die ('Error al obtener el id del oficio'.mysqli_error($con));
+    if ($row = mysqli_fetch_array($query_id)) {
+         $id_oficio = trim($row[0]);
+    }
 
 
 
+    /******** MOVER OFICIO RESPUESTA A LA CARPETA DE UPLOADS *******************/
+
+    foreach($_FILES['seguimiento']['name'] as $i => $name) {
+      if (strlen($_FILES['seguimiento']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['seguimiento']['tmp_name'][$i], $target_path.$name)) {
+            $of_respuesta = basename($_FILES['seguimiento']['name'][$i]);
+          }
+        }
+    }
+
+    $query ="INSERT INTO tabla_seguimiento(turnadoA, dependencia, responsable, observaciones, tipo, fecha, oficio_respuesta, id_oficio) VALUES ('$turno','$dependencia','$responsable','$observaciones','$tipo','$fecha','$of_respuesta','$id_oficio')";
+
+    /******** REGISTRAR SEGUIMIENTO EN LA BASE DE DATOS *************************/
+    $result = mysqli_query($con, $query) or die ('Error al registrar seguimiento'.mysqli_error($con));
+    if(!$result){
+      die('Error al registrar seguimiento2');
+    }
+    else{
+      echo 'Seguimiento registrado correctamente';
+    }
+
+  }
 }
 
 
