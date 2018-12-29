@@ -10,6 +10,8 @@ switch ($funcion){
   break;
   case 2: add_oficio_seguimiento();
   break;
+  case 3: delete_file_anexos();
+  break;
 
 }
 
@@ -175,6 +177,22 @@ function add_oficio_seguimiento(){
     }
 
  // }
+}
+
+function delete_file_anexos(){
+  include "conexion.php";
+
+  $id=$_POST['id'];
+
+  $eject8=mysqli_query($con, "DELETE FROM archivos_anexos WHERE id='$id'");
+
+if(!$eject8){
+      echo "Ocurrió un error al eliminar el archivo" . $eject7;
+    }
+    else{
+      echo "El archivo ha sido eliminado";
+    }
+
 }
 
 

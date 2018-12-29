@@ -23,7 +23,7 @@ echo '
                   <th>Admin </th>
                 </tr>';
             $sql = "SELECT * FROM archivos_anexos WHERE id_oficio = '$id_oficio'";
-           $result3 = mysqli_query($con,$sql) or die('Error al mostrar acuerdo');
+           $result3 = mysqli_query($con,$sql) or die('Error al mostrar archivos anexos');
            while ($row = mysqli_fetch_array($result3)){
 
        echo '
@@ -31,7 +31,7 @@ echo '
                   <td><img src="imagenes/flaticons/document.png"><a href="conexiones/uploads/'.$row['nombre'].'" targer="_blank">'.$row['nombre'].'</td>
                   <td><center>'.$row["fecha"].'</center></td>
                   <td><center>'.$row["tamaño"].' KB</center></td>
-                  <td><a href="" onclick = "delete_file_seguimiento('.$row["id"].')">Eliminar</a></td>
+                  <td><a href="" onclick = "delete_file_anexos('.$row["id"].')">Eliminar</a></td>
                 </tr>
 
             ';
