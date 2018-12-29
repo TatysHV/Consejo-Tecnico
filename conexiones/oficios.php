@@ -142,7 +142,7 @@ function add_oficio_seguimiento(){
 
   $of_respuesta = 'No_hay.pdf';
 
-  if($turno!="" && $dependencia !="" && $responsable!="" && $observaciones!="" && $tipo!="" && $fecha!=""){
+  //if($turno!="" && $dependencia !="" && $responsable!="" && $observaciones!="" && $tipo!="" && $fecha!=""){
 
     //***** OBTENER ID DEL ÚLTIMO OFICIO REGISTRADO ****************************/
     $id_oficio ="";
@@ -163,7 +163,7 @@ function add_oficio_seguimiento(){
         }
     }
 
-    $query ="INSERT INTO tabla_seguimiento(turnadoA, dependencia, responsable, observaciones, tipo, fecha, oficio_respuesta, id_oficio) VALUES ('$turno','$dependencia','$responsable','$observaciones','$tipo','$fecha','$of_respuesta','$id_oficio')";
+    $query ="INSERT INTO tabla_seguimiento (turnadoA, dependencia, responsable, observaciones, tipo, fecha, oficio_respuesta, id_oficio) VALUES ('$turno','$dependencia','$responsable','$observaciones','$tipo','$fecha','$of_respuesta','$id_oficio')";
 
     /******** REGISTRAR SEGUIMIENTO EN LA BASE DE DATOS *************************/
     $result = mysqli_query($con, $query) or die ('Error al registrar seguimiento'.mysqli_error($con));
@@ -174,7 +174,7 @@ function add_oficio_seguimiento(){
       echo 'Seguimiento registrado correctamente';
     }
 
-  }
+ // }
 }
 
 
