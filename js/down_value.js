@@ -1687,7 +1687,7 @@ function add_seguimiento(){
       /*document.getElementById("footer-seguimiento").innerHTML = ''+
         '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>'
         '<button type="button" class="btn btn-primary" onclick="add_seguimiento()">Guardar</button>';*/
-      
+
     },
     failure: function(){
       alert("Error al registrar seguimiento"+data);
@@ -1713,6 +1713,21 @@ function show_anexos(id_oficio){
   });
 }
 
-function show_tabla_seguimiento(){
-  $("#tabla_seguimiento").modal('show');
+function show_seguimiento(id_oficio){
+  // Coloca el contenido PHP en el div de la ventana modal
+  // para ver los archivos anexados del oficio
+
+  var id = id_oficio;
+
+  $.ajax({
+    url: "../consejo_tecnico/fragmentos/modal_seguimiento.php",
+    data: {"id":id},
+    type: "post",
+    success: function(data){
+      document.getElementById("modal_seguimiento").innerHTML = data;
+      $("#tabla_seguimiento").modal('show');
+    }
+  });
+
+
 }

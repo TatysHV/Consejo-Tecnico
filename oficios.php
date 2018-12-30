@@ -80,52 +80,8 @@
 
         </div>
 
-        <div id="modal_tablaseguimiento">
-          <div class="modal" id="tabla_seguimiento" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <center><h3 class="modal-title">Tabla de seguimiento</h3></center>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <table class="table thead-dark table-bordered" id="oficios">
-                    <thead>
-                      <tr>
-                        <th>Turnado a</th>
-                        <th>Dependencia</th>
-                        <th>Responsable</th>
-                        <th>Tipo</th>
-                        <th>Observaciones</th>
-                        <th>Fecha</th>
-                        <th>Oficios respuesta</th>
-                      </tr>
-                      <tr>
-                        <td>Nombre de persona</td>
-                        <td>Secretaría académica</td>
-                        <td>Nombre de responsable</td>
-                        <td>Copia de conocimiento</td>
-                        <td>Recibió Agustín para firma de Alejando</td>
-                        <td>2018/11/21</td>
-                        <td><img src="imagenes/flaticons/doc.png"></td>
-                      </tr>
-                      <tr>
-                        <td>Nombre de persona</td>
-                        <td>Secretaría académica</td>
-                        <td>Nombre de responsable</td>
-                        <td>Copia de conocimiento</td>
-                        <td>Recibió Agustín para firma de Alejando</td>
-                        <td>2018/11/21</td>
-                        <td><img src="imagenes/flaticons/doc.png"></td>
-                      </tr>
-                  </table>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="modal_seguimiento">
+
         </div>
 
         <!-- ---------------- VENTANA MODAL PARA EL REGISTRO DE TABLA DE SEGUIMIENTO --------- -->
@@ -291,7 +247,7 @@
                         <td><center>'.$line["tipo_sesion"].' '.$line['numero_sesion'].'</br>'.$line["fecha_sesion"].'</center></td>
                         <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio_pdf"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
                         <td><span title="Ver archivos anexos"><a type="button" class="onKlic" onclick="show_anexos('.$line["id_oficio"].')"><img src="imagenes/flaticons/folder.png"></a></span></td>
-                        <td><center><img src="imagenes/flaticons/folder.png" onclick="show_tabla_seguimiento()" class="onKlic"><br><span title="Agregar seguimiento"><a type="button" href="" data-toggle="modal" data-target="#add_seguimiento"> <img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic"></a></span></center></td>
+                        <td><center><img src="imagenes/flaticons/folder.png" onclick="show_seguimiento('.$line["id_oficio"].')" class="onKlic"><br><span title="Agregar seguimiento"><a type="button" href="" data-toggle="modal" data-target="#add_seguimiento"> <img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic"></a></span></center></td>
                         <td><a href="editacuerdo.php? ">Editar</a></br><a href="" onclick = "">Eliminar</a></td>
                       </tr>';
                 $i = $i+1;
