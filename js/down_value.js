@@ -1668,12 +1668,10 @@ function add_oficio(){
 }
 
 function add_seguimiento(){
-  alert("Cambios");
 
   var formData = new FormData(document.getElementById("frm_seguimiento"));
   formData.append('funcion', 2);
 
-  alert("formData Correcto");
 
   $.ajax({
     url: "../consejo_tecnico/conexiones/oficios.php",
@@ -1687,6 +1685,30 @@ function add_seguimiento(){
       /*document.getElementById("footer-seguimiento").innerHTML = ''+
         '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>'
         '<button type="button" class="btn btn-primary" onclick="add_seguimiento()">Guardar</button>';*/
+
+    },
+    failure: function(){
+      alert("Error al registrar seguimiento"+data);
+    }
+  });
+
+}
+
+function add_seguimiento2(){ //Se usa este método cuando se especifica el id del oficio
+
+  alert("registrando seguimiento 2");
+  var formData = new FormData(document.getElementById("frm_seguimiento2"));
+  formData.append('funcion', 4);
+
+  $.ajax({
+    url: "../consejo_tecnico/conexiones/oficios.php",
+    data: formData,
+    type: "post",
+    contentType: false,
+    processData: false,
+    success: function(data){
+      alert("Información de seguimiento registrado!!!!!"+data);
+      document.getElementById("frm_seguimiento2").reset();
 
     },
     failure: function(){
@@ -1726,6 +1748,23 @@ function show_seguimiento(id_oficio){
     success: function(data){
       document.getElementById("modal_seguimiento").innerHTML = data;
       $("#tabla_seguimiento").modal('show');
+    }
+  });
+}
+
+function show_add_seguimiento(id_oficio){
+  // Coloca el contenido PHP en el div de la ventana modal
+  // para registrar nueva información en la tabla de seguimiento del oficio
+
+  var id = id_oficio;
+
+  $.ajax({
+    url: "../consejo_tecnico/fragmentos/modal_add_seguimiento.php",
+    data: {"id":id},
+    type: "post",
+    success: function(data){
+      document.getElementById("modal_add_seguimiento").innerHTML = data;
+      $("#add_seguimiento").modal('show');
     }
   });
 

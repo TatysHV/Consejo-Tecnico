@@ -85,88 +85,9 @@
         </div>
 
         <!-- ---------------- VENTANA MODAL PARA EL REGISTRO DE TABLA DE SEGUIMIENTO --------- -->
-        <div class="modal fade" id="add_seguimiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <center><h4 class="modal-title">Registro de seguimiento</h4></center>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form id="frm_seguimiento" encrypte="multipart/form-data" method="POST" class="forma">
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label>Turnado a:</label>
-                        <input type="text" class="form-control" id="" name="turnadoA"/>
-                      </div>
-                    </div>
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label>Dependencia:</label>
-                        <select class="selectpicker" data-width="100%" name="dependencia">
-                          <option value="">Secretaría académica</option>
-                          <option value="">Secretaría de investigación y posgrado</option>
-                          <option value="">Secretaría de vinculación</option>
-                          <option value="">Servicios escolares</option>
-                          <option value="">Otro departamento</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label>Responsable:</label>
-                        <input type="text" class="form-control" id="" name="responsable"/>
-                      </div>
-                    </div>
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label>Observaciones:</label>
-                        <input type="textarea" rows="5" class="form-control" id="" name="observaciones"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label>Tipo: </label>
-                        <select class="selectpicker" data-width="100%" name="tipo">
-                          <option value="seguimiento">En seguimiento</option>
-                          <option value="modificacion">Solicitud de modificación</option>
-                          <option value="completado">Completado</option>
-                          <option value="copia">Copia de conocimiento</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label>Fecha: </label>
-                        <input type="date" class="form-control" id="" name="" style="width:100%; border: 1px solid #CCC;"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label>Oficios respuesta</label>
-                        <input type="file" name="seguimiento[]" multiple="false" class="file"/>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="">Guardar</button>
-              </div>
-            </div>
-          </div>
+        <div id="modal_add_seguimiento">
+          <!-- El contenido de esta div se agrega mediante JS al momento de dar clic en el botón "Agregar seguimiento" de la tabla de oficios" -->
         </div>
-
 
         <div id="tabla_acuerdos">
           <center><h3 style="color:#3380FF">Oficios del H. Consejo Técnico </h3></center>
@@ -193,7 +114,7 @@
           ---------------------------------------------------------------------*/
           $sql = "SELECT * FROM oficios WHERE year(fecha_emision) = '$year' LIMIT $inicial, $cantidad";
           //Consulta auxiliar SELECT *, @s:=@s+1 FROM acuerdos, (SELECT @s:= 0) AS s WHERE year(fecha_acta) = '$year'
-          $result = mysqli_query($con,$sql) or die('Error al consultar acuerdos');
+          $result = mysqli_query($con,$sql) or die('Error al consultar oficios');
 
 
           //Obtener el total de resultados de la consulta para crear páginas
@@ -201,7 +122,6 @@
           $result2= mysqli_query($con,$oficios);
           $num_resultados = mysqli_num_rows($result2);
           $pages = intval($num_resultados / $cantidad); //Total/numero de filas
-
 
           echo '
               <div style="float: left"><img src="imagenes/indicecolores.png" style="width: 390px; height: auto;" /></div>
@@ -247,7 +167,7 @@
                         <td><center>'.$line["tipo_sesion"].' '.$line['numero_sesion'].'</br>'.$line["fecha_sesion"].'</center></td>
                         <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio_pdf"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
                         <td><span title="Ver archivos anexos"><a type="button" class="onKlic" onclick="show_anexos('.$line["id_oficio"].')"><img src="imagenes/flaticons/folder.png"></a></span></td>
-                        <td><center><img src="imagenes/flaticons/folder.png" onclick="show_seguimiento('.$line["id_oficio"].')" class="onKlic"><br><span title="Agregar seguimiento"><a type="button" href="" data-toggle="modal" data-target="#add_seguimiento"> <img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic"></a></span></center></td>
+                        <td><center><img src="imagenes/flaticons/folder.png" onclick="show_seguimiento('.$line["id_oficio"].')" class="onKlic"><br><span title="Agregar seguimiento"><img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic" onclick="show_add_seguimiento('.$line["id_oficio"].')"></a></span></center></td>
                         <td><a href="editacuerdo.php? ">Editar</a></br><a href="" onclick = "">Eliminar</a></td>
                       </tr>';
                 $i = $i+1;

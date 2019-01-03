@@ -77,7 +77,7 @@
 			</div>
 
 			<div id="principal"></br></br>
-        
+
         <div id="modal_seguimiento">
           <!-- ---------------- VENTANA MODAL PARA EL REGISTRO DE TABLA DE SEGUIMIENTO --------- -->
           <div class="modal fade" id="add_seguimiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -101,7 +101,7 @@
                       <div class="col-xs-6">
                         <div class="form-group">
                           <label>Dependencia:</label>
-                          <select class="selectpicker" data-width="100%" name="dependencia">
+                          <select class="form-control" data-width="100%" name="dependencia">
                             <option value="Secretaría académica">Secretaría académica</option>
                             <option value="Secretaría de investigación y posgrado">Secretaría de investigación y posgrado</option>
                             <option value="Secretaría de vinculación">Secretaría de vinculación</option>
@@ -129,7 +129,7 @@
                       <div class="col-xs-6">
                         <div class="form-group">
                           <label>Tipo: </label>
-                          <select class="selectpicker" data-width="100%" name="tipo">
+                          <select class="form-control" data-width="100%" name="tipo">
                             <option value="seguimiento">En seguimiento</option>
                             <option value="modificacion">Solicitud de modificación</option>
                             <option value="completado">Completado</option>

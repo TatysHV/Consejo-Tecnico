@@ -12,6 +12,8 @@ switch ($funcion){
   break;
   case 3: delete_file_anexos();
   break;
+  case 4: add_oficio_seguimiento2();
+  break;
 
 }
 
@@ -194,6 +196,53 @@ if(!$eject8){
     }
 
 }
+
+
+function add_oficio_seguimiento2(){
+
+  include "conexion.php";
+
+  $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+  $turno = $_POST['turnadoA'];
+  $dependencia = $_POST['dependencia'];
+  $responsable = $_POST['responsable'];
+  $observaciones = $_POST['observaciones'];
+  $tipo = $_POST['tipo'];
+  $fecha = $_POST['fecha'];
+
+  $id_oficio = $_POST['id_oficio'];
+
+  $of_respuesta = 'No_hay.pdf';
+
+  //if($turno!="" && $dependencia !="" && $responsable!="" && $observaciones!="" && $tipo!="" && $fecha!=""){
+
+
+
+    /******** MOVER OFICIO RESPUESTA A LA CARPETA DE UPLOADS *******************/
+
+    foreach($_FILES['seguimiento']['name'] as $i => $name) {
+      if (strlen($_FILES['seguimiento']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['seguimiento']['tmp_name'][$i], $target_path.$name)) {
+            $of_respuesta = basename($_FILES['seguimiento']['name'][$i]);
+          }
+        }
+    }
+
+    $query ="INSERT INTO tabla_seguimiento (turnadoA, dependencia, responsable, observaciones, tipo, fecha, oficio_respuesta, id_oficio) VALUES ('$turno','$dependencia','$responsable','$observaciones','$tipo','$fecha','$of_respuesta','$id_oficio')";
+
+    /******** REGISTRAR SEGUIMIENTO EN LA BASE DE DATOS *************************/
+    $result = mysqli_query($con, $query) or die ('Error al registrar seguimiento'.mysqli_error($con));
+    if(!$result){
+      die('Error al registrar seguimiento2');
+    }
+    else{
+      echo 'Seguimiento registrado correctamente';
+    }
+
+ // }
+}
+
 
 
  ?>
