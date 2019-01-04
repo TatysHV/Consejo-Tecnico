@@ -1768,5 +1768,27 @@ function show_add_seguimiento(id_oficio){
     }
   });
 
+}
+
+function busqueda_oficios(){
+  alert("entra busqueda oficios");
+
+  var formData = new FormData(document.getElementById("frm_src_oficios"));
+
+  $.ajax({
+    url: "../consejo_tecnico/fragmentos/tabla_oficios.php",
+    data: formData,
+    type: "post",
+    contentType: false,
+    processData: false,
+    success: function(data){
+      alert("##### OFICIOS BUSCADDOS"+data);
+      document.getElementById("result_oficios").innerHTML = data;
+
+    },
+    failure: function(){
+      alert("Error al registrar seguimiento"+data);
+    }
+  });
 
 }

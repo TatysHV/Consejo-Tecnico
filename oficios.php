@@ -96,117 +96,123 @@
           <a class="btn btn-primary" href="add_oficio.php">Registrar nuevo oficio</a>
           </br></br>
 
+          <div id="result_oficios">
 
-          <?php
+            <?php
 
-          $year = date("Y");
-          $color = ''; //Variable para guardar un string hexadecimal
+            $year = date("Y");
+            $color = ''; //Variable para guardar un string hexadecimal
 
-          $pag = $_GET['pag']; /* $pag es la pagina actual*/
+            $pag = $_GET['pag']; /* $pag es la pagina actual*/
 
-          $cantidad = 5; // cantidad de resultados por página
-          $inicial = $pag * $cantidad;
+            $cantidad = 5; // cantidad de resultados por página
+            $inicial = $pag * $cantidad;
 
-          $i = $inicial+1; // índice de fila
+            $i = $inicial+1; // índice de fila
 
-          /*--------------------------------------------------------------------
-           Realizar consulta de acuerdos del año en curso, mostrando de 10 en 10
-          ---------------------------------------------------------------------*/
-          $sql = "SELECT * FROM oficios WHERE year(fecha_emision) = '$year' LIMIT $inicial, $cantidad";
-          //Consulta auxiliar SELECT *, @s:=@s+1 FROM acuerdos, (SELECT @s:= 0) AS s WHERE year(fecha_acta) = '$year'
-          $result = mysqli_query($con,$sql) or die('Error al consultar oficios');
+            /*--------------------------------------------------------------------
+             Realizar consulta de acuerdos del año en curso, mostrando de 10 en 10
+            ---------------------------------------------------------------------*/
+            $sql = "SELECT * FROM oficios WHERE year(fecha_emision) = '$year' LIMIT $inicial, $cantidad";
+            //Consulta auxiliar SELECT *, @s:=@s+1 FROM acuerdos, (SELECT @s:= 0) AS s WHERE year(fecha_acta) = '$year'
+            $result = mysqli_query($con,$sql) or die('Error al consultar oficios');
 
 
-          //Obtener el total de resultados de la consulta para crear páginas
-          $oficios= "SELECT * FROM oficios WHERE year(fecha_emision) = '$year'";
-          $result2= mysqli_query($con,$oficios);
-          $num_resultados = mysqli_num_rows($result2);
-          $pages = intval($num_resultados / $cantidad); //Total/numero de filas
+            //Obtener el total de resultados de la consulta para crear páginas
+            $oficios= "SELECT * FROM oficios WHERE year(fecha_emision) = '$year'";
+            $result2= mysqli_query($con,$oficios);
+            $num_resultados = mysqli_num_rows($result2);
+            $pages = intval($num_resultados / $cantidad); //Total/numero de filas
 
-          echo '
-              <div style="float: left"><img src="imagenes/indicecolores.png" style="width: 390px; height: auto;" /></div>
-              <div style="float: right;"><h5><b>Total de resultados: </b>'.$num_resultados.'</h5></div>
-              <table class="table thead-dark table-bordered" id="acuerdos">
-               <thead>
-                 <tr>
-                   <th>N°</th>
-                   <th>Folio</th>
-                   <th>Fecha oficio</th>
-                   <th>Nombre</th>
-                   <th>Asunto</th>
-                   <th>Dirigido a:</th>
-                   <th>Sesión</th>
-                   <th>Oficio</th>
-                   <th>Anexos</th>
-                   <th>Seguimiento</th>
-                   <th>Admin</th>
-                 </tr>
-               </thead>
-               <tbody>';
-               while ($line = mysqli_fetch_array($result)){
+            echo '
+                <div style="float: left"><img src="imagenes/indicecolores.png" style="width: 390px; height: auto;" /></div>
+                <div style="float: right;"><h5><b>Total de resultados: </b>'.$num_resultados.'</h5></div>
+                <table class="table thead-dark table-bordered" id="acuerdos">
+                 <thead>
+                   <tr>
+                     <th>N°</th>
+                     <th>Folio</th>
+                     <th>Fecha oficio</th>
+                     <th>Nombre</th>
+                     <th>Asunto</th>
+                     <th>Dirigido a:</th>
+                     <th>Sesión</th>
+                     <th>Oficio</th>
+                     <th>Anexos</th>
+                     <th>Seguimiento</th>
+                     <th>Admin</th>
+                   </tr>
+                 </thead>
+                 <tbody>';
+                 while ($line = mysqli_fetch_array($result)){
 
-                 switch($line["estatus"]){
-                   case 'Finalizado': $color = '#D1ECF1';
-                    break;
-                   case 'Pendiente': $color = '#FFF3CD';
-                    break;
-                   case 'Cancelado': $color = '#F8D7DA';
-                    break;
-                   case 'En seguimiento': $color = '#E2E3E5';
-                    break;
-                   case 'Completado': $color = '#C3E6CB';
+                   switch($line["estatus"]){
+                     case 'Finalizado': $color = '#D1ECF1';
+                      break;
+                     case 'Pendiente': $color = '#FFF3CD';
+                      break;
+                     case 'Cancelado': $color = '#F8D7DA';
+                      break;
+                     case 'En seguimiento': $color = '#E2E3E5';
+                      break;
+                     case 'Completado': $color = '#C3E6CB';
+                   }
+
+                   echo '<tr style="background-color:'.$color.'">
+                          <td><strong>'.$i.'</strong></td>
+                          <td>'.$line["folio"].'</td>
+                          <td>'.$line["fecha_emision"].'</td>
+                          <td>'.$line["nombre"].'</td>
+                          <td>'.$line["asunto"].'</td>
+                          <td>'.$line["dirigidoA"].'</td>
+                          <td><center>'.$line["tipo_sesion"].' '.$line['numero_sesion'].'</br>'.$line["fecha_sesion"].'</center></td>
+                          <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio_pdf"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
+                          <td><span title="Ver archivos anexos"><a type="button" class="onKlic" onclick="show_anexos('.$line["id_oficio"].')"><img src="imagenes/flaticons/folder.png"></a></span></td>
+                          <td><center><img src="imagenes/flaticons/folder.png" onclick="show_seguimiento('.$line["id_oficio"].')" class="onKlic"><br><span title="Agregar seguimiento"><img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic" onclick="show_add_seguimiento('.$line["id_oficio"].')"></a></span></center></td>
+                          <td><a href="editacuerdo.php? ">Editar</a></br><a href="" onclick = "">Eliminar</a></td>
+                        </tr>';
+                  $i = $i+1;
                  }
 
-                 echo '<tr style="background-color:'.$color.'">
-                        <td><strong>'.$i.'</strong></td>
-                        <td>'.$line["folio"].'</td>
-                        <td>'.$line["fecha_emision"].'</td>
-                        <td>'.$line["nombre"].'</td>
-                        <td>'.$line["asunto"].'</td>
-                        <td>'.$line["dirigidoA"].'</td>
-                        <td><center>'.$line["tipo_sesion"].' '.$line['numero_sesion'].'</br>'.$line["fecha_sesion"].'</center></td>
-                        <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio_pdf"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
-                        <td><span title="Ver archivos anexos"><a type="button" class="onKlic" onclick="show_anexos('.$line["id_oficio"].')"><img src="imagenes/flaticons/folder.png"></a></span></td>
-                        <td><center><img src="imagenes/flaticons/folder.png" onclick="show_seguimiento('.$line["id_oficio"].')" class="onKlic"><br><span title="Agregar seguimiento"><img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic" onclick="show_add_seguimiento('.$line["id_oficio"].')"></a></span></center></td>
-                        <td><a href="editacuerdo.php? ">Editar</a></br><a href="" onclick = "">Eliminar</a></td>
-                      </tr>';
-                $i = $i+1;
-               }
+                 echo '
+                  </tbody>
+                </table>';?>
 
-               echo '
-                </tbody>
-              </table>';?>
+                <?php
+                /*----------------------------------------------------------------
+                                Creación de botones de paginación
+                ----------------------------------------------------------------*/
+                echo'
+                <center>
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">';
 
-              <?php
-              /*----------------------------------------------------------------
-                              Creación de botones de paginación
-              ----------------------------------------------------------------*/
-              echo'
-              <center>
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">';
+                  if($pag>0){
+                    echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag-1).'">Anterior</a></li>';
+                  }
+                  else{
+                    echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag).'">Anterior</a></li>';
+                  }
 
-                if($pag>0){
-                  echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag-1).'">Anterior</a></li>';
-                }
-                else{
-                  echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag).'">Anterior</a></li>';
-                }
+                  for($li = 0; $li < ($pages+1); $li++){
+                        echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.$li.'">'.$li.'</a></li>';
+                  }
 
-                for($li = 0; $li < ($pages+1); $li++){
-                      echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.$li.'">'.$li.'</a></li>';
-                }
+                  if($pages>60){ //Es necesario programar lo que sucede en este caso
+                      echo'<li class="page-item"><a class="page-link" href="#">...</a></li>';
+                  }
 
-                if($pages>60){ //Es necesario programar lo que sucede en este caso
-                    echo'<li class="page-item"><a class="page-link" href="#">...</a></li>';
-                }
+                  echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag+1).'">Siguiente</a></li>
+                  </ul>
+                </nav>
+                </center>';
 
-                echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag+1).'">Siguiente</a></li>
-                </ul>
-              </nav>
-              </center>';
+                ?>
 
-              ?>
+
+          </div>
+
+
 
               <div>
                 <div>
@@ -244,13 +250,13 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form id="frm_acuerdo" enctype="multipart/form-data" action="conexiones/upload_files.php" method="POST" class="forma">
+                  <form id="frm_src_oficios" enctype="multipart/form-data" action="conexiones/upload_files.php" method="POST" class="forma">
                     <div class="auxiliar" style="width: 95%">
 
                     <div class="row">
                       <div class="col-xs-4">
                         <label for"tituloAcuerdo">Año:</label>
-                        <select class="selectpicker" id="srch_year" name="" data-width="100%" data-live-search="false" title="Selecciona un año" onchange="bloquear_campos()">
+                        <select class="selectpicker" id="srch_year" name="year" data-width="100%" data-live-search="false" title="Selecciona un año" onchange="bloquear_campos()">
                          <option value="2019">2019</option>
                          <option value="2018">2018</option>
                          <option value="2017">2017</option>
@@ -273,7 +279,7 @@
                                 $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>');
 
                                 echo'
-                                <select class="selectpicker" id="srch_etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
+                                <select class="selectpicker" id="srch_etiqueta" name="asunto" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
                                 <optgroup label="Secretaría académica">';
 
                                 while ($line = mysqli_fetch_array($result)) {
@@ -341,7 +347,7 @@
                       <div class="col-xs-4">
                         <div class="form-group">
                           <label>Estatus:</label>
-                          <select class="selectpicker" id="srch_estatus" data-width="100%" data-live-search="false" title="Seleccionar estatus">
+                          <select class="selectpicker" name="estatus" id="srch_estatus" data-width="100%" data-live-search="false" title="Seleccionar estatus">
                             <option value="Pendiente">Pendiente</option>
                             <option value="En seguimiento">En seguimiento</option>
                             <option value="Finalizado">Finalizado</option>
@@ -352,22 +358,22 @@
                       <div class="col-xs-8">
                         <div class="form-group">
                           <label>Nombre del oficio</label>
-                          <input class="form-control" id="srch_titulo" type="text" name="nombreAcuerdo" placeholder="Ingresar el nombre del oficio">
+                          <input class="form-control" id="srch_titulo" type="text" name="nombre" placeholder="Ingresar el nombre del oficio">
                       </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-xs-4">
                         <label for"tituloAcuerdo">Folio: </label>
-                        <input class="form-control" id="srch_acuerdo" type="text" name="contAcuerdo" placeholder="H.C.T/0000/AAAA">
+                        <input class="form-control" id="srch_acuerdo" type="text" name="folio" placeholder="H.C.T/0000/AAAA">
                       </div>
                       <div class="col-xs-4">
                         <label>Fecha de emisión: </label>
-                        <input type="date" class="form-control" id="" name="" style="width:100%; border: 1px solid #CCC;"/>
+                        <input type="date" class="form-control" id="" name="fecha_emision" style="width:100%; border: 1px solid #CCC;"/>
                       </div>
                       <div class="col-xs-4">
                         <label for"tituloAcuerdo">Dirigido a:</label>
-                        <input class="form-control" id="srch_acuerdo" type="text" name="contAcuerdo">
+                        <input class="form-control" id="srch_acuerdo" type="text" name="dirigido">
                       </div>
                     </div>
                     </br>
@@ -408,7 +414,7 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">Limpiar</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary" onclick="busqueda_acuerdos()">Realizar búsqueda por filtro</button>
+                  <button type="button" class="btn btn-primary" onclick="busqueda_oficios()">Realizar búsqueda por filtro</button>
                 </div>
               </div>
             </div>
