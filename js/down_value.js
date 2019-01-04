@@ -1014,6 +1014,11 @@ function change_page(pag){
     busqueda_acuerdos();
 }
 
+function change_page_oficios(pag){
+    $("#pag_oficios").val(pag);
+    busqueda_oficios();
+}
+
 function check_file(file, type){
 
 //Cualquier cantidad de letras de la a a la z sin importar mayúsculas
@@ -1680,7 +1685,7 @@ function add_seguimiento(){
     contentType: false,
     processData: false,
     success: function(data){
-      alert("Información de seguimiento registrado!!!!!"+data);
+      //alert("Información de seguimiento registrado!!!!!"+data);
       document.getElementById("frm_seguimiento").reset();
       /*document.getElementById("footer-seguimiento").innerHTML = ''+
         '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>'
@@ -1772,8 +1777,10 @@ function show_add_seguimiento(id_oficio){
 
 function busqueda_oficios(){
   alert("entra busqueda oficios");
+  var pag = $("#pag_oficios").val();
 
   var formData = new FormData(document.getElementById("frm_src_oficios"));
+  formData.append('pag', pag);
 
   $.ajax({
     url: "../consejo_tecnico/fragmentos/tabla_oficios.php",
@@ -1782,7 +1789,6 @@ function busqueda_oficios(){
     contentType: false,
     processData: false,
     success: function(data){
-      alert("##### OFICIOS BUSCADDOS"+data);
       document.getElementById("result_oficios").innerHTML = data;
 
     },

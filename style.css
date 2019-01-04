@@ -22,6 +22,7 @@ img {display: block; margin: 0 auto;}
 	margin: auto;
 	margin-top:20px;
 	box-shadow: 0 0 4px 1px #3E3E3E;
+	background-color: white;
 }
 
 .onKlic{/*Para cambiar el cursor al pasar sobre el elemento deseado*/

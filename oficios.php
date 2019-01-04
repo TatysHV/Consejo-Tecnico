@@ -74,7 +74,7 @@
 			</div>
 
 			<div id="principal"></br></br>
-        <input type="hidden" id="pag_acuerdos" value="0">
+        <input type="hidden" id="pag_oficios" value="0">
 
         <div id="modal_anexos">
 
@@ -213,7 +213,7 @@
           </div>
 
 
-
+            <!-- Botón para descargar la tabla de resultados -------------------
               <div>
                 <div>
                   <center>
@@ -223,6 +223,7 @@
                   </center>
                 </div>
               </div>
+            -->
 
               <!--Ventana modal para mostrar la información completa de un acuerdo
                ------------------------------------------------------------------>
@@ -473,17 +474,14 @@
     }*/
 
     function limpiarFormulario() {
-       $("#frm_acuerdo")[0].reset();
-       $("#srch_year").selectpicker("refresh");
-       $("#srch_etiqueta").selectpicker("refresh");
-       $("#srch_finish").selectpicker("refresh");
-       // $("#srch_finish").val('default').selectpicker("refresh");
-       $("#srch_init").selectpicker("refresh");
-       $("#srch_estatus").selectpicker("refresh");
+  
+      document.getElementById("frm_src_oficios").reset();
+      $("#srch_year").selectpicker("refresh");
+      $("#srch_etiqueta").selectpicker("refresh");
+      $("#srch_finish").selectpicker("refresh");
+      $("#srch_init").selectpicker("refresh");
+      $("#srch_estatus").selectpicker("refresh");
 
-       document.getElementById("srch_init").disabled = false;
-       document.getElementById("srch_finish").disabled = false;
-       document.getElementById("srch_year").disabled = false;
     }
 
 	</SCRIPT>

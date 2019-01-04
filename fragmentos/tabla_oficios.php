@@ -1,8 +1,3 @@
-<center><h3 style="color:#3380FF">Oficios del H. Consejo Técnico </h3></center>
-</br></br>
-<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#form_acuerdo">Buscar oficios</button>
-<a class="btn btn-primary" href="add_acuerdo.php">Registrar nuevo oficio</a>
-</br></br>
 <?php
 
 include "../conexiones/conexion.php";
@@ -16,20 +11,18 @@ $fecha = $_POST['fecha_emision'];
 $dirigido = $_POST['dirigido'];
 
 $color = ''; //Variable para guardar un string hexadecimal
-$pag = $_GET['pag']; /* $pag es la pagina actual*/
+$pag = $_POST['pag']; /* $pag es la pagina actual*/
 $cantidad = 10; // cantidad de resultados por página
 $inicial = $pag * $cantidad;
 
 $i = $inicial+1; // índice de fila
 
 
-
-
 /*--------------------------------------------------------------------
  Crear la vista de oficios por año para reducir la búsqueda
 --------------------------------------------------------------------*/
-  $query = "CREATE OR REPLACE VIEW vista_oficios AS SELECT * FROM oficios WHERE year(fecha_emision) = '$year'";
-  $result = mysqli_query($con,$query) or die('Error al crear vista de oficios');
+$query = "CREATE OR REPLACE VIEW vista_oficios AS SELECT * FROM oficios WHERE year(fecha_emision) = '$year'";
+$result = mysqli_query($con,$query) or die('Error al crear vista de oficios');
 
 
 /*-------------------------------------------------------------------
@@ -46,38 +39,42 @@ if($asunto!=""){
   $consulta = $consulta." AND asunto = '$asunto'";
 }
 
-/*--------------------------------------------------------------------
- Realizar consulta de oficios del año en curso, mostrando de 10 en 10
----------------------------------------------------------------------*/
-//$sql = "SELECT * FROM vista_oficios WHERE year(fecha_emision) = '$year' LIMIT $inicial, $cantidad"; //Consulta auxiliar SELECT *, @s:=@s+1 FROM acuerdos, (SELECT @s:= 0) AS s WHERE year(fecha_acta) = '$year'
-$result = mysqli_query($con, $consulta) or die('Error al consultar oficios');
-
-//Obtener el total de resultados de la consulta para crear páginas
-$oficios= "SELECT * FROM oficios WHERE year(fecha_emision) = '$year'";
-$result2= mysqli_query($con,$oficios);
-$num_resultados = mysqli_num_rows($result2);
-$pages = intval($num_resultados / $cantidad); //Total/numero de filas
-
-
-
-/*
 if($estatus!=""){
-  $consulta += '';
+  $consulta = $consulta." AND estatus = '$estatus'";
 }
 
 if($nombre!=""){
-  $consulta += '';
+  $consulta = $consulta." AND nombre LIKE '%$nombre%'";
 }
 
-if($fecha_emision!=""){
-  $consulta += '';
+if($fecha!=""){
+  $consulta = $consulta." AND fecha_emision = '$fecha_emision'";
 }
 
 if($dirigido!=""){
-  $consulta += '';
+  $consulta = $consulta." AND dirigidoA LIKE '%$dirigido%'";
 }
-*/
 
+
+/*--------------------------------------------------------------------
+ Realizar consulta de oficios del año en curso, mostrando de 10 en 10
+---------------------------------------------------------------------*/
+$contador = $consulta; //Guardamos la sentencia sin delimitar por número de páginas
+$consulta = $consulta." LIMIT $inicial, $cantidad"; // Se agrega a la cadena el delimitador de páginas
+
+$result = mysqli_query($con, $consulta) or die('Error al consultar oficios');
+
+/*--------------------------------------------------------------------
+ Obtener el total de resultados para crear la paginacion
+ ---------------------------------------------------------------------*/
+
+$result2= mysqli_query($con, $contador);
+$num_resultados = mysqli_num_rows($result2);
+$pages = intval($num_resultados / $cantidad); //Total/numero de filas
+
+/*---------------------------------------------------------------------
+ Creación de la tabla HTML con el resultado de la búsqueda
+ ---------------------------------------------------------------------*/
 
 echo '
     <div style="float: left"><img src="imagenes/indicecolores.png" style="width: 390px; height: auto;" /></div>
@@ -142,21 +139,21 @@ echo '
       <ul class="pagination">';
 
       if($pag>0){
-        echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag-1).'">Anterior</a></li>';
+        echo'<li class="page-item"><a class="page-link" href="oficios.php?pag='.($pag-1).'">Anterior</a></li>';
       }
       else{
-        echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag).'">Anterior</a></li>';
+        echo'<li class="page-item"><a class="page-link" href="oficios.php?pag='.($pag).'">Anterior</a></li>';
       }
 
       for($li = 0; $li < ($pages+1); $li++){
-            echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.$li.'">'.$li.'</a></li>';
+            echo'<li class="page-item"><a class="page-link" href="oficios.php?pag='.$li.'">'.$li.'</a></li>';
       }
 
       if($pages>60){ //Es necesario programar lo que sucede en este caso
           echo'<li class="page-item"><a class="page-link" href="#">...</a></li>';
       }
 
-      echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag+1).'">Siguiente</a></li>
+      echo'<li class="page-item"><a class="page-link" href="oficios.php?pag='.($pag+1).'">Siguiente</a></li>
       </ul>
     </nav>
     </center>';
