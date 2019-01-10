@@ -61,7 +61,8 @@
 			</div>
 
 			<div id="principal">
-      </br></br></br>
+          <img src="imagenes/banner_comisiones.png" style="width:100%; height: auto">
+      </br></br>
       <div class="row" style="width: 80%; margin: auto;">
         <div id="comisiones">
           <!--Carga de manera automática al abrir la página, el reglamento general de la UNAM
@@ -71,7 +72,7 @@
 
             $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($conexion));
 
-            echo' <center><h3 style="color:#3380FF">Comisiones</h3></center>
+            echo'
             <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
 
               <legend style="margin-top: 30px; font-size: 1.4em">Comisiones Dictaminadoras</legend>
