@@ -174,7 +174,7 @@
 
                       echo'
                       <select class="selectpicker" id="etiqueta" name="etiquetaAC" data-width="100%" data-live-search="true">
-                      <option valou="" selected>'.$line0["etiqueta"].'</option>
+                      <option value="" selected>'.$line0["etiqueta"].'</option>
 
 
                       <optgroup label="Secretaría académica">';

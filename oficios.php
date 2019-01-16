@@ -169,7 +169,7 @@
                           <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio_pdf"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
                           <td><span title="Ver archivos anexos"><a type="button" class="onKlic" onclick="show_anexos('.$line["id_oficio"].')"><img src="imagenes/flaticons/folder.png"></a></span></td>
                           <td><center><img src="imagenes/flaticons/folder.png" onclick="show_seguimiento('.$line["id_oficio"].')" class="onKlic"><br><span title="Agregar seguimiento"><img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic" onclick="show_add_seguimiento('.$line["id_oficio"].')"></a></span></center></td>
-                          <td><a href="editacuerdo.php? ">Editar</a></br><a href="" onclick = "">Eliminar</a></td>
+                          <td><a href="editoficio.php?id='.$line["id_oficio"].'">Editar</a></br><a href="" onclick = "">Eliminar</a></td>
                         </tr>';
                   $i = $i+1;
                  }
@@ -188,21 +188,21 @@
                   <ul class="pagination">';
 
                   if($pag>0){
-                    echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag-1).'">Anterior</a></li>';
+                    echo'<li class="page-item"><a class="page-link" href="oficios.php?pag='.($pag-1).'">Anterior</a></li>';
                   }
                   else{
-                    echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag).'">Anterior</a></li>';
+                    echo'<li class="page-item"><a class="page-link" href="oficios.php?pag='.($pag).'">Anterior</a></li>';
                   }
 
                   for($li = 0; $li < ($pages+1); $li++){
-                        echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.$li.'">'.$li.'</a></li>';
+                        echo'<li class="page-item"><a class="page-link" href="oficios.php?pag='.$li.'">'.$li.'</a></li>';
                   }
 
                   if($pages>60){ //Es necesario programar lo que sucede en este caso
                       echo'<li class="page-item"><a class="page-link" href="#">...</a></li>';
                   }
 
-                  echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag+1).'">Siguiente</a></li>
+                  echo'<li class="page-item"><a class="page-link" href="oficios.php?pag='.($pag+1).'">Siguiente</a></li>
                   </ul>
                 </nav>
                 </center>';
@@ -474,7 +474,7 @@
     }*/
 
     function limpiarFormulario() {
-  
+
       document.getElementById("frm_src_oficios").reset();
       $("#srch_year").selectpicker("refresh");
       $("#srch_etiqueta").selectpicker("refresh");

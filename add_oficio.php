@@ -392,8 +392,6 @@
                 </div>
               </div>
               <div class="col-xs-6">
-                <br>
-                <center><input class="btn btn-warning" style="width: 50%; margin-top: 15px;" type="button" data-toggle="modal" data-target="#add_seguimiento" value="Agregar seguimiento"></center>
               </div>
             </div>
             <div class="row">
