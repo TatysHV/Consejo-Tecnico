@@ -231,7 +231,7 @@
             if($line0 = mysqli_fetch_array($result0)){
 
               echo '
-              <form id="frm_oficio" enctype="multipart/form-data" method="POST" class="forma">
+              <form id="frm_edit_oficio" enctype="multipart/form-data" method="POST" class="forma">
 
                 <div class="auxiliar">
                 <input type="hidden" value="'.$ID.'" name="id">
@@ -486,7 +486,7 @@
                     </div>
                   </div>
                   <div class="col-xs-6">
-                
+
                   </div>
                 </div>
                 <div class="row">
@@ -502,7 +502,7 @@
                 </div>
                 </br></br>
                 <center>
-                  <input class="btn btn-success" style="width: 250px; margin-left: 5px;" type="button" onclick="add_oficio()" value="Registrar acuerdo">
+                  <input class="btn btn-success" style="width: 250px; margin-left: 5px;" type="button" onclick="editar_oficio('.$ID.')" value="Guardar cambios">
                 </center>
                 </div>
                 </form>

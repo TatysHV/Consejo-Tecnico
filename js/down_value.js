@@ -1775,6 +1775,28 @@ function show_add_seguimiento(id_oficio){
 
 }
 
+function editar_oficio(id_oficio){
+
+  var id = id_oficio;
+
+  var formData = new FormData(document.getElementById("frm_edit_oficio"));
+  formData.append('funcion', 5);
+  formData.append('id', id);
+
+  $.ajax({
+    url: "../consejo_tecnico/conexiones/oficios.php",
+    data: formData,
+    type: "post",
+    contentType: false,
+    processData: false,
+    success: function(data){
+      alert("Oficio modificado" + data);
+    }
+  });
+
+}
+
+
 function busqueda_oficios(){
   alert("entra busqueda oficios");
   var pag = $("#pag_oficios").val();
