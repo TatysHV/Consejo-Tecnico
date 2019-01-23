@@ -16,6 +16,7 @@ switch ($funcion){
   break;
   case 5: edit_oficio();
   break;
+  case 6: delete_oficio();
 
 }
 
@@ -314,7 +315,7 @@ function edit_oficio(){
 
       if (strlen($_FILES['oficio_word']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
         if (move_uploaded_file($_FILES['oficio_word']['tmp_name'][$i], $target_path.$name)) {
-          $query= mysqli_query($con, "UPDATE oficios SET oficio_word = '$url' WHERE id_folder = '$id'");
+          $query= mysqli_query($con, "UPDATE oficios SET oficio_word = '$url' WHERE id_oficio = '$id'");
 
           if(!$query){
             die('Error al registrar el oficio word');
@@ -330,11 +331,90 @@ function edit_oficio(){
   if($of_anexos != ""){
     //----------Subir cada uno de los archivos anexos al servidor y a la BD
 
-    add_oficio_anexo($id_oficio); //Función que se encarga de subir cada uno de los archivos seleccionados como seguimieto.
+    add_oficio_anexo($id); //Función que se encarga de subir cada uno de los archivos seleccionados como seguimieto.
 
   }
 }
 
+function delete_oficio(){
+  include "conexion.php";
 
+  $id = $_POST['id'];
+  $target_path = "../conexiones/uploads/";
+
+  /*Nota: Es necesario eliminar todos los archivos anexados y la tabla de
+  seguimiento que están vinculados al oficio y después procedemos a eliminar
+  el registro del oficio en la base de datos.
+
+
+  /******************* Eliminar los archivos anexos, si tiene *******************/
+
+  //------- Obtener el nombre del archivo anexado para eliminarlo del servidor--- /
+
+  $nombre_anexo ="";
+  $query_names= mysqli_query($con, "SELECT nombre FROM archivos_anexos WHERE id_oficio = '$id'");
+
+  while($row = mysqli_fetch_array($query_names)){
+    $nombre_anexo = $row[0];
+
+    if(unlink($target_path.$nombre_anexo)){
+      echo 'Archivo anexo borrado correctamente ';
+    }
+    else{
+      echo 'Error al eliminar el archivo anexo ';
+     }
+  }
+
+  // ------ Eliminar todos los datos del archivo en la base de datos -------------/
+  $query2 = mysqli_query($con, "DELETE FROM archivos_anexos WHERE id_oficio = '$id'");
+
+  if(!$query2){
+    die('Error al eliminar archivos anexos del oficio ');
+  }
+  else{
+    echo 'Archivos anexos eliminados ';
+  }
+
+
+  /********************* Eliminar la tabla de seguimiento  ***********************/
+
+  // ------ Eliminar los archivos de oficio respuesta del servidor ---------------/
+  $nombre_seguimiento ="";
+  $query_oficios= mysqli_query($con, "SELECT oficio_respuesta FROM tabla_seguimiento WHERE id_oficio = '$id'");
+
+  while($row = mysqli_fetch_array($query_oficios)){
+    $nombre_seguimiento = $row[0];
+
+    if(unlink($target_path.$nombre_seguimiento)){
+      echo 'Oficio respuesta eliminado correctamente ';
+    }
+    else{
+      echo 'Error al eliminar el oficio respuesta ';
+     }
+  }
+
+  //----------- Eliminar todos los registros de la tabla de seguimiento de BD ----------/
+
+  $query3 = mysqli_query($con, "DELETE FROM tabla_seguimiento WHERE id_oficio = '$id'");
+
+  if(!$query3){
+    die('Error al eliminar archivos de seguimiento del oficio ');
+  }
+  else{
+    echo 'Archivos de seguimiento eliminados correctamente ';
+  }
+
+  /********************* Eliminar el oficio por su id ***************************/
+
+  $query = mysqli_query($con, "DELETE FROM oficios WHERE id_oficio = '$id'");
+
+  if(!$query){
+    die('Error al eliminar el oficio');
+  }
+  else{
+    echo 'Oficio eliminado correctamente ';
+  }
+
+}
 
  ?>

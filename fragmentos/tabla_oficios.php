@@ -119,9 +119,9 @@ echo '
               <td>'.$line["dirigidoA"].'</td>
               <td><center>'.$line["tipo_sesion"].' '.$line['numero_sesion'].'</br>'.$line["fecha_sesion"].'</center></td>
               <td><span title="Ver oficio PDF"><a href="conexiones/uploads/'.$line["oficio_pdf"].'" target="_blank"><img src="imagenes/flaticons/pdf.png"></a></span><br><a href="conexiones/uploads/'.$line["oficio_word"].'" target="_blank"><img title="Ver oficio Word" src="imagenes/flaticons/doc.png"></a></td>
-              <td><span title="Ver archivos anexos"><a type="button" class="onKlic" onclick="show_anexos('.$line["id_oficio"].')"><img src="imagenes/flaticons/folder.png"></a></span></td>
+              <td><span title="Ver archivos anexos"><a type="button" class="onKlic" onclick="show_anexos('.$line["id_oficio"].')"><img src="imagenes/flaticons/folder.png"></a></span><span title="Agregar archivos anexos"><br><a href="editoficio.php?id='.$line["id_oficio"].'"><img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic"></a></td>
               <td><center><img src="imagenes/flaticons/folder.png" onclick="show_seguimiento('.$line["id_oficio"].')" class="onKlic"><br><span title="Agregar seguimiento"><img src="imagenes/flaticons/plus.png" style="width: 20px; height:auto;" class="onKlic" onclick="show_add_seguimiento('.$line["id_oficio"].')"></a></span></center></td>
-              <td><a href="editacuerdo.php? ">Editar</a></br><a href="" onclick = "">Eliminar</a></td>
+              <td><a href="editoficio.php?id='.$line["id_oficio"].'">Editar</a></br><div class="onKlic" onclick="delete_oficio('.$line["id_oficio"].')"><span style="color: #337AB7">Eliminar</span></div></td>
             </tr>';
       $i = $i+1;
      }

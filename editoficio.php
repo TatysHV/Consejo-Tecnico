@@ -425,6 +425,7 @@
                 </div>
                 <br>
                 <div class="row">
+                  <center><hr><span style="color: red">Nota:</span> Los oficios nuevos reemplazarán a los anteriores.<hr></center>
                   <div class="col-xs-6">
                     <div class="form-group">
                       <label for="">Oficio PDF:</label>
@@ -491,9 +492,11 @@
                 </div>
                 <div class="row">
                   <br><br>
+                  <center><hr><span style="color: red">Nota:</span> Los anexos nuevos son agregados, no reemplazan a los anteriores.<hr></center>
                   <div style="width: 40%; margin: auto">
                     <div class="form-group">
                       <center>
+
                         <label for="">Anexos:</label>
                         <input id="actapdf" name="anexos[]" type="file" class="file" multiple="true" style="width: 100%; height: 34px; border: 1px solid #CCC";/>
                       </center>
@@ -505,6 +508,7 @@
                   <input class="btn btn-success" style="width: 250px; margin-left: 5px;" type="button" onclick="editar_oficio('.$ID.')" value="Guardar cambios">
                 </center>
                 </div>
+                </br>
                 </form>
               ';
             }
@@ -514,13 +518,12 @@
 							</br></br>
             </div>
 				</div>
+        </br></br>
         </div>
-      </div>
       <div id="pie">
 
 			</div>
-			</div>
-		</div>
+
 	</body>
 	<SCRIPT type="text/javascript">
 

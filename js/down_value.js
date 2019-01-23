@@ -987,27 +987,6 @@ function delete_file_seguimiento(ID){
   }
 }
 
-function delete_file_anexos(ID){
-  var id=ID;
-  var func = 3;
-  eleccion = confirm("¿Seguro que quiere eliminar el archivo "+ID+"?");
-  if(eleccion){
-    $.ajax({
-       url: "../consejo_tecnico/conexiones/oficios.php",
-       data: {"id":id,"funcion":func},
-       type: "post",
-        success: function(data){
-            //alert("Eliminando acta");
-            alert(data);
-            window.location.assign("../consejo_tecnico/oficios.php");
-        },
-        failure: function(){
-          alert("No se ha podido eliminar el archivo");
-        }
-      });
-
-  }
-}
 
 function change_page(pag){
     $("#pag_acuerdos").val(pag);
@@ -1798,7 +1777,7 @@ function editar_oficio(id_oficio){
 
 
 function busqueda_oficios(){
-  alert("entra busqueda oficios");
+  //alert("entra busqueda oficios");
   var pag = $("#pag_oficios").val();
 
   var formData = new FormData(document.getElementById("frm_src_oficios"));
@@ -1816,6 +1795,45 @@ function busqueda_oficios(){
     },
     failure: function(){
       alert("Error al registrar seguimiento"+data);
+    }
+  });
+
+}
+
+function delete_file_anexos(ID){
+  var id=ID;
+  var func = 3;
+  eleccion = confirm("¿Seguro que quiere eliminar el archivo "+ID+"?");
+  if(eleccion){
+    $.ajax({
+       url: "../consejo_tecnico/conexiones/oficios.php",
+       data: {"id":id,"funcion":func},
+       type: "post",
+        success: function(data){
+            //alert("Eliminando acta");
+            alert("Archivo anexo eliminado correctamente ");
+            $("#oficio_anexos").modal('hide');
+        },
+        failure: function(){
+          alert("No se ha podido eliminar el archivo");
+        }
+      });
+
+  }
+}
+
+function delete_oficio(id_oficio){
+
+  alert("Eliminando archivo");
+
+  var id = id_oficio;
+
+  $.ajax({
+    url: "../consejo_tecnico/conexiones/oficios.php",
+    data: {"id":id, "funcion": 6},
+    type: "post",
+    success: function(data){
+      alert("Oficio eliminado correctamente "+data);
     }
   });
 
