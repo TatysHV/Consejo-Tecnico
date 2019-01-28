@@ -120,9 +120,9 @@ function add_oficio_anexo($id_oficio){
 
         /******* Registro de los datos del archivo en la base de datos ***********************/
 
-        $query = mysqli_query($con, "INSERT INTO archivos_anexos(id_oficio, nombre, url, fecha, tamaño) VALUES ('$id_oficio','$name','$name','$time','$length1')");
+        $query = mysqli_query($con, "INSERT INTO archivos_anexos(id_oficio, nombre, url, fecha, tamano) VALUES ('$id_oficio','$name','$name','$time','$length1')");
         if(!$query){
-          die('Error al registrar los anexos');
+          die('Error al registrar los anexos'.mysqli_error($con));
         }
         else{
           echo 'Archivos anexos registrados correctamente';

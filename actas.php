@@ -55,7 +55,8 @@
 			</div>
 
 			<div id="principal">
-      </br></br>
+        <img src="imagenes/banner_actas.png" style="width:100%; height: auto">
+      </br>
         <div class="bloque_year">
           <div class ="titular"><center>ACTAS DEL H. CONSEJO TÉCNICO</center></div></br>
           <form class="forma">
