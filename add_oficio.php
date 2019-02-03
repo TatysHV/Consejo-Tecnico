@@ -150,7 +150,7 @@
                         <div class="col-xs-6">
                           <div class="form-group">
                             <label>Oficios respuesta</label>
-                            <input type="file" name="seguimiento[]" multiple="false" class="file" style="width: 95%; height: 34px; border: 1px solid #CCC"/>
+                            <input type="file" name="seguimiento[]" class="file" style="width: 95%; height: 34px; border: 1px solid #CCC"/>
                           </div>
                         </div>
                       </div>
