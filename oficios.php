@@ -276,17 +276,38 @@
                                 mysqli_set_charset($con,'utf8');
                                 //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
 
-                                $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
-                                $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>');
+                                $query_dep = "SELECT nombre FROM departamentos";
+
+                                $result_dep = mysqli_query($con, $query_dep) or die ('Error al obtener dependencias'.mysqli_error($con));
 
                                 echo'
-                                <select class="selectpicker" id="srch_etiqueta" name="asunto" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
-                                <optgroup label="Secretaría académica">';
+                                <select class="selectpicker" id="srch_etiqueta" name="asunto" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">';
 
-                                while ($line = mysqli_fetch_array($result)) {
-                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                while($dep = mysqli_fetch_array($result_dep)){
+
+                                  $dep_nombre = $dep["nombre"];
+
+                                  $query_etiqueta = "SELECT * FROM lista_etiquetas WHERE pertenece = '$dep_nombre' ORDER BY etiqueta ASC";
+                                  $result = mysqli_query($con, $query_etiqueta) or die('<b>No se encontraron coincidencias</b>');
+
+                                  echo'<optgroup label="'.$dep_nombre.'">';
+
+                                  while ($line = mysqli_fetch_array($result)) {
+                                    echo'<option>'.$line["etiqueta"].'</option>';
+                                  }
+                                  echo'</optgroup>';
+
                                 }
-                                echo'</optgroup>';
+
+                                echo'</optgroup>
+                                </select>';
+
+
+                                /*
+                                $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
+
+
+
 
                                 //Muestra las etiquetas que pertenecen a servicios escolares
                                 $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Servicios escolares' ORDER BY etiqueta ASC";
@@ -338,6 +359,7 @@
                                 echo'</optgroup>
                                 </select>';
 
+                                */
                                 mysqli_close($con);
                                 ?>
                             </div>

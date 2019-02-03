@@ -283,72 +283,37 @@
                     <label>Asunto/etiqueta</label><br>
 
                     <?php
-                      mysqli_set_charset($con,'utf8');  // LÍNEA BENDITA QUE ARREGLA PROBLEMAS DE CARACTERES D: <3
+                      mysqli_set_charset($con,'utf8');
                       //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
 
-                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
-                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                      $query_dep = "SELECT nombre FROM departamentos";
+
+                      $result_dep = mysqli_query($con, $query_dep) or die ('Error al obtener dependencias'.mysqli_error($con));
 
                       echo'
-                      <select class="selectpicker" id="etiqueta" name="etiquetaOF" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">
-                      <optgroup label="Secretaría académica">';
+                      <select class="selectpicker" id="etiqueta" name="etiquetaOF" data-width="100%" data-live-search="true" title="Seleccionar etiqueta">';
 
-                      while ($line = mysqli_fetch_array($result)) {
-                        echo'<option>'.$line["etiqueta"].'</option>';
-                      }
-                      echo'</optgroup>';
+                      while($dep = mysqli_fetch_array($result_dep)){
 
-                      //Muestra las etiquetas que pertenecen a servicios escolares
-                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Servicios escolares' ORDER BY etiqueta ASC";
-                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                        $dep_nombre = $dep["nombre"];
 
-                      echo'
-                      <optgroup label="Servicios escolares">';
+                        $query_etiqueta = "SELECT * FROM lista_etiquetas WHERE pertenece = '$dep_nombre' ORDER BY etiqueta ASC";
+                        $result = mysqli_query($con, $query_etiqueta) or die('<b>No se encontraron coincidencias</b>');
 
-                      while ($line = mysqli_fetch_array($result)) {
-                        echo'<option>'.$line["etiqueta"].'</option>';
-                      }
-                      echo'</optgroup>';
+                        echo'<optgroup label="'.$dep_nombre.'">';
 
-                      //Muestra las etiquetas que pertenecen a Secretaría de investigación y posgrado
-                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de investigación y posgrado' ORDER BY etiqueta ASC";
-                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
+                        while ($line = mysqli_fetch_array($result)) {
+                          echo'<option>'.$line["etiqueta"].'</option>';
+                        }
+                        echo'</optgroup>';
 
-                      echo'
-                      <optgroup label="Secretaría de investigación y posgrado">';
-
-                      while ($line = mysqli_fetch_array($result)) {
-                        echo'<option>'.$line["etiqueta"].'</option>';
-                      }
-                      echo'</optgroup>';
-
-                      //Muestra las etiquetas que pertenecen a Secretaría de vinculación
-                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría de vinculación' ORDER BY etiqueta ASC";
-                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
-
-                      echo'
-                      <optgroup label="Secretaría de vinculación">';
-
-                      while ($line = mysqli_fetch_array($result)) {
-                        echo'<option>'.$line["etiqueta"].'</option>';
-                      }
-                      echo'</optgroup>';
-
-                      //Muestra las etiquetas que pertenecen a Comités y comisiones
-                      $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Comités y comisiones' ORDER BY etiqueta ASC";
-                      $result = mysqli_query($con, $sql) or die('<b>No se encontraron coincidencias</b>' . mysql_error($con));
-
-                      echo'
-                      <optgroup label="Comités y comisiones">';
-
-                      while ($line = mysqli_fetch_array($result)) {
-                        echo'<option>'.$line["etiqueta"].'</option>';
                       }
 
                       echo'</optgroup>
                       </select>';
 
-                      ?>
+                    ?>
+
 
                     </div>
                   </div>
