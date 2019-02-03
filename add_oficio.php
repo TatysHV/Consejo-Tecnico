@@ -199,13 +199,22 @@
 
                         <div class="form-group">
                           <label for="">Pertenece a:</label>
-                          <select class="selectpicker" name="perteneceAC" id="perteneceAC" data-width="100%" title="Seleccionar departamento">
-                            <option>Secretaría académica</option>
-                            <option>Secretaría de investigación y posgrado</option>
-                            <option>Secretaría de vinculación</option>
-                            <option>Servicios escolares</option>
-                            <option>Comités y comisiones</option>
-                          </select>
+                          <?php
+                          mysqli_set_charset($con,'utf8');  // LÍNEA BENDITA QUE ARREGLA PROBLEMAS DE CARACTERES D: <3
+                          //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
+
+                          $sql="SELECT * FROM departamentos ORDER BY nombre ASC";
+                          $result = mysqli_query($con, $sql) or die('Error al consultar tabla departamentos' . mysql_error($con));
+
+                          echo'
+                          <select class="selectpicker" id="etiqueta" name="dirigido" data-width="100%" data-live-search="false" title="Seleccionar departamento">';
+
+                          while ($line = mysqli_fetch_array($result)) {
+                            echo'<option>'.$line["nombre"].'</option>';
+                          }
+                          echo'<option value="Otro departamento">Otro departamento</option>';
+                          echo'</select>';
+                          ?>
                         </div>
 
                         <center><button type="button" class="btn btn-success" onclick="add_etiqueta()">Registrar</button></center>
@@ -215,6 +224,36 @@
           			</div>
           		</div>
           	</div>
+          </div>
+
+          <!-- ---------------- VENTANA MODAL PARA REGISTRO DE NUEVA DEPENDENCIA -------------- -->
+          <div class="modal fade" id="nueva_dependencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">Agregar nueva dependencia</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <form id="frm_addDep" encrypte="multipart/form-data" action="conexiones/upload.php" method="POST" class="forma">
+
+                        <div class="form-group">
+
+                          <label for="">Nombre de la dependencia:</label>
+                          <input type="text" class="form-control" id="new_dependencia"  name="new_dep" rows="3">
+
+                        </div>
+                        <center><button type="button" class="btn btn-success" onclick="add_dependencia()">Registrar</button></center>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
 
@@ -321,13 +360,27 @@
               <div class="col-xs-6">
                 <div class="form-group">
                   <label>Dirigido a:</label>
-                  <select name="dirigido" class="form-control" >
-                    <option value="Secretaria academica">Secretaría académica</option>
-                    <option value="Secretaría de investigación y posgrado">Secretaría de investigación y posgrado</option>
-                    <option value="Secretaría de vinculación">Secretaría de vinculación</option>
-                    <option value="Servicios escolares">Servicios escolares</option>
-                    <option value="Otro departamento">Otro departamento</option>
-                  </select>
+
+                  <?php
+                  mysqli_set_charset($con,'utf8');  // LÍNEA BENDITA QUE ARREGLA PROBLEMAS DE CARACTERES D: <3
+                  //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
+
+                  $sql="SELECT * FROM departamentos ORDER BY nombre ASC";
+                  $result = mysqli_query($con, $sql) or die('Error al consultar tabla departamentos' . mysql_error($con));
+
+                  echo'
+                  <select class="selectpicker" id="etiqueta" name="dirigido" data-width="100%" data-live-search="false" title="Seleccionar departamento">';
+
+                  while ($line = mysqli_fetch_array($result)) {
+                    echo'<option>'.$line["nombre"].'</option>';
+                  }
+                  echo'<option value="Otro departamento">Otro departamento</option>';
+                  echo'</select>';
+                  ?>
+                </div>
+                <div>
+                  <i class="fas fa-plus-circle" style="color: green; font-size: 1.3em"></i>
+                  <a data-toggle="modal" data-target="#nueva_dependencia" clasS="onKlic">Agregar otra dependencia</a>
                 </div>
               </div>
             </div>
@@ -360,10 +413,6 @@
                 <input type="date" class="fsesion" name="fechasesion_of" id="fecha_sesion" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;">
               </div>
 
-            </div>
-            <div>
-              <i class="fas fa-plus-circle" style="color: green; font-size: 1.3em"></i>
-              <a data-toggle="modal" data-target="#nueva_etiqueta" clasS="onKlic">Agregar otra dependencia</a>
             </div>
             <br>
             <div class="row">

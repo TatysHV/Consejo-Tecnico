@@ -17,6 +17,8 @@ switch ($funcion){
   case 5: edit_oficio();
   break;
   case 6: delete_oficio();
+  break;
+  case 7: add_dependencia();
 
 }
 
@@ -414,6 +416,22 @@ function delete_oficio(){
   else{
     echo 'Oficio eliminado correctamente ';
   }
+
+}
+
+function add_dependencia(){
+  include "conexion.php";
+  $dependencia = $_POST["dependencia"];
+
+  $query = mysqli_query($con, "INSERT INTO departamentos(nombre) VALUES ('$dependencia')");
+
+  if(!$query){
+    die('Error al registrar la nueva dependencia');
+  }
+  else{
+    echo 'Nueva dependencia registrada';
+  }
+
 
 }
 

@@ -1838,3 +1838,20 @@ function delete_oficio(id_oficio){
   });
 
 }
+
+function add_dependencia(){
+  var dependencia = $("#new_dependencia").val();
+
+  $.ajax({
+     url: "../consejo_tecnico/conexiones/oficios.php",
+     data: {"dependencia":dependencia,"funcion":7},
+     type: "post",
+      success: function(data){
+          alert("Registrando dependencia"+data);
+        //  $("#etiqueta").load('../consejo_tecnico/fragmentos/etiquetas.php'); // Volver a colocar el select de etiquetas actualizado
+        //  Se intentó cargar mediante ajax pero hay un problema externo con el select de bootstrap, que no se puede cambiar el display: none. :c
+        //  mejor hacerlo de manera tradicional, refrescando página y recargando los valores anteriores para evitar pérdida de información.
+          location.reload();
+        }
+      });
+}
