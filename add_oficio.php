@@ -317,6 +317,7 @@
 
                     </div>
                   </div>
+
                 <div>
                   <i class="fas fa-plus-circle" style="color: green; font-size: 1.3em"></i>
                   <a data-toggle="modal" data-target="#nueva_etiqueta" clasS="onKlic">Agregar otra etiqueta</a>
@@ -349,10 +350,9 @@
                 </div>
               </div>
             </div>
+
             <div class="row">
               <br>
-
-
               <div class="col-xs-6">
                 <div class="form-group">
                   <label>Nombre del oficio</label>
@@ -420,6 +420,8 @@
               </div>
             </div>
             </br></br>
+
+
             <center>
               <input class="btn btn-success" style="width: 250px; margin-left: 5px;" type="button" onclick="add_oficio()" value="Registrar acuerdo">
             </center>
@@ -428,8 +430,10 @@
 							</br></br>
             </div>
 				</div>
-        </div>
+
       </div>
+
+      
       <div id="pie">
 
 			</div>

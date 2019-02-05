@@ -63,21 +63,32 @@
             <center>
               <span class="etiquetas">Mostrar actas del año: </span>
                 <select class="menu" id="yearActas">
-                 <option value="2018" selected >2018</option>
-                 <option value="2017" >2017</option>
-                 <option value="2016">2016</option>
-                 <option value="2015">2015</option>
-                 <option value="2014">2014</option>
-                 <option value="2013">2013</option>
-                </select>
-              <a class="btn btn-info" role="button" onclick="showactas()" style="height: 30px; padding-top: 4px;">Consultar</a>
-              <?php
-                        if($_SESSION['tipo'] == '0')
-                          {
-                          echo '<a href="addActa.php" class="btn btn-primary" role="button" style="height: 30px; padding-top: 4px;">+ Agregar nueva Acta</a>';
-                          }
 
-                ?>
+                  <?php
+
+                  $year = date("Y");
+                  $i = $year-1;
+
+                  echo'<option value="'.$year.'" selected>'.$year.'</option>';
+
+                  while($i>=2013){
+
+                    echo'<option value="'.$i.'">'.$i.'</option>';
+                    $i--;
+                  }
+
+                  echo'</select>';
+
+                  ?>
+
+                  <a class="btn btn-info" role="button" onclick="showactas()" style="height: 30px; padding-top: 4px;">Consultar</a>
+                  <?php
+                      if($_SESSION['tipo'] == '0')
+                        {
+                        echo '<a href="addActa.php" class="btn btn-primary" role="button" style="height: 30px; padding-top: 4px;">+ Agregar nueva Acta</a>';
+                        }
+
+                  ?>
               </center>
               <!-- --------------HICE EL CAMBIO DE COLOR DE PANELCONTROL, HICE LA TABLA DE ACTAS EN BD Y COMENCÉ LA INTERFAZ DE ACTAS -->
           </form>

@@ -62,22 +62,35 @@
 					<form class="forma">
 						<center>
 							<span class="etiquetas">Mostrar sesiones del año: <span>
+
                 <select class="menu" id="year">
-                 <option value="2018" selected >2018</option>
-  							 <option value="2017" >2017</option>
-  							 <option value="2016">2016</option>
-  							 <option value="2015">2015</option>
-  							 <option value="2014">2014</option>
-  							 <option value="2013">2013</option>
-  							</select>
-							<a class="btn btn-info" role="button" onclick="showforyear()" style="height: 30px; padding-top: 4px;">Consultar</a>
-							<?php
-                        if($_SESSION['tipo'] == '0')
-                          {
-                          echo '<a href="addsesion.php" class="btn btn-primary" role="button" style="height: 30px; padding-top: 4px;">+ Agregar nueva Sesión</a>';
-                          }
+
+                <?php
+
+                $year = date("Y");
+                $i = $year-1;
+
+                echo'<option value="'.$year.'" selected>'.$year.'</option>';
+
+                while($i>=2013){
+
+                  echo'<option value="'.$i.'">'.$i.'</option>';
+                  $i--;
+                }
+
+                echo'</select>';
 
                 ?>
+
+							  <a class="btn btn-info" role="button" onclick="showforyear()" style="height: 30px; padding-top: 4px;">Consultar</a>
+
+              <?php
+                  if($_SESSION['tipo'] == '0')
+                    {
+                    echo '<a href="addsesion.php" class="btn btn-primary" role="button" style="height: 30px; padding-top: 4px;">+ Agregar nueva Sesión</a>';
+                    }
+
+              ?>
               </center>
 					</form>
 				</div>
