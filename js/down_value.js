@@ -1808,7 +1808,7 @@ function delete_file_anexos(ID){
 
 function delete_oficio(id_oficio){
 
-  alert("Eliminando archivo");
+  //alert("Eliminando archivo");
 
   var id = id_oficio;
 
@@ -1817,7 +1817,8 @@ function delete_oficio(id_oficio){
     data: {"id":id, "funcion": 6},
     type: "post",
     success: function(data){
-      alert("Oficio eliminado correctamente "+data);
+      alert("Oficio eliminado correctamente ");
+      location.reload();
     }
   });
 

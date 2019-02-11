@@ -166,6 +166,36 @@
           </div>
         </div>
 
+        <!-- ---------------- VENTANA MODAL PARA REGISTRO DE NUEVA DEPENDENCIA -------------- -->
+        <div class="modal fade" id="nueva_dependencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Agregar nueva dependencia</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <form id="frm_addDep" encrypte="multipart/form-data" action="conexiones/upload.php" method="POST" class="forma">
+
+                      <div class="form-group">
+
+                        <label for="">Nombre de la dependencia:</label>
+                        <input type="text" class="form-control" id="new_dependencia"  name="new_dep" rows="3">
+
+                      </div>
+                      <center><button type="button" class="btn btn-success" onclick="add_dependencia()">Registrar</button></center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
         <div id="form_add_oficio">
@@ -377,6 +407,10 @@
                         echo'
                       </select>
                     </div>
+                    <div>
+                      <i class="fas fa-plus-circle" style="color: green; font-size: 1.3em"></i>
+                      <a data-toggle="modal" data-target="#nueva_dependencia" clasS="onKlic">Agregar otra dependencia</a>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -418,10 +452,6 @@
                     <input type="date" class="fsesion" name="fechasesion_of" id="fecha_sesion" value="'.$line0['fecha_sesion'].'" placeholder="AAAA/MM/DD" style="width:100%; height:34px; border: 1px solid #CCC;">
                   </div>
 
-                </div>
-                <div>
-                  <i class="fas fa-plus-circle" style="color: green; font-size: 1.3em"></i>
-                  <a data-toggle="modal" data-target="#nueva_etiqueta" clasS="onKlic">Agregar otra dependencia</a>
                 </div>
                 <br>
                 <div class="row">

@@ -1,28 +1,27 @@
 <?php
     session_start();
     include "conexiones/conexion.php";
-    if(!isset($_SESSION['usuario'])){
-        echo '<script> window.location="2016/consejo_tecnico/index.php"</script>';
-    }
-	if($_SESSION['tipo'] == '1')
-	{
-		echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
-	}
+if (!isset($_SESSION['usuario'])) {
+    echo '<script> window.location="2016/consejo_tecnico/index.php"</script>';
+}
+if ($_SESSION['tipo'] == '1') {
+    echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
+}
 ?>
 
 <!Doctype html>
 <html lang="es">
-	<head>
-		<title>Consejo Técnico</title>
-	   <meta charset="utf-8"/>
-		<meta http-equiv="Pragma" content="no-cache">
-		<meta http-equiv="expires" content="0">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" href="Bootstrap/css/bootstrap.min.css"/>
-	  <script src="js/jquery-3.1.1.js"></script>
-    <script src="js/down_value.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <head>
+        <title>Consejo Técnico</title>
+       <meta charset="utf-8"/>
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="Bootstrap/css/bootstrap.min.css"/>
+        <script src="js/jquery-3.1.1.js"></script>
+        <script src="js/down_value.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="style.css"/>
 
     <!-- Importación necesaria para la búsqueda inteligente del select etiqueta --->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
@@ -35,45 +34,45 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!------------------------------------------------------------------------------------>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-		<link rel="icon" type="image/png" href="">
-		<link rel="shortcut icon" href="imagenes/logoUnam.jpg"/>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+      <link rel="icon" type="image/png" href="">
+      <link rel="shortcut icon" href="imagenes/logoUnam.jpg"/>
 
 
-	</head>
-	<body>
+    </head>
+    <body>
 
-		<div id="contenedor">
-			<div id="cabecera">
-				<!--
-					<div id="usuario">
-					</div>
-				-->
-					<div id="nombre">
-						<img src="imagenes/logo-shct.png" style="display: inline-block;">
-						<span id="titulo">H. Consejo Técnico</span>
-					</div>
-					<div id="navbar">
-						<ul id="nav">
-							<li><a href="portal.php">INICIO</a></li>
-							<li><a href="actas.php">ACTAS</a></li>
-							<li><a href="sesiones.php">SESIONES</a></li>
-							<li><a href="calendario.php">CALENDARIO</a></li>
-							<li><a href="normatividad.php">NORMATIVIDAD</a></li>
+        <div id="contenedor">
+            <div id="cabecera">
+                <!--
+                    <div id="usuario">
+                    </div>
+                -->
+                    <div id="nombre">
+                        <img src="imagenes/logo-shct.png" style="display: inline-block;">
+                        <span id="titulo">H. Consejo Técnico</span>
+                    </div>
+                    <div id="navbar">
+                        <ul id="nav">
+                            <li><a href="portal.php">INICIO</a></li>
+                            <li><a href="actas.php">ACTAS</a></li>
+                            <li><a href="sesiones.php">SESIONES</a></li>
+                            <li><a href="calendario.php">CALENDARIO</a></li>
+                            <li><a href="normatividad.php">NORMATIVIDAD</a></li>
               <li><a href="comites.php">COMITÉS</a></li>
               <li><a href="comisiones.php">COMISIONES</a></li>
-              <?php
-                  if($_SESSION['tipo'] == '0'){
+                <?php
+                if ($_SESSION['tipo'] == '0') {
                     echo '<li class="active"><a href="acuerdos.php?pag=0">ACUERDOS</a></li>
                     <li><a href="oficios.php?pag=0">OFICIOS</a></li>';
-                  }
-              ?>
-							<li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>
+                }
+                ?>
+                            <li style="float: right;"><a href="conexiones/logout.php" >Salir</a></li>
             </ul>
-					</div>
-			</div>
+                    </div>
+            </div>
 
-			<div id="principal"></br></br>
+            <div id="principal"></br></br>
         <input type="hidden" id="pag_acuerdos" value="0">
 
         <div id="tabla_acuerdos">
@@ -84,34 +83,34 @@
           </br></br>
 
 
-          <?php
+            <?php
 
-          $year = date("Y");
-          $color = ''; //Variable para guardar un string hexadecimal
+            $year = date("Y");
+            $color = ''; //Variable para guardar un string hexadecimal
 
-          $pag = $_GET['pag']; /* $pag es la pagina actual*/
+            $pag = $_GET['pag']; /* $pag es la pagina actual*/
 
-          $cantidad = 5; // cantidad de resultados por página
-          $inicial = $pag * $cantidad;
+            $cantidad = 5; // cantidad de resultados por página
+            $inicial = $pag * $cantidad;
 
-          $i = $inicial+1; // índice de fila
+            $i = $inicial+1; // índice de fila
 
           /*--------------------------------------------------------------------
            Realizar consulta de acuerdos del año en curso, mostrando de 10 en 10
           ---------------------------------------------------------------------*/
-          $sql = "SELECT * FROM acuerdos WHERE year(fecha_acta) = '$year' LIMIT $inicial, $cantidad";
+            $sql = "SELECT * FROM acuerdos WHERE year(fecha_acta) = '$year' LIMIT $inicial, $cantidad";
           //Consulta auxiliar SELECT *, @s:=@s+1 FROM acuerdos, (SELECT @s:= 0) AS s WHERE year(fecha_acta) = '$year'
-          $result = mysqli_query($con,$sql) or die('Error al consultar acuerdos');
+            $result = mysqli_query($con, $sql) or die('Error al consultar acuerdos');
 
 
           //Obtener el total de resultados de la consulta para crear páginas
-          $acuerdos= "SELECT * FROM acuerdos WHERE year(fecha_acta) = '$year'";
-          $result2= mysqli_query($con,$acuerdos);
-          $num_resultados = mysqli_num_rows($result2);
-          $pages = intval($num_resultados / $cantidad); //Total/numero de filas
+            $acuerdos= "SELECT * FROM acuerdos WHERE year(fecha_acta) = '$year'";
+            $result2= mysqli_query($con, $acuerdos);
+            $num_resultados = mysqli_num_rows($result2);
+            $pages = intval($num_resultados / $cantidad); //Total/numero de filas
 
 
-          echo '
+            echo '
               <div style="float: left"><img src="imagenes/indicecolores.png" style="width: 390px; height: auto;" /></div>
               <div style="float: right;"><h5><b>Total de resultados: </b>'.$num_resultados.'</h5></div>
               <table class="table thead-dark table-bordered" id="acuerdos">
@@ -130,21 +129,25 @@
                  </tr>
                </thead>
                <tbody>';
-               while ($line = mysqli_fetch_array($result)){
+            while ($line = mysqli_fetch_array($result)) {
+                switch ($line["estatus"]) {
+                    case 'Finalizado':
+                        $color = '#D1ECF1';
+                        break;
+                    case 'Pendiente':
+                        $color = '#FFF3CD';
+                        break;
+                    case 'Cancelado':
+                        $color = '#F8D7DA';
+                        break;
+                    case 'En seguimiento':
+                        $color = '#E2E3E5';
+                        break;
+                    case 'Completado':
+                        $color = '#C3E6CB';
+                }
 
-                 switch($line["estatus"]){
-                   case 'Finalizado': $color = '#D1ECF1';
-                    break;
-                   case 'Pendiente': $color = '#FFF3CD';
-                    break;
-                   case 'Cancelado': $color = '#F8D7DA';
-                    break;
-                   case 'En seguimiento': $color = '#E2E3E5';
-                    break;
-                   case 'Completado': $color = '#C3E6CB';
-                 }
-
-                 echo '<tr style="background-color:'.$color.'">
+                echo '<tr style="background-color:'.$color.'">
                         <td><strong>'.$i.'</strong></td>
                         <td>'.$line["etiqueta"].'</td>
                         <td>'.$line["titulo"].'</td>
@@ -157,33 +160,33 @@
                         <td><a href="editacuerdo.php?id='.$line["id"].'">Editar</a></br><a href="" onclick = "delete_acuerdo('.$line["id"].')">Eliminar</a></td>
                       </tr>';
                 $i = $i+1;
-               }
+            }
 
                echo '
                 </tbody>
               </table>';?>
 
-              <?php
+                <?php
               /*----------------------------------------------------------------
                               Creación de botones de paginación
               ----------------------------------------------------------------*/
-              echo'
+                echo'
               <center>
               <nav aria-label="Page navigation example">
                 <ul class="pagination">';
 
-                if($pag>0){
-                  echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag-1).'">Anterior</a></li>';
-                }
-                else{
-                  echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag).'">Anterior</a></li>';
+                if ($pag>0) {
+                    echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag-1).'">Anterior</a></li>';
+                } else {
+                    echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.($pag).'">Anterior</a></li>';
                 }
 
-                for($li = 0; $li < ($pages+1); $li++){
+                for ($li = 0; $li < ($pages+1); $li++) {
                       echo'<li class="page-item"><a class="page-link" href="acuerdos.php?pag='.$li.'">'.$li.'</a></li>';
                 }
 
-                if($pages>60){ //Es necesario programar lo que sucede en este caso
+                if ($pages>60) {
+//Es necesario programar lo que sucede en este caso
                     echo'<li class="page-item"><a class="page-link" href="#">...</a></li>';
                 }
 
@@ -192,7 +195,7 @@
               </nav>
               </center>';
 
-              ?>
+                ?>
 
               <div>
                 <div>
@@ -250,8 +253,8 @@
                             <div class="form-group">
                               <label for="">Etiqueta:</label><br>
 
-                              <?php
-                                mysqli_set_charset($con,'utf8');
+                                <?php
+                                mysqli_set_charset($con, 'utf8');
                                 //Primera parte incluye cabecera del select y muestra las etiquetas que pertenecen a secretaría académica
 
                                 $sql="SELECT * FROM lista_etiquetas WHERE pertenece = 'Secretaría académica' ORDER BY etiqueta ASC";
@@ -262,7 +265,7 @@
                                 <optgroup label="Secretaría académica">';
 
                                 while ($line = mysqli_fetch_array($result)) {
-                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                    echo'<option>'.$line["etiqueta"].'</option>';
                                 }
                                 echo'</optgroup>';
 
@@ -274,7 +277,7 @@
                                 <optgroup label="Servicios escolares">';
 
                                 while ($line = mysqli_fetch_array($result)) {
-                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                    echo'<option>'.$line["etiqueta"].'</option>';
                                 }
                                 echo'</optgroup>';
 
@@ -286,7 +289,7 @@
                                 <optgroup label="Secretaría de investigación y posgrado">';
 
                                 while ($line = mysqli_fetch_array($result)) {
-                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                    echo'<option>'.$line["etiqueta"].'</option>';
                                 }
                                 echo'</optgroup>';
 
@@ -298,7 +301,7 @@
                                 <optgroup label="Secretaría de vinculación">';
 
                                 while ($line = mysqli_fetch_array($result)) {
-                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                    echo'<option>'.$line["etiqueta"].'</option>';
                                 }
                                 echo'</optgroup>';
 
@@ -310,7 +313,7 @@
                                 <optgroup label="Comités y comisiones">';
 
                                 while ($line = mysqli_fetch_array($result)) {
-                                  echo'<option>'.$line["etiqueta"].'</option>';
+                                    echo'<option>'.$line["etiqueta"].'</option>';
                                 }
 
                                 echo'</optgroup>
@@ -393,13 +396,13 @@
         </div>
       </div>
 
-			<div id="pie">
+            <div id="pie">
 
-			</div>
-			</div>
-		</div>
-	</body>
-	<SCRIPT type="text/javascript">
+            </div>
+            </div>
+        </div>
+    </body>
+    <SCRIPT type="text/javascript">
 
     var caracteres = 0;
 
@@ -456,5 +459,5 @@
        document.getElementById("srch_year").disabled = false;
     }
 
-	</SCRIPT>
+    </SCRIPT>
 </html>
