@@ -248,7 +248,7 @@ function deleteFile(){
 
   if ($row = mysqli_fetch_array($select)) { //Eliminar el archivo virtual
       $ToDelete= trim($row[0]);
-      unlink("uploads/".$ToDelete);
+      //unlink("uploads/".$ToDelete);
   }
 
   $query = mysqli_query($con, "DELETE FROM archivo WHERE id= '$id_file' ");

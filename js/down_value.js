@@ -286,7 +286,7 @@ function delete_file(id_file){
             hideOptions();
         },
         failure: function(){
-          alert("No se ha podido eliminar la carpeta");
+          alert("No se ha podido eliminar el archivo");
         }
       });
 

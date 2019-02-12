@@ -62,7 +62,7 @@ else{
     while ($line = mysqli_fetch_array($result2)) {
 
       echo '
-            <span class="docs"><span class="icon-file-text"></span><a target="_blank" href="http://132.247.186.25/2016/consejo_tecnico/conexiones/uploads/'.$line["url"].'">'.$line["nombre"].'</a></span></br>
+            <span class="docs"><span class="icon-file-text"></span><a target="_blank" href="conexiones/uploads/'.$line["url"].'">'.$line["nombre"].'</a></span></br>
             ';
   }
 
