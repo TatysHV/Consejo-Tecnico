@@ -28,7 +28,7 @@ if (!mysqli_select_db($conexion, $db))
               <th><center>Fecha </br>(AA/MM/DD)</center></th>
               <th>Orden día</th>
               <th>Acta</th>
-              <th>Minuta</th>';
+              <!--<th>Minuta</th>-->';
               if($_SESSION["tipo"] == "0"){
                 echo '
                 <th colspan="2">Administrar</th>
@@ -66,7 +66,8 @@ if (!mysqli_select_db($conexion, $db))
                 echo '<td> <center><span title="No hay acta registrada"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></span></center></td>';
               }
 
-              if($row2 = mysqli_fetch_row($ejec_minuta)){
+              //--------------------------- Fila para mostrar la minuta --------------------------------------//
+              /*if($row2 = mysqli_fetch_row($ejec_minuta)){
                 if ($row2[0]==""){
                   echo '<td> <center><span title="No hay minuta registrada"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></span></center></td>';
                 }
@@ -74,6 +75,7 @@ if (!mysqli_select_db($conexion, $db))
                   echo '<td> <center><a href="conexiones/uploads/'.$row2[0].'"><img style="width:20px; height:auto" src="imagenes/flaticons/pdf.png"></a></center></td>';
                 }
               }
+              -------------------------------------------------------------------------------------------------*/
 
               if($_SESSION["tipo"] == "0"){
                 echo '<td> <a href="editsesion.php?sesion='.$line["id"].'" style="color: orange">Modificar</a></td>

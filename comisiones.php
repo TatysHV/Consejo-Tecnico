@@ -79,12 +79,7 @@
 
               <div style="padding-left: 20px;" class="lista">
                 <ul>
-
-                <li><a href="#">Comisión Dictaminadora de la ENES Morelia del área de las Ciencias Físico, Matemáticas y de las Ingenierías (CAACFMI)</a></li>
-                <li><a href="#">Comisión Dictaminadora de la ENES Morelia del área de las Ciencias Biológicas, Químicas y de la Salud (CAABQyS)</a></li>
-                <li><a href="#">Comisión Dictaminadora de la ENES Morelia del área de las Ciencias Sociales (CAACS)</a></li>
-                <li><a href="#">Comisión Dictaminadora de la ENES Morelia del área de las Humanidades y de las Artes (CAAHyA)</a></li>
-';
+                ';
 
                   while ($line = mysqli_fetch_array($result)) {
 
@@ -92,7 +87,7 @@
                     echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line["url"].'">'.$line["nombre"].'</a></strong></span>';
                       if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
                          echo'<div class="onKlic" onclick="deleteComision('.$line["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>
-                         <div style="display: inline-block; margin-left: 8px; "><a href="editcomision.php?id='.$line2["id"].'"><img src="imagenes/flaticons/edit-icon.png" style="width: 15px; heigth: auto;" title="Editar"/></a></div>';
+                         <div style="display: inline-block; margin-left: 8px; "><a href="editcomision.php?id='.$line["id"].'"><img src="imagenes/flaticons/edit-icon.png" style="width: 15px; heigth: auto;" title="Editar"/></a></div>';
                       }
                     echo'</li>';
                     }else{
