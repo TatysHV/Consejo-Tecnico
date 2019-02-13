@@ -100,13 +100,26 @@
               <div class="row">
                 <form>
                   <div class="form-group col-sm-9" style="padding-right:0px;">
-                    <select class="form-control" id="regYear">
-                      <option value="2018">2018</option>
-                      <option value="2017">2017</option>
-                      <option value="2016">2016</option>
-                      <option value="2015">2015</option>
-                      <option value="todos">Todos</option>
-                    </select>
+
+                  <select class="form-control" id="regYear">';
+
+
+                  $year = date("Y");
+                  $i = $year-1;
+
+                  echo'<option value="'.$year.'" selected>'.$year.'</option>';
+
+                  while($i>=2013){
+
+                    echo'<option value="'.$i.'">'.$i.'</option>';
+                    $i--;
+                  }
+
+                  echo'
+                    <option value="todos">Todos</option>
+                  </select>';
+
+                echo '
                   </div>
                   <div class="col-sm-3"><button type="button" class="btn btn-info" onclick="showRegCT()"> Buscar </button></div>
                 </form>

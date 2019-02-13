@@ -239,13 +239,20 @@ if ($_SESSION['tipo'] == '1') {
                     <div class="row">
                       <div class="col-xs-4">
                         <label for"tituloAcuerdo">Año:</label>
+
                         <select class="selectpicker" id="srch_year" name="" data-width="100%" data-live-search="false" title="Selecciona un año" onchange="bloquear_campos()">
-                         <option value="2018">2018</option>
-                         <option value="2017">2017</option>
-                         <option value="2016">2016</option>
-                         <option value="2015">2015</option>
-                         <option value="2014">2014</option>
-                         <option value="2013">2013</option>
+                          <?php
+                          $year = date("Y");
+                          $i = $year-1;
+
+                          echo'<option value="'.$year.'" selected>'.$year.'</option>';
+
+                          while($i>=2013){
+
+                            echo'<option value="'.$i.'">'.$i.'</option>';
+                            $i--;
+                          }
+                          ?>
                         </select>
                       </div>
                       <div class="col-xs-8">
