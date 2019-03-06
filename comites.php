@@ -124,39 +124,65 @@
           <!--Carga de manera automática al abrir la página, el reglamento general de la UNAM
           Y mostrará de manera dinámica el reglamento aprobado por el Consejo Técnico dependiendo del año elegido-->
           <?php
+          echo'
+          <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
+            <div class="row">
+              <legend style="margin-top: 30px; font-size: 1.4em">Comités académicos de posgrado</legend>
+
+              <div style="padding-left: 20px;" class="lista">
+                <ul>
+
+              ';
+
+            $sql3="SELECT * FROM comites WHERE tipo = 'P' ORDER BY nombre ASC";
+
+            $result3 = mysqli_query($con, $sql3) or die('<b>No se encontraron coincidencias</b>' . mysql_error($conexion));
+
+            while ($line3 = mysqli_fetch_array($result3)) {
+               if ($line3["url"]){
+                echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line3["url"].'">'.$line3["nombre"].'</a></strong></span>';
+                  if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
+                     echo'<div class="onKlic" onclick="deleteCom('.$line3["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>
+                          <div style="display: inline-block; margin-left: 8px; "><a href="editcomite.php?id='.$line3["id"].'"><img src="imagenes/flaticons/edit-icon.png" style="width: 15px; heigth: auto;" title="Editar"/></a></div>';
+                  }
+                echo'</li>';
+                }else{
+                  echo'<li><span style="color: #666"><strong><a href="#">'.$line3["nombre"].'</a></strong></span>';
+                  if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
+                     echo'<div class="onKlic" onclick="deleteCom('.$line3["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>
+                     <div style="display: inline-block; margin-left: 8px; "><a href="editcomite.php?id='.$line3["id"].'"><img src="imagenes/flaticons/edit-icon.png" style="width: 15px; heigth: auto;" title="Editar"/></a></div>';
+                  }
+                echo'</li>';
+                }
+              }
+              echo '</ul>';
+
+
             $sql2="SELECT * FROM comites WHERE tipo = 'O' ORDER BY nombre ASC";
 
             $result2 = mysqli_query($con, $sql2) or die('<b>No se encontraron coincidencias</b>' . mysql_error($conexion));
 
-            echo'
-            <div class="col-xs-6" style="padding-right: 15px; padding-left: 15px;">
-              <div class="row">
-                <legend style="margin-top: 30px; font-size: 1.4em">Comités académicos de posgrado</legend>
 
-                <div style="padding-left: 20px;" class="lista">
-                  <ul>
 
-                ';
 
-                    while ($line2 = mysqli_fetch_array($result2)) {
+              while ($line2 = mysqli_fetch_array($result2)) {
 
-                   if ($line2["url"]){
-                    echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line2["url"].'">'.$line2["nombre"].'</a></strong></span>';
-                      if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
-                         echo'<div class="onKlic" onclick="deleteCom('.$line2["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>
-                              <div style="display: inline-block; margin-left: 8px; "><a href="editcomite.php?id='.$line2["id"].'"><img src="imagenes/flaticons/edit-icon.png" style="width: 15px; heigth: auto;" title="Editar"/></a></div>';
-                      }
-                    echo'</li>';
-                    }else{
-                      echo'<li><span style="color: #666"><strong><a href="#">'.$line2["nombre"].'</a></strong></span>';
-                      if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
-                         echo'<div class="onKlic" onclick="deleteCom('.$line2["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>
-                         <div style="display: inline-block; margin-left: 8px; "><a href="editcomite.php?id='.$line2["id"].'"><img src="imagenes/flaticons/edit-icon.png" style="width: 15px; heigth: auto;" title="Editar"/></a></div>';
-                      }
-                    echo'</li>';
+                 if ($line2["url"]){
+                  echo'<li><span style="color: #666"><strong><a href="conexiones/uploads/'.$line2["url"].'">'.$line2["nombre"].'</a></strong></span>';
+                    if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
+                       echo'<div class="onKlic" onclick="deleteCom('.$line2["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>
+                            <div style="display: inline-block; margin-left: 8px; "><a href="editcomite.php?id='.$line2["id"].'"><img src="imagenes/flaticons/edit-icon.png" style="width: 15px; heigth: auto;" title="Editar"/></a></div>';
                     }
-
+                  echo'</li>';
+                  }else{
+                    echo'<li><span style="color: #666"><strong><a href="#">'.$line2["nombre"].'</a></strong></span>';
+                    if($_SESSION['tipo'] == '0'){ //Si el usuario es del tipo administrador: mostrará el botón de eliminar
+                       echo'<div class="onKlic" onclick="deleteCom('.$line2["id"].')" style="display: inline-block; margin-left: 8px; "><img src="imagenes/flaticons/eliminar.png" style="width: 15px; heigth: auto;" title="Eliminar"/></div>
+                       <div style="display: inline-block; margin-left: 8px; "><a href="editcomite.php?id='.$line2["id"].'"><img src="imagenes/flaticons/edit-icon.png" style="width: 15px; heigth: auto;" title="Editar"/></a></div>';
+                    }
+                  echo'</li>';
                   }
+                }
                   echo'
                   </ul>
                 </div>

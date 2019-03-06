@@ -501,6 +501,9 @@ function hideEditComA(){ document.getElementById("comiteA").style.display="none"
 function showEditComO(){ document.getElementById("comiteO").style.display="block";}
 function hideEditComO(){ document.getElementById("comiteO").style.display="none";}
 
+function showEditComP(){ document.getElementById("comiteP").style.display="block";}
+function hideEditComP(){ document.getElementById("comiteP").style.display="none";}
+
 /******************* Visualización de la edición de comisiones ****************/
 
 function showEditComD(){ document.getElementById("comisionD").style.display="block";}

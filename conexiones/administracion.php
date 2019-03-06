@@ -42,6 +42,8 @@ error_reporting(E_ALL);
       break;
       case 16: editComite();
       break;
+      case 17: registrarComiteP();
+      break;
   }
 
   function RegistrarUsuario(){
@@ -366,6 +368,36 @@ error_reporting(E_ALL);
     }
 
   }
+
+
+  function registrarComiteP(){
+    include "conexion.php";
+
+
+    $nombre = $_POST["nameNomrP"];
+    $target_path = "../conexiones/uploads/"; // carpeta donde se guardarán los archivos
+
+    //----------Subir cada uno de los archivos a la carpeta del servidor
+    foreach ($_FILES['reg_P']['name'] as $i => $name) { //Evita el uso del array y garantiza su ejecución
+      //mientras haya un uno o más archivos en el array y obtiene el nombre del archivo en la posición $i del array.
+
+      //----------- Subir la info de cada archivo a la base de datos------------
+      //  $nombre = basename($_FILES['reg_a']['name'][$i]);
+
+      $url=basename($_FILES['reg_P']['name'][$i]);
+
+      //El query necesita ser un update ya que sólo se debe contar con 1 archivo del tipo 'calgeneral' y 'calsesiones'. (no son acumulables, son reemplazables)
+      $query = mysqli_query($con, "INSERT INTO comites (nombre, url, tipo) VALUES ('$nombre','$url','P')"); //Tipo A = Académico
+
+      if (strlen($_FILES['reg_P']['name'][$i]) > 1) { //Garantiza que la cant de caracteres del nombre sea mayor a 1 (No es esencial).
+        if (move_uploaded_file($_FILES['reg_P']['tmp_name'][$i], $target_path.$name)) {
+
+        }else{echo "Error, no se han subido los archivos";}
+      }
+    }
+
+  }
+
 
  function deleteCom(){
       include "conexion.php";

@@ -647,6 +647,29 @@ function subirCalendario(tipo){
 
   }
 
+  function regComiteP(){
+        var formData = new FormData(document.getElementById("frm_comP"));
+
+        formData.append('funcion', 17);
+
+        $.ajax({
+            url: "../consejo_tecnico/conexiones/administracion.php",
+            data: formData,
+            type: "post",
+            contentType: false,
+            processData: false,
+            success: function(data){
+              alert("Comité de posgrado registrado correctamente");
+              window.location.assign("../consejo_tecnico/comites.php");
+            },
+            failure: function(){
+              alert("Error al registrar nuevo comité. "+data);
+            }
+          });
+
+  }
+
+
 
   function deleteCom(id_reg){
 

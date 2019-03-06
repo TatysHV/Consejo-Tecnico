@@ -213,6 +213,35 @@
                     </div>
                     </form>
                   </div>
+
+
+                    <li><a onclick="showEditComP()" class="onKlic">Subir nuevo comité de posgrado</a></li>
+                        <div id="comiteP" class="notaEdit oculto" style="padding: 20px;">
+                          <center><h4>Subir nuevo comité académico de posgrado</h4></center>
+                          </br>
+                          <form id="frm_comP" method="post">
+                            <div class="row">
+                              <div class="form-group col-sm-6">
+                                <label for="exampleInputEmail1">Nombre del comité: </label>
+                                <input type="text" class="form-control" name="nameNomrP" aria-describedby="emailHelp" placeholder="Ingresar nombre">
+                                <small id="blablibli" class="form-text text-muted">Es el nombre que visualizarán los usuarios</small>
+                              </div>
+                              <div class="form-group col-sm-6">
+                                <label for="exampleFormControlFile1">Seleccionar archivo <span style="color:red">PDF</span> del comité</label>
+                                <input type="file" class="form-control-file" id="regConsejo" name="reg_P[]">
+                              </div>
+                            </div>
+
+                            <div class="row">
+                                  <div class="col-sm-6">
+                                    <button type="button" class="btn btn-primary" style="float: right" onclick="regComiteP()">Aceptar</button>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <button type="button" class="btn btn-secondary" onclick="hideEditComP()">Cancelar</button>
+                                  </div>
+                            </div>
+                          </form>
+                  </div>
           </ul>
           <!---------------Notificaciones de procesos-------------- -->
 
