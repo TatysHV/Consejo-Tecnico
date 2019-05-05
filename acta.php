@@ -61,7 +61,7 @@ session_start(); ?>
 					$ID = $_GET['acta'];
 
 					if(!isset($_GET['acta'])){
-   					   echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
+   					   echo '<script> window.location="../consejo_tecnico/portal.php"</script>';
   				}
 
 				/*	@$conexion = mysqli_connect($server, $username, $password)or die("Error en el servidor:". mysqli_connect_error());

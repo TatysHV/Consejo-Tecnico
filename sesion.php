@@ -56,11 +56,11 @@ session_start(); ?>
 				<?php
 					$ID = $_GET['sesion'];
 					if(!isset($_GET['sesion'])){
-   					   echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
+   					   echo '<script> window.location="../consejo_tecnico/portal.php"</script>';
   					}
 
 					if(!isset($_GET['sesion'])){
-						echo '<script> window.location="2016/consejo_tecnico/sesiones.php"</script>';
+						echo '<script> window.location="../consejo_tecnico/sesiones.php"</script>';
 					}
 
 

@@ -2,10 +2,10 @@
     session_start();
     include "conexiones/conexion.php";
 if (!isset($_SESSION['usuario'])) {
-    echo '<script> window.location="2016/consejo_tecnico/index.php"</script>';
+    echo '<script> window.location="../consejo_tecnico/index.php"</script>';
 }
 if ($_SESSION['tipo'] == '1') {
-    echo '<script> window.location="2016/consejo_tecnico/portal.php"</script>';
+    echo '<script> window.location="../consejo_tecnico/portal.php"</script>';
 }
 ?>
 
@@ -241,17 +241,17 @@ if ($_SESSION['tipo'] == '1') {
                         <label for"tituloAcuerdo">Año:</label>
 
                         <select class="selectpicker" id="srch_year" name="" data-width="100%" data-live-search="false" title="Selecciona un año" onchange="bloquear_campos()">
-                          <?php
-                          $year = date("Y");
-                          $i = $year-1;
+                          <?php/*
+                            $year = date("Y");
+                            $i = $year-1;
 
-                          echo'<option value="'.$year.'" selected>'.$year.'</option>';
+                            echo'<option value="'.$year.'" selected>'.$year.'</option>';
 
-                          while($i>=2013){
+                            while($i>=2013){
 
-                            echo'<option value="'.$i.'">'.$i.'</option>';
-                            $i--;
-                          }
+                              echo'<option value="'.$i.'">'.$i.'</option>';
+                              $i--;
+                            }*/
                           ?>
                         </select>
                       </div>
